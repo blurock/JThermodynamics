@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD GWT//EN" "http://gwtproject.org/doctype/2.8.1/gwt-module.dtd">
+<module>
+	<inherits name='com.google.gwt.user.User' />
+	<inherits name="com.google.gwt.activity.Activity" />
+	<inherits name="com.google.gwt.place.Place" />
+	<inherits name="com.google.gwt.http.HTTP" />
+	<inherits name="com.google.gwt.json.JSON" />
+	<inherits name="gwt.material.design.GwtMaterialBasicWithJQuery" />
+	<inherits name="gwt.material.design.addins.GwtMaterialAddins" />
+	<inherits name="gwt.material.design.GwtMaterialTable" />
+	<inherits name="gwt.material.design.themes.ThemeGrey"/>
+	<entry-point
+		class="info.esblurock.thermodynamics.client.ThermodynamicsTopPage">
+	</entry-point>
+
+	<source path="client" />
+</module>

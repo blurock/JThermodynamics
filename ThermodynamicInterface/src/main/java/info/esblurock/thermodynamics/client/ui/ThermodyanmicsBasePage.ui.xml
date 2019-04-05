@@ -1,0 +1,105 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:m="urn:import:gwt.material.design.client.ui"
+	xmlns:ma="urn:import:gwt.material.design.addins.client">
+	<ui:style>
+	.important {
+		font-weight: bold;
+	}
+	</ui:style>
+	<m:MaterialPanel>
+		<m:MaterialRow margin="0" backgroundColor="GREY">
+			<m:MaterialColumn grid="l2" backgroundColor="GREY"
+				height="100%" textAlign="CENTER">
+				<m:MaterialRow margin="0" grid="s12">
+					<m:MaterialPanel ui:field="cornerIcon" margin="0" />
+				</m:MaterialRow>
+				<m:MaterialDivider />
+				<m:MaterialRow margin="0">
+					<m:MaterialColumn>
+						<m:MaterialColumn grid="s4" />
+						<m:MaterialLabel ui:field="userlabel" textColor="BLACK" />
+					</m:MaterialColumn>
+					<m:MaterialColumn grid="s8">
+						<m:MaterialLink ui:field="username" textColor="BLACK" />
+					</m:MaterialColumn>
+				</m:MaterialRow>
+			</m:MaterialColumn>
+			<m:MaterialColumn grid="l10">
+				<m:MaterialLabel ui:field="title"
+					text="ChemConnect: The Intelligent Repository" fontSize="2em"
+					padding="12" />
+				<m:MaterialLabel ui:field="subtitle"
+					text="backed by a knowledge base" fontSize="1.5em" />
+				<!-- MenuBar component -->
+				<ma:menubar.MaterialMenuBar
+					backgroundColor="GREY">
+					<m:MaterialLink ui:field="home" padding="12" waves="DEFAULT"
+						text="Home" textColor="WHITE" />
+					<m:MaterialLink ui:field="createbutton" padding="12"
+						waves="DEFAULT" text="Create" textColor="WHITE" activates="dp-create" />
+					<m:MaterialLink ui:field="about" padding="12" waves="DEFAULT"
+						text="About" textColor="WHITE" />
+					<m:MaterialTooltip ui:field="logintooltip">
+						<m:MaterialLink ui:field="loginchoice" padding="12"
+							waves="DEFAULT" text="Login" textColor="WHITE" activates="dp-login" />
+					</m:MaterialTooltip>
+					<m:MaterialTooltip ui:field="logouttooltip">
+						<m:MaterialLink ui:field="logout" padding="12"
+							waves="DEFAULT" text="Logout" textColor="WHITE" />
+					</m:MaterialTooltip>
+
+					<m:MaterialDropDown ui:field="dpCreate"
+						activator="dp-create" belowOrigin="true">
+						<m:MaterialLink ui:field="catalog" separator="true"
+							textColor="BLACK" />
+						<m:MaterialLink ui:field="upload" separator="true"
+							textColor="BLACK" />
+						<m:MaterialLink ui:field="isolate" separator="true"
+							textColor="BLACK" />
+						<m:MaterialLink ui:field="specification" separator="true"
+							textColor="BLACK" />
+						<m:MaterialLink ui:field="protocol" separator="true"
+							textColor="BLACK" />
+						<m:MaterialLink ui:field="dataSet" separator="true"
+							textColor="BLACK" />
+						<m:MaterialLink ui:field="devices" separator="true"
+							textColor="BLACK" />
+						<m:MaterialLink ui:field="people" separator="true"
+							textColor="BLACK" />
+						<m:MaterialLink ui:field="organizations" separator="true"
+							textColor="BLACK" />
+					</m:MaterialDropDown>
+					<m:MaterialDropDown ui:field="dpTutorial"
+						activator="dp-tutorial" belowOrigin="true">
+						<m:MaterialLink text="Start" separator="true"
+							textColor="BLACK" />
+						<m:MaterialLink ui:field="tutorialreadfile"
+							separator="true" textColor="BLACK" />
+					</m:MaterialDropDown>
+					<m:MaterialDropDown ui:field="dpInfo" activator="dp-info"
+						belowOrigin="true">
+						<m:MaterialLink text="General" separator="true"
+							textColor="BLACK" />
+					</m:MaterialDropDown>
+					<m:MaterialDropDown ui:field="dplogin"
+						activator="dp-login" belowOrigin="true">
+						<m:MaterialLink ui:field="guestLogin" separator="true"
+							text="Guest" textColor="BLACK" />
+						<m:MaterialLink ui:field="linkedinLogin" separator="true"
+							text="LikedIn" textColor="BLACK" />
+						<m:MaterialLink ui:field="googleLogin" separator="true"
+							text="Google" textColor="BLACK" />
+					</m:MaterialDropDown>
+				</ma:menubar.MaterialMenuBar>
+			</m:MaterialColumn>
+		</m:MaterialRow>
+		<m:MaterialRow>
+			<g:SimplePanel ui:field="contentPanel" />
+		</m:MaterialRow>
+		<m:MaterialRow>
+			<g:SimplePanel ui:field="footerpanel" />
+		</m:MaterialRow>
+	</m:MaterialPanel>
+
+</ui:UiBinder> 
