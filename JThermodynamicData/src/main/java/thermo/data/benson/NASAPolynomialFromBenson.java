@@ -193,7 +193,6 @@ public class NASAPolynomialFromBenson extends NASAPolynomial {
             double t = lower + i*interval1;
             cnt++;
             double cp = benson.getHeatCapacity(t)/Rconstant;
-            System.out.println(cnt + "\t" + t + "\t" + cp);
             ans.set(cnt, 0, cp);
             tmat.set(cnt, 0, 1.0);
             tmat.set(cnt, 1, t);
@@ -232,7 +231,6 @@ public class NASAPolynomialFromBenson extends NASAPolynomial {
         Matrix mat = tmat.solve(ans);
         Matrix residule = tmat.times(mat).minus(ans);
         double rnorm = residule.normInf();
-        System.out.println("Residule: " + rnorm);
         double[] coeffs = mat.getRowPackedCopy();
 
         double[] c = new double[7];

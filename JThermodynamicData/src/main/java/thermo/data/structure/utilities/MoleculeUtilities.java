@@ -122,6 +122,7 @@ public class MoleculeUtilities {
 
     public static void printCorrespondences(List<RMap> set, IAtomContainer mol1, IAtomContainer mol2) {
          StringBuffer buf = new StringBuffer();
+         buf.append("Correspondences:\n");
          Iterator<RMap> iter = set.iterator();
          while(iter.hasNext()) {
              RMap m = iter.next();

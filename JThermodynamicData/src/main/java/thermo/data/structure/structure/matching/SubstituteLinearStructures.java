@@ -66,14 +66,11 @@ public class SubstituteLinearStructures  {
                     notdone = false;
                     String symbol = createNewLinearAtomName(atm1,atm2);
                     List<IAtom> bonded = molecule.getConnectedAtomsList(atm2);
-                    System.out.println("Bond:" + atm1.getSymbol() + ", " + atm2.getSymbol());
-                    System.out.println("Bonds with 2: " + bonded.size());
                     if(bonded.size() == 2) {
                         IAtom connect = bonded.get(0);
                         if(connect.equals(atm1)) {
                             connect = bonded.get(1);
                         }
-                        System.out.println("Connected: " + connect.getSymbol());
                         Bond bnd = new Bond(connect,atm1);
                         molecule.addBond(bnd);
                         IBond atm2bond = molecule.getBond(atm2,connect);

@@ -76,9 +76,6 @@ public class BuildBensonThermodynamicFromThergas {
             getSetOfMetaAtoms().addIfNotInSet(center.getCenterAtomAsString());
             String name = structure.getNancyLinearForm().trim();
             thermo.setID(name);
-
-
-            System.out.println("Build Thermo: name '" + thermo.getID() + "'   center atom: " + center.getCenterAtomAsString() + "'");
             grp = new BensonGroupStructure(name);
             grp.setCenterAtomS(center.getCenterAtomAsString());
             HashSet<JThergasGroupElement> groupElements = thergasgrp.getGroupElements();

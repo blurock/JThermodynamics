@@ -33,7 +33,6 @@ public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrec
         super(c);
         try {
             setOfDefinitions = new SQLSetOfSymmetryDefinitions(connect, internalS);
-            //System.out.println(setOfDefinitions.toString());
             fromSingleDefinition = new DetermineInternalSymmetryFromSingleDefinition();
             determineTotal = new DetermineInternalSymmetry(fromSingleDefinition, setOfDefinitions);
             String gasconstantS = SProperties.getProperty("thermo.data.gasconstant.clasmolsk");

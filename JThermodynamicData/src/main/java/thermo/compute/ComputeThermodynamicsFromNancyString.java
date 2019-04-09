@@ -75,7 +75,6 @@ public class ComputeThermodynamicsFromNancyString {
 
     }
     private static void computeFromFile(String fileroot) throws FileNotFoundException {
-        System.out.println("Compute Thermodynamics of molecule: " + fileroot);
         ThermoSQLConnection c = new ThermoSQLConnection();
         c.connect();
         ComputeThermodynamicsFromMolecule compute = null;
@@ -112,13 +111,11 @@ public class ComputeThermodynamicsFromNancyString {
          prt.close();
     }
     private static void computeFromNancyLinearForm(String nancy,String name) throws ThermodynamicComputeException {
-        System.out.println("Compute Thermodynamics of molecule: '" + name + "'='" + nancy + "'");
         ThermoSQLConnection c = new ThermoSQLConnection();
         c.connect();
         ComputeThermodynamicsFromMolecule compute = new ComputeThermodynamicsFromMolecule(c);
         ThermodynamicInformation thermo = compute.computeThermodynamics(nancy);
         NASAPolynomialFromBenson nasa = new NASAPolynomialFromBenson((BensonThermodynamicBase) thermo, compute.getMolecule());
         nasa.name = name;
-        System.out.println(nasa.toString());
     }
 }

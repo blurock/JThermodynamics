@@ -116,14 +116,12 @@ public class SQLAtomCounts {
             i++;
         }
         sqlqueryB.append(";");
-        System.out.println(sqlqueryB.toString());
         Statement statement = connect.createStatement();
         ResultSet set = statement.executeQuery(sqlqueryB.toString());
         HashSet<String> namesV = new HashSet<String>();
         boolean next = set.first();
         while(next) {
             String name = set.getString("Molecule");
-            System.out.println("Query name: '" + name + "'");
             namesV.add(name);
             next = set.next();
         }

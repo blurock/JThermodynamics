@@ -21,6 +21,8 @@ public class SQLStructureAsCML extends SQLStructureThermoAbstractInterface {
 
     public SQLStructureAsCML(ThermoSQLConnection connect) {
         super(connect);
+        tableName = "CMLStructures";
+        tableKey = "ElementName";
     }
 
     @Override
@@ -47,7 +49,6 @@ public class SQLStructureAsCML extends SQLStructureThermoAbstractInterface {
     public HashSet retrieveStructuresFromDatabase(String name) throws SQLException {
         String command = "SELECT * FROM CMLStructures WHERE ElementName=\""
                 + name + "\"";
-        System.out.println(command);
         Statement statement = database.createStatement();
         ResultSet set = statement.executeQuery(command);
         boolean ans = set.first();

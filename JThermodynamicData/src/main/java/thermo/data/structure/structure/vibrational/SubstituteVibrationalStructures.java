@@ -54,17 +54,13 @@ public class SubstituteVibrationalStructures {
                 Iterator<StructureAsCML> iter = structvec.iterator();
                 StructureAsCML cmlstruct = iter.next();
                 IAtomContainer vibmolecule = cmlstruct.getMolecule();
-                System.out.println(cmlstruct.getNameOfStructure());
                 int vibsize = vibmolecule.getAtomCount();
                 List<List<RMap>> bondMatches = matches.getBondMatches(molecule, vibmolecule);
-                //List<List<RMap>> bondMatches = matches.getAtomMatches(molecule, vibmolecule);
                     int n = bondMatches.size();
                     double nD = (double) n;
                     double cD = nD / info.getSymmetry();
                     int nI = (int) -cD;
                 if(bondMatches.size() > 0) {
-                    System.out.println(info.toString());
-                    System.out.println(info.getElementName() + "\n Count: " + nD + "\t Symmetry: " + cD + "\t Final: " + nI);
                 }
                 if(n>0) {
                     VibrationalStructureInfoCount infocount = new VibrationalStructureInfoCount(info, nI);

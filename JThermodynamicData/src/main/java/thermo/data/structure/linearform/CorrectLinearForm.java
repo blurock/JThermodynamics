@@ -76,7 +76,6 @@ public class CorrectLinearForm {
                     if (original.startsWith(name, i)) {
                         String front = original.substring(0,i) + "'" + name + "'";
                         String back = original.substring(i+name.length());
-                        System.out.println("front:" + front + " back:" + back + " name:" + name + "'");
                         i = front.length();
                         original = front + back;
                         notfound = false;

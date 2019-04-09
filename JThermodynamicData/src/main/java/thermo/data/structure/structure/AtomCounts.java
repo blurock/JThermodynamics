@@ -302,7 +302,6 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
                 }
             }
         }
-        //System.out.println("strictlyLessThanOrEqual: \t" + ans + "\t" + o.getMoleculeID() + " :\t " + this.getMoleculeID());
         return ans;
     }
 

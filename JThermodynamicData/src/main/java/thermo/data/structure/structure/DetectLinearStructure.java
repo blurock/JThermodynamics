@@ -23,11 +23,6 @@ public class DetectLinearStructure extends SubstituteLinearStructures {
     }
     public boolean isLinear(IAtomContainer mol) throws CDKException, IOException {
         IAtomContainer sub = substitute(mol);
-        //StructureAsCML cmlstruct0 = new StructureAsCML(sub);
-        //System.out.println(cmlstruct0.getCmlStructureString());
-        //Molecule sub1 = substitute(sub);
-        //StructureAsCML cmlstruct = new StructureAsCML(sub1);
-        //System.out.println(cmlstruct.getCmlStructureString());
         boolean ans = false;
         if(sub.getAtomCount() == 1)
             ans = true;

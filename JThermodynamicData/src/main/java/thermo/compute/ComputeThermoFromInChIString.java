@@ -76,7 +76,6 @@ public class ComputeThermoFromInChIString {
 
     }
     private static void computeFromFile(String fileroot) throws FileNotFoundException, CDKException {
-        System.out.println("Compute Thermodynamics of molecule: " + fileroot);
         ThermoSQLConnection c = new ThermoSQLConnection();
         c.connect();
         ComputeThermodynamicsFromMolecule compute = null;
@@ -113,13 +112,11 @@ public class ComputeThermoFromInChIString {
          prt.close();
     }
     private static void computeFromInChI(String inchi,String name) throws ThermodynamicComputeException, CDKException {
-        System.out.println("Compute Thermodynamics of molecule: '" + name + "'='" + inchi + "'");
         ThermoSQLConnection c = new ThermoSQLConnection();
         c.connect();
         ComputeThermodynamicsFromMolecule compute = new ComputeThermodynamicsFromMolecule(c);
         ThermodynamicInformation thermo = compute.computeThermodynamicsFromInChI(inchi);
         NASAPolynomialFromBenson nasa = new NASAPolynomialFromBenson((BensonThermodynamicBase) thermo);
         nasa.name = name;
-        System.out.println(nasa.toString());
     }
 }

@@ -43,7 +43,6 @@ public class SProperties {
         setProperty("thermo.database.dbpassword","laguna");
         load();
         //loadOnClassPath();
-        //System.out.println("\nSQL: " + getProperty("thermo.database.dbuser") + "\t" + getProperty("thermo.database.dbpassword"));
     }
 
     public static void addPropertyChangeListener(PropertyChangeListener pcl) {

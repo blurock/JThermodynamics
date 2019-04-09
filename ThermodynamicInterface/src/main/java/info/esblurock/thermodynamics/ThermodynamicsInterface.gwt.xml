@@ -10,6 +10,11 @@
 	<inherits name="gwt.material.design.addins.GwtMaterialAddins" />
 	<inherits name="gwt.material.design.GwtMaterialTable" />
 	<inherits name="gwt.material.design.themes.ThemeGrey"/>
+
+	<replace-with class="info.esblurock.thermodynamics.client.activity.ClientFactoryImpl">
+		<when-type-is class="info.esblurock.thermodynamics.client.activity.ClientFactory" />
+	</replace-with>
+	
 	<entry-point
 		class="info.esblurock.thermodynamics.client.ThermodynamicsTopPage">
 	</entry-point>

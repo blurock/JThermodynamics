@@ -6,19 +6,12 @@ package thermo.data.structure.structure;
 
 import java.io.IOException;
 import java.util.Iterator;
-import org.openscience.cdk.Atom;
-import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.DefaultChemObjectBuilder;
-import org.openscience.cdk.AtomContainer;
-//import org.openscience.cdk.aromaticity.HueckelAromaticityDetector;
-//import org.openscience.cdk.atomtype.HybridizationMatcher;
 import org.openscience.cdk.config.IsotopeFactory;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.interfaces.IChemObjectBuilder;
 /**
  *
  * @author blurock
@@ -49,16 +42,13 @@ public class NormalizeMoleculeFromCMLStructure {
         //HybridizationMatcher hybrid = new HybridizationMatcher();
         for (int i = 0; i < mol.getAtomCount(); i++) {
             IAtom atm = mol.getAtom(i);
-            //System.out.println("Connections: " + mol.getConnectedAtomsCount(atm));
             if (!unspecifiedAtom(atm.getSymbol())) {
-                IChemObjectBuilder builder = DefaultChemObjectBuilder.getInstance();
-                //IsotopeFactory obj = IsotopeFactory.getInstance(builder);
                 IsotopeFactory  obj = new IsotopeFactory() {
                 };
                 if(obj.isElement(atm.getSymbol())) {
                     obj.configure(atm);
                 } else {
-                    System.out.println("NormalizeMoleculeFromCMLStructure Not an element: " + atm.getSymbol());
+                    System.err.println("NormalizeMoleculeFromCMLStructure Not an element: " + atm.getSymbol());
                 }
                 
             /*
@@ -81,10 +71,12 @@ public class NormalizeMoleculeFromCMLStructure {
             }
         }
         setAromaticity(mol);
+        /*
         for (int i = 0; i < mol.getAtomCount(); i++) {
             IAtom atm = mol.getAtom(i);
             //printAtomInfo(atm);
         }
+        */
         return mol;
     }
 
@@ -104,11 +96,6 @@ public class NormalizeMoleculeFromCMLStructure {
                 //IAtom atm1 = bnd.getAtom(0);
                 //IAtom atm2 = bnd.getAtom(1);
             }
-            /*
-            if(bnd.getFlag(CDKConstants.ISAROMATIC)) {
-                System.out.println("Aromatic Bond: " + bnd.toString());
-            }
-             */
         }
     }
 
@@ -128,7 +115,7 @@ public class NormalizeMoleculeFromCMLStructure {
         }
    
     }
-
+/*
     private void printAtomInfo(Atom atm) {
         System.out.println("Atom ID                       " + atm.getID());
         System.out.println("Symbol                        " + atm.getSymbol());
@@ -139,4 +126,5 @@ public class NormalizeMoleculeFromCMLStructure {
         System.out.println("Bond order sum                " + atm.getBondOrderSum());
 
     }
+    */
 }

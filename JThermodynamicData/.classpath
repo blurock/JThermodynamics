@@ -28,15 +28,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="jars/HikariCP-3.3.1.jar"/>
-	<classpathentry kind="lib" path="jars/jdbc-socket-factory-core-1.0.13.jar"/>
-	<classpathentry kind="lib" path="jars/mysql-connector-java-5.1.23-bin.jar"/>
-	<classpathentry kind="lib" path="jars/mysql-socket-factory-1.0.13.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/JTherGas"/>
-	<classpathentry kind="lib" path="jars/jni-inchi-0.7-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="jars/jnr-unixsocket-0.2.jar"/>
-	<classpathentry kind="lib" path="jars/slf4j-api-1.5.5.jar"/>
-	<classpathentry kind="lib" path="jars/slf4j-simple-1.7.26.jar"/>
-	<classpathentry kind="lib" path="jars/cdk-2.2.jar"/>
 	<classpathentry kind="output" path="target/thermodynamicinterface-0.1.0-SNAPSHOT/WEB-INF/classes"/>
 </classpath>

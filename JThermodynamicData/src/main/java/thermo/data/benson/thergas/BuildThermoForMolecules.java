@@ -156,8 +156,6 @@ public class BuildThermoForMolecules {
             }
         }
 
-        System.out.println("Done Parsing");
-        System.out.println(buildBenson.getSetOfMetaAtoms().writeAsString());
         if (errorString.length() > 0) {
             throw new SQLException(errorString);
         }
@@ -168,8 +166,6 @@ public class BuildThermoForMolecules {
             substitute.substitute(molecule);
            StructureAsCML cmlstruct = new StructureAsCML(molecule);
             IAtomContainer substituted = metaAtomSubstitutions.substitute(cmlstruct);
-            System.out.println(cmlstruct.getCmlStructureString());
-
             sqlmolecule.addToDatabase(molecule, sourceS);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(BuildThermoForMolecules.class.getName()).log(Level.SEVERE, null, ex);
@@ -194,7 +190,6 @@ public class BuildThermoForMolecules {
      */
     private BensonThermodynamicBase addBensonToDatabase(JThermgasThermoStructureDataPoint point, String reference) throws SQLException {
         BensonThermodynamicBase thermo = buildBenson.buildBensonThermodynamicBase(point, reference);
-        System.out.println(thermo.toString());
         sqlthermo.deleteSourceFromDatabase(thermo.getID());
         sqlthermo.addToDatabase(thermo);
         return thermo;

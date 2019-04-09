@@ -32,7 +32,6 @@ public class CMLBensonGroupStructure extends CMLAbstractThermo {
         String name = struct.getStructureName();
         structureNameS.setValue(name);
         this.appendChild(structureNameS);
-        System.out.println("toCML : " + name);
         CMLScalar centerS = new CMLScalar();
         centerS.setId("CenterAtom");
         centerS.setValue(struct.getCenterAtomS());
@@ -46,9 +45,6 @@ public class CMLBensonGroupStructure extends CMLAbstractThermo {
             cml.setStructure(connect);
             cml.toCML();
             CMLProperty prop = (CMLProperty) cml;
-            //CMLProperty prop = new CMLProperty();
-            //prop.setId("BensonConnectAtomStructure");
-            //prop.appendChild(conlist);
             clist.addProperty(prop);
         }
         this.appendChild(clist);

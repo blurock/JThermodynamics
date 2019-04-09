@@ -27,9 +27,6 @@ public class DetermineExternalSymmetryFromSingleDefinition extends DetermineSymm
         determineSetOfSymmetryAssignments(structure);
         Double symmetryfactor = symmetry.getInternalSymmetryFactor();
         double n = (double) symmetryMatches.size();
-        if(n>0){
-            System.out.println("External Symmetry: " + symmetry.getMetaAtomName() + "(symmetry factor =" + symmetryfactor + "):" + "found " + n + " times");
-        }
         double symmD = Math.pow(symmetryfactor.doubleValue(), n);
         int symmI = (int) Math.round(symmD);
         return symmI;

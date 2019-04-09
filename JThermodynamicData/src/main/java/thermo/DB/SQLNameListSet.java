@@ -61,7 +61,6 @@ public class SQLNameListSet extends SQLStructureThermoAbstractInterface{
         Statement statement = database.createStatement();
         String sqlquery = "SELECT Name FROM NameListSet WHERE GroupName=\""
                 + name + "\";";
-        System.out.println(sqlquery);
         NameListSet set = new NameListSet(name);
         ResultSet elements = statement.executeQuery(sqlquery);
         boolean next = elements.first();

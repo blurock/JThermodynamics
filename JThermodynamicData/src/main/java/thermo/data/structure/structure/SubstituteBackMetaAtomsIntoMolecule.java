@@ -63,7 +63,6 @@ public class SubstituteBackMetaAtomsIntoMolecule extends ArrayList<MetaAtomDefin
         Iterator<MetaAtomDefinition> inancy = this.iterator();
         while (inancy.hasNext()) {
             MetaAtomDefinition nancy = inancy.next();
-            System.out.println("substitute: " + nancy.toString());
             substituteSingleMetaAtom(nancy, molecule);
         }
         MoleculeUtilities.assignIDs(molecule);

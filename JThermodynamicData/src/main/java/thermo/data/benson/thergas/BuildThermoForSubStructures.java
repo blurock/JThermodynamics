@@ -69,8 +69,6 @@ public class BuildThermoForSubStructures extends BuildThermoForMolecules {
             IAtomContainer molecule = buildBenson.buildMolecule(point,c);
             substitute.substitute(molecule);
            StructureAsCML cmlstruct = new StructureAsCML(molecule,sourceS);
-            System.out.println(cmlstruct.getCmlStructureString());
-
             IAtomContainer substituted = metaAtomSubstitutions.substitute(cmlstruct);
             StructureAsCML cml = new StructureAsCML(substituted,sourceS);
 

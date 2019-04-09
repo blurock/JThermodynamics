@@ -90,14 +90,9 @@ public IAtomContainer substitute(IAtomContainer molecule) throws CDKException, C
             while (sub.hasNext()) {
                 
                 SubstituteMetaAtom substitute = sub.next();
-                System.out.println(substitute.getID() + "\t Priority: " + substitute.getPriority());
                 if (substitute.getPriority() == pr) {
-                    System.out.println(pr + "------------ Substitute -----------------\n");
-                    System.out.println(substitute.toString());
                     substitute.substitute(molecule);
                 StructureAsCML cml = new StructureAsCML(molecule);
-                System.out.println("---- Result -----\n");
-                System.out.println(cml.getCmlStructureString());
                 }
             }
         }

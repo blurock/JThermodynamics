@@ -96,14 +96,12 @@ public class SQLBensonThermodynamicBase extends SQLStructureThermoAbstractInterf
         Statement statement = database.createStatement();
 
         String sqlenthalpy = "SELECT ElementName, StandardEnthalpy, Reference From GroupStandardEnthalpy WHERE ElementName=\"" + name + "\";";
-        System.out.println(sqlenthalpy);
         ResultSet enthalpyresults = statement.executeQuery(sqlenthalpy);
         boolean nextenthalpy = enthalpyresults.first();
         grp.setStandardEnthalpy(new Double(enthalpyresults.getDouble("StandardEnthalpy")));
         grp.setReference(enthalpyresults.getString("Reference"));
         
         String sqlentropy = "SELECT ElementName, StandardEntropy, Reference From GroupStandardEntropy WHERE ElementName=\"" + name + "\";";
-        //System.out.println(sqlentropy);
         ResultSet entropyresults = statement.executeQuery(sqlentropy);
         boolean nextentropy = entropyresults.first();
         grp.setStandardEntropy(new Double(entropyresults.getDouble("StandardEntropy")));

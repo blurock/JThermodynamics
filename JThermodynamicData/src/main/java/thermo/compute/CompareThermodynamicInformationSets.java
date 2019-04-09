@@ -39,7 +39,6 @@ public class CompareThermodynamicInformationSets {
             ThermodynamicDifference benson = new ThermodynamicDifference(veryClose);
             benson.initialize(thermo1.getName(), benson.getReference(),temperatures);
             benson.setName(thermo1.getName());
-            System.out.println(benson.getName() + ":  \t" + enthalpy1 + ",\t" + enthalpy2);
             double enthalpypercent = calculatePercent(enthalpy1, enthalpy2);
             double entropypercent = calculatePercent(thermo1.getStandardEntropy298(),thermo2.getStandardEntropy298());
             benson.setStandardEnthalpy(enthalpypercent);
@@ -65,8 +64,6 @@ public class CompareThermodynamicInformationSets {
         if(sum > veryClose) {
             percent = (x2- x1)/sum;
         }
-        //System.out.println("calculatePercent: " + x1abs + "\t"+ x2abs + "\t"+ sum + "\t"+ veryClose + "\t"+ percent );
-
         return percent;
     }
 

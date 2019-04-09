@@ -60,7 +60,6 @@ public abstract class CMLAbstractThermo extends CMLProperty {
         IChemSequence chemSequence = chemfile.getChemSequence(0);
 	ChemModel chemModel = (ChemModel) chemSequence.getChemModel(0);
       */
-        
         fromCML();
     }
     

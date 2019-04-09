@@ -192,11 +192,8 @@ try {
             AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(molecule);
             boolean sromaticB = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
             StructureAsCML cmlstruct = new StructureAsCML(molecule);
-            System.out.println("Molecule after Aromatic Detection: \n" + cmlstruct.getCmlStructureString());
             substitute.substitute(molecule);
             StructureAsCML cmlstruct2 = new StructureAsCML(molecule);
-            System.out.println("Molecule: \n" + cmlstruct2.getCmlStructureString());
-
             fullthermo = computeThermodynamics(molecule,thermodynamics);
         } catch (CDKException ex) {
             Logger.getLogger(ComputeThermodynamicsFromMolecule.class.getName()).log(Level.SEVERE, null, ex);
@@ -228,7 +225,6 @@ try {
      */
     public ThermodynamicInformation computeThermodynamics(StructureAsCML struct,SetOfBensonThermodynamicBase thermodynamics) throws ThermodynamicComputeException {
         try {
-            System.out.println(struct.getCmlStructureString());
             molecule = struct.getMolecule();
         } catch (CDKException ex) {
             throw new ThermodynamicComputeException(ex.toString());
@@ -270,24 +266,25 @@ try {
 
             AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(molecule);
             StructureAsCML cmlstruct = new StructureAsCML(molecule);
-            System.out.println(cmlstruct.getCmlStructureString());
-
             boolean sromaticB = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
             if(formRH.isARadical(molecule)) {
                 computeThermodynamicsForRadicalContributions(molecule, thermodynamics);
             } else {
                 computeThermodynamicsForMolecule(molecule, thermodynamics);
             }
+            /*
             System.out.println("");
             System.out.println("=========== Contributions ==============================");
             System.out.println(thermodynamics.toString());
             System.out.println("========================================================");
-
+             */
             combinedThermodynamics = thermodynamics.combineToOneBensonRule(temperatures);
             combinedThermodynamics.setID("Total");
             combinedThermodynamics.setReference("Sum Total");
+            /*
             System.out.println(combinedThermodynamics.toString());
             System.out.println("========================================================");
+             */
         } catch (ThermodynamicException ex) {
             Logger.getLogger(ComputeThermodynamicsFromMolecule.class.getName()).log(Level.SEVERE, null, ex);
         } catch (CDKException ex) {
@@ -319,8 +316,6 @@ try {
         IAtomContainer substituted = metaAtomSubstitutions.substitute(mol);
         SetOfBensonGroupStructures bensonset = bensonGroups.deriveBensonGroupStructures(substituted);
         sqlthermodynamics.setUpFromSetOfBensonGroupStructures(bensonset,thermo);
-        System.out.println(bensonset.toString());
-
         symmetryCorrections.calculate(mol, thermo);
         BensonThermodynamicBase cycle = (BensonThermodynamicBase) findCyclesThermo.FindLargestStructureThermodynamics(substituted);
         if(cycle != null)

@@ -31,9 +31,6 @@ public class ComputeThermoFromNancyStringFile {
     }
 
     public SetOfThermodynamicInformation computeFromFile(File fileF) throws FileNotFoundException, ThermodynamicComputeException {
-        
-        System.out.println("Compute Thermodynamics of molecule: " + fileF.toString());
-        
         SetOfThermodynamicInformation set = new SetOfThermodynamicInformation("Benson");
         StringBuilder buf = new StringBuilder();
 

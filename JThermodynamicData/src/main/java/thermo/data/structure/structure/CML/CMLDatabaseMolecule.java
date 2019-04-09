@@ -8,7 +8,6 @@ package thermo.data.structure.structure.CML;
 
 import java.util.List;
 import org.xmlcml.cml.base.CMLElement;
-import org.xmlcml.cml.element.CMLPropertyList;
 import org.xmlcml.cml.element.CMLScalar;
 import thermo.data.structure.structure.DatabaseMolecule;
 
@@ -39,18 +38,19 @@ public class CMLDatabaseMolecule  extends thermo.CML.CMLAbstractThermo {
     public void fromCML() {
         List<CMLElement> proplist = this.getChildCMLElements();
        
-        
+        if(proplist.size() == 3) {
         CMLScalar mol = (CMLScalar) proplist.get(0);
         String molS = mol.getString();
         
-        CMLScalar src = (CMLScalar) proplist.get(0);
+        CMLScalar src = (CMLScalar) proplist.get(1);
         String srcS = src.getString();
         
-        CMLScalar struct = (CMLScalar) proplist.get(0);
+        CMLScalar struct = (CMLScalar) proplist.get(2);
         String structS = struct.getString();
         
         DatabaseMolecule molecule = new DatabaseMolecule(molS, structS, srcS);
         this.setStructure(molecule);
+        }
     }
 
 }

@@ -150,7 +150,6 @@ public class ThermoInfoType {
                 i--;
             }
             } else {
-                System.out.println(TemperatureArray.toString());
                 i--;
             }
         }

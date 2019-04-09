@@ -61,10 +61,9 @@ public class SQLStructureAsCML extends SQLStructureThermoAbstractInterface {
 
     @Override
     public HashSet<StructureAsCML> retrieveStructuresFromDatabase(String name) throws SQLException {
-        HashSet vec = new HashSet();
+        HashSet<StructureAsCML> vec = new HashSet<StructureAsCML>();
        String sqlquery = "SELECT ElementName, CMLStructure From CMLStructures WHERE ElementName=\""
                 + name + "\";";
-        //System.out.println(sqlquery);
         Statement statement = database.createStatement();
         ResultSet elements = statement.executeQuery(sqlquery);
         boolean next = elements.first();

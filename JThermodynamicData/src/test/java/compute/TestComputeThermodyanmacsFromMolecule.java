@@ -48,6 +48,7 @@ public class TestComputeThermodyanmacsFromMolecule {
     public void testSingleMolecule() {
         try {
             StringBuilder buf = new StringBuilder();
+            String nancy = "ch3/ch2/ch3";
             //String nancy = "ch3/ch2/ch2/ch2/ch3";
             //String nancy = "ch2(.)/ch2/ch2/ch3";
             //String nancy = "ch3/c(ch3)2/ch2/c(ch3)2/ch2/c(ch3)2/ch2/ch(ch3)2";
@@ -56,7 +57,7 @@ public class TestComputeThermodyanmacsFromMolecule {
             //String nancy = "c(ch3)4";
             //String nancy = "ch2(.)/ch2/ch3";
             //String nancy = "ch3/ch(.)/ch3";
-            String nancy = "ch3/c(ch3)2/ch3";
+            //String nancy = "ch3/c(ch3)2/ch3";
             StructureAsCML cmlstruct = GenerateStructures.createPropane();
             ThermoSQLConnection c = new ThermoSQLConnection();
             c.connect();

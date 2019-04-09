@@ -104,7 +104,6 @@ public class NASAPolynomialFromBensonBurcat extends NASAPolynomialFromBenson {
             boolean islinear = detectLinear.isLinear(mol);
             if (islinear) {
                 double N = (double) mol.getAtomCount();
-                System.out.println("Linear with " + N + " Atoms");
                 cpinfinity = (3.0 * N - 1.5) * rconstant;
                 cpzero = 3.5*rconstant;
             } else {

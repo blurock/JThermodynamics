@@ -33,7 +33,6 @@ public class HeatCapacityAtInfinity {
             boolean islinear = detectLinear.isLinear(mol);
             if (islinear) {
                 double N = (double) mol.getAtomCount();
-                System.out.println("Linear with " + N + " Atoms");
                 cp = (3.0 * N - 1.5) * rconstant;
             } else {
                 double N = (double) mol.getAtomCount();

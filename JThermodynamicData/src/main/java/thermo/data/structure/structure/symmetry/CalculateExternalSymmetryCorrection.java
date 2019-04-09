@@ -46,7 +46,6 @@ public class CalculateExternalSymmetryCorrection extends CalculateSymmetryCorrec
             secondaryDefinitions = new SQLSetOfSymmetryDefinitions(connect, secondaryS);
             String gasconstantS = SProperties.getProperty("thermo.data.gasconstant.clasmolsk");
             gasConstant = Double.valueOf(gasconstantS).doubleValue();
-            //System.out.println(setOfDefinitions.toString());
             fromSingleDefinition = new DetermineExternalSymmetryFromSingleDefinition();
             determineTotal = new DetermineExternalSymmetry(fromSingleDefinition, setOfDefinitions, secondaryDefinitions);
             substituteBack = new SQLSubstituteBackMetaAtomIntoMolecule(nancyLinearFormType, connect);

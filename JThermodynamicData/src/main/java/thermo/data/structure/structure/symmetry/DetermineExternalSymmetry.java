@@ -72,21 +72,17 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
         double topsymmetry = 1.0;
         int currentSymmetry = highestSymmetry;
         while (currentSymmetry > 0 && topsymmetry == 1.0) {
-            //System.out.println("Current Symmetry: " + currentSymmetry);
             Iterator<SymmetryDefinition> idef = symmetryDefinitions.iterator();
             while (idef.hasNext()) {
                 SymmetryDefinition defintion = idef.next();
                 int defsymmetry = defintion.getInternalSymmetryFactor().intValue();
-                //System.out.println("Definition: " + defsymmetry + "\tCurrent: " + currentSymmetry);
                 if (defsymmetry == currentSymmetry) {
-                    //System.out.println("Possible Symmetry: " + topsymmetry + "\t Top: " + defintion.getInternalSymmetryFactor());
                     if (topsymmetry < defintion.getInternalSymmetryFactor().doubleValue()) {
                         int symmetry = determineSymmetry.determineSymmetry(defintion, structure);
-                        //System.out.println("Found Symmetry: " + symmetry);
-                        combineInSymmetryNumber(symmetry);
+                         combineInSymmetryNumber(symmetry);
                         topsymmetry = symmetryValue;
                     } else {
-                        System.out.println("Symmetry Skipped, cannot yield higher symmetry");
+                        //System.out.println("Symmetry Skipped, cannot yield higher symmetry");
                     }
                 }
             }
@@ -108,7 +104,6 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
             try {
                 double symmD = findSymmetryContribution(match);
                 if (symmetryValue < symmD) {
-                    System.out.println("Found Top Symmetry: " + symmD);
                     symmetryValue = (int) symmD;
                 } else {
                     //System.out.println("Found Symmetry: " + symmD + "\t but less than current top " + symmetryValue);
@@ -157,18 +152,15 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
             if (connectionSymmetry.contains(linearCheckS)) {
                 boolean isLinear = isMoleculeLinear(mol);
                 if (isLinear) {
-                    System.out.println("\t\tSymmetry of Connection: " + assignment.getGroupName() + " is linear");
-                    System.out.println("Contributing Symmetry: " + symmD);
+                    //System.out.println("\t\tSymmetry of Connection: " + assignment.getGroupName() + " is linear");
+                    //System.out.println("Contributing Symmetry: " + symmD);
                 } else {
                     notdone = false;
                     }
             } else if (connectionSymmetry.contains(dontCheck)) {
             } else if (!connectionSymmetry.contains(noCheckS)) {
-                System.out.println(this.determineSymmetry.symmetryDefinition.getMetaAtomName() + " expecting connection symmetry of " + connectionSymmetry);
                 double symmetryOfConnection = findSymmetryOfConnection(mol, assignment.getGroupName());
-                System.out.println("\t\tSymmetry of Connection: " + assignment.getGroupName() + " is " + symmetryOfConnection);
-
-                double expected = Double.parseDouble(connectionSymmetry);
+                 double expected = Double.parseDouble(connectionSymmetry);
                 if (symmetryOfConnection == expected) {
                 } else {
                     notdone = false;
@@ -181,7 +173,6 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
         }
         if (symmD != 1.0) {
             String symname = this.determineSymmetry.symmetryDefinition.getMetaAtomName();
-            System.out.println("Final Symmetry for " + this.determineSymmetry.symmetryDefinition.getMetaAtomName() + " is " + symmD);
             double correction = -gasConstant * Math.log(symmD);
             if (setOfCorrections != null) {
                 BensonThermodynamicBase benson = new BensonThermodynamicBase(referenceS, null, 0.0, correction);
@@ -189,7 +180,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
                 setOfCorrections.add(benson);
             }
         } else {
-            System.out.println("Did not satisfy secondary requirement");
+            //System.out.println("Did not satisfy secondary requirement");
         }
 
         return symmD;

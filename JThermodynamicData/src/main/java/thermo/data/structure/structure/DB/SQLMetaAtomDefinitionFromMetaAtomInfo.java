@@ -35,7 +35,7 @@ public class SQLMetaAtomDefinitionFromMetaAtomInfo  {
     }
     
     public MetaAtomDefinition createMetaAtomDefinition(MetaAtomInfo info) throws SQLException, CDKException, ClassNotFoundException, IOException {
-        HashSet<StructureAsCML> vecstruct = sqlStructureAsCML.retrieveStructuresFromDatabase(info.getElementName());
+    	HashSet<StructureAsCML> vecstruct = sqlStructureAsCML.retrieveStructuresFromDatabase(info.getElementName());
         Iterator<StructureAsCML> iter = vecstruct.iterator();
         StructureAsCML cmlstruct = iter.next();
         

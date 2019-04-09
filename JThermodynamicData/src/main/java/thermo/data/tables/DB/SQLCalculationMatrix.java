@@ -56,10 +56,8 @@ public class SQLCalculationMatrix extends SQLStructureThermoAbstractInterface {
                 + "\"" + "Description" + "\","
                 + "\"" + matrix.getDescription() + "\""
                 + ")";
-        System.out.println("Dimension: " + n);
         int index = 3;
         for(int i=0; i<n; i++) {
-            System.out.println("Index: " + i);
             NumericColumn column = matrix.get(i);
 
             String value = column.toString();
@@ -72,7 +70,6 @@ public class SQLCalculationMatrix extends SQLStructureThermoAbstractInterface {
                 + "\"" + "Columns" + "\","
                 + "\"" + i + " " + column.toString() + "\""
                 + ")";
-            System.out.println(index + ":  " + commands[index]);
             index++;
        }
         return commands;
@@ -128,7 +125,6 @@ public class SQLCalculationMatrix extends SQLStructureThermoAbstractInterface {
             int pos = line.indexOf(" ");
             Integer indexI = new Integer(line.substring(0,pos));
             String vecS = line.substring(pos).trim();
-            //System.out.println("Read: " + indexI.intValue() + ":  " + vecS);
             NumericColumn col = new NumericColumn();
             col.add(vecS);
            temp.put(indexI,col);

@@ -136,7 +136,6 @@ public class ThermoSQLConnection {
             Logger.getLogger(ThermoSQLConnection.class.getName()).log(Level.INFO,
                     "Trying to connect and failed with SQLException");
 
-            System.out.println(ex.toString());
             Logger.getLogger(ThermoSQLConnection.class.getName()).log(Level.SEVERE, null, ex);
             success = false;
         } catch (Exception ex) {

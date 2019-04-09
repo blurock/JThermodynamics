@@ -54,14 +54,14 @@ public class CalculateDisassociationEnergy {
        FindSubstructure find = new FindSubstructure(mol, connect);
        SQLDisassociationEnergy sqldiss = new SQLDisassociationEnergy(connect);
        List<String> names = sqldiss.listOfDisassociationStructures();
-       System.out.println("getDisassociationEnergyForMolecule: Number of candidate" + names.size());
        String name = find.findLargestSubstructure(names);
        HashSet<DisassociationEnergy> energyV = sqldiss.retrieveStructuresFromDatabase(name);
        if(energyV.size() == 1) {
            Iterator<DisassociationEnergy> iter = energyV.iterator();
            energy = iter.next();
        } else if(energyV.size() == 0) {
-           throw new CDKException("Disassociation Energy for " + mol.getID() + " could not be found");
+           throw new CDKException("Disassociation Energy for " + mol.getID() + " could not be found\n" +
+        		   mol.toString());
        } else {
            String error = "ERROR in Database: "
                    + energyV.size()

@@ -240,8 +240,6 @@ public class BuildBensonTable {
 
         }
 
-        System.out.println("Done Parsing");
-        System.out.println(buildBenson.getSetOfMetaAtoms().writeAsString());
         if (errorString.length() > 0) {
             throw new SQLException(errorString);
         }
@@ -268,7 +266,6 @@ public class BuildBensonTable {
             sqlelement.deleteGroupElementFromDatabase(grp);
             sqlelement.addToDatabase(grp);
         }
-        System.out.println(thermo.toString());
         sqlthermo.deleteElement(thermo);
         sqlthermo.addToDatabase(thermo);
         return thermo;
@@ -286,12 +283,9 @@ public class BuildBensonTable {
      * @throws java.sql.SQLException
      */
     private void testCMLBensonThermodynamicBase(BensonThermodynamicBase thermo) throws SQLException {
-        System.out.println("---------------------------------------------------------");
-        System.out.print("BensonThermodynamicBase CML Test");
         CMLBensonThermodynamicBase cmlthermo = new CMLBensonThermodynamicBase();
         cmlthermo.setStructure(thermo);
         String cmlthermoS = cmlthermo.restore();
-        System.out.println(cmlthermoS);
         CMLBensonThermodynamicBase cmlthermo2 = new CMLBensonThermodynamicBase();
         try {
             cmlthermo2.parse(cmlthermoS);
@@ -306,8 +300,5 @@ public class BuildBensonTable {
         HashSet<BensonThermodynamicBase> vec = sqlthermo.retrieveStructuresFromDatabase(thermo2.getID());
         Iterator<BensonThermodynamicBase>  iter = vec.iterator();
         BensonThermodynamicBase thermo3 = iter.next();
-        System.out.println(thermo3.toString());
-        System.out.println("---------------------------------------------------------");
-
-    }
+     }
 }

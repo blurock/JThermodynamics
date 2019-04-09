@@ -84,7 +84,6 @@ public class MetaAtomDefinition extends MetaAtomInfo {
      }
 
     private boolean isUnspecifiedAtom(IAtom atom) {
-        //System.out.println("Symbol: " + atom.getSymbol());
         return atom.getSymbol().equals(unspecifiedAtom) 
                 || atom.getSymbol().startsWith(unspecifiedAtomPrefix);
     }

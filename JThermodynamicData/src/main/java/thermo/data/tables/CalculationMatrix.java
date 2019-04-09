@@ -152,7 +152,6 @@ public class CalculationMatrix extends ArrayList<NumericColumn> {
         buf.append("    : \t");
         buf.append(columnHeaderValues.toString());
         buf.append("\n");
-        //System.out.println("Size: " + this.size() + "\t R: " + rowHeaderValues.size() + "\t" + columnHeaderValues.size());
         for(int i=0;i<rowHeaderValues.size();i++) {
             Double rowvalue = rowHeaderValues.get(i);
             buf.append(rowvalue.toString());

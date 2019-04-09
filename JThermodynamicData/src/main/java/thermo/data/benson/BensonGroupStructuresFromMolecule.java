@@ -26,7 +26,6 @@ public class BensonGroupStructuresFromMolecule {
     
     public SetOfBensonGroupStructures deriveBensonGroupStructures(IAtomContainer molecule) {
         SetOfBensonGroupStructures lst = new SetOfBensonGroupStructures();
-        System.out.println(MoleculeUtilities.toString(molecule));
         Iterator<IAtom> atoms = molecule.atoms().iterator();
         int ii=0;
         while(atoms.hasNext()) {
@@ -34,7 +33,6 @@ public class BensonGroupStructuresFromMolecule {
             if(bensonCenterAtom(atm)) {
                 List<IAtom> connected = molecule.getConnectedAtomsList(atm);
                 BensonGroupStructure structure = formBensonGroupStructure(atm,connected);
-                //System.out.println(structure.writeAsString());
                 lst.add(structure);
             }
         }

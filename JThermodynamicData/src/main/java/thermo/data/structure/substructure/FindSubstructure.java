@@ -287,15 +287,11 @@ public class FindSubstructure {
     protected List<AtomCounts> findSubStructureCandidates(List<String> names) throws SQLException {
         List<AtomCounts> map = new ArrayList<AtomCounts>();
         Iterator<String> iter = names.iterator();
-        //System.out.println(atomCounts.toString());
         while (iter.hasNext()) {
             String name = iter.next();
-            //System.out.println("Cycle to test: " + name);
             AtomCounts count = sqlAtomicCounts.getAtomCounts(name);
-            //System.out.println("Candidate: " + name + "\n" + count.toString());
             if (atomCounts.strictlyLessThanOrEqual(count)) {
                 map.add(count);
-                //System.out.println("Add to candidates");
             }
         }
         return map;
@@ -310,24 +306,14 @@ public class FindSubstructure {
      */
     public String findLargestSubStructure(List<AtomCounts> counts) throws SQLException, CDKException {
         Iterator<AtomCounts> cntiter = counts.iterator();
-//        while(cntiter.hasNext()) {
-//            System.out.print("\t" + cntiter.next().getMoleculeID());
-//        }
-//        System.out.println("");
         Collections.sort(counts);
         cntiter = counts.iterator();
-        //while(cntiter.hasNext()) {
-        //System.out.print("\t" + cntiter.next().getMoleculeID());
-        //}
-        //System.out.println("");
         Iterator<AtomCounts> iter = counts.iterator();
         boolean notfound = true;
         AtomCounts cnts = null;
         while (iter.hasNext() && notfound) {
             cnts = iter.next();
-            //System.out.println("findLargestSubStructure: " + cnts.getMoleculeID());
             if (isSubstructure(cnts)) {
-                System.out.println("Matched!");
                 notfound = false;
             }
         }

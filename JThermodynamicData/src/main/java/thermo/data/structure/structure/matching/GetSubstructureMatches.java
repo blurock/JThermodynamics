@@ -152,8 +152,6 @@ public class GetSubstructureMatches {
         GetSubstructureMatches match = new GetSubstructureMatches();
 
         List<List<RMap>> matches = match.getAtomMatches(mol1, mol2);
-        System.out.println("Number of Matchings: " + matches.size());
-
         return getMatchesForAtomWithBondList(mol1, mol2, atmnum, matches);
     }
 

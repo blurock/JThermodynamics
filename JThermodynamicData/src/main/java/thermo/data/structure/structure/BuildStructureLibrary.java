@@ -72,7 +72,7 @@ public class BuildStructureLibrary {
             molecule.setID(nameOfStructure);
             StructureAsCML cmlstruct = new StructureAsCML(molecule);
             if(detectAromaticity) {
-                System.out.println(cmlstruct.getCmlStructureString());
+                System.out.println("detect Aromaticity: \n" + cmlstruct.getCmlStructureString());
             }
             MetaAtomInfo info = new MetaAtomInfo();
             info.setElementName(nameOfStructure);

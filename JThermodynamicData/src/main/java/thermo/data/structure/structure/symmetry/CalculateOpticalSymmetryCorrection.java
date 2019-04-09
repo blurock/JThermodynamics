@@ -32,7 +32,6 @@ double gasConstant;
        super(c);
         try {
             setOfDefinitions = new SQLSetOfSymmetryDefinitions(connect, opticalS);
-            //System.out.println(setOfDefinitions.toString());
             fromSingleDefinition = new DetermineSymmetryFromSingleDefinition();
             determineTotal = new DetermineTotalOpticalSymmetry(fromSingleDefinition, setOfDefinitions);
             String gasconstantS = SProperties.getProperty("thermo.data.gasconstant.clasmolsk");

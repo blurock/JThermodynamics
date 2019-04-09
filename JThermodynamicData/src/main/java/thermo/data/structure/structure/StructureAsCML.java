@@ -7,7 +7,7 @@ package thermo.data.structure.structure;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.StringReader;
+import java.io.IOException;
 import java.util.Iterator;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.CDKConstants;
@@ -30,6 +30,15 @@ import org.xmlcml.cml.element.CMLMolecule;
  * @author blurock
  */
 public class StructureAsCML  {
+	
+	private static Convertor standardconvertor;
+	private static Convertor getConvertor() {
+		if(standardconvertor == null) {
+			standardconvertor = new Convertor(true,null);
+		}
+		return standardconvertor;
+	}
+	
     private String nameOfStructure;
     private String cmlStructureString;
     public String source;
@@ -49,6 +58,11 @@ public class StructureAsCML  {
         CMLWriter write = new CMLWriter(output);
         write.write(mol);
         cmlStructureString = output.toString();
+        try {
+			write.close();
+		} catch (IOException e) {
+			throw new CDKException("Error closing file write: " + nameOfStructure + " (source: " + source);
+		}
     }
     public StructureAsCML(IAtomContainer mol, String src) throws CDKException {
         nameOfStructure = mol.getID();
@@ -57,6 +71,11 @@ public class StructureAsCML  {
         CMLWriter write = new CMLWriter(output);
         write.write(mol);
         cmlStructureString = output.toString();
+        try {
+			write.close();
+		} catch (IOException e) {
+			throw new CDKException("Error closing file write: " + nameOfStructure + " (source: " + source);
+		}
     }
     
     public StructureAsCML(String name, String cml) {
@@ -82,24 +101,29 @@ public class StructureAsCML  {
     
     public CMLMolecule getCMLMolecule() throws CDKException  {
         IAtomContainer molecule = getMolecule();
-        Convertor convert = new Convertor(true, nameOfStructure);
+        //Convertor convert = new Convertor(true, nameOfStructure);
+        Convertor convert = StructureAsCML.getConvertor();
         CMLMolecule cml = convert.cdkAtomContainerToCMLMolecule(molecule);
         return cml;
     }
     public IAtomContainer getMolecule() throws CDKException {
-        StringReader read = new StringReader(cmlStructureString);
+        //StringReader read = new StringReader(cmlStructureString);
         ByteArrayInputStream str = new ByteArrayInputStream(cmlStructureString.getBytes());
         //DefaultChemObjectBuilder build = (DefaultChemObjectBuilder) DefaultChemObjectBuilder.getInstance();
-        IChemFile file =    new ChemFile();   //build.newChemFile();
+        //IChemFile file =    new ChemFile();   //build.newChemFile();
         CMLReader reader = new CMLReader(str);
-        IChemObject chemobj = reader.read(file);
+        try {
+			reader.close();
+		} catch (IOException e) {
+			throw new CDKException("Error in closing read (getMolecule)");
+		}
+        IChemObject chemobj = reader.read(new ChemFile());
         IChemFile chemfile = (IChemFile) chemobj;
-        //System.out.println(chemfile.getChemSequenceCount());
         IChemSequence chemSequence = chemfile.getChemSequence(0);
-	ChemModel chemModel = (ChemModel) chemSequence.getChemModel(0);
+        ChemModel chemModel = (ChemModel) chemSequence.getChemModel(0);
         
-	IAtomContainerSet setOfMolecules = chemModel.getMoleculeSet();
-	IAtomContainer molecule = (IAtomContainer) setOfMolecules.getAtomContainer(0);
+        IAtomContainerSet setOfMolecules = chemModel.getMoleculeSet();
+        IAtomContainer molecule = (IAtomContainer) setOfMolecules.getAtomContainer(0);
         setAromaticAtomsFromBonds(molecule);
         return molecule;
      }
@@ -117,8 +141,8 @@ public class StructureAsCML  {
             if(bond.getFlag(CDKConstants.ISAROMATIC)) {
                 IAtom atom1 = bond.getAtom(0);
                 IAtom atom2 = bond.getAtom(1);
-                //atom1.setFlag(CDKConstants.ISAROMATIC, true);
-                //atom2.setFlag(CDKConstants.ISAROMATIC, true);
+                atom1.setFlag(CDKConstants.ISAROMATIC, true);
+                atom2.setFlag(CDKConstants.ISAROMATIC, true);
             }
         }
         atomiterator = molecule.atoms().iterator();
@@ -145,5 +169,8 @@ public class StructureAsCML  {
         this.cmlStructureString = cmlStructureString;
     }
 
+    public String toString() {
+    	return cmlStructureString;
+    }
 
 }

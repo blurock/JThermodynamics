@@ -104,22 +104,9 @@ public class CalculateVibrationalCorrectionForRadical {
         }
 
         public SetOfBensonThermodynamicBase calculate(IAtomContainer mol,IAtomContainer RH, SetOfBensonThermodynamicBase corrections) throws NotARadicalException, SQLException, CDKException, IOException {
-
-            //System.out.println(substitute.toString());
-            System.out.println("-----------------------------------------------------------");
             SetOfVibrationalStructureCounts counts = substitute.findSubstitutions(RH);
-            System.out.println("Vibrations in RH");
-            System.out.println(counts.toString());
-            System.out.println("-----------------------------------------------------------");
             SetOfVibrationalStructureCounts countsR = substitute.findSubstitutions(mol);
-            System.out.println("Vibrations in Radical R");
-            System.out.println(countsR.toString());
-            System.out.println("-----------------------------------------------------------");
-
             counts.subtract(countsR);
-            System.out.println("Difference in Vibrational modes");
-            System.out.println(counts.toString());
-            
             Iterator<VibrationalStructureInfoCount> iter = counts.iterator();
             while(iter.hasNext()) {
                 VibrationalStructureInfoCount count = iter.next();

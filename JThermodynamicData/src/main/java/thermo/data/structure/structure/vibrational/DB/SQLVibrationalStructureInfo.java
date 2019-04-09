@@ -51,7 +51,6 @@ public class SQLVibrationalStructureInfo extends SQLStructureThermoAbstractInter
         if (info.getElementName() != null) {
             sqlquery += " WHERE " + "ElementName=\"" + info.getElementName() + "\"" + ";";
         }
-        //System.out.println(sqlquery);
         Statement statement = database.createStatement();
         ResultSet elements = statement.executeQuery(sqlquery);
         return elements.getFetchSize() > 0;

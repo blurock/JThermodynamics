@@ -82,11 +82,9 @@ public class BuildSymmetryDefinition {
         } else {
             throw new CDKException("Expecting symmetry name and structure name but got '" + firstLine + "'");
         }
-        System.out.println(tok.countTokens());
         //Each Line
         if (tok.countTokens() >= 2) {
             String group = tok.nextToken();
-            System.out.println("Line: " + group);
             while (!group.startsWith(symmetryKeyWord)) {
                 StringTokenizer grouptok = new StringTokenizer(group, ":");
                 if (grouptok.countTokens() >= 3) {
@@ -113,7 +111,6 @@ public class BuildSymmetryDefinition {
         }
         SymmetryDefinition symmdef = new SymmetryDefinition(nameOfSymmetry, cmlstruct, pairs, new Double(symnumberS));
         symmdef.setMetaAtomType(symmetryType);
-        System.out.println(symmdef.toString());
         sqlSymmetryDefinition.deleteElement(symmdef);
         sqlSymmetryDefinition.addToDatabase(symmdef);
     }

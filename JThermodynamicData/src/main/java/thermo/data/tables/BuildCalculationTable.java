@@ -40,9 +40,6 @@ public class BuildCalculationTable {
 
         CalculationMatrix matrix = new CalculationMatrix();
         matrix.readCalculationMatrixFromString(matrixS);
-
-        System.out.println(matrix.toString());
-
         connect.connect();
         SQLCalculationMatrix sqlmatrix = new SQLCalculationMatrix(connect);
         sqlmatrix.addToDatabase(matrix);

@@ -199,9 +199,6 @@ public class NancyLinearFormToMolecule {
                         Atom prevatm,
                         boolean mainconnection,
                         int bondorder) throws NullPointerException {
-//        System.out.println("addNodeToMolecule:");
-//        System.out.println(node.toString());
-
         LinearFormAtomGroupString atminfo = node.atomElement;
         Atom atm = null;
         String atmS = atminfo.atomGroup.toUpperCase();

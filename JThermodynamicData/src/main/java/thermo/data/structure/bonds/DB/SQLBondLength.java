@@ -44,7 +44,6 @@ public class SQLBondLength extends SQLStructureThermoAbstractInterface {
                 + "\"" + bond.getSource() + "\""
                 + ")";
         commands[0] = command;
-        System.out.println(command);
         return commands;
 
     }
