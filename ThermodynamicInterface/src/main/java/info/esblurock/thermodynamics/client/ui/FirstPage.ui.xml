@@ -1,7 +1,6 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:m="urn:import:gwt.material.design.client.ui"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:m="urn:import:gwt.material.design.client.ui"
 	xmlns:ma="urn:import:gwt.material.design.addins.client">
 	<ui:style>
 	.important {
@@ -9,7 +8,60 @@
 	}
 	</ui:style>
 	<m:MaterialPanel>
-	<m:MaterialTitle title="Thermodynamic Calculation"/>
-	<g:Button text="Calculation" styleName="{style.important}" ui:field="button" />
+		<m:MaterialRow>
+			<m:MaterialPanel ui:field="headerpanel" />
+			<m:MaterialPanel margin="30">
+				<g:HTML ui:field="introduction" />
+			</m:MaterialPanel>
+			<m:MaterialParallax height="200px">
+				<m:MaterialImage ui:field="parallax1" />
+			</m:MaterialParallax>
+			<m:MaterialPanel margin="30">
+				<m:MaterialRow>
+					<m:MaterialColumn>
+						<m:MaterialTitle ui:field="calculationtitle" textAlign="CENTER"/>
+					</m:MaterialColumn>
+				</m:MaterialRow>
+				<m:MaterialRow>
+					<m:MaterialColumn grid="s2">
+						<m:MaterialLink ui:field="calculatenancy" text="Nancy" textColor="BLACK"
+						fontSize="1.5em"
+							hoverable="true" />
+					</m:MaterialColumn>
+					<m:MaterialColumn grid="s10">
+						<m:MaterialTextBox ui:field="nancyformtext"
+							placeholder="ch3/ch2/ch2/ch2(.)" label="Nancy representation" />
+					</m:MaterialColumn>
+				</m:MaterialRow>
+				<m:MaterialRow>
+					<m:MaterialColumn grid="s2">
+						<m:MaterialLink ui:field="calculatesmiles" text="Smiles" textColor="BLACK"
+						fontSize="1.5em"
+							hoverable="true" />
+					</m:MaterialColumn>
+					<m:MaterialColumn grid="s10">
+						<m:MaterialTextBox ui:field="smilesformtext"
+							placeholder="CCCC" label="SMILES representation" />
+					</m:MaterialColumn>
+				</m:MaterialRow>
+				<m:MaterialRow>
+					<m:MaterialColumn grid="s2">
+						<m:MaterialLink ui:field="calculateinchi" text="Inchi" textColor="BLACK"
+						fontSize="1.5em"
+							hoverable="true" />
+					</m:MaterialColumn>
+					<m:MaterialColumn grid="s10">
+						<m:MaterialTextBox ui:field="inchiformtext"
+							placeholder="1S/C4H10/c1-3-4-2/h3-4H2,1-2H3" label="INCHI representation" />
+					</m:MaterialColumn>
+				</m:MaterialRow>
+			</m:MaterialPanel>
+			<m:MaterialParallax height="150px">
+				<m:MaterialImage ui:field="parallax2" />
+			</m:MaterialParallax>
+			<m:MaterialPanel margin="30">
+				<g:HTML ui:field="introduction2" />
+			</m:MaterialPanel>
+		</m:MaterialRow>
 	</m:MaterialPanel>
 </ui:UiBinder> 

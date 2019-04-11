@@ -27,10 +27,10 @@
 			</m:MaterialColumn>
 			<m:MaterialColumn grid="l10">
 				<m:MaterialLabel ui:field="title"
-					text="ChemConnect: The Intelligent Repository" fontSize="2em"
+					text="JTHERGAS: 2D Structure Thermodynamic Determination" fontSize="2em"
 					padding="12" />
 				<m:MaterialLabel ui:field="subtitle"
-					text="backed by a knowledge base" fontSize="1.5em" />
+					text="Based on 2D structural analysis and Benson additivity rules" fontSize="1.5em" />
 				<!-- MenuBar component -->
 				<ma:menubar.MaterialMenuBar
 					backgroundColor="GREY">

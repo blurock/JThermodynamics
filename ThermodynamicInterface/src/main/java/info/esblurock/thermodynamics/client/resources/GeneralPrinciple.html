@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Governing Principles</title>
+</head>
+<body>
+	There are two governing principles of JTHERGAS extensibility and flexibility
+	 are paramount. Extensibility is primarily achieved by having all
+	molecular, atomic and structural information is encoded in a database
+	and the fundamental calculational ‘engine’ of JTHERGAS does not have to
+	be modified if new structures or corrections are to be introduced.
+	Flexibility is achieved by coding all the 'rules', meaning how the thermodynamic corrections
+	and additions are made, are based on 2D graphical representations coupled with tables of information.
+	The elements making up the thermodynamic 'rule' are stored in the database.
+	The 2D graphical representations determine if and where in the molecule the thermodynamic quantity is to be applied. 
+	An associated table determines the numerical additions and corrections to the thermodynamics.
+	
+	<br> Access to the database and calculations with the database is
+	not only platform independent (written in JAVA), but is also available
+	through local line command, RESTful API's and this web interface. The
+	molecular information is transmitted through the web interfaces using
+	the standardized CML (Chemical Markup Language). Any programing
+	language and platform that can access web-services can use the
+	calculational facilities of JTHERGAS.
+
+</body>
+</html>
