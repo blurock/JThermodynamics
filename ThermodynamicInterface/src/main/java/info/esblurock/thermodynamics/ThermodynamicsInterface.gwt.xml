@@ -10,7 +10,6 @@
 	<inherits name="gwt.material.design.addins.GwtMaterialAddins" />
 	<inherits name="gwt.material.design.GwtMaterialTable" />
 	<inherits name="gwt.material.design.themes.ThemeGrey"/>
-	<inherits name="thermo.JThermodynamicData"/>
 
 	<replace-with class="info.esblurock.thermodynamics.client.activity.ClientFactoryImpl">
 		<when-type-is class="info.esblurock.thermodynamics.client.activity.ClientFactory" />
@@ -21,4 +20,6 @@
 	</entry-point>
 
 	<source path="client" />
+	<source path="base" />
+	<source path="async" />
 </module>

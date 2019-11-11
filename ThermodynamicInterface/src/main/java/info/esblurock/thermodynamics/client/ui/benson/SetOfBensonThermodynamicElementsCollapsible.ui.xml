@@ -1,0 +1,39 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:m="urn:import:gwt.material.design.client.ui" xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:ma="urn:import:gwt.material.design.addins.client">
+	<ui:style>
+	.box {
+		background-color: #bdbdbd;
+		border: 3px solid #607d8b;
+		margin: 0px;
+	}
+	
+	.panelbox {
+		background-color: #e0e0e0;
+		border: 3px solid #607d8b;
+		margin: 0px;
+	}
+	</ui:style>
+	<m:MaterialCollapsibleItem margin="0">
+		<m:MaterialCollapsibleHeader ui:field="header"
+			styleName="{style.box}">
+			<m:MaterialRow margin="0">
+				<m:MaterialColumn grid="s11" margin="0">
+					<m:MaterialLink ui:field="title" />
+				</m:MaterialColumn>
+				<m:MaterialColumn grid="s1" margin="0">
+					<m:MaterialLink ui:field="seeinfo" iconType="ARROW_DROP_DOWN"
+						iconColor="BLACK" iconPosition="RIGHT" />
+				</m:MaterialColumn>
+			</m:MaterialRow>
+			<m:MaterialRow margin="0">
+				<m:MaterialPanel ui:field="infopanel" margin="0" />
+			</m:MaterialRow>
+		</m:MaterialCollapsibleHeader>
+		<m:MaterialCollapsibleBody ui:field="topbody"
+			styleName="{style.panelbox}">
+			<m:MaterialCollapsible ui:field="topbodypanel" />
+		</m:MaterialCollapsibleBody>
+	</m:MaterialCollapsibleItem>
+</ui:UiBinder> 

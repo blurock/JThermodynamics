@@ -6,8 +6,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import info.esblurock.thermodynamics.service.CalculateThermodynamicsAPI;
 import nu.xom.ParsingException;
-import thermo.api.CalculateThermodynamicsAPI;
 import thermo.data.benson.SetOfBensonThermodynamicBase;
 
 public class CalculateThermodynamicsAPITest {

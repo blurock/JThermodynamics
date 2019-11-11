@@ -6,6 +6,8 @@ import com.google.gwt.place.shared.PlaceController;
 
 import info.esblurock.thermodynamics.client.ui.FirstPage;
 import info.esblurock.thermodynamics.client.ui.ThermodyanmicsBasePage;
+import info.esblurock.thermodynamics.client.ui.about.AboutSummary;
+import info.esblurock.thermodynamics.client.view.AboutSummaryView;
 import info.esblurock.thermodynamics.client.view.FirstPageView;
 
 
@@ -15,6 +17,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	
 	ThermodyanmicsBasePage basepage = new ThermodyanmicsBasePage();
 	FirstPage firstpage = new FirstPage();
+	AboutSummary summary = new AboutSummary();
 	
 	@Override
 	public EventBus getEventBus() {
@@ -38,6 +41,11 @@ public class ClientFactoryImpl implements ClientFactory {
 	@Override
 	public FirstPageView getFirstPageView() {
 		return firstpage;
+	}
+
+	@Override
+	public AboutSummaryView getAboutSummaryView() {
+		return summary;
 	}
 
 }

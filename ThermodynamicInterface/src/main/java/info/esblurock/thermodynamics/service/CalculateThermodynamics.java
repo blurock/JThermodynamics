@@ -114,39 +114,42 @@ public class CalculateThermodynamics extends HttpServlet {
 						total = compute.computeThermodynamics(molecule, thermodynamics);
 					}
 					if (total != null) {
-						if (output.matches(textOutputS)) {
+						if (output.equalsIgnoreCase(textOutputS)) {
 							response.setContentType("text/text");
 							String thermoS = thermodynamics.toString();
 							if (!totalB) {
 								response.getWriter().println(thermoS);
+							} else {
+								response.getWriter().println(total.toString());
 							}
-							response.getWriter().println(total.toString());
-						} else if (output.matches(xmlOutputS)) {
+						} else if (output.equalsIgnoreCase(xmlOutputS)) {
 							response.setContentType("text/xml");
 							if (!totalB) {
 								CMLSetOfBensonThermodynamicBase cmlbenson = new CMLSetOfBensonThermodynamicBase();
 								cmlbenson.setStructure(thermodynamics);
 								cmlbenson.toCML();
 								response.getWriter().print(cmlbenson.toXML());
+							} else {
+								CMLBensonThermodynamicBase cmlbenson = new CMLBensonThermodynamicBase();
+								cmlbenson.setStructure(total);
+								cmlbenson.toCML();
+								response.getWriter().print(cmlbenson.toXML());
 							}
-							/*
-							CMLBensonThermodynamicBase cmlbenson = new CMLBensonThermodynamicBase();
-							cmlbenson.setStructure(total);
-							cmlbenson.toCML();
-							response.getWriter().print(cmlbenson.toXML());
-							*/
-						} else if (output.matches(htmlOutputS)) {
+						} else if (output.equalsIgnoreCase(htmlOutputS)) {
 							response.setContentType("text/html");
 							String header = "<!DOCTYPE html>\n"
 									+ "<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\">\n" + "<head>\n"
 									+ "<meta http-equiv=\"content-type\" content=\"application/xhtml+xml; charset=UTF-8\" />\n"
 									+ "<title> Thermodynamics: </title>\n" + "</head>\n" + "<body>\n";
 							response.getWriter().print(header);
-							String html = thermodynamics.printThermodynamicsAsHTMLTable();
-							response.getWriter().print(html);
-							BensonThermodynamicBase totalbenson = (BensonThermodynamicBase) total;
-							String totalhtml = totalbenson.printThermodynamicsAsHTMLTable();
-							response.getWriter().print(totalhtml);
+							if(totalB) {
+								BensonThermodynamicBase totalbenson = (BensonThermodynamicBase) total;
+								String totalhtml = totalbenson.printThermodynamicsAsHTMLTable();
+								response.getWriter().print(totalhtml);								
+							} else {
+								String html = thermodynamics.printThermodynamicsAsHTMLTable();
+								response.getWriter().print(html);								
+							}
 							String footer = "  </body>\n" + "</html>";
 							response.getWriter().println(footer);
 						}

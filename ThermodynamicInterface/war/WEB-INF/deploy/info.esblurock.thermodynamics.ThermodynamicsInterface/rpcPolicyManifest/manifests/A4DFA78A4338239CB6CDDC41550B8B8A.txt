@@ -1,0 +1,2 @@
+serviceClass: info.esblurock.thermodynamics.async.CalculateThermodynamicsService
+path: 421D84CEE60EF8C1433BEA550BDA5C9B.gwt.rpc

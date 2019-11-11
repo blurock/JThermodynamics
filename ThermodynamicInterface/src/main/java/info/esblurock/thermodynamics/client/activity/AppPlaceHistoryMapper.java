@@ -4,6 +4,7 @@ import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 
 import info.esblurock.thermodynamics.client.place.FirstPagePlace;
+import info.esblurock.thermodynamics.client.place.AboutSummaryPlace;
 
 /**
  * PlaceHistoryMapper interface is used to attach all places which the
@@ -12,7 +13,8 @@ import info.esblurock.thermodynamics.client.place.FirstPagePlace;
  * separate TokenizerFactory.
  */
 @WithTokenizers( {
-	FirstPagePlace.Tokenizer.class
+	FirstPagePlace.Tokenizer.class,
+	AboutSummaryPlace.Tokenizer.class
 })
 
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {

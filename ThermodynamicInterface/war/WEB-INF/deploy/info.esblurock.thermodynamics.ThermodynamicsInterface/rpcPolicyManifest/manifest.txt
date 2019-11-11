@@ -1,2 +1,3 @@
 # Module info.esblurock.thermodynamics.ThermodynamicsInterface
 # RPC service class, partial path of RPC policy file
+info.esblurock.thermodynamics.async.CalculateThermodynamicsService, 421D84CEE60EF8C1433BEA550BDA5C9B.gwt.rpc

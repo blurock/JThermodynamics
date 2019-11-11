@@ -4,6 +4,7 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 
+import info.esblurock.thermodynamics.client.place.AboutSummaryPlace;
 import info.esblurock.thermodynamics.client.place.FirstPagePlace;
 
 public class AppActivityMapper implements ActivityMapper {
@@ -20,6 +21,8 @@ public class AppActivityMapper implements ActivityMapper {
 	public Activity getActivity(Place place) {
 		if (place instanceof FirstPagePlace) {
 			return new FirstPageActivity((FirstPagePlace) place, clientFactory);
+		} else if (place instanceof AboutSummaryPlace) {
+			return new AboutSummaryActivity((AboutSummaryPlace) place, clientFactory);
 		}
 		return null;
 	}

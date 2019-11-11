@@ -13,7 +13,7 @@
 			<m:MaterialPanel margin="30">
 				<g:HTML ui:field="introduction" />
 			</m:MaterialPanel>
-			<m:MaterialParallax height="200px">
+			<m:MaterialParallax height="200px" visible="false">
 				<m:MaterialImage ui:field="parallax1" />
 			</m:MaterialParallax>
 			<m:MaterialPanel margin="30">
@@ -35,9 +35,11 @@
 				</m:MaterialRow>
 				<m:MaterialRow>
 					<m:MaterialColumn grid="s2">
+					<m:MaterialTooltip ui:field="smilestooltip">
 						<m:MaterialLink ui:field="calculatesmiles" text="Smiles" textColor="BLACK"
 						fontSize="1.5em"
 							hoverable="true" />
+							</m:MaterialTooltip>
 					</m:MaterialColumn>
 					<m:MaterialColumn grid="s10">
 						<m:MaterialTextBox ui:field="smilesformtext"
@@ -46,14 +48,19 @@
 				</m:MaterialRow>
 				<m:MaterialRow>
 					<m:MaterialColumn grid="s2">
+					<m:MaterialTooltip ui:field="inchitooltip">
 						<m:MaterialLink ui:field="calculateinchi" text="Inchi" textColor="BLACK"
 						fontSize="1.5em"
 							hoverable="true" />
+							</m:MaterialTooltip>
 					</m:MaterialColumn>
 					<m:MaterialColumn grid="s10">
 						<m:MaterialTextBox ui:field="inchiformtext"
-							placeholder="1S/C4H10/c1-3-4-2/h3-4H2,1-2H3" label="INCHI representation" />
+							placeholder="InChI=1S/C4H10/c1-3-4-2/h3-4H2,1-2H3" label="INCHI representation" />
 					</m:MaterialColumn>
+				</m:MaterialRow>
+				<m:MaterialRow>
+				<m:MaterialCollapsible ui:field="results"/>
 				</m:MaterialRow>
 			</m:MaterialPanel>
 			<m:MaterialParallax height="150px">

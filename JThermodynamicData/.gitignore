@@ -7,3 +7,5 @@
 **/*.nocache.js
 **/*.gwt.rpc
 **/.DS_Store
+target/**
+objects/**

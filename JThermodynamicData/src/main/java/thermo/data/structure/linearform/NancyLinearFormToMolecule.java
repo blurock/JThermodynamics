@@ -15,7 +15,6 @@ import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.SingleElectron;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IBond.Order;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
@@ -83,7 +82,7 @@ public class NancyLinearFormToMolecule {
      * </ul>
      */
     Hashtable<Integer, AtomGroupStringNode> ringInfo;
-    private ThermoSQLConnection connection;
+    //private ThermoSQLConnection connection;
 
     /** The constructor
      * @param c

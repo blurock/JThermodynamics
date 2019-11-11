@@ -1,7 +1,5 @@
 package info.esblurock.thermodynamics.client.ui;
 
-import java.io.IOException;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.resources.client.ImageResource;
@@ -11,24 +9,24 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
+import gwt.material.design.client.ui.MaterialCollapsible;
 import gwt.material.design.client.ui.MaterialImage;
 import gwt.material.design.client.ui.MaterialLink;
 import gwt.material.design.client.ui.MaterialLoader;
 import gwt.material.design.client.ui.MaterialPanel;
-import gwt.material.design.client.ui.MaterialParallax;
 import gwt.material.design.client.ui.MaterialTextBox;
 import gwt.material.design.client.ui.MaterialTitle;
+import gwt.material.design.client.ui.MaterialTooltip;
+import info.esblurock.thermodynamics.base.benson.SetOfBensonThermodynamicBaseElements;
 import info.esblurock.thermodynamics.client.resources.ThermodynamicInterfaceResources;
+import info.esblurock.thermodynamics.client.ui.benson.SetOfBensonThermodynamicElementsCollapsible;
 import info.esblurock.thermodynamics.client.view.FirstPageView;
-import nu.xom.ParsingException;
-import thermo.api.CalculateThermodynamicsAPI;
-import thermo.data.benson.SetOfBensonThermodynamicBase;
+import info.esblurock.thermodynamics.async.CalculateThermodynamicsService;
+import info.esblurock.thermodynamics.async.CalculateThermodynamicsServiceAsync;
 
-
-public class FirstPage extends Composite implements FirstPageView  {
+public class FirstPage extends Composite implements FirstPageView, CalculateThermodynamicsInterface  {
 
 	private static FirstPageUiBinder uiBinder = GWT.create(FirstPageUiBinder.class);
 
@@ -64,7 +62,14 @@ public class FirstPage extends Composite implements FirstPageView  {
 	MaterialLink calculateinchi;
 	@UiField
 	MaterialTextBox inchiformtext;
-
+	@UiField
+	MaterialCollapsible results;
+	@UiField
+	MaterialTooltip smilestooltip;
+	@UiField
+	MaterialTooltip inchitooltip;
+	
+	String molecule;
 
 	public FirstPage() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -87,24 +92,40 @@ public class FirstPage extends Composite implements FirstPageView  {
 		
 		calculationtitle.setTitle("Calculate Thermodynamics from 2D Structure");
 		calculationtitle.setDescription("Calculate the thermodynamics from either the nancy, "
-				+ "smiles or INCHI forms. " + 
-				"");
+				+ "SMILES or INCHI forms. " + 
+				"The SMILES and INCHI formats are converted to molecular structures using the CDK libraries." +
+				"At the moment, the server is quite slow (for this development version, I took the cheapest option)," +
+				"so results take more time to appear (it is not due to the methodology itself).. sorry"
+				);
+		smilestooltip.setText("This uses the CDK conversion to molecular structure, not guarenteed results (radical representation does not seem to work)");
+		inchitooltip.setText("This uses the CDK conversion to molecular structure, not guarenteed results");
 	}
 	
 	@UiHandler("calculatenancy")
 	public void onClickNancy(ClickEvent event) {
-		try {
-			MaterialLoader.loading(true);	
-			SetOfBensonThermodynamicBase set = 
-					CalculateThermodynamicsAPI.calculate(CalculateThermodynamicsAPI.nancyParameterS, 
-					nancyformtext.getText());
-			Window.alert(set.toString());
-			MaterialLoader.loading(false);	
-		} catch (IOException | ParsingException e) {
-			MaterialLoader.loading(false);	
-			e.printStackTrace();
-		}
-		
+		CalculateThermodynamicsServiceAsync async = CalculateThermodynamicsService.Util.getInstance();
+		CalculateThermodynamicsCallback callback = new CalculateThermodynamicsCallback(this);
+		async.CalculateThermodynamics("nancy", nancyformtext.getText(), callback);
+		molecule = nancyformtext.getText();
+		MaterialLoader.loading(true);	
+	}
+
+	@UiHandler("calculatesmiles")
+	public void onClickSmiles(ClickEvent event) {
+		CalculateThermodynamicsServiceAsync async = CalculateThermodynamicsService.Util.getInstance();
+		CalculateThermodynamicsCallback callback = new CalculateThermodynamicsCallback(this);
+		async.CalculateThermodynamics("smiles", smilesformtext.getText(), callback);
+		molecule = smilesformtext.getText();
+		MaterialLoader.loading(true);	
+	}
+
+	@UiHandler("calculateinchi")
+	public void onClickInchi(ClickEvent event) {
+		CalculateThermodynamicsServiceAsync async = CalculateThermodynamicsService.Util.getInstance();
+		CalculateThermodynamicsCallback callback = new CalculateThermodynamicsCallback(this);
+		async.CalculateThermodynamics("inchi", inchiformtext.getText(), callback);
+		molecule = inchiformtext.getText();
+		MaterialLoader.loading(true);	
 	}
 
 	@Override
@@ -127,5 +148,12 @@ public class FirstPage extends Composite implements FirstPageView  {
 
 	@Override
 	public void setName(String helloName) {
+	}
+
+	@Override
+	public void setInThermo(SetOfBensonThermodynamicBaseElements elements) {
+		SetOfBensonThermodynamicElementsCollapsible collapsible 
+		= new SetOfBensonThermodynamicElementsCollapsible(molecule, elements);
+		results.add(collapsible);
 	}
 }

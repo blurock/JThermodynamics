@@ -45,6 +45,7 @@ public class ThermodynamicsTopPage implements EntryPoint {
 		ActivityManager activityManager = new ActivityManager(activityMapper, eventBus);
 
 		ThermodyanmicsBasePage basepage = clientFactory.getThermodyanmicsBasePage();
+		basepage.setClientFactory(clientFactory);
 		activityManager.setDisplay(basepage.getContentPanel());
 		AppPlaceHistoryMapper historyMapper= GWT.create(AppPlaceHistoryMapper.class);
 		PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);

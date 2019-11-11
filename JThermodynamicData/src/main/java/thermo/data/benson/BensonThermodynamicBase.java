@@ -345,7 +345,24 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
         return heatCapacity;
     }
 
-    public void setStandardEntropy(Double standardEntropy) {
+    
+    public IAtomContainer getStructure() {
+		return structure;
+	}
+
+	public void setStructure(IAtomContainer structure) {
+		this.structure = structure;
+	}
+
+	public double getdHtoCalories() {
+		return dHtoCalories;
+	}
+
+	public void setdHtoCalories(double dHtoCalories) {
+		this.dHtoCalories = dHtoCalories;
+	}
+
+	public void setStandardEntropy(Double standardEntropy) {
         this.standardEntropy = standardEntropy;
     }
 

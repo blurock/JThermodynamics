@@ -30,23 +30,24 @@
 					text="JTHERGAS: 2D Structure Thermodynamic Determination" fontSize="2em"
 					padding="12" />
 				<m:MaterialLabel ui:field="subtitle"
-					text="Based on 2D structural analysis and Benson additivity rules" fontSize="1.5em" />
+					text="Based on 2D structural analysis and Benson additivity rules"
+					fontSize="1.5em" />
 				<!-- MenuBar component -->
 				<ma:menubar.MaterialMenuBar
 					backgroundColor="GREY">
 					<m:MaterialLink ui:field="home" padding="12" waves="DEFAULT"
 						text="Home" textColor="WHITE" />
 					<m:MaterialLink ui:field="createbutton" padding="12"
-						waves="DEFAULT" text="Create" textColor="WHITE" activates="dp-create" />
+						waves="DEFAULT" text="Create" textColor="WHITE" activates="dp-create" visible="false"/>
 					<m:MaterialLink ui:field="about" padding="12" waves="DEFAULT"
 						text="About" textColor="WHITE" />
 					<m:MaterialTooltip ui:field="logintooltip">
 						<m:MaterialLink ui:field="loginchoice" padding="12"
-							waves="DEFAULT" text="Login" textColor="WHITE" activates="dp-login" />
+							waves="DEFAULT" text="Login" textColor="WHITE" activates="dp-login" visible="false"/>
 					</m:MaterialTooltip>
 					<m:MaterialTooltip ui:field="logouttooltip">
 						<m:MaterialLink ui:field="logout" padding="12"
-							waves="DEFAULT" text="Logout" textColor="WHITE" />
+							waves="DEFAULT" text="Logout" textColor="WHITE" visible="false"/>
 					</m:MaterialTooltip>
 
 					<m:MaterialDropDown ui:field="dpCreate"

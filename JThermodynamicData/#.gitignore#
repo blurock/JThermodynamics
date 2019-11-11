@@ -1,0 +1,9 @@
+/target/
+**/*.cache.js
+**/*.symbolMap
+**/gwt-unitCache*
+**/*.jar
+**/*.devmode.js
+**/*.nocache.js
+**/*.gwt.rpc
+**/.DS_Store
