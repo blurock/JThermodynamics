@@ -132,6 +132,7 @@ public class StructureAsCML  {
         while(atomiterator.hasNext()) {
             IAtom atom = atomiterator.next();
             if(atom.getFlag(CDKConstants.ISAROMATIC)) {
+            	System.out.println("Aromatic flag 1: (" + CDKConstants.ISAROMATIC + ") " + atom.getFlag(CDKConstants.ISAROMATIC));
                 System.out.println("Aromatic: " + atom.toString());
             }
         }
@@ -149,6 +150,7 @@ public class StructureAsCML  {
         while(atomiterator.hasNext()) {
             IAtom atom = atomiterator.next();
             if(atom.getFlag(CDKConstants.ISAROMATIC)) {
+            	System.out.println("Aromatic flag 2: (" + CDKConstants.ISAROMATIC + ") " + atom.getFlag(CDKConstants.ISAROMATIC));
                 System.out.println("Aromatic: " + atom.toString());
             }
         }

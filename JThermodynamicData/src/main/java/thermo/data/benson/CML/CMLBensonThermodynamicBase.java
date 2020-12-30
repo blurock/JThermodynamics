@@ -76,22 +76,18 @@ public class CMLBensonThermodynamicBase extends CMLAbstractThermo {
         List<CMLElement> proplist = this.getChildCMLElements();
         if (proplist.size() == 5) {
             CMLScalar idcml = (CMLScalar) proplist.get(0);
-            String name0 = idcml.getId();
             String idS = idcml.getStringContent();
             thermo.setID(idS);
 
             CMLScalar refcml = (CMLScalar) proplist.get(1);
-            String name1 = refcml.getId();
             String referenceS = refcml.getStringContent();
             thermo.setReference(referenceS);
 
             CMLScalar enthalpycml = (CMLScalar) proplist.get(2);
-            String name2 = enthalpycml.getId();
             double enthalpy = enthalpycml.getDouble();
             thermo.setStandardEnthalpy(new Double(enthalpy));
 
             CMLScalar entropycml = (CMLScalar) proplist.get(3);
-            String name3 = entropycml.getId();
             double entropy = entropycml.getDouble();
             thermo.setStandardEntropy(new Double(entropy));
 
@@ -112,8 +108,6 @@ public class CMLBensonThermodynamicBase extends CMLAbstractThermo {
             Logger.getLogger(CMLBensonThermodynamicBase.class.getName()).log(Level.INFO,
                     "CMLBensonThermodynamicBase:  number of properties wrong:  {0}", s);
         }
-        Logger.getLogger(CMLBensonGroupStructure.class.getName()).log(Level.INFO,
-                thermo.toString());
         this.setStructure(thermo);
 
     }

@@ -45,12 +45,10 @@ public class CMLHeatCapacityTemperaturePair   extends CMLAbstractThermo {
         List<CMLElement> proplist = this.getChildCMLElements();
         if (proplist.size() == 2) {
             CMLScalar structcml = (CMLScalar) proplist.get(0);
-            String name1 = structcml.getId();
             double temperature = structcml.getDouble();
             pair.setTemperatureValue(temperature);
 
             CMLScalar cpcml = (CMLScalar) proplist.get(1);
-            String name2 = cpcml.getId();
             double cp = cpcml.getDouble();
             pair.setHeatCapacityValue(cp);
 
@@ -59,8 +57,6 @@ public class CMLHeatCapacityTemperaturePair   extends CMLAbstractThermo {
             Logger.getLogger(CMLBensonGroupStructure.class.getName()).log(Level.INFO,
                     "HeatCapacityTemperaturePair:  number of properties wrong:  " + s);
         }
-        Logger.getLogger(CMLHeatCapacityTemperaturePair.class.getName()).log(Level.INFO,
-                    pair.toString());
         this.setStructure(pair);
 
     }

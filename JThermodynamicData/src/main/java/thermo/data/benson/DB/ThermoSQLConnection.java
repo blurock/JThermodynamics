@@ -23,9 +23,6 @@ import thermo.properties.SProperties;
 public class ThermoSQLConnection {
 
     private Connection connection;
-    private static final String DB_USER = System.getenv("DB_USER");
-    private static final String DB_PASS = System.getenv("DB_PASS");
-    private static final String DB_NAME = System.getenv("DB_NAME");
 
     /**
      * Connect to the SQL 'Thermodynamics' database
@@ -33,8 +30,7 @@ public class ThermoSQLConnection {
      * Using the SQL password for the 'Thermodynamics' database, the
      * {@link Connection} is made.
      *
-     * The database connection is made through
-     * 'jdbc:mysql://35.240.105.105:3306/jthermodynamics'
+     * The database connection is made through the system parameter 
      *
      * @return true if the connection is successful
      */
@@ -48,10 +44,10 @@ public class ThermoSQLConnection {
 
     /**
      *
-     * @param conS
-     * @param user
-     * @param pass
-     * @return
+     * @param conS The mysql connector (such as jdbc:mysql://localhost:3306/thermodynamics)
+     * @param user The user name of root 
+     * @param pass The password
+     * @return true if the connection was successful
      */
     public boolean connect(String conS, String user, String pass) {
     	
@@ -61,12 +57,6 @@ public class ThermoSQLConnection {
     }
     public boolean connectHikari(String conS, String user, String pass) {
     	boolean success = true;
-        /*
-            try {
-            Class.forName( "com.mysql.jdbc.Driver" ).newInstance();
-            Logger.getLogger(ThermoSQLConnection.class.getName()).log(Level.INFO,
-                    "connect()\t " + conS + "\t  " + user + ": " + pass + "\n");
-         */
         // Saving credentials in environment variables is convenient, but not secure - consider a more
         // secure solution such as https://cloud.google.com/kms/ to help keep secrets safe.
 
@@ -74,10 +64,9 @@ public class ThermoSQLConnection {
         HikariConfig config = new HikariConfig();
 
         // Configure which instance and what database user to connect with.
-        config.setJdbcUrl("jdbc:mysql://35.240.105.105:3306/jthermodynamics");
-        //config.setJdbcUrl("jdbc:mysql://localhost:3306/thermodynamics");
-        config.setUsername("root"); // e.g. "root", "postgres"
-        config.setPassword("laguna"); // e.g. "my-password"
+        config.setJdbcUrl(conS);
+        config.setUsername(user); // e.g. "root", "postgres"
+        config.setPassword(pass); // e.g. "my-password"
 
         // For Java users, the Cloud SQL JDBC Socket Factory can provide authenticated connections.
         // See https://github.com/GoogleCloudPlatform/cloud-sql-jdbc-socket-factory for details.
@@ -149,20 +138,11 @@ public class ThermoSQLConnection {
     
     public boolean connectLocal(String conS, String user, String pass) {
     	boolean success = true;
-        try {
-			Class.forName( "com.mysql.jdbc.Driver" ).newInstance();
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/thermodynamics", "root", "laguna");
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+    	try {
+			connection = DriverManager.getConnection(conS, user, pass);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
-        Logger.getLogger(ThermoSQLConnection.class.getName()).log(Level.INFO,
-                "connect()\t " + conS + "\t  " + user + ": " + pass + "\n");
-        
-    	
     	return success;
     }
     

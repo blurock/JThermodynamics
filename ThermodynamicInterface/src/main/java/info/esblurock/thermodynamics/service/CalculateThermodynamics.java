@@ -1,6 +1,8 @@
 package info.esblurock.thermodynamics.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -82,7 +84,6 @@ public class CalculateThermodynamics extends HttpServlet {
 				output = textOutputS;
 			}
 		}
-
 		boolean totalB = false;
 		if (totalO != null) {
 			String totalS = (String) totalO;
@@ -113,14 +114,21 @@ public class CalculateThermodynamics extends HttpServlet {
 						IAtomContainer molecule = normalize.moleculeFromSmiles(smiles);
 						total = compute.computeThermodynamics(molecule, thermodynamics);
 					}
+					BensonThermodynamicBase benson  = (BensonThermodynamicBase) total;
+					thermodynamics.add(benson);
+					
 					if (total != null) {
 						if (output.equalsIgnoreCase(textOutputS)) {
 							response.setContentType("text/text");
 							String thermoS = thermodynamics.toString();
+							System.out.println(thermoS);
 							if (!totalB) {
 								response.getWriter().println(thermoS);
 							} else {
-								response.getWriter().println(total.toString());
+								BensonThermodynamicBase b  = (BensonThermodynamicBase) total;
+								SetOfBensonThermodynamicBase set = new SetOfBensonThermodynamicBase();
+								set.add(b);
+								response.getWriter().println(set.toString());
 							}
 						} else if (output.equalsIgnoreCase(xmlOutputS)) {
 							response.setContentType("text/xml");
@@ -130,10 +138,14 @@ public class CalculateThermodynamics extends HttpServlet {
 								cmlbenson.toCML();
 								response.getWriter().print(cmlbenson.toXML());
 							} else {
-								CMLBensonThermodynamicBase cmlbenson = new CMLBensonThermodynamicBase();
-								cmlbenson.setStructure(total);
-								cmlbenson.toCML();
-								response.getWriter().print(cmlbenson.toXML());
+								BensonThermodynamicBase b  = (BensonThermodynamicBase) total;
+								SetOfBensonThermodynamicBase set = new SetOfBensonThermodynamicBase();
+								set.add(b);
+								System.out.println("total converted to set");
+								CMLSetOfBensonThermodynamicBase cmlbensonset = new CMLSetOfBensonThermodynamicBase();
+								cmlbensonset.setStructure(set);
+								cmlbensonset.toCML();
+								response.getWriter().print(cmlbensonset.toXML());
 							}
 						} else if (output.equalsIgnoreCase(htmlOutputS)) {
 							response.setContentType("text/html");

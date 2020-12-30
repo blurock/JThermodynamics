@@ -28,38 +28,10 @@ public abstract class CMLAbstractThermo extends CMLProperty {
     }
     
     public void parse(String data) throws ValidityException, ParsingException, IOException {
-        /*
-        CMLReader writer = new CMLReader();
-        StringReader read = new StringReader(data);
-        ByteArrayInputStream str = new ByteArrayInputStream(data.getBytes());
-        CMLReader reader = new CMLReader(str);
-        ChemFile chemfile = (ChemFile) reader.read((ChemObject) new ChemFile());
-        System.out.println(chemfile.getChemSequenceCount());
-        IChemSequence chemSequence = chemfile.getChemSequence(0);
-	ChemModel cml = (ChemModel) chemSequence.getChemModel(0);
-     */
-       //Element ele = CMLUtil.parseXML(data);
-      
        CMLBuilder build = new CMLBuilder();
        Element ele = build.parseString(data);
        CMLElement cml = (CMLElement) ele;
-       //CMLProperty cml = (CMLProperty) ele;
-  
-       //System.out.println("Size: " + c.size());
-      
         this.copyChildrenFrom( cml);
-        /*
-          StringReader read = new StringReader(data);
-        ByteArrayInputStream str = new ByteArrayInputStream(data.getBytes());
-        DefaultChemObjectBuilder build = DefaultChemObjectBuilder.getInstance();
-        IChemFile file = build.newChemFile();
-        CMLReader reader = new CMLReader(str);
-        IChemObject chemobj = reader.read(file);
-        IChemFile chemfile = (IChemFile) chemobj;
-        System.out.println(chemfile.getChemSequenceCount());
-        IChemSequence chemSequence = chemfile.getChemSequence(0);
-	ChemModel chemModel = (ChemModel) chemSequence.getChemModel(0);
-      */
         fromCML();
     }
     

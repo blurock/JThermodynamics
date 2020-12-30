@@ -24,10 +24,6 @@ public class DetermineInternalSymmetryFromSingleDefinition extends DetermineSymm
         determineSetOfSymmetryAssignments(structure);
         Double symmetryfactor = symmetry.getInternalSymmetryFactor();
         double n = (double) symmetryMatches.size();
-        System.out.println("Internal Symmetry: "
-                + symmetry.getMetaAtomName()
-                + "(symmetry=" + symmetryfactor + "):"
-                + "found " + n + " times");
         double symmD = Math.pow(symmetryfactor.doubleValue(), n);
         int symmI = (int) Math.round(symmD);
         return symmI;

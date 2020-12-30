@@ -1,0 +1,23 @@
+#!/bin/csh
+# ---------------------------------------------------------------------------
+#
+# Script to Read in a molecule properties to the database
+#
+# ---------------------------------------------------------------------------
+#set verbose on
+if ( $#argv != 4 ) then
+  echo "Usage: setup.sh File"
+  echo "        mysqlhost     :    The mySQL host"
+  echo "        mysqlport     :    The port of mySQL"
+  echo "        mysqldatabase :    The database name"
+  echo "        mysqlpassword :    The root password"
+  exit(1)
+  endif
+
+  set HOST = $1
+  set PORT = $2
+  set DATABASE = $3
+  set PASSWORD = $4
+set MYSQL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE
+echo "MSQL database: " + $MYSQL
+
