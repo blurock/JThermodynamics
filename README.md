@@ -3,8 +3,14 @@ JTHERGAS (a JAVA implementation of THERGAS) estimates thermodynamic information 
 
 The method of calculation can be found here:
 
-[JTHERGAS: Thermodynamic estimation from 2D graphical representations of molecules](https://sites.google.com/view/jthergas/home)
+[JTHERGAS: Thermodynamic estimation from 2D graphical representations of molecules](https://doi.org/10.1016/j.energy.2012.01.072)
 
 Online documentation, including the various ways of installation can be found [here](https://sites.google.com/view/jthergas/home).
+
+There are two types of interfaces:
+ * Command line interface on a local machine
+ * GUI interface (both local host and Google Cloud)
+ 
+ 
 
 
