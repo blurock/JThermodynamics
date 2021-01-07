@@ -272,12 +272,12 @@ try {
             } else {
                 computeThermodynamicsForMolecule(molecule, thermodynamics);
             }
-            /*
+           
             System.out.println("");
             System.out.println("=========== Contributions ==============================");
             System.out.println(thermodynamics.toString());
             System.out.println("========================================================");
-             */
+            
             combinedThermodynamics = thermodynamics.combineToOneBensonRule(temperatures);
             combinedThermodynamics.setID("Total");
             combinedThermodynamics.setReference("Sum Total");

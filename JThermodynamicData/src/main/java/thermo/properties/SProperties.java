@@ -69,7 +69,7 @@ public class SProperties {
 
 	public static void save() {
 		try {
-			java.io.FileOutputStream fos = new java.io.FileOutputStream("Jthermodyanamic.properties");
+			java.io.FileOutputStream fos = new java.io.FileOutputStream("Jthermodynamic.properties");
 			properties.store(fos, "Thermodynamic properties");
 		} catch (java.io.IOException e) {
 			java.util.logging.Logger.getLogger("global").log(java.util.logging.Level.WARNING,
@@ -80,11 +80,6 @@ public class SProperties {
 
 	public static void load() {
 		try {
-			String current = new java.io.File(".").getCanonicalPath();
-			System.out.println("Current dir:" + current);
-			String currentDir = System.getProperty("user.dir");
-			System.out.println("Current dir using System: " + currentDir);
-			System.out.println("Read 'Jthermodyanamic.properties' from package root directory");
 			java.io.FileInputStream fis = new java.io.FileInputStream("Jthermodyanamic.properties");
 			properties.load(fis);
 		} catch (FileNotFoundException ex) {

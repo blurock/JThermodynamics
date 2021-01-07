@@ -61,7 +61,6 @@ public class SQLMetaAtomInfo extends SQLStructureThermoAbstractInterface {
                 + ";";
             }
         }
-        //System.out.println(sqlquery);
         Statement statement = database.createStatement();
         ResultSet elements = statement.executeQuery(sqlquery);
         HashSet vec = transferAllElements(elements);
@@ -73,7 +72,6 @@ public class SQLMetaAtomInfo extends SQLStructureThermoAbstractInterface {
          Statement statement = database.createStatement();
         String sqlquery = "SELECT MetaAtomType, MetaAtomName, ElementName  FROM MetaAtomInfo WHERE MetaAtomKey=\""
                 + name + "\";";
-        //System.out.println(sqlquery);
         ResultSet elements = statement.executeQuery(sqlquery);
         HashSet vec = transferAllElements(elements);
         return vec;
@@ -86,7 +84,6 @@ public class SQLMetaAtomInfo extends SQLStructureThermoAbstractInterface {
             info.setElementName(elements.getString("ElementName"));
             info.setMetaAtomType(elements.getString("MetaAtomType"));
             info.setMetaAtomName(elements.getString("MetaAtomName"));
-
             vec.add(info);
             next = elements.next();
         }

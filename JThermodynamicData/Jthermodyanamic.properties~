@@ -1,3 +1,6 @@
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+
 #The name of the Standard Thergas Benson Thermo info
 thermo.types.name.thergasbenson=StandardThergasBenson
 #Standard temperature for Benson
@@ -8,3 +11,4 @@ thermo.database.dbuser=root
 thermo.database.dbpassword=laguna
 #The thermodyanamics database
 thermo.database.connection=jdbc:mysql://localhost:3306/thermodynamics
+#thermo.database.connection=jdbc:mysql://35.240.105.105:3306/thermodynamics

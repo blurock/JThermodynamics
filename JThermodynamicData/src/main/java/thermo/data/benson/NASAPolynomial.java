@@ -261,15 +261,18 @@ public class NASAPolynomial implements ThermodynamicInformation {
             buf.append("                    ");
         }
         buf.append("G");
-        //f = new Formatter();
+        f = new Formatter();
         buf.append(f.format("%10.2f%10.2f%10.2f    1\n", lowerT, upperT, middleT));
-        //f = new Formatter();
+        f.close();
+        f = new Formatter();
         buf.append(f.format("%+15.8e%+15.8e%+15.8e%+15.8e%+15.8e    2\n",
                 upper[0], upper[1], upper[2], upper[3], upper[4]));
-        //f = new Formatter();
+        f.close();
+        f = new Formatter();
         buf.append(f.format("%+15.8e%+15.8e%+15.8e%+15.8e%+15.8e    3\n",
                 upper[5], upper[6], lower[0], lower[1], lower[2]));
-        //f = new Formatter();
+        f.close();
+        f = new Formatter();
         buf.append(f.format("%+15.8e%+15.8e%+15.8e%+15.8e                   4\n",
                 lower[3], lower[4], lower[5], lower[6]));
         f.close();

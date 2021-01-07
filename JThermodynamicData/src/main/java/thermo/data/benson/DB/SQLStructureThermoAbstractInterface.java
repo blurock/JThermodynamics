@@ -187,13 +187,23 @@ public abstract class SQLStructureThermoAbstractInterface {
      * @throws java.sql.SQLException
      */
     public HashSet<StructureAsCML> retrieveDatabase() throws SQLException {
-        HashSet<StructureAsCML> set = new HashSet<StructureAsCML>();
+        HashSet set = new HashSet<StructureAsCML>();
         ArrayList<String> names = retrieveDatabaseNames();
+        
+        
+        Iterator<String> iternames = names.iterator();
+        while (iternames.hasNext()) {
+            String name = iternames.next();
+        }
+        
+        
+        
+        
         Iterator<String> iter = names.iterator();
         while (iter.hasNext()) {
             String name = iter.next();
-            HashSet<StructureAsCML> vecstr = retrieveStructuresFromDatabase(name);
-            Iterator<StructureAsCML> iterset = vecstr.iterator();
+            HashSet vecstr = retrieveStructuresFromDatabase(name);
+            Iterator iterset = vecstr.iterator();
             set.add(iterset.next());
         }
         return set;

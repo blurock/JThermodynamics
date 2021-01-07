@@ -139,9 +139,12 @@ public class ThermoSQLConnection {
     public boolean connectLocal(String conS, String user, String pass) {
     	boolean success = true;
     	try {
+    		Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection(conS, user, pass);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
     	return success;
     }

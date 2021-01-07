@@ -48,6 +48,7 @@ public class ThermoInfoType {
            this.add(temperatures[i]);
            TemperatureArray[i] = temperatures[i];
        }
+       java.util.Arrays.sort(TemperatureArray);
     }
 
     /**

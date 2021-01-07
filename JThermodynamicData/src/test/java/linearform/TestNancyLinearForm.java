@@ -100,11 +100,11 @@ public class TestNancyLinearForm {
             //String molS = "ch4";
             //String molS = "ch3(.)";
             //String molS = ".ch3";
-            //String molS = "ch3/ch3";
+            String molS = "ch3/ch3";
             //String molS = "ch3/ch2/ch3";
             //String molS = ".c(//o)/h";
             //String molS = ".c(//o)h";
-            String molS = "c(.)h2/c(/ch3)2/ch2/ch(/ch3)2";
+            //String molS = "c(.)h2/c(/ch3)2/ch2/ch(/ch3)2";
             //String molS=" .ch(/ch3)/ch2/o/oh";
             //String molS = "c(.)h2/c(/ch3)2/ch2/ch(/ch3)2";
             //String molS = "c(#1)h2/ch2/ch2/ch2/o/1";

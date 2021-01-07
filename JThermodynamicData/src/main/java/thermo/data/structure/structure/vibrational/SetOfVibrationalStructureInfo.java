@@ -37,9 +37,9 @@ public class SetOfVibrationalStructureInfo extends ArrayList<VibrationalStructur
    public String toString() {
        StringBuffer buf = new StringBuffer();
        buf.append("Set of Vibrational Structure Info\n");
-       Iterator obj = this.iterator();
+       Iterator<VibrationalStructureInfo> obj = this.iterator();
        while(obj.hasNext()) {
-            VibrationalStructureInfo info = (VibrationalStructureInfo) obj.next();
+            VibrationalStructureInfo info = obj.next();
            buf.append(info.toString());
            buf.append("\n");
        }

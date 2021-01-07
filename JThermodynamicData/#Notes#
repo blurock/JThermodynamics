@@ -1,0 +1,21 @@
+computeThermodynamicsForRadicalContributions
+368
+        CalculateVibrationalCorrectionForRadical vibrational = new CalculateVibrationalCorrectionForRadical(connect);
+        vibrational.calculate(R, RH, thermo);
+
+CalculateVibrationalCorrectionForRadical
+106
+        public SetOfBensonThermodynamicBase calculate(IAtomContainer mol,IAtomContainer RH, SetOfBensonThermodynamicBase corrections) throws NotARadicalException, SQLException, CDKException, IOException {
+
+SubstituteVibrationalStructures substitute;
+
+            SetOfVibrationalStructureCounts counts = substitute.findSubstitutions(RH);
+
+VibrationalStructures
+
+            VibrationalStructureInfo info = vibinfo.next();
+            String structurename = info.getStructureName();
+            HashSet<StructureAsCML> structvec = sqlcmlstruct.retrieveStructuresFromDatabase(structurename);
+
+
+

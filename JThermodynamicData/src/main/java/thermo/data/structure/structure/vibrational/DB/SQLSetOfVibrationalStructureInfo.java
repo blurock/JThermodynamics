@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.structure.DB.SQLStructureType;
+import thermo.data.structure.structure.StructureAsCML;
 import thermo.data.structure.structure.StructureType;
 import thermo.data.structure.structure.vibrational.SetOfVibrationalStructureInfo;
 import thermo.properties.SProperties;

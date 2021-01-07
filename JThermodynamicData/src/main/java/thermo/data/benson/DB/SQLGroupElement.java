@@ -226,12 +226,11 @@ public class SQLGroupElement {
             sqlqueryB.append(" AND p" + iS + ".Count = " + bonded.elementAt(i).getMultiplicity() + " ");
         }
         sqlqueryB.append(";");
-        //System.out.println(sqlqueryB.toString());
         Statement statement = database.createStatement();
         ResultSet set = statement.executeQuery(sqlqueryB.toString());
+        
         if (set.first()) {
-            String name = set.getString("ElementName");
-            //System.out.println("Query name: " + name);
+        	String name = set.getString("ElementName");
             structure.setStructureName(name);
             success = true;
         }
@@ -287,14 +286,12 @@ public class SQLGroupElement {
             sqlqueryB.append(" AND p" + iS + ".Count = " + bonded.elementAt(i).getMultiplicity() + " ");
         }
         sqlqueryB.append(";");
-        //System.out.println(sqlqueryB.toString());
         Statement statement = database.createStatement();
         ResultSet set = statement.executeQuery(sqlqueryB.toString());
         Vector<String> namesV = new Vector();
         boolean next = set.first();
         while (next) {
             String name = set.getString("ElementName");
-            //System.out.println("Query name: '" + name + "'");
             namesV.add(name);
             next = set.next();
         }

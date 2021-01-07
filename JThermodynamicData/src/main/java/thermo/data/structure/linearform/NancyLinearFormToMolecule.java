@@ -107,12 +107,7 @@ public class NancyLinearFormToMolecule {
                 linearForm = correctForm.correctNancyLinearForm(linearform);
                 currentCharPosition = 0;
                 moleculeNodeForm = processString();
-//        System.out.println("============= Top =============");
-//        System.out.println(moleculeNodeForm.toString());
-//        System.out.println("-------------------------------------");
                 molecule = convertToMolecule();
-                //StructureAsCML cml = new StructureAsCML(molecule);
-                //molecule = cml.getMolecule();
             } catch (NullPointerException ex) {
                 String reason = "Illegal Nancy Linear Form: '" + linearform + "'";
                 throw new SQLException(reason);
@@ -149,12 +144,10 @@ public class NancyLinearFormToMolecule {
         AtomGroupStringNode top = null;
         boolean notdone = !doneParsing();
         top = atomGroup();
-//        System.out.println("processString():  top=\n " + top.toString());
         AtomGroupStringNode node = top;
         while (node != null) {
             AtomGroupStringNode next = atomGroup();
             if (next != null) {
-//                System.out.println("processString():  next=\n " + next.toString());
                 node.addMainConnection(next);
             }
             node = next;
@@ -175,7 +168,7 @@ public class NancyLinearFormToMolecule {
         char c = 0;
         if (currentCharPosition + n < linearForm.length()) {
             c = linearForm.charAt(currentCharPosition + n);
-        }
+         }
         return c;
     }
 /** The increment the point and return the next parsing character
@@ -199,6 +192,7 @@ public class NancyLinearFormToMolecule {
                         Atom prevatm,
                         boolean mainconnection,
                         int bondorder) throws NullPointerException {
+    	
         LinearFormAtomGroupString atminfo = node.atomElement;
         Atom atm = null;
         String atmS = atminfo.atomGroup.toUpperCase();
@@ -236,11 +230,6 @@ public class NancyLinearFormToMolecule {
             if (previous != null) {
                 LinearFormAtomGroupString prevatminfo = previous.atomElement;
                 int bndorder = atminfo.bondOrder;
-                //if(bondorder > 1)
-                    //System.out.println(" Bond order: " + bndorder + ": " + bondorder);
-                //if(bondorder > 1) bndorder = bondorder;
-                //if(!mainconnection)
-                    //bndorder = atminfo.bondOrder;
                 if (!atminfo.bridgeToCycleAtom) {
                     if (bndorder == 1) {
                         Bond bnd = new Bond(atm, prevatm, Order.SINGLE);
@@ -382,13 +371,7 @@ public class NancyLinearFormToMolecule {
         if (node != null) {
             node.atomElement.cycleNumber = cycleIndication(node.atomElement.cycleNumber);
             node.atomElement.aromaticBond = aromaticBond();
-            //if(node.atomElement.bondOrderForward > 1)
-                //System.out.println("Current Character: " + currentCharacter());
             node.atomElement.bondOrderForward = bondOrder();
-
-            //System.out.println("============= atomGroup =============");
-            //System.out.println(node.toString());
-            //System.out.println("-------------------------------------");
         }
         return node;
     }
