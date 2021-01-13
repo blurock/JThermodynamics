@@ -39,21 +39,27 @@ public class BuildSymmetryDefinition {
         sqlcmlstruct = new SQLStructureAsCML(connect);
     }
 
-    public void build(File fileF) throws FileNotFoundException, IOException, SQLException, ClassNotFoundException, CDKException {
+    public void build(File fileF, boolean storedata) throws FileNotFoundException, IOException, SQLException, ClassNotFoundException, CDKException {
         ReadFileToString read = new ReadFileToString();
         FileReader r = new FileReader(fileF);
         BufferedReader breader = new BufferedReader(r);
 
         read.read(breader);
 
-        build(read.outputString);
+        build(read.outputString, storedata);
     }
 
-    void build(String data) throws SQLException, CDKException, ClassNotFoundException, IOException {
+    void build(String data, boolean storedata) throws SQLException, CDKException, ClassNotFoundException, IOException {
         StringTokenizer tok = new StringTokenizer(data, "\n");
         while (tok.hasMoreTokens()) {
             if (tok.countTokens() >= 3) {
-                parseLines(tok);
+                parseLines(tok,storedata);
+            } else {
+            	System.out.print("Not enough tokens: ");
+            	while(tok.hasMoreTokens()) {
+            		System.out.println(tok.nextToken() + " ");
+            	}
+            	System.out.println("");
             }
         }
     }
@@ -61,7 +67,7 @@ public class BuildSymmetryDefinition {
  * Line 1:   NameOfSymmetry  NameOfStructure SymmetryType
  *
  */
-    private void parseLines(StringTokenizer tok) throws CDKException, SQLException, ClassNotFoundException, IOException {
+    private void parseLines(StringTokenizer tok, boolean storedata) throws CDKException, SQLException, ClassNotFoundException, IOException {
         String symnumberS = null;
         String symmetryType;
         ListOfSymmetryPairs pairs = new ListOfSymmetryPairs();
@@ -111,8 +117,12 @@ public class BuildSymmetryDefinition {
         }
         SymmetryDefinition symmdef = new SymmetryDefinition(nameOfSymmetry, cmlstruct, pairs, new Double(symnumberS));
         symmdef.setMetaAtomType(symmetryType);
-        sqlSymmetryDefinition.deleteElement(symmdef);
-        sqlSymmetryDefinition.addToDatabase(symmdef);
+        if(storedata) {
+        	sqlSymmetryDefinition.deleteElement(symmdef);
+        	sqlSymmetryDefinition.addToDatabase(symmdef);
+        } else {
+        	System.out.println(symmdef.toString());
+        }
     }
 
     String[] findGroupIDs(String ids) {

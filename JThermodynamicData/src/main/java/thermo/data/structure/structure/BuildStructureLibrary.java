@@ -41,25 +41,29 @@ public class BuildStructureLibrary {
         sqlMetaAtomInfo = new SQLMetaAtomInfo(connect);
         sqlStructureAsCML = new SQLStructureAsCML(connect);
     }
-    public void build(File fileF) throws FileNotFoundException, IOException, SQLException, CDKException, ClassNotFoundException {
+    public void build(File fileF, boolean storedata) throws FileNotFoundException, IOException, SQLException, CDKException, ClassNotFoundException {
         ReadFileToString read = new ReadFileToString();
         FileReader r = new FileReader(fileF);
         BufferedReader breader = new BufferedReader(r);
 
         read.read(breader);
-        build(read.outputString);
+        build(read.outputString,storedata);
     }
 
-     void build(String data) throws SQLException, CDKException, ClassNotFoundException, IOException {
+     void build(String data, boolean storedata) throws SQLException, CDKException, ClassNotFoundException, IOException {
         StringTokenizer tok = new StringTokenizer(data,"\n");
         while(tok.hasMoreTokens()){
             String line = tok.nextToken();
-            parseLine(line);
+            parseLine(line,storedata);
         }
     }
 
-    public void parseLine(String line) throws SQLException, CDKException, ClassNotFoundException, IOException {
-        StringTokenizer tok = new StringTokenizer(line);
+    public void parseLine(String line, boolean storedata) throws SQLException, CDKException, ClassNotFoundException, IOException {
+    	if(!storedata) {
+    		System.out.println("\n=========================================");
+    		System.out.println("Parsed Information=======================");
+    	}
+    	StringTokenizer tok = new StringTokenizer(line);
         if(tok.countTokens() > 3) {
             String nancy           = tok.nextToken();
             String nameOfStructure = tok.nextToken();
@@ -79,13 +83,17 @@ public class BuildStructureLibrary {
             info.setMetaAtomName(metaAtomName);
             info.setMetaAtomType(typeOfStructure);
             //MetaAtomDefinition metadef = new MetaAtomDefinition(info,cmlstruct);
-
+            if(storedata) {
             sqlMetaAtomInfo.deleteElement(info);
             sqlMetaAtomInfo.addToDatabase(info);
             sqlStructureAsCML.deleteElement(cmlstruct);
             sqlStructureAsCML.addToDatabase(cmlstruct);
+            } else {
+        		System.out.println("\n=========================================");
+        		System.out.println(info.toString());
+        		System.out.println(cmlstruct.toString());
+            }
         }
-
     }
 
 

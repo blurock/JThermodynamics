@@ -38,14 +38,18 @@ public class ReadBondLengthTable extends BondLengthTable {
      * @param Source  The source description
      * @throws SQLException if an error in adding to the database
      */
-    public void read(String filename, String Source) throws SQLException {
+    public void read(String filename, String Source, boolean storedata) throws SQLException {
         File f = new File(filename);
         readFileToString.read(f);
         this.readFromString(readFileToString.outputString, Source);
         Iterator<BondLength> iterator = this.iterator();
         while(iterator.hasNext()) {
             BondLength bond = iterator.next();
-            sqlbondlength.addToDatabase(bond);
+            if(storedata) {
+            	sqlbondlength.addToDatabase(bond);
+            } else {
+            	System.out.println(bond.toString());
+            }
         }
     }
 

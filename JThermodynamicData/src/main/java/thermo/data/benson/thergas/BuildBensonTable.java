@@ -154,7 +154,7 @@ public class BuildBensonTable {
      * @throws IOException 
      * 
      */
-    public String build(InputStream inp, String reference, boolean cmltest) throws JThergasReadException, FileNotFoundException, IOException {
+    public String build(InputStream inp, String reference, boolean storedata, boolean cmltest) throws JThergasReadException, FileNotFoundException, IOException {
         String errorString = "No Parsing Errors Detected";
         String sqlerror = "No Database Errors Detected";
         readThergasTable = new JThergasReadGroupStructureThermo();
@@ -165,7 +165,16 @@ public class BuildBensonTable {
             Logger.getLogger(BuildBensonTable.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            setUpDatabase(cmltest, reference);
+        	if(storedata) {
+        		setUpDatabase(cmltest, reference);
+        		System.out.println("\nDatabase successfully updated");
+        	} else {
+        		System.out.println("\n=========================================");
+        		System.out.println("Parsed Information=======================");
+        		System.out.println("=========================================");
+        		System.out.println(readThergasTable.writeToString());
+        		System.out.println("=========================================");
+        	}
         } catch (SQLException ex) {
             sqlerror = ex.toString();
             Logger.getLogger(BuildBensonTable.class.getName()).log(Level.SEVERE, null, ex);

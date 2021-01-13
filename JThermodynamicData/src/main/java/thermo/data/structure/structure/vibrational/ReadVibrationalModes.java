@@ -30,25 +30,25 @@ public class ReadVibrationalModes {
         sqlVibrationalStructure = new SQLVibrationalStructureInfo(connect);
     }
 
-    public void build(File fileF, String referenceS) throws FileNotFoundException, IOException, SQLException, ClassNotFoundException, CDKException {
+    public void build(File fileF, String referenceS, boolean storedata) throws FileNotFoundException, IOException, SQLException, ClassNotFoundException, CDKException {
         ReadFileToString read = new ReadFileToString();
         FileReader r = new FileReader(fileF);
         BufferedReader breader = new BufferedReader(r);
 
         read.read(breader);
 
-        build(read.outputString);
+        build(read.outputString, storedata);
     }
 
-     void build(String data) throws SQLException, CDKException, ClassNotFoundException, IOException {
+     void build(String data, boolean storedata) throws SQLException, CDKException, ClassNotFoundException, IOException {
         StringTokenizer tok = new StringTokenizer(data,"\n");
         while(tok.hasMoreTokens()){
             String line = tok.nextToken();
-            parseLine(line);
+            parseLine(line, storedata);
         }
     }
 
-    public void parseLine(String line) throws SQLException, CDKException, ClassNotFoundException, IOException {
+    public void parseLine(String line, boolean storedata) throws SQLException, CDKException, ClassNotFoundException, IOException {
         StringTokenizer tok = new StringTokenizer(line);
         if(tok.countTokens() >= 4) {
             String elementName   = tok.nextToken();
@@ -59,12 +59,14 @@ public class ReadVibrationalModes {
             Double frequencyD = new Double(frequencyS);
             Double symmetryD  = new Double(symmetryS);
 
-            //ArrayList<String> types = new ArrayList<String>();
-
             VibrationalStructureInfo info = new VibrationalStructureInfo(elementName,structureName,
                     frequencyD.doubleValue(),symmetryD.doubleValue());
+            if(storedata) {
             sqlVibrationalStructure.deleteByKey(info.getElementName());
             sqlVibrationalStructure.addToDatabase(info);
+            } else { 
+            	System.out.println(info.toString());
+            }
         }
 
     }

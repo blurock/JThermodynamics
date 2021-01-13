@@ -121,7 +121,7 @@ public abstract class SQLStructureThermoAbstractInterface {
         String[] commands = formulateInsert(structure);
         for (int i = 0; i < commands.length; i++) {
             if (printSQLCommand) {
-                System.out.println(commands[i]);
+                System.out.println("addToDatabase: '" + commands[i] + "'");
             }
             statement.execute(commands[i]);
         }

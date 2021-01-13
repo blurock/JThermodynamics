@@ -40,25 +40,25 @@ public class BuildSubstructureLibrary {
         sqlStructureType = new SQLStructureType(connect);
         sqlAtomCounts = new SQLAtomCounts(connect);
     }
-    public void build(File fileF) throws FileNotFoundException, IOException, SQLException, ClassNotFoundException, CDKException {
+    public void build(File fileF, boolean storedata) throws FileNotFoundException, IOException, SQLException, ClassNotFoundException, CDKException {
         ReadFileToString read = new ReadFileToString();
         FileReader r = new FileReader(fileF);
         BufferedReader breader = new BufferedReader(r);
 
         read.read(breader);
 
-        build(read.outputString);
+        build(read.outputString,storedata);
     }
 
-     void build(String data) throws SQLException, CDKException, ClassNotFoundException, IOException {
+     void build(String data, boolean storedata) throws SQLException, CDKException, ClassNotFoundException, IOException {
         StringTokenizer tok = new StringTokenizer(data,"\n");
         while(tok.hasMoreTokens()){
             String line = tok.nextToken();
-            parseLine(line);
+            parseLine(line,storedata);
         }
     }
 
-    public void parseLine(String line) throws SQLException, CDKException, ClassNotFoundException, IOException {
+    public void parseLine(String line,boolean storedata) throws SQLException, CDKException, ClassNotFoundException, IOException {
         StringTokenizer tok = new StringTokenizer(line);
         if(tok.countTokens() > 2) {
             String nancy           = tok.nextToken();
@@ -72,16 +72,23 @@ public class BuildSubstructureLibrary {
             while(tok.hasMoreTokens()) {
                 String typeS = tok.nextToken();
                 StructureType type = new StructureType(nameOfStructure,typeS);
-                sqlStructureType.deleteElement(type);
-                sqlStructureType.addToDatabase(type);
+                if(storedata) {
+                	sqlStructureType.deleteElement(type);
+                	sqlStructureType.addToDatabase(type);
+                } else {
+                	System.out.println(type.writeAsString());
+                }
             }
-
-            sqlStructureAsCML.deleteElement(cmlstruct);
-            sqlStructureAsCML.addToDatabase(cmlstruct);
             AtomCounts counts = new AtomCounts(molecule);
-            sqlAtomCounts.deleteElement(counts.getMoleculeID());
-            sqlAtomCounts.addToDatabase(counts);
-
+            if(storedata) {
+            	sqlStructureAsCML.deleteElement(cmlstruct);
+            	sqlStructureAsCML.addToDatabase(cmlstruct);
+            	sqlAtomCounts.deleteElement(counts.getMoleculeID());
+            	sqlAtomCounts.addToDatabase(counts);
+            } else {
+            	System.out.println(cmlstruct.toString());
+            	System.out.println(counts.toString());
+            }
         }
 
     }

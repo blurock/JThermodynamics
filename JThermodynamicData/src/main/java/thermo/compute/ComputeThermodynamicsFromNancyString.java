@@ -38,32 +38,43 @@ public class ComputeThermodynamicsFromNancyString {
 	/**
 	 * @param args the command line arguments
 	 */
-	public static void main(String[] args) {
-		if (args.length < 2) {
-			System.out.println("Two arguments are needed:");
-			System.out.println("Type of input: FILE MOLECULE");
-			System.out.println("If FILE, then followed by name of file");
-			System.out.println("If MOLECULE, then the molecule in Nancy Linear Form");
-			System.out.println("If MOLECULE, the next argument is the name of the molecule");
+	public static boolean executeCommand(String[] args) {
+		boolean foundCommand = true;
+		
+		if (args.length < 1) {
+			foundCommand = false;
 		} else {
 			String type = new String(args[0]);
-			String name = new String(args[1]);
 			if (type.startsWith(fileType)) {
+				if(args.length < 2) {
+					System.out.println("Expecting:");
+					System.out.println("FILE Filename");
+					System.out.println("    where Filename is the name of a file with molecules in nancy linear form");
+					foundCommand = false;
+				} else {
 				try {
+					String name = new String(args[1]);
 					computeFromFile(name);
 				} catch (FileNotFoundException ex) {
 					Logger.getLogger(ComputeThermodynamicsFromNancyString.class.getName()).log(Level.SEVERE, null, ex);
+				}
 				}
 			}
 			if (type.startsWith(moleculeType)) {
 				try {
 					if (args.length >= 3) {
+						String name = new String(args[1]);
 						String nancy = name;
 						nancy = cleanup(nancy);
 						name = new String(args[2]);
 						computeFromNancyLinearForm(nancy, name);
 					} else {
-						System.out.println("Expecting name of molecule as third argument");
+						System.out.println("Expecting:");
+						System.out.println("MOLECULE Structure Molecule");
+						System.out.println("    where:");
+						System.out.println("        Structure: The molecule in Nancy linear form");
+						System.out.println("        MoleculeName: The name of the molecule");
+						foundCommand =false;
 					}
 
 				} catch (ThermodynamicComputeException ex) {
@@ -73,7 +84,12 @@ public class ComputeThermodynamicsFromNancyString {
 				System.out.println("Expecting type: " + fileType + " or " + moleculeType);
 			}
 		}
-
+		return foundCommand;
+	}
+	
+	public static void commands() {
+		System.out.println("MOLECULE: Calculate the thermodynamics from Nancy Linear form");
+		System.out.println("FILE: Calculate thermodynamics from a file of molecule names");
 	}
 
 	private static void computeFromFile(String fileroot) throws FileNotFoundException {

@@ -8,6 +8,9 @@ import jThergas.data.JThermgasThermoStructureDataPoint;
 import jThergas.data.read.JThergasTokenizer;
 import jThergas.data.structure.JThergasStructureData;
 import jThergas.exceptions.JThergasReadException;
+
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.StringTokenizer;
@@ -78,10 +81,11 @@ public class JThergasThermoStructureGroupPoint extends JThermgasThermoStructureD
     private String[] separateOutGroupElements() {
         StringTokenizer tok = new StringTokenizer(this.getStructure().getNancyLinearForm().trim(), "-");
 
-        HashSet<String> vec = new HashSet<String>();
+        ArrayList<String> vec = new ArrayList<String>();
 
         while (tok.hasMoreTokens()) {
             String elementS = tok.nextToken();
+            
             int index = elementS.substring(1).indexOf("(");
             while (index > 0) {
                 String sub = elementS.substring(0, index + 1);

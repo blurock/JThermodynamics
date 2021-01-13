@@ -258,7 +258,7 @@
           </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>thermo.compute.ComputeThermodynamicsFromNancyString</mainClass>
+              <mainClass>thermo.LineCommands</mainClass>
             </manifest>
           </archive>
         </configuration>

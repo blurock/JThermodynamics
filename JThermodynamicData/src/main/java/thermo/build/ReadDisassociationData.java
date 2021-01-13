@@ -52,13 +52,17 @@ public class ReadDisassociationData {
         substitute = new SQLSubstituteBackMetaAtomIntoMolecule(nancyLinearFormType, connection);
     }
 
-    public void build(File f, String source) throws ThermodynamicException, SQLException {
+    public void build(File f, String source, boolean storedata) throws ThermodynamicException, SQLException {
         SetOfSubStructures set = this.read(f, source);
         System.out.println(set.toString());
         Iterator<SubStructure> iter =  set.iterator();
         while(iter.hasNext()){
             ThergasDisassociationEnergyInfo info = (ThergasDisassociationEnergyInfo) iter.next();
-            storDissassociationEnergy(info);
+            if(storedata) {
+            	storDissassociationEnergy(info);
+            } else {
+            	System.out.println(info.toString());
+            }
         }
     }
     public SetOfSubStructures read(File f, String source) {

@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Iterator;
 import java.util.Vector;
 import jThergas.exceptions.JThergasReadException;
 
@@ -184,4 +185,15 @@ public class JThergasReadStructureThermo {
         return data;
     }
 
+    public String writeToString() {
+    	Iterator<JThermgasThermoStructureDataPoint> iter = data.iterator();
+    	StringBuffer buf = new StringBuffer();
+    	while(iter.hasNext()) {
+    		JThermgasThermoStructureDataPoint point = iter.next();
+    		buf.append(point.writeToString());
+    		buf.append("\n");
+    	}
+    	return buf.toString();
+    }
+    
 }

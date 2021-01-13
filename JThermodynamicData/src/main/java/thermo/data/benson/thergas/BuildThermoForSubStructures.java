@@ -52,14 +52,24 @@ public class BuildThermoForSubStructures extends BuildThermoForMolecules {
      * @throws java.sql.SQLException
      */
     @Override
-    public void initializeTable(String reference) throws SQLException {
+    public void initializeTable(String reference, boolean storedata) throws SQLException {
         sqlthermo.initializeStructureInDatabase(reference);
         String[] names = sqlCMLStructure.findStructuresOfSource(reference);
+        if(storedata) {
         sqlStructureType.deleteElements(names);
         sqlCMLStructure.deleteFromSource(reference);
         for(int i=0; i< names.length;i++){
             String name = names[i];
             sqlAtomCounts.deleteElement(name);
+        }
+        } else {
+        	System.out.println("===========================================");
+            for(int i=0; i< names.length;i++){
+                String name = names[i];
+                System.out.println("Delete: '" + name + "'");
+            	System.out.println("===========================================");
+            }
+        	
         }
     }
     

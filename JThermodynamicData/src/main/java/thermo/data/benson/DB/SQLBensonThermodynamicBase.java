@@ -63,7 +63,7 @@ public class SQLBensonThermodynamicBase extends SQLStructureThermoAbstractInterf
          int i=0;
          while(iterstr.hasNext()){
              commands[i] = iterstr.next();
-             
+             i++;
          }
         return commands;
     }

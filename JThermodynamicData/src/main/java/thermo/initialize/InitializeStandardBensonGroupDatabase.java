@@ -36,6 +36,6 @@ public class InitializeStandardBensonGroupDatabase {
         addToDatabase(inp,standardS);
     }
     public void addToDatabase(InputStream inp, String reference) throws JThergasReadException, FileNotFoundException, IOException {
-        buildBenson.build(inp, reference, false);        
+        buildBenson.build(inp, reference, true,false);        
     }
 }

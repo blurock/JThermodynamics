@@ -77,13 +77,17 @@ public class BuildThermoForMolecules {
      *
      * @throws java.sql.SQLException
      */
-    public void initializeTable(String reference) throws SQLException {
-        sqlthermo.initializeStructureInDatabase(reference);
-        sqlmolecule.deleteFromSource(reference);
+    public void initializeTable(String reference, boolean storedata) throws SQLException {
+    	if(storedata) {
+    		sqlthermo.initializeStructureInDatabase(reference);
+    	} else {
+    		System.out.println("Will initialize database: " + reference);
+    	}
+        sqlmolecule.deleteFromSource(reference,storedata);
     }
-    public String build(ThermoSQLConnection c, File f, boolean cmltest) throws JThergasReadException, FileNotFoundException, IOException {
+    public String build(ThermoSQLConnection c, File f, boolean storedata, boolean cmltest) throws JThergasReadException, FileNotFoundException, IOException {
         String referenceS = f.toString();
-        return build(c,f,referenceS,cmltest);
+        return build(c,f,referenceS,storedata, cmltest);
     }
 
         /** Build the benson tables from file
@@ -104,7 +108,7 @@ public class BuildThermoForMolecules {
      * @throws IOException 
      *
      */
-    public String build(ThermoSQLConnection c, File f, String reference, boolean cmltest) throws JThergasReadException, FileNotFoundException, IOException {
+    public String build(ThermoSQLConnection c, File f, String reference, boolean storedata, boolean cmltest) throws JThergasReadException, FileNotFoundException, IOException {
         String errorString = "No Parsing Errors Detected";
         String sqlerror = "No Database Errors Detected";
         sourceS = reference;
@@ -116,7 +120,15 @@ public class BuildThermoForMolecules {
             Logger.getLogger(BuildBensonTable.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            setUpDatabase(c,cmltest, reference);
+        	if(storedata) {
+        		setUpDatabase(c,cmltest, reference);
+        	} else {
+        		System.out.println("\n=========================================");
+        		System.out.println("Parsed Information=======================");
+        		System.out.println("=========================================");
+        		System.out.println(readThergasTable.writeToString());
+        		System.out.println("=========================================");        		
+        	}
         } catch (CDKException ex) {
             Logger.getLogger(BuildThermoForMolecules.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -194,8 +206,8 @@ public class BuildThermoForMolecules {
         sqlthermo.addToDatabase(thermo);
         return thermo;
     }
-    public void deleteDatabaseFromSource(String reference) throws SQLException {
+    public void deleteDatabaseFromSource(String reference, boolean storedata) throws SQLException {
         SQLMolecule sqlmol = new SQLMolecule(connection);
-        sqlmol.deleteFromSource(reference);
+        sqlmol.deleteFromSource(reference, storedata);
     }
 }

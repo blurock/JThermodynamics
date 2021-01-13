@@ -105,10 +105,15 @@ public class SQLMolecule {
         names = namesV.toArray(names);
         return names;
     }
-    public void deleteFromSource(String src) throws SQLException {
+    public void deleteFromSource(String src, boolean storedata) throws SQLException {
         String[] molecules = findMoleculesOfSource(src);
         for(int i=0;i<molecules.length;i++) {
-            deleteElement(molecules[i]);
+        	if(storedata) {
+        		deleteElement(molecules[i]);
+        	} else {
+        		System.out.println("To delete: " + molecules[i]);
+        	}
+            
         }
     }
 }

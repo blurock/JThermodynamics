@@ -83,7 +83,6 @@ public class BuildBensonThermodynamicFromThergas {
             while(iter.hasNext()) {
                 JThergasGroupElement element = iter.next();
                 getSetOfMetaAtoms().addIfNotInSet(element.getGroupElementName());
-                System.out.print(element.getGroupElementName() + " (" + element.getNumberOfElements() + "),\t");
                 BensonConnectAtomStructure con = new BensonConnectAtomStructure(element.getGroupElementName(), element.getNumberOfElements());
                 grp.addBondedAtom(con);                
             }

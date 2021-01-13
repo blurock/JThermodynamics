@@ -40,25 +40,33 @@ public class ComputeThermoFromInChIString {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws CDKException {
-        if(args.length < 2) {
-            System.out.println("Two arguments are needed:");
-            System.out.println("Type of input: FILE InChI");
-            System.out.println("If FILE, then followed by name of file");
-            System.out.println("If InChI, then the molecule in InChI Form");
-            System.out.println("If InChI, the next argument is the name of the molecule");
+    public static boolean executeCommand(String[] args) {
+    	boolean foundCommand = true;
+        if(args.length < 1) {
+        	foundCommand = false;
         } else {
             String type = args[0];
-            String name = args[1];
             if(type.startsWith(fileType)) {
+            	if(args.length < 2) {
+					System.out.println("Expecting:");
+					System.out.println("INCHIFILE Filename");
+					System.out.println("    where Filename is the name of a file with molecules in InchI form");
+					foundCommand = false;            		
+            	} else {
                 try {
+                	String name = new String(args[1]);
                     computeFromFile(name);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(ComputeThermodynamicsFromNancyString.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                } catch (CDKException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	}
             } if(type.startsWith(moleculeType)) {
                 try {
                     if(args.length >= 3) {
+                    	String name = new String(args[1]);
                         String inchi = name;
                         name = new String(args[2]);
                         computeFromInChI(inchi,name);
@@ -68,13 +76,22 @@ public class ComputeThermoFromInChIString {
 
                 } catch (ThermodynamicComputeException ex) {
                     Logger.getLogger(ComputeThermodynamicsFromNancyString.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                } catch (CDKException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             } else {
                 System.out.println("Expecting type: " + fileType + " or " + moleculeType);
             }
         }
-
+        return foundCommand;
     }
+    
+    public static void commands() {
+		System.out.println("INCHI: Calculate the thermodynamics from InchI form");
+		System.out.println("INCHIFILE: Calculate thermodynamics from a file of molecule names in InchI");    	
+    }
+    
     private static void computeFromFile(String fileroot) throws FileNotFoundException, CDKException {
         ThermoSQLConnection c = new ThermoSQLConnection();
         c.connect();
