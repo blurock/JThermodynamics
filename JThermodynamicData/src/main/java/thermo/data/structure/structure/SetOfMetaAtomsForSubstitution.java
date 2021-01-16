@@ -84,6 +84,7 @@ public class SetOfMetaAtomsForSubstitution extends ArrayList<SubstituteMetaAtom>
  *
  */
 public IAtomContainer substitute(IAtomContainer molecule) throws CDKException, ClassNotFoundException, IOException {
+    StructureAsCML cml = new StructureAsCML(molecule);
         for (int pr = topPriority; pr >= 0; pr--) {
 
             Iterator<SubstituteMetaAtom> sub = this.iterator();
@@ -92,7 +93,7 @@ public IAtomContainer substitute(IAtomContainer molecule) throws CDKException, C
                 SubstituteMetaAtom substitute = sub.next();
                 if (substitute.getPriority() == pr) {
                     substitute.substitute(molecule);
-                StructureAsCML cml = new StructureAsCML(molecule);
+                cml = new StructureAsCML(molecule);
                 }
             }
         }

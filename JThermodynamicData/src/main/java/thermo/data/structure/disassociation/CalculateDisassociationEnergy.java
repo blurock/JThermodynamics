@@ -17,6 +17,7 @@ import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.benson.ThermodynamicInformation;
 import thermo.data.structure.disassociation.DB.SQLDisassociationEnergy;
 import thermo.data.structure.substructure.FindSubstructure;
+import thermo.data.structure.structure.StructureAsCML;
 
 /**
  *
@@ -52,6 +53,8 @@ public class CalculateDisassociationEnergy {
     public DisassociationEnergy getDisassociationEnergyForMolecule(IAtomContainer mol) throws SQLException, CDKException {
        DisassociationEnergy energy = null;
        FindSubstructure find = new FindSubstructure(mol, connect);
+       StructureAsCML cml = new StructureAsCML(mol);
+       System.out.println(cml.toString());
        SQLDisassociationEnergy sqldiss = new SQLDisassociationEnergy(connect);
        List<String> names = sqldiss.listOfDisassociationStructures();
        String name = find.findLargestSubstructure(names);
@@ -60,8 +63,15 @@ public class CalculateDisassociationEnergy {
            Iterator<DisassociationEnergy> iter = energyV.iterator();
            energy = iter.next();
        } else if(energyV.size() == 0) {
-           throw new CDKException("Disassociation Energy for " + mol.getID() + " could not be found\n" +
-        		   mol.toString());
+           System.out.println(names);
+           Iterator<String> iter = names.iterator();
+           while(iter.hasNext())
+        	   System.out.print(" " + iter.next());
+           System.out.println("");
+           
+           StructureAsCML cmlE = new StructureAsCML(mol);
+           System.out.println(cmlE.toString());           
+           throw new CDKException("Disassociation Energy for " + mol.getID() + " could not be found\n");
        } else {
            String error = "ERROR in Database: "
                    + energyV.size()

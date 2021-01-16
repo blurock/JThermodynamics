@@ -55,14 +55,14 @@ public class BuildThermoForMoleculesTest {
 
             System.out.println("Initial Database");
             String source = "src/test/java/molecules/mol-small.don";
-            build.initializeTable(source);
+            build.initializeTable(source,false);
         } catch (SQLException ex) {
             Logger.getLogger(BuildThermoForMoleculesTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("Read in File");
         File bensonFile = new File("src/test/java/molecules/mol-small.don");
             try {
-                build.build(connection, bensonFile, false);
+                build.build(connection, bensonFile, false, false);
             } catch (JThergasReadException ex) {
                 Logger.getLogger(BuildThermoForMoleculesTest.class.getName()).log(Level.SEVERE, null, ex);
             } catch (FileNotFoundException ex) {
@@ -77,7 +77,7 @@ public class BuildThermoForMoleculesTest {
         try {
             BuildThermoForMolecules build = new BuildThermoForMolecules();
             String source = "mol-small.don";
-            build.deleteDatabaseFromSource(source);
+            build.deleteDatabaseFromSource(source,false);
         } catch (SQLException ex) {
             Logger.getLogger(BuildThermoForMoleculesTest.class.getName()).log(Level.SEVERE, null, ex);
         }

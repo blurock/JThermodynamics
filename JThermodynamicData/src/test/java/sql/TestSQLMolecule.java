@@ -115,7 +115,7 @@ public class TestSQLMolecule {
                 System.out.println("From Test Source(" + i + "): " + fromsrc[i]);
             }
 
-            sqlmolecule.deleteFromSource(src);
+            sqlmolecule.deleteFromSource(src,false);
         } catch (SQLException ex) {
             Logger.getLogger(TestSQLMolecule.class.getName()).log(Level.SEVERE, null, ex);
         }

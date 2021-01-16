@@ -57,14 +57,15 @@ public class TestFindSubstructure {
             connection.connect();
             NancyLinearFormToMolecule nancy = new NancyLinearFormToGeneralStructure(connection);
             //String nancyS = "ch2(.)ch2/ch2/ch2/ch2/ch3";
-            String nancyS = "ch(.)/ch2/ch2/ch2/ch2/ch3";
+            //String nancyS = "ch(.)/ch2/ch2/ch2/ch2/ch3";
             //String nancyS = "ch3(.)";
+            String nancyS = "ch3/c(.)h/ch3";
             IAtomContainer mol = nancy.convert(nancyS);
             FindSubstructure find = new FindSubstructure(mol, connection);
             //SQLDisassociationEnergy sqldiss = new SQLDisassociationEnergy(connection);
             //List<String> names = sqldiss.listOfDisassociationStructures();
             ArrayList<String> names = new ArrayList<String>();
-            names.add("n-c3h7(*)");
+            names.add("i-c3h7(*)");
             String name = find.findLargestSubstructure(names);
             System.out.println("The substructure of " + nancyS + " is " + name);
 

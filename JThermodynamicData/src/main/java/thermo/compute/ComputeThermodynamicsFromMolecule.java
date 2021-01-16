@@ -192,8 +192,13 @@ try {
             AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(molecule);
             boolean sromaticB = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
             StructureAsCML cmlstruct = new StructureAsCML(molecule);
+            System.out.println("computeThermodynamics: " + nancy);
+            System.out.println(cmlstruct.toString());
             substitute.substitute(molecule);
             StructureAsCML cmlstruct2 = new StructureAsCML(molecule);
+            System.out.println("computeThermodynamics: substituted:");
+            System.out.println(cmlstruct2.toString());
+            
             fullthermo = computeThermodynamics(molecule,thermodynamics);
         } catch (CDKException ex) {
             Logger.getLogger(ComputeThermodynamicsFromMolecule.class.getName()).log(Level.SEVERE, null, ex);
@@ -259,21 +264,21 @@ try {
      * @return The full thermodynamics (all Benson rules and corrections combined)
      * @throws ThermodynamicComputeException
      */
-    public ThermodynamicInformation computeThermodynamics(IAtomContainer molecule, SetOfBensonThermodynamicBase thermodynamics) throws ThermodynamicComputeException {
+    public ThermodynamicInformation computeThermodynamics(IAtomContainer moleculetocompute, SetOfBensonThermodynamicBase thermodynamics) throws ThermodynamicComputeException {
         BensonThermodynamicBase combinedThermodynamics = null;
         try {
             CDKHueckelAromaticityDetector aromatic = new CDKHueckelAromaticityDetector();
 
-            AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(molecule);
-            StructureAsCML cmlstruct = new StructureAsCML(molecule);
-            boolean sromaticB = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
-            if(formRH.isARadical(molecule)) {
-                computeThermodynamicsForRadicalContributions(molecule, thermodynamics);
+            AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(moleculetocompute);
+            StructureAsCML cmlstruct = new StructureAsCML(moleculetocompute);
+            //boolean sromaticB = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
+            if(formRH.isARadical(moleculetocompute)) {
+                computeThermodynamicsForRadicalContributions(moleculetocompute, thermodynamics);
             } else {
-                computeThermodynamicsForMolecule(molecule, thermodynamics);
+                computeThermodynamicsForMolecule(moleculetocompute, thermodynamics);
             }
            
-            System.out.println("");
+            System.out.println(cmlstruct.toString());
             System.out.println("=========== Contributions ==============================");
             System.out.println(thermodynamics.toString());
             System.out.println("========================================================");
@@ -314,6 +319,9 @@ try {
     public void computeThermodynamicsForMolecule(IAtomContainer mol, SetOfBensonThermodynamicBase thermo) throws ThermodynamicException, CDKException, ClassNotFoundException, IOException, SQLException {
         //StructureAsCML struct = new StructureAsCML(mol);
         IAtomContainer substituted = metaAtomSubstitutions.substitute(mol);
+        System.out.println("computeThermodynamicsForMolecule  after meta-atom substitutions");
+        StructureAsCML cmlstruct = new StructureAsCML(substituted);
+        System.out.println(cmlstruct.toString());
         SetOfBensonGroupStructures bensonset = bensonGroups.deriveBensonGroupStructures(substituted);
         sqlthermodynamics.setUpFromSetOfBensonGroupStructures(bensonset,thermo);
         symmetryCorrections.calculate(mol, thermo);
@@ -355,6 +363,14 @@ try {
         StructureAsCML struct = new StructureAsCML(RH);
         IAtomContainer substituted = metaAtomSubstitutions.substitute(struct);
         SetOfBensonGroupStructures bensonset = bensonGroups.deriveBensonGroupStructures(substituted);
+        
+        BensonThermodynamicBase cycle = (BensonThermodynamicBase) findCyclesThermo.FindLargestStructureThermodynamics(substituted);
+        if(cycle != null)
+            thermo.add(cycle);
+
+        gauche.compute(substituted, thermo);
+         
+        
         sqlthermodynamics.setUpFromSetOfBensonGroupStructures(bensonset,thermo);
         symmetryCorrections.calculate(RH, thermo);
         disassociation.calculate(R,thermo);

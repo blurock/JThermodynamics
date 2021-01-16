@@ -100,9 +100,11 @@ public class HeatCapacityTemperaturePair implements Comparable<HeatCapacityTempe
     @Override
     public String toString() {
         StringBuffer buf = new StringBuffer();
-        buf.append(this.getTemperatureValue());
-        buf.append(", ");
-        buf.append(this.getHeatCapacityValue());
+        String formatS = "%6f,%10.3f";
+        buf.append(String.format(formatS,this.getTemperatureValue(),this.getHeatCapacityValue()));
+        //buf.append(this.getTemperatureValue());
+        //buf.append(", ");
+        //buf.append(this.getHeatCapacityValue());
         
         return buf.toString();
     }

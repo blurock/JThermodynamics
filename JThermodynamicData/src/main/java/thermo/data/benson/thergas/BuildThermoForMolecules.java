@@ -122,6 +122,7 @@ public class BuildThermoForMolecules {
         try {
         	if(storedata) {
         		setUpDatabase(c,cmltest, reference);
+        		System.out.println("Database successfully written");
         	} else {
         		System.out.println("\n=========================================");
         		System.out.println("Parsed Information=======================");

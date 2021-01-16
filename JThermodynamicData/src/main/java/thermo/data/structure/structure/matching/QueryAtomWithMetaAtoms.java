@@ -73,13 +73,13 @@ public class QueryAtomWithMetaAtoms extends Atom implements IQueryAtom {
                     ans = true;
             }
             }
-        /*
+    /*
         if (ans) {
             System.out.println("   Match: " + atm.getSymbol() + "  = " + this.getSymbol());
         } else {
             System.out.println("No Match: " + atm.getSymbol() + " != " + this.getSymbol());
         }
-         */
+   */
         return ans;
     }
 
@@ -157,5 +157,16 @@ public class QueryAtomWithMetaAtoms extends Atom implements IQueryAtom {
 
     void setToRadical() {
         radical = true;
+    }
+    @Override
+    public String toString() {
+    	StringBuffer buf = new StringBuffer();
+    	buf.append("'" + this.getSymbol() + "'");
+    	buf.append("  charge: " + this.getFormalCharge().toString());
+    	buf.append("  radical: " +  radical);
+    	buf.append("  ARomatic: " + this.getFlag(CDKConstants.ISAROMATIC));
+    	buf.append("\n");
+    	buf.append(super.toString() + "\n");
+    	return buf.toString();
     }
 }

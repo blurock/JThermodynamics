@@ -152,6 +152,7 @@ public class JThergasStructureData {
         DecimalFormat dec = new DecimalFormat("#0.0");
 
         StringBuffer buf = new StringBuffer();
+        buf.append(nameOfStructure + "\n");
         buf.append(" ");
         buf.append(String.format("%2d",getTableNumber()));
         buf.append(String.format("%4d",getGroupNumber()));

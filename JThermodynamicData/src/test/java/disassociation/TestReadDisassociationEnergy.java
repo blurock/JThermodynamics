@@ -58,7 +58,7 @@ public class TestReadDisassociationEnergy {
             ReadDisassociationData read = new ReadDisassociationData(connect);
             
 
-                read.build(filenameF, sourceS);
+                read.build(filenameF, sourceS,false);
 
         } catch (CDKException ex) {
             Logger.getLogger(TestReadDisassociationEnergy.class.getName()).log(Level.SEVERE, null, ex);

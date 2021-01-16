@@ -118,7 +118,7 @@ public class GetSubstructureMatches {
      * @throws org.openscience.cdk.exception.CDKException
      */
     public List<List<RMap>> getAtomMatches(IAtomContainer mol1, IAtomContainer mol2) throws CDKException {
-        QueryMoleculeWithMetaAtoms qmol1 = new QueryMoleculeWithMetaAtoms(mol1);
+    	QueryMoleculeWithMetaAtoms qmol1 = new QueryMoleculeWithMetaAtoms(mol1);
         QueryMoleculeWithMetaAtoms qmol2 = new QueryMoleculeWithMetaAtoms(mol2);
         UniversalIsomorphismTester tester = new UniversalIsomorphismTester();
         List<List<RMap>> map = null;

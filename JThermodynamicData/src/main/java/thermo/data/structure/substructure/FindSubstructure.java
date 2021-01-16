@@ -18,6 +18,7 @@ import thermo.data.structure.DB.SQLAtomCounts;
 import thermo.data.structure.structure.AtomCounts;
 import thermo.data.structure.structure.matching.GetSubstructureMatches;
 import thermo.data.structure.substructure.DB.SQLSubStructure;
+import thermo.data.structure.structure.StructureAsCML;
 
 /**
  *
@@ -227,19 +228,22 @@ public class FindSubstructure {
      * @throws CDKException
      */
     public List<List<RMap>> findSubstructureMatch(AtomCounts counts) throws SQLException, CDKException {
+        	StructureAsCML cml = new StructureAsCML(moleculeToCompare);
         List<List<RMap>> maps = new ArrayList<List<RMap>>();
         if (atomCounts.strictlyLessThanOrEqual(counts)) {
             String name = counts.getMoleculeID();
             SubStructure structure = getSubStructure(name);
             IAtomContainer substructure = (IAtomContainer) structure.getSubstructure();
-            List<List<RMap>> atommaps = matches.getAtomMatches(moleculeToCompare, substructure);
-            Iterator<List<RMap>> iter = atommaps.iterator();
+            	StructureAsCML cmlM = new StructureAsCML(substructure);
+           List<List<RMap>> atommaps = matches.getAtomMatches(moleculeToCompare, substructure);
+           Iterator<List<RMap>> iter = atommaps.iterator();
             while (iter.hasNext()) {
                 List<RMap> atommap = iter.next();
-                if (atommap.size() == substructure.getAtomCount()) {
+               if (atommap.size() == substructure.getAtomCount()) {
                     maps.add(atommap);
                 }
             }
+        } else {
         }
         return maps;
 

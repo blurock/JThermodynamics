@@ -19,6 +19,7 @@ import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.structure.structure.AddHydrogenToSingleRadical;
 import thermo.exception.NotARadicalException;
 import thermo.properties.SProperties;
+import thermo.data.structure.structure.StructureAsCML;
 
 /** CalculateVibrationalCorrectionForRadical
  *
@@ -104,7 +105,9 @@ public class CalculateVibrationalCorrectionForRadical {
         }
 
         public SetOfBensonThermodynamicBase calculate(IAtomContainer mol,IAtomContainer RH, SetOfBensonThermodynamicBase corrections) throws NotARadicalException, SQLException, CDKException, IOException {
-            SetOfVibrationalStructureCounts counts = substitute.findSubstitutions(RH);
+         	StructureAsCML cmlRH = new StructureAsCML(RH);
+        	SetOfVibrationalStructureCounts counts = substitute.findSubstitutions(RH);
+        	StructureAsCML cmlR = new StructureAsCML(RH);
             SetOfVibrationalStructureCounts countsR = substitute.findSubstitutions(mol);
             counts.subtract(countsR);
             Iterator<VibrationalStructureInfoCount> iter = counts.iterator();

@@ -4,6 +4,7 @@
  */
 package thermo.data.benson;
 
+import java.sql.Array;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -412,35 +413,49 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 		if (this.getID() != null) {
 			buf.append("(" + this.getID() + ")");
 		}
-		buf.append(":\tH298:");
-		buf.append(this.getStandardEnthalpy().toString());
-		buf.append("\tS298:");
-		buf.append(this.standardEntropy.toString());
-		buf.append("\tReference:'");
+		//buf.append(":\tH298:");
+		//buf.append(this.getStandardEnthalpy().toString());
+		//buf.append("\tS298:");
+		//buf.append(this.standardEntropy.toString());
+		buf.append(":\tReference: '");
 		buf.append(this.getReference());
-		buf.append("'");
+		buf.append("'\n");
+		String HSformatS = "H298: %6.2f S298: %6.2f";
+		buf.append(String.format(HSformatS,this.getStandardEnthalpy(), this.standardEntropy));
+		
+		HashSet<HeatCapacityTemperaturePair> pairset = this.getSetOfHeatCapacities();
+		
 		// Iterator<HeatCapacityTemperaturePair> iter =
 		// (Iterator<HeatCapacityTemperaturePair>)
-		HashSet<HeatCapacityTemperaturePair> pairset = this.getSetOfHeatCapacities();
+		
 		if (pairset != null) {
-			Iterator<HeatCapacityTemperaturePair> iter = pairset.iterator();
-			while (iter.hasNext()) {
-				HeatCapacityTemperaturePair pair = iter.next();
-				buf.append("\t[");
-				buf.append(pair.toString());
-				buf.append("]");
+			double[] temps = this.getTemperatures();
+			for(int i=0; i<temps.length;i++) {
+				Iterator<HeatCapacityTemperaturePair> iter = pairset.iterator();
+				boolean notdone = true;
+				while (notdone && iter.hasNext()) {
+					HeatCapacityTemperaturePair pair = iter.next();
+					if(pair.getTemperatureValue() == temps[i]) {
+				        String formatS = " [%7.1f,%6.2f]";
+				        buf.append(String.format(formatS,pair.getTemperatureValue(),pair.getHeatCapacityValue()));
+					}
+				}
 			}
 		}
 		return buf.toString();
 	}
 
 	public double[] getTemperatures() {
+		double[] temperatures = new double[0];
+		if(setOfHeatCapacities != null) {
 		Iterator<HeatCapacityTemperaturePair> t = setOfHeatCapacities.iterator();
-		double[] temperatures = new double[setOfHeatCapacities.size()];
+		temperatures = new double[setOfHeatCapacities.size()];
 		for (int i = 0; i < temperatures.length; i++) {
 			HeatCapacityTemperaturePair pair = t.next();
 			temperatures[i] = pair.getTemperatureValue();
 		}
+		Arrays.sort(temperatures);
+		} 
 		return temperatures;
 	}
 
