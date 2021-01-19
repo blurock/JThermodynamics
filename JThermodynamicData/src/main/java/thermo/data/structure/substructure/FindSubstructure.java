@@ -193,7 +193,7 @@ public class FindSubstructure {
         return match;
     }
 
-    private SubStructure getSubStructure(String name) throws SQLException {
+    public SubStructure getSubStructure(String name) throws SQLException {
         HashSet<SubStructure> vec = sqlSubStructure.retrieveStructuresFromDatabase(name);
         SubStructure structure = null;
         Iterator<SubStructure> iter = vec.iterator();
@@ -246,8 +246,6 @@ public class FindSubstructure {
         } else {
         }
         return maps;
-
-
     }
 
     /**

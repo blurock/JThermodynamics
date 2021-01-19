@@ -63,7 +63,8 @@ public class SubstituteMetaAtom {
     public void substitute(IAtomContainer molecule) throws CDKException {
         this.molecule = molecule;
         //System.out.println("Number of Atoms:" + molecule.getAtomCount());
-        List< List<RMap> > bondmap = matches.getAtomMatches(molecule, metaAtom.getMolecule()); 
+        List< List<RMap> > bondmap = matches.getAtomMatches(molecule, metaAtom.getMolecule());
+        //System.out.println("substitute: " + metaAtom.getMetaAtomName());
         List< MetaAtomSubstitutions> substitutions = determineSubstitionsFromAtomMaps(bondmap);
         substituteMetaAtoms(substitutions);
         
@@ -170,13 +171,18 @@ public class SubstituteMetaAtom {
         Iterator<IBond> i = connections.iterator();
         while(i.hasNext()) {
             IBond bond = i.next();
+            //System.out.println("Bond before:" + bond.getAtom(0).getID() + "   " + bond.getAtom(1).getID());
+            //System.out.println(bond.toString());
             IAtom atm1 = bond.getAtom(0);
             IAtom atm2 = bond.getAtom(1);
+            //System.out.println("modifyConnectionBonds: " + atm1.getID() + "   " + atm2.getID() );
             if(atoms.contains(atm1)) {
                 bond.setAtom(matm, 0);
             } else {
                 bond.setAtom(matm, 1);
             }
+            //System.out.println("Bond after:" + bond.getAtom(0).getID() + "   " + bond.getAtom(1).getID());
+            //System.out.println(bond.toString());
         }
     }
     /** Substitute a single meta atom into the molecule.
@@ -197,7 +203,14 @@ public class SubstituteMetaAtom {
     private void substituteMetaAtom(MetaAtomSubstitutions sub) {
         List<IBond> connections = SubstructureIsolation.listOfBondsConnectedToAtomSet(molecule, sub.getSubstitutionsInMolecule());
         List<IBond> subbonds    = SubstructureIsolation.listOfBondsWithAtomSet(molecule, sub.getSubstitutionsInMolecule());
+        //System.out.println("-------- Connections:");
+        //System.out.println(connections.toString());
+        //System.out.println("-------- subbonds:");
+        //System.out.println(subbonds.toString());
+        
         IAtom matm = metaAtom.createMetaAtom();
+        //System.out.println("substituteMetaAtom: meta atom name: " + metaAtom.getMetaAtomName());
+        //System.out.println("substituteMetaAtom: " + matm.toString());
          molecule.addAtom(matm);
         eliminateBondsFromMolecule(molecule,subbonds);
        modifyConnectionBonds(molecule,matm,sub.getSubstitutionsInMolecule(),connections);
@@ -213,16 +226,23 @@ public class SubstituteMetaAtom {
         Iterator<MetaAtomSubstitutions> i = substitutions.iterator();
         while(i.hasNext()) {
             MetaAtomSubstitutions sub = i.next();
+            //System.out.println("substituteMetaAtoms: " + sub.toString());
+            //System.out.println(sub.getMetaAtomName());
             substituteMetaAtom(sub);
-            /*
+            
             StructureAsCML cml;
             try {
                 cml = new StructureAsCML(molecule);
-                System.out.println(cml.getCmlStructureString());
+                /*
+                System.out.println("substituteMetaAtoms: after substitution of " +
+                		sub.getMetaAtomName() + 
+                		"\n" + 
+                		cml.getCmlStructureString());
+                		*/
             } catch (CDKException ex) {
-                Logger.getLogger(SubstituteMetaAtom.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(SubstituteMetaAtom.class.getName()).log(Level.SEVERE, null, ex);
             }
-            */
+            
         }
         
         

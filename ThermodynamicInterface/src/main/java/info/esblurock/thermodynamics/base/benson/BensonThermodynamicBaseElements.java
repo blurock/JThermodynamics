@@ -1,6 +1,7 @@
 package info.esblurock.thermodynamics.base.benson;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -20,7 +21,7 @@ public class BensonThermodynamicBaseElements implements Serializable {
     void init() {
     	reference = "";
     	thermodynamicType = "";
-    	setOfHeatCapacities = new HashSet<HeatCapacityTemperaturePair>();
+    	setOfHeatCapacities = new ArrayList<HeatCapacityTemperaturePair>();
     	standardEnthalpy = 0.0;
     	standardEntropy = 0.0;
     	dHtoCalories = 1000.0;   	
@@ -37,10 +38,10 @@ public class BensonThermodynamicBaseElements implements Serializable {
 	public void setThermodynamicType(String thermodynamicType) {
 		this.thermodynamicType = thermodynamicType;
 	}
-	public HashSet<HeatCapacityTemperaturePair> getSetOfHeatCapacities() {
+	public ArrayList<HeatCapacityTemperaturePair> getSetOfHeatCapacities() {
 		return setOfHeatCapacities;
 	}
-	public void setSetOfHeatCapacities(HashSet<HeatCapacityTemperaturePair> setOfHeatCapacities) {
+	public void setSetOfHeatCapacities(ArrayList<HeatCapacityTemperaturePair> setOfHeatCapacities) {
 		this.setOfHeatCapacities = setOfHeatCapacities;
 	}
 	public Double getStandardEnthalpy() {
@@ -115,7 +116,7 @@ public class BensonThermodynamicBaseElements implements Serializable {
         buf.append("<td>");
         buf.append(this.standardEntropy);
         buf.append("</td>");
-        HashSet<HeatCapacityTemperaturePair> pairs = this.getSetOfHeatCapacities();
+        ArrayList<HeatCapacityTemperaturePair> pairs = this.getSetOfHeatCapacities();
         if (pairs != null) {
             Iterator<HeatCapacityTemperaturePair> p = pairs.iterator();
             buf.append("<td>");

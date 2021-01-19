@@ -81,7 +81,7 @@ public class SubstituteBackMetaAtomsIntoMolecule extends ArrayList<MetaAtomDefin
  * @param nancy The meta atom
  * @param molecule The molecule to be modified.
  */
-    private void substituteSingleMetaAtom(MetaAtomDefinition nancy, IAtomContainer molecule) {
+    public void substituteSingleMetaAtom(MetaAtomDefinition nancy, IAtomContainer molecule) {
         Iterator<IAtom> iatoms = molecule.atoms().iterator();
         boolean notfound = true;
         while (iatoms.hasNext() && notfound) {

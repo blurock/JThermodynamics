@@ -232,7 +232,9 @@ public class MetaAtomDefinition extends MetaAtomInfo {
      * @return
      */
     public IAtom createMetaAtom() {
-        Atom atm = new Atom("R");
+    	MetaAtomInfo atm = new MetaAtomInfo();
+    	atm.setElementName(getElementName());
+    	atm.setMetaAtomType(getMetaAtomType());
         atm.setSymbol(getMetaAtomName());
         atm.setAtomTypeName(getMetaAtomType());
         atm.setCharge(new Double(0.0));

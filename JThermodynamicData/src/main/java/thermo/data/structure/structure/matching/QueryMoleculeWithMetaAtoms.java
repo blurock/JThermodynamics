@@ -36,10 +36,14 @@ public class QueryMoleculeWithMetaAtoms extends AtomContainer {
            atoms.add(sing);
        }
 
-		
+        //System.out.println("QueryMoleculeWithMetaAtoms: molecule: " + mol.getClass().getCanonicalName());
 		for (int i = 0; i < mol.getAtomCount(); i++) {
 			IAtom atm = mol.getAtom(i);
+			//System.out.println("QueryMoleculeWithMetaAtoms: " + atm.getClass().getCanonicalName()); 
+			//System.out.println("QueryMoleculeWithMetaAtoms: " + atm.getSymbol()); 
 			QueryAtomWithMetaAtoms qatm = new QueryAtomWithMetaAtoms(atm);
+			qatm.setSymbol(atm.getSymbol());
+			
 			//Iterator<IAtom> iter = radicals.iterator();
 			Iterator<ISingleElectron> iter  = atoms.iterator();
 			

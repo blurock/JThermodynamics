@@ -8,6 +8,7 @@ package thermo.data.benson.DB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashSet;
 import thermo.data.benson.HeatCapacityTemperaturePair;
 

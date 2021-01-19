@@ -11,6 +11,8 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 import jThergas.data.structure.JThergasStructureData;
 import jThergas.data.thermo.JThergasThermoData;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -131,7 +133,7 @@ public class BuildBensonThermodynamicFromThergas {
         thermo.setReference(reference);
         thermo.setStandardEnthalpy(enthalpy);
         thermo.setStandardEntropy(entropy);
-        HashSet<HeatCapacityTemperaturePair> cpset = new HashSet<HeatCapacityTemperaturePair>();
+        ArrayList<HeatCapacityTemperaturePair> cpset = new ArrayList<HeatCapacityTemperaturePair>();
         //HashSet temps = new HashSet();
         String tempS = SProperties.getProperty("thermo.data.bensonstandard.temperatures");
         StringTokenizer tok = new StringTokenizer(tempS, ",");

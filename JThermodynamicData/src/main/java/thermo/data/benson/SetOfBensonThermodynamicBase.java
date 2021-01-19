@@ -6,6 +6,8 @@
 package thermo.data.benson;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import thermo.exception.ThermodynamicComputeException;
 
@@ -50,6 +52,7 @@ public class SetOfBensonThermodynamicBase extends ArrayList<BensonThermodynamicB
     
     public String toString() {
         StringBuffer buf = new StringBuffer();
+        Collections.sort(this);
         Iterator<BensonThermodynamicBase> t = this.iterator();
         while(t.hasNext()) {
             BensonThermodynamicBase base = t.next();

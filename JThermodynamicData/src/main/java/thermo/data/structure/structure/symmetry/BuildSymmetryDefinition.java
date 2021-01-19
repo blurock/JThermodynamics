@@ -86,7 +86,7 @@ public class BuildSymmetryDefinition {
             cmlstruct = iter.next();
 
         } else {
-            throw new CDKException("Expecting symmetry name and structure name but got '" + firstLine + "'");
+            throw new CDKException("Expecting symmetry name, structure name and symmetry type, but got '" + firstLine + "'");
         }
         //Each Line
         if (tok.countTokens() >= 2) {

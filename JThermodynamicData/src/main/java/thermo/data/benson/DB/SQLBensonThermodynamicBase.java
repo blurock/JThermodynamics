@@ -7,6 +7,7 @@ package thermo.data.benson.DB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -43,7 +44,7 @@ public class SQLBensonThermodynamicBase extends SQLStructureThermoAbstractInterf
         BensonThermodynamicBase thermo = (BensonThermodynamicBase) structure;
         Double enthalpy = thermo.getStandardEnthalpy();
         Double entropy = thermo.getStandardEntropy();
-        HashSet<HeatCapacityTemperaturePair> cps = thermo.getSetOfHeatCapacities();
+        ArrayList<HeatCapacityTemperaturePair> cps = thermo.getSetOfHeatCapacities();
 
         HashSet<String> commandsV = new HashSet<String>();
         String sqlenthalpy = "INSERT INTO GroupStandardEnthalpy (ElementName, StandardEnthalpy, Reference) " + "Values(" + "\"" + thermo.getID() + "\"," + enthalpy.toString() + "," + "\"" + thermo.getReference() + "\"" + ");";
@@ -111,9 +112,10 @@ public class SQLBensonThermodynamicBase extends SQLStructureThermoAbstractInterf
         HashSet<HeatCapacityTemperaturePair> vec = cps.retrieveStructuresFromDatabase(name);
         //Object[] objs = vec.toArray();
         //Arrays.sort(objs);
-        //HashSet<HeatCapacityTemperaturePair> sorted = new HashSet<HeatCapacityTemperaturePair>();
+        //ArrayList<HeatCapacityTemperaturePair> sorted = new ArrayList<HeatCapacityTemperaturePair>();
         //sorted.addAll(Arrays.asList(objs));
-        grp.setSetOfHeatCapacities(vec);
+        ArrayList<HeatCapacityTemperaturePair> array = new ArrayList<HeatCapacityTemperaturePair>(vec);
+        grp.setSetOfHeatCapacities(array);
         HashSet<BensonThermodynamicBase> ans = new HashSet<BensonThermodynamicBase>(1);
         ans.add(grp);
         return ans;

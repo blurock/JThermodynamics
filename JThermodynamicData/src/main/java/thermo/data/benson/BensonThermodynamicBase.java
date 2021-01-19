@@ -5,6 +5,7 @@
 package thermo.data.benson;
 
 import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -23,11 +24,11 @@ import thermo.exception.ThermodynamicComputeException;
  *
  * @author blurock
  */
-public class BensonThermodynamicBase extends ChemObject implements ThermodynamicInformation {
+public class BensonThermodynamicBase extends ChemObject implements ThermodynamicInformation, Comparable<BensonThermodynamicBase> {
 
 	private String reference;
 	String thermodynamicType = "";
-	HashSet<HeatCapacityTemperaturePair> setOfHeatCapacities;
+	ArrayList<HeatCapacityTemperaturePair> setOfHeatCapacities;
 	Double standardEnthalpy;
 	private Double standardEntropy;
 	IAtomContainer structure;
@@ -47,7 +48,7 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 	 * @param standardEnthalpy    The standard enthalpy at 298
 	 * @param standardEntropy     The standard entropy at 298
 	 */
-	public BensonThermodynamicBase(String type, HashSet<HeatCapacityTemperaturePair> setOfHeatCapacities,
+	public BensonThermodynamicBase(String type, ArrayList<HeatCapacityTemperaturePair> setOfHeatCapacities,
 			Double standardEnthalpy, Double standardEntropy) {
 		this.thermodynamicType = type;
 		this.setOfHeatCapacities = setOfHeatCapacities;
@@ -57,7 +58,7 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 
 	public void initialize(String name, String ref, double[] temperatures) {
 		reference = ref;
-		setOfHeatCapacities = new HashSet<HeatCapacityTemperaturePair>();
+		setOfHeatCapacities = new ArrayList<HeatCapacityTemperaturePair>();
 		standardEnthalpy = new Double(0.0);
 		standardEntropy = new Double(0.0);
 		for (int i = 0; i < temperatures.length; i++) {
@@ -122,7 +123,7 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 	 *
 	 * @return The vector of heat capacities
 	 */
-	public HashSet<HeatCapacityTemperaturePair> getSetOfHeatCapacities() {
+	public ArrayList<HeatCapacityTemperaturePair> getSetOfHeatCapacities() {
 		return setOfHeatCapacities;
 	}
 
@@ -130,7 +131,7 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 	 *
 	 * @param setOfHeatCapacities Replace the set of heat capacities
 	 */
-	public void setSetOfHeatCapacities(HashSet<HeatCapacityTemperaturePair> setOfHeatCapacities) {
+	public void setSetOfHeatCapacities(ArrayList<HeatCapacityTemperaturePair> setOfHeatCapacities) {
 		this.setOfHeatCapacities = setOfHeatCapacities;
 	}
 
@@ -208,7 +209,7 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 		base.setStandardEntropy(standardEntropy);
 		base.setThermodynamicType(thermodynamicType);
 		String structureName = "Zero";
-		HashSet<HeatCapacityTemperaturePair> tempset = new HashSet<HeatCapacityTemperaturePair>();
+		ArrayList<HeatCapacityTemperaturePair> tempset = new ArrayList<HeatCapacityTemperaturePair>();
 		if (setOfHeatCapacities == null) {
 			for (int i = 0; i < temperatures.length; i++) {
 				HeatCapacityTemperaturePair pair = new HeatCapacityTemperaturePair();
@@ -423,8 +424,7 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 		String HSformatS = "H298: %6.2f S298: %6.2f";
 		buf.append(String.format(HSformatS,this.getStandardEnthalpy(), this.standardEntropy));
 		
-		HashSet<HeatCapacityTemperaturePair> pairset = this.getSetOfHeatCapacities();
-		
+		ArrayList<HeatCapacityTemperaturePair> pairset = this.getSetOfHeatCapacities();
 		// Iterator<HeatCapacityTemperaturePair> iter =
 		// (Iterator<HeatCapacityTemperaturePair>)
 		
@@ -475,7 +475,7 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 		buf.append("<td>");
 		buf.append(this.getStandardEntropy298());
 		buf.append("</td>");
-		HashSet<HeatCapacityTemperaturePair> pairs = this.getSetOfHeatCapacities();
+		ArrayList<HeatCapacityTemperaturePair> pairs = this.getSetOfHeatCapacities();
 		if (pairs != null) {
 			Iterator<HeatCapacityTemperaturePair> p = pairs.iterator();
 			buf.append("<td>");
@@ -516,5 +516,39 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 	@Override
 	public void setName(String name) {
 		this.setID(name);
+	}
+
+	@Override
+	public int compareTo(BensonThermodynamicBase benson) {
+		int ans = 0;
+		String IDbenson = benson.getReference();
+		String IDthis = this.getReference();
+		String Referencebenson = benson.getReference();
+		String Referencethis = this.getReference();
+
+		int IDcomp = 0;
+		if(IDthis != null) {
+			if(IDbenson != null) {
+				IDcomp = IDthis.compareTo(IDbenson);
+			} else {
+				IDcomp = -1;
+			}
+		}  else {
+			IDcomp = 1;
+		}
+		int Referencecomp = 0;
+		if(Referencethis != null) {
+			if(Referencebenson != null) {
+				Referencecomp = IDthis.compareTo(Referencebenson);
+				if(Referencecomp == 0) {
+					Referencecomp = IDcomp;
+				}
+			} else {
+				Referencecomp = -1;
+			}
+		}  else {
+			Referencecomp = 1;
+		}
+		return Referencecomp;
 	}
 }

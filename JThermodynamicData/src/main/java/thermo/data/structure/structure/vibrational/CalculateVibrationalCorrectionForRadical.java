@@ -7,6 +7,7 @@ package thermo.data.structure.structure.vibrational;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.StringTokenizer;
@@ -119,7 +120,7 @@ public class CalculateVibrationalCorrectionForRadical {
                 double factor = matches/symmetry;
                 String reference = referenceRoot + "Frequency:" + frequency;
                 double entropyC = -frequencyCorrection.correctCpInCalories(frequency, standardTemperature)*factor;
-                HashSet<HeatCapacityTemperaturePair> pairs = heatCapacityPairs(reference);
+                ArrayList<HeatCapacityTemperaturePair> pairs = heatCapacityPairs(reference);
                 Iterator<HeatCapacityTemperaturePair> capacityiter = pairs.iterator();
                 while(capacityiter.hasNext()){
                     HeatCapacityTemperaturePair pair = capacityiter.next();
@@ -134,8 +135,8 @@ public class CalculateVibrationalCorrectionForRadical {
 
         return corrections;
     }
-    private HashSet<HeatCapacityTemperaturePair> heatCapacityPairs(String referenceS) throws IOException {
-        HashSet<HeatCapacityTemperaturePair> pairs = new HashSet<HeatCapacityTemperaturePair>();
+    private ArrayList<HeatCapacityTemperaturePair> heatCapacityPairs(String referenceS) throws IOException {
+    	ArrayList<HeatCapacityTemperaturePair> pairs = new ArrayList<HeatCapacityTemperaturePair>();
         String temperature = SProperties.getProperty("thermo.data.bensonstandard.temperatures");
         StringTokenizer tok = new StringTokenizer(temperature,",");
         while(tok.hasMoreElements()) {

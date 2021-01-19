@@ -9,6 +9,8 @@ import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 
+import thermo.data.structure.structure.MetaAtomInfo;
+
 /**
  *
  * @author blurock
@@ -106,7 +108,7 @@ public class QueryAtomWithMetaAtoms extends Atom implements IQueryAtom {
      * @return
      */
     public boolean matchesAll(Atom atm) {
-        return atm.getSymbol().equals(matchAny);
+        return atm.getSymbol().equals(matchAny) || atm.getSymbol().equals("Du");
     }
 
     /**

@@ -4,6 +4,7 @@
  */
 package thermo.data.benson.CML;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -54,7 +55,7 @@ public class CMLBensonThermodynamicBase extends CMLAbstractThermo {
         this.appendChild(standardEntropyS);
 
         CMLPropertyList prop = new CMLPropertyList();
-        HashSet<HeatCapacityTemperaturePair> pairset = thermo.getSetOfHeatCapacities();
+        ArrayList<HeatCapacityTemperaturePair> pairset = thermo.getSetOfHeatCapacities();
         if(pairset != null) {
         Iterator<HeatCapacityTemperaturePair> iter = pairset.iterator();
         while(iter.hasNext()) {
@@ -91,7 +92,7 @@ public class CMLBensonThermodynamicBase extends CMLAbstractThermo {
             double entropy = entropycml.getDouble();
             thermo.setStandardEntropy(new Double(entropy));
 
-            HashSet<HeatCapacityTemperaturePair> vec = new HashSet<HeatCapacityTemperaturePair>();
+            ArrayList<HeatCapacityTemperaturePair> vec = new ArrayList<HeatCapacityTemperaturePair>();
             CMLPropertyList props = (CMLPropertyList) proplist.get(4);
             List<CMLProperty> connections = props.getPropertyDescendants();
             for (int i = 0; i < connections.size(); i++) {

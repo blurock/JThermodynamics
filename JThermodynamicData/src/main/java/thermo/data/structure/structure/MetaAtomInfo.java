@@ -3,6 +3,8 @@
 
 package thermo.data.structure.structure;
 
+import org.openscience.cdk.Atom;
+
 /** The keywork information making up a meta atom
  * <ul>
  * <li> elementName The full name of the meta atom
@@ -12,8 +14,9 @@ package thermo.data.structure.structure;
  *
  * @author blurock
  */
-public class MetaAtomInfo {
-    // The full name of the meta atom
+public class MetaAtomInfo extends Atom {
+	private static final long serialVersionUID = 1L;
+	// The full name of the meta atom
     private String elementName = null;
     // The type of meta atom this is
     private String metaAtomType = "MetaAtom";
@@ -35,6 +38,17 @@ public class MetaAtomInfo {
         metaAtomType = info.metaAtomType;
         metaAtomName = info.metaAtomName;
     }
+    
+    @Override
+    public String getSymbol() {
+    	return metaAtomName;
+    }
+    @Override
+    public void setSymbol(String symbol) {
+    	super.setSymbol("R");
+    	metaAtomName = symbol;
+    }
+    
     /** Get the element name
      * The name of the meta atom structure
      *
@@ -44,6 +58,7 @@ public class MetaAtomInfo {
         return elementName;
     }
 
+    
     /** Set the element name
      * The name of the meta atom structure
      * 
