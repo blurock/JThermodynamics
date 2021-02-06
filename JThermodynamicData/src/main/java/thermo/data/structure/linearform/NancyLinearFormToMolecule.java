@@ -105,7 +105,9 @@ public class NancyLinearFormToMolecule {
             IAtomContainer molecule = null;
             try {
                 linearForm = correctForm.correctNancyLinearForm(linearform);
-                currentCharPosition = 0;
+                System.out.println("NancyLinearFormToMolecule: " + linearform);
+                System.out.println("NancyLinearFormToMolecule: " + linearForm);
+                              currentCharPosition = 0;
                 moleculeNodeForm = processString();
                 molecule = convertToMolecule();
             } catch (NullPointerException ex) {

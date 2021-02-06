@@ -1,2 +1,703 @@
 2020-12-23 16:24:13,104 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2020-12-23 16:26:36,302 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-01-22 08:50:58,261 [Worker-10: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2021-01-22 08:55:30,461 [Worker-15: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: info.esblurock:JTherGas:1.0 @ /Users/edwardblurock/git/JThermodynamics2/JTherGas/pom.xml.
+2021-01-22 08:55:30,461 [Worker-30: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: info.esblurock:JTherGas:1.0 @ /Users/edwardblurock/git/JThermodynamics2/JTherGas/pom.xml.
+2021-01-22 08:55:30,939 [Worker-30: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 08:55:30,947 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-01-22 08:55:30,957 [Worker-30: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 08:55:30,958 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JTherGas/src/test/resources
+2021-01-22 08:55:32,314 [Worker-42: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: info.esblurock:JTherGas:1.0 @ /Users/edwardblurock/git/JThermodynamics2/JTherGas/pom.xml.
+2021-01-22 08:55:33,876 [Worker-10: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 08:55:33,879 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-01-22 08:55:33,881 [Worker-10: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 08:55:33,882 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JTherGas/src/test/resources
+2021-01-22 08:55:34,390 [Worker-10: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: info.esblurock:JThermodynamicData:1.0 @ /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/pom.xml.
+2021-01-22 08:55:35,045 [Worker-10: Building] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/JTherGas: info.esblurock:JTherGas:1.0 with classifier  to /JTherGas/target/classes
+2021-01-22 08:55:35,628 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 08:55:35,628 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 08:55:35,630 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 08:55:35,630 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 08:55:38,507 [Worker-29: Building] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/JTherGas: info.esblurock:JTherGas:1.0 with classifier  to /JTherGas/target/classes
+2021-01-22 08:55:38,512 [Worker-29: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 08:55:38,512 [Worker-29: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 08:55:38,513 [Worker-29: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 08:55:38,513 [Worker-29: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 08:59:21,409 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 08:59:21,409 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 08:59:21,411 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 08:59:21,411 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 10:59:36,187 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 10:59:36,188 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 10:59:36,190 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 10:59:36,190 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 11:33:35,179 [Worker-60: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 11:33:35,179 [Worker-60: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 11:33:35,181 [Worker-60: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 11:33:35,182 [Worker-60: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 14:00:01,597 [Worker-67: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 14:00:01,597 [Worker-67: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 14:00:01,599 [Worker-67: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 14:00:01,599 [Worker-67: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 15:35:54,774 [Worker-76: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 15:35:54,775 [Worker-76: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 15:35:54,777 [Worker-76: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 15:35:54,777 [Worker-76: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 15:39:42,224 [Worker-81: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 15:39:42,224 [Worker-81: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 15:39:42,225 [Worker-81: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 15:39:42,225 [Worker-81: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 18:17:58,248 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 18:17:58,249 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 18:17:58,250 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 18:17:58,251 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 18:19:10,076 [Worker-97: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 18:19:10,076 [Worker-97: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 18:19:10,077 [Worker-97: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 18:19:10,077 [Worker-97: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 18:24:25,865 [Worker-99: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 18:24:25,865 [Worker-99: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 18:24:25,866 [Worker-99: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 18:24:25,866 [Worker-99: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 18:36:21,385 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 18:36:21,385 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 18:36:21,386 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 18:36:21,386 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 18:39:58,996 [Worker-107: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 18:39:58,997 [Worker-107: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 18:39:58,998 [Worker-107: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 18:39:58,998 [Worker-107: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 18:46:23,161 [Worker-103: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 18:46:23,161 [Worker-103: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 18:46:23,164 [Worker-103: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 18:46:23,164 [Worker-103: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 19:39:31,218 [Worker-111: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 19:39:31,218 [Worker-111: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 19:39:31,223 [Worker-111: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 19:39:31,223 [Worker-111: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 19:42:33,076 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 19:42:33,076 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 19:42:33,078 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 19:42:33,078 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 19:42:34,109 [Worker-114: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 19:42:34,109 [Worker-114: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 19:42:34,110 [Worker-114: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 19:42:34,111 [Worker-114: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 19:43:36,168 [Worker-113: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 19:43:36,169 [Worker-113: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 19:43:36,171 [Worker-113: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 19:43:36,171 [Worker-113: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 19:47:38,662 [Worker-115: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 19:47:38,665 [Worker-115: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 19:47:38,666 [Worker-115: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 19:47:38,666 [Worker-115: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 19:53:21,368 [Worker-113: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 19:53:21,369 [Worker-113: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 19:53:21,370 [Worker-113: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 19:53:21,370 [Worker-113: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 20:47:20,217 [Worker-121: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 20:47:20,219 [Worker-121: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 20:47:20,221 [Worker-121: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 20:47:20,221 [Worker-121: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 21:14:49,870 [Worker-135: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 21:14:49,872 [Worker-135: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 21:14:49,873 [Worker-135: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 21:14:49,873 [Worker-135: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 21:19:32,393 [Worker-126: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 21:19:32,395 [Worker-126: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 21:19:32,398 [Worker-126: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 21:19:32,398 [Worker-126: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 21:22:53,716 [Worker-130: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 21:22:53,716 [Worker-130: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 21:22:53,717 [Worker-130: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 21:22:53,718 [Worker-130: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-22 22:10:56,419 [Worker-127: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 22:10:56,419 [Worker-127: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-22 22:10:56,421 [Worker-127: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-22 22:10:56,421 [Worker-127: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 16:31:26,844 [Worker-169: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 16:31:26,845 [Worker-169: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 16:31:26,846 [Worker-169: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 16:31:26,846 [Worker-169: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 16:36:57,763 [Worker-187: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 16:36:57,763 [Worker-187: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 16:36:57,764 [Worker-187: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 16:36:57,764 [Worker-187: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 16:46:09,256 [Worker-196: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 16:46:09,256 [Worker-196: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 16:46:09,258 [Worker-196: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 16:46:09,258 [Worker-196: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 18:33:57,765 [Worker-187: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 18:33:57,765 [Worker-187: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 18:33:57,766 [Worker-187: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 18:33:57,766 [Worker-187: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 18:35:04,747 [Worker-203: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 18:35:04,747 [Worker-203: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 18:35:04,748 [Worker-203: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 18:35:04,750 [Worker-203: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 18:40:05,171 [Worker-206: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 18:40:05,171 [Worker-206: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 18:40:05,173 [Worker-206: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 18:40:05,173 [Worker-206: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 19:15:08,919 [Worker-187: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 19:15:08,919 [Worker-187: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 19:15:08,920 [Worker-187: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 19:15:08,920 [Worker-187: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 19:16:44,149 [Worker-205: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 19:16:44,150 [Worker-205: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 19:16:44,152 [Worker-205: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 19:16:44,152 [Worker-205: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 19:18:18,049 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 19:18:18,049 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 19:18:18,050 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 19:18:18,050 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 19:42:34,167 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 19:42:34,167 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 19:42:34,168 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 19:42:34,168 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 19:46:21,140 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 19:46:21,140 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 19:46:21,142 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 19:46:21,142 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 19:49:27,250 [Worker-225: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 19:49:27,250 [Worker-225: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 19:49:27,251 [Worker-225: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 19:49:27,251 [Worker-225: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 20:05:05,646 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:05:05,647 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 20:05:05,649 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:05:05,649 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 20:06:08,690 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:06:08,690 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 20:06:08,691 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:06:08,691 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 20:11:05,131 [Worker-230: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:11:05,131 [Worker-230: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 20:11:05,132 [Worker-230: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:11:05,132 [Worker-230: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 20:13:58,724 [Worker-226: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:13:58,724 [Worker-226: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 20:13:58,726 [Worker-226: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:13:58,726 [Worker-226: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 20:20:50,685 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:20:50,685 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 20:20:50,686 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:20:50,686 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 20:24:24,748 [Worker-229: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:24:24,748 [Worker-229: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 20:24:24,750 [Worker-229: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:24:24,750 [Worker-229: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 20:24:59,945 [Worker-219: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:24:59,945 [Worker-219: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 20:24:59,946 [Worker-219: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:24:59,946 [Worker-219: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 20:26:36,120 [Worker-234: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:26:36,120 [Worker-234: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 20:26:36,121 [Worker-234: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:26:36,121 [Worker-234: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 20:28:04,548 [Worker-239: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:28:04,548 [Worker-239: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 20:28:04,549 [Worker-239: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:28:04,549 [Worker-239: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-23 20:28:51,118 [Worker-236: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:28:51,119 [Worker-236: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-23 20:28:51,120 [Worker-236: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-23 20:28:51,120 [Worker-236: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-25 12:41:29,692 [Worker-382: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-25 12:41:29,694 [Worker-382: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-25 12:41:29,695 [Worker-382: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-25 12:41:29,695 [Worker-382: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-25 12:48:42,047 [Worker-386: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-25 12:48:42,048 [Worker-386: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-25 12:48:42,049 [Worker-386: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-25 12:48:42,049 [Worker-386: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-27 14:13:59,538 [Worker-550: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-27 14:13:59,539 [Worker-550: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-27 14:13:59,541 [Worker-550: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-27 14:13:59,541 [Worker-550: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-27 14:54:02,466 [Worker-543: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-27 14:54:02,467 [Worker-543: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-27 14:54:02,469 [Worker-543: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-27 14:54:02,469 [Worker-543: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-27 14:56:56,525 [Worker-550: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-27 14:56:56,525 [Worker-550: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-27 14:56:56,527 [Worker-550: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-27 14:56:56,527 [Worker-550: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-27 21:15:25,165 [Worker-585: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-27 21:15:25,166 [Worker-585: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-27 21:15:25,166 [Worker-585: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-27 21:15:25,166 [Worker-585: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-27 21:16:05,424 [Worker-586: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-27 21:16:05,425 [Worker-586: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-27 21:16:05,426 [Worker-586: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-27 21:16:05,426 [Worker-586: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-29 10:48:02,276 [Worker-673: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 10:48:02,278 [Worker-673: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-29 10:48:02,279 [Worker-673: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 10:48:02,280 [Worker-673: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-29 14:34:06,423 [Worker-687: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 14:34:06,428 [Worker-687: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-29 14:34:06,430 [Worker-687: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 14:34:06,430 [Worker-687: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-29 14:34:07,445 [Worker-685: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 14:34:07,445 [Worker-685: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-29 14:34:07,446 [Worker-685: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 14:34:07,446 [Worker-685: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-29 14:54:24,876 [Worker-669: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 14:54:24,877 [Worker-669: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-29 14:54:24,878 [Worker-669: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 14:54:24,878 [Worker-669: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-29 14:58:06,988 [Worker-688: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 14:58:06,988 [Worker-688: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-29 14:58:06,989 [Worker-688: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 14:58:06,989 [Worker-688: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-29 14:59:33,432 [Worker-694: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 14:59:33,432 [Worker-694: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-29 14:59:33,433 [Worker-694: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 14:59:33,434 [Worker-694: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-29 15:15:31,306 [Worker-690: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 15:15:31,307 [Worker-690: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-29 15:15:31,309 [Worker-690: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 15:15:31,309 [Worker-690: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-29 17:10:09,469 [Worker-690: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 17:10:09,476 [Worker-690: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-29 17:10:09,477 [Worker-690: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-29 17:10:09,477 [Worker-690: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 09:16:32,444 [Worker-752: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:16:32,445 [Worker-752: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 09:16:32,446 [Worker-752: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:16:32,446 [Worker-752: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 09:22:51,919 [Worker-751: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:22:51,920 [Worker-751: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 09:22:51,921 [Worker-751: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:22:51,921 [Worker-751: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 09:32:03,726 [Worker-750: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:32:03,726 [Worker-750: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 09:32:03,729 [Worker-750: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:32:03,729 [Worker-750: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 09:32:54,440 [Worker-768: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:32:54,440 [Worker-768: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 09:32:54,441 [Worker-768: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:32:54,442 [Worker-768: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 09:34:08,742 [Worker-762: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:34:08,743 [Worker-762: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 09:34:08,744 [Worker-762: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:34:08,744 [Worker-762: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 09:37:22,181 [Worker-750: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:37:22,181 [Worker-750: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 09:37:22,184 [Worker-750: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:37:22,184 [Worker-750: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 09:47:48,002 [Worker-773: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:47:48,003 [Worker-773: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 09:47:48,004 [Worker-773: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:47:48,004 [Worker-773: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 09:47:49,027 [Worker-778: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:47:49,027 [Worker-778: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 09:47:49,029 [Worker-778: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 09:47:49,029 [Worker-778: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 16:27:14,586 [Worker-780: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 16:27:14,587 [Worker-780: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 16:27:14,588 [Worker-780: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 16:27:14,588 [Worker-780: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 16:34:52,237 [Worker-784: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 16:34:52,238 [Worker-784: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 16:34:52,239 [Worker-784: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 16:34:52,239 [Worker-784: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:03:21,981 [Worker-773: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:03:21,982 [Worker-773: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:03:21,983 [Worker-773: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:03:21,983 [Worker-773: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:03:23,012 [Worker-773: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:03:23,012 [Worker-773: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:03:23,013 [Worker-773: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:03:23,013 [Worker-773: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:06:58,257 [Worker-790: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:06:58,259 [Worker-790: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:06:58,260 [Worker-790: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:06:58,260 [Worker-790: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:09:02,303 [Worker-787: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2021-01-30 17:09:02,693 [Worker-787: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: info.esblurock:JTherGas:1.0 @ /Users/edwardblurock/git/JThermodynamics2/JTherGas/pom.xml.
+2021-01-30 17:09:02,788 [Worker-787: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: info.esblurock:JThermodynamicData:1.0 @ /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/pom.xml.
+2021-01-30 17:09:03,052 [Worker-787: Updating Maven Project] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/JTherGas: info.esblurock:JTherGas:1.0 with classifier  to /JTherGas/target/classes
+2021-01-30 17:09:03,236 [Worker-787: Updating Maven Project] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/JTherGas: info.esblurock:JTherGas:1.0 with classifier  to /JTherGas/target/classes
+2021-01-30 17:09:03,508 [Worker-787: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /JTherGas/src
+2021-01-30 17:09:03,509 [Worker-787: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Resources folder /JTherGas/src overlaps with sources folder /JTherGas/src
+2021-01-30 17:09:03,509 [Worker-787: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /JTherGas/src/test/java because it overlaps with /JTherGas/src
+2021-01-30 17:09:03,701 [Worker-787: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /JThermodynamicData/src/main/java
+2021-01-30 17:09:03,702 [Worker-787: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /JThermodynamicData/src/test/java
+2021-01-30 17:09:05,858 [Worker-787: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 3 sec
+2021-01-30 17:09:06,338 [Worker-792: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-30 17:09:06,340 [Worker-792: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-01-30 17:09:06,351 [Worker-792: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-30 17:09:06,352 [Worker-792: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JTherGas/src/test/resources
+2021-01-30 17:09:09,202 [Worker-804: Building] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/JTherGas: info.esblurock:JTherGas:1.0 with classifier  to /JTherGas/target/classes
+2021-01-30 17:09:09,206 [Worker-804: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:09:09,206 [Worker-804: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:09:09,207 [Worker-804: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:09:09,207 [Worker-804: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:16:23,062 [Worker-824: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:16:23,062 [Worker-824: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:16:23,064 [Worker-824: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:16:23,064 [Worker-824: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:21:12,089 [Worker-798: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:21:12,090 [Worker-798: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:21:12,091 [Worker-798: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:21:12,092 [Worker-798: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:21:13,109 [Worker-816: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:21:13,109 [Worker-816: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:21:13,109 [Worker-816: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:21:13,110 [Worker-816: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:27:15,562 [Worker-875: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:27:15,563 [Worker-875: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:27:15,564 [Worker-875: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:27:15,564 [Worker-875: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:27:16,629 [Worker-814: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:27:16,629 [Worker-814: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:27:16,629 [Worker-814: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:27:16,629 [Worker-814: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:38:27,241 [Worker-816: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:38:27,242 [Worker-816: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:38:27,245 [Worker-816: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:38:27,245 [Worker-816: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:38:28,265 [Worker-875: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:38:28,265 [Worker-875: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:38:28,265 [Worker-875: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:38:28,265 [Worker-875: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:43:05,405 [Worker-826: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:43:05,406 [Worker-826: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:43:05,407 [Worker-826: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:43:05,407 [Worker-826: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:43:06,428 [Worker-826: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:43:06,429 [Worker-826: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:43:06,430 [Worker-826: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:43:06,430 [Worker-826: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:48:13,147 [Worker-814: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:48:13,147 [Worker-814: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:48:13,148 [Worker-814: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:48:13,148 [Worker-814: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 17:48:14,275 [Worker-876: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:48:14,276 [Worker-876: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 17:48:14,276 [Worker-876: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 17:48:14,276 [Worker-876: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 21:57:40,426 [Worker-887: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 21:57:40,427 [Worker-887: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 21:57:40,428 [Worker-887: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 21:57:40,428 [Worker-887: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 21:57:41,501 [Worker-890: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 21:57:41,501 [Worker-890: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 21:57:41,502 [Worker-890: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 21:57:41,502 [Worker-890: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 22:04:47,723 [Worker-890: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:04:47,724 [Worker-890: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 22:04:47,727 [Worker-890: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:04:47,727 [Worker-890: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 22:04:48,792 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:04:48,792 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 22:04:48,793 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:04:48,793 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 22:13:03,687 [Worker-888: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:13:03,687 [Worker-888: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 22:13:03,688 [Worker-888: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:13:03,688 [Worker-888: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 22:13:04,707 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:13:04,708 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 22:13:04,708 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:13:04,709 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 22:16:35,999 [Worker-888: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:16:36,000 [Worker-888: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 22:16:36,001 [Worker-888: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:16:36,001 [Worker-888: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 22:16:37,019 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:16:37,020 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 22:16:37,021 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:16:37,021 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 22:22:05,033 [Worker-893: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:22:05,033 [Worker-893: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 22:22:05,034 [Worker-893: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:22:05,034 [Worker-893: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-30 22:22:06,054 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:22:06,054 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-30 22:22:06,054 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-30 22:22:06,055 [Worker-896: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 09:40:08,542 [Worker-899: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 09:40:08,544 [Worker-899: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 09:40:08,546 [Worker-899: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 09:40:08,546 [Worker-899: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 09:40:09,572 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 09:40:09,572 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 09:40:09,573 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 09:40:09,573 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 09:45:35,559 [Worker-899: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 09:45:35,559 [Worker-899: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 09:45:35,560 [Worker-899: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 09:45:35,560 [Worker-899: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 09:50:30,992 [Worker-910: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 09:50:30,992 [Worker-910: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 09:50:30,993 [Worker-910: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 09:50:30,993 [Worker-910: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 09:50:32,012 [Worker-913: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 09:50:32,013 [Worker-913: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 09:50:32,013 [Worker-913: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 09:50:32,013 [Worker-913: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 14:30:28,441 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 14:30:28,442 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 14:30:28,444 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 14:30:28,444 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 14:30:29,471 [Worker-917: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 14:30:29,471 [Worker-917: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 14:30:29,472 [Worker-917: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 14:30:29,472 [Worker-917: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 15:18:23,030 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 15:18:23,032 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 15:18:23,033 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 15:18:23,033 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 15:18:24,057 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 15:18:24,057 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 15:18:24,062 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 15:18:24,062 [Worker-909: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 19:28:33,338 [Worker-9: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2021-01-31 19:28:35,713 [Worker-1: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-31 19:28:35,720 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-01-31 19:28:35,733 [Worker-1: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-31 19:28:35,734 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JTherGas/src/test/resources
+2021-01-31 19:28:44,238 [Worker-22: Building] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/JTherGas: info.esblurock:JTherGas:1.0 with classifier  to /JTherGas/target/classes
+2021-01-31 19:28:44,270 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 19:28:44,270 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 19:28:44,272 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 19:28:44,273 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 19:33:20,165 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 19:33:20,165 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 19:33:20,166 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 19:33:20,166 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 19:39:02,582 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 19:39:02,582 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 19:39:02,584 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 19:39:02,584 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 19:54:09,709 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 19:54:09,709 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 19:54:09,711 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 19:54:09,711 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 20:02:29,649 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:02:29,649 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 20:02:29,651 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:02:29,651 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 20:11:33,755 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:11:33,755 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 20:11:33,756 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:11:33,757 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 20:21:20,688 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:21:20,690 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 20:21:20,693 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:21:20,693 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 20:23:41,597 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:23:41,598 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 20:23:41,599 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:23:41,599 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 20:29:10,702 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:29:10,702 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 20:29:10,704 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:29:10,704 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 20:34:38,609 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:34:38,610 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 20:34:38,612 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:34:38,612 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 20:34:39,636 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:34:39,636 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 20:34:39,637 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:34:39,637 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 20:54:53,611 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:54:53,612 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 20:54:53,613 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:54:53,614 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 20:54:54,638 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:54:54,638 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 20:54:54,639 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:54:54,639 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 20:56:51,737 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:56:51,737 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 20:56:51,739 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 20:56:51,739 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 21:00:00,822 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 21:00:00,823 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 21:00:00,825 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 21:00:00,825 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-01-31 21:11:42,478 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 21:11:42,479 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-01-31 21:11:42,480 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-01-31 21:11:42,480 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-01 09:09:53,460 [Worker-80: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-01 09:09:53,461 [Worker-80: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-01 09:09:53,462 [Worker-80: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-01 09:09:53,462 [Worker-80: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-03 14:00:37,864 [Worker-272: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-03 14:00:37,865 [Worker-272: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-03 14:00:37,866 [Worker-272: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-03 14:00:37,866 [Worker-272: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-03 14:00:38,894 [Worker-265: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-03 14:00:38,894 [Worker-265: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-03 14:00:38,895 [Worker-265: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-03 14:00:38,895 [Worker-265: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-03 14:01:33,542 [Worker-265: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-03 14:01:33,542 [Worker-265: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-03 14:01:33,544 [Worker-265: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-03 14:01:33,544 [Worker-265: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-04 14:49:38,235 [Worker-351: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:49:38,236 [Worker-351: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-04 14:49:38,237 [Worker-351: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:49:38,237 [Worker-351: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-04 14:49:44,028 [Worker-351: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:49:44,029 [Worker-351: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-04 14:49:44,030 [Worker-351: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:49:44,030 [Worker-351: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-04 14:49:45,191 [Worker-353: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:49:45,192 [Worker-353: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-04 14:49:45,193 [Worker-353: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:49:45,193 [Worker-353: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-04 14:50:15,684 [Worker-354: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:50:15,684 [Worker-354: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-04 14:50:15,685 [Worker-354: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:50:15,685 [Worker-354: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-04 14:52:07,705 [Worker-349: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:52:07,706 [Worker-349: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-04 14:52:07,707 [Worker-349: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:52:07,707 [Worker-349: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-04 14:52:57,168 [Worker-349: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:52:57,168 [Worker-349: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-04 14:52:57,169 [Worker-349: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:52:57,169 [Worker-349: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-04 14:53:02,783 [Worker-352: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:53:02,784 [Worker-352: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-04 14:53:02,784 [Worker-352: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 14:53:02,784 [Worker-352: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-04 15:06:50,493 [Worker-352: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 15:06:50,493 [Worker-352: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-04 15:06:50,497 [Worker-352: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 15:06:50,497 [Worker-352: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-04 15:11:21,731 [Worker-356: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 15:11:21,732 [Worker-356: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-04 15:11:21,733 [Worker-356: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-04 15:11:21,733 [Worker-356: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-05 10:13:10,748 [Worker-406: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 10:13:10,749 [Worker-406: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-05 10:13:10,751 [Worker-406: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 10:13:10,751 [Worker-406: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-05 10:41:48,714 [Worker-423: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 10:41:48,714 [Worker-423: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-05 10:41:48,716 [Worker-423: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 10:41:48,716 [Worker-423: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-05 10:52:40,052 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 10:52:40,052 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-05 10:52:40,053 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 10:52:40,053 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-05 10:58:06,381 [Worker-427: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 10:58:06,382 [Worker-427: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-05 10:58:06,383 [Worker-427: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 10:58:06,383 [Worker-427: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-05 11:09:09,851 [Worker-428: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:09:09,851 [Worker-428: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-05 11:09:09,852 [Worker-428: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:09:09,852 [Worker-428: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-05 11:28:14,113 [Worker-430: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:28:14,113 [Worker-430: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-05 11:28:14,114 [Worker-430: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:28:14,115 [Worker-430: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-05 11:29:39,815 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:29:39,815 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-05 11:29:39,816 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:29:39,816 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-05 11:32:25,686 [Worker-434: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:32:25,686 [Worker-434: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-05 11:32:25,688 [Worker-434: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:32:25,688 [Worker-434: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-05 11:32:53,861 [Worker-434: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:32:53,861 [Worker-434: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-05 11:32:53,862 [Worker-434: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:32:53,862 [Worker-434: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-05 11:35:10,536 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:35:10,536 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-05 11:35:10,537 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:35:10,537 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-05 11:40:22,565 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:40:22,566 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-05 11:40:22,566 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-05 11:40:22,566 [Worker-426: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 15:43:30,157 [Worker-484: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 15:43:30,158 [Worker-484: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 15:43:30,159 [Worker-484: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 15:43:30,159 [Worker-484: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 15:43:31,181 [Worker-484: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 15:43:31,182 [Worker-484: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 15:43:31,182 [Worker-484: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 15:43:31,182 [Worker-484: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:14:16,647 [Worker-489: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:14:16,648 [Worker-489: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:14:16,649 [Worker-489: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:14:16,649 [Worker-489: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:14:29,744 [Worker-489: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:14:29,744 [Worker-489: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:14:29,745 [Worker-489: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:14:29,745 [Worker-489: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:14:43,958 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:14:43,958 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:14:43,959 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:14:43,959 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:14:59,876 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:14:59,876 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:14:59,877 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:14:59,877 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:26:59,728 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:26:59,728 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:26:59,729 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:26:59,729 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:27:13,396 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:27:13,396 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:27:13,399 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:27:13,399 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:28:13,339 [Worker-495: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:28:13,339 [Worker-495: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:28:13,340 [Worker-495: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:28:13,340 [Worker-495: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:28:35,794 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:28:35,794 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:28:35,795 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:28:35,795 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:28:45,355 [Worker-498: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:28:45,355 [Worker-498: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:28:45,356 [Worker-498: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:28:45,356 [Worker-498: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:29:17,734 [Worker-498: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:29:17,735 [Worker-498: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:29:17,736 [Worker-498: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:29:17,736 [Worker-498: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:29:40,786 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:29:40,787 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:29:40,787 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:29:40,788 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:29:55,063 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:29:55,063 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:29:55,063 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:29:55,064 [Worker-494: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:30:03,642 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:30:03,643 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:30:03,643 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:30:03,643 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:31:03,878 [Worker-495: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:31:03,879 [Worker-495: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:31:03,880 [Worker-495: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:31:03,880 [Worker-495: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:45:41,247 [Worker-499: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:45:41,247 [Worker-499: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:45:41,248 [Worker-499: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:45:41,248 [Worker-499: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:45:51,847 [Worker-500: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:45:51,847 [Worker-500: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:45:51,847 [Worker-500: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:45:51,848 [Worker-500: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:46:12,361 [Worker-501: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:46:12,361 [Worker-501: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:46:12,362 [Worker-501: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:46:12,362 [Worker-501: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources
+2021-02-06 16:47:49,026 [Worker-500: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:47:49,026 [Worker-500: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/main/resources
+2021-02-06 16:47:49,027 [Worker-500: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-02-06 16:47:49,027 [Worker-500: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/edwardblurock/git/JThermodynamics2/JThermodynamicData/src/test/resources

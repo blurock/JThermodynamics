@@ -196,9 +196,6 @@ try {
             System.out.println(cmlstruct.toString());
             substitute.substitute(molecule);
             StructureAsCML cmlstruct2 = new StructureAsCML(molecule);
-            System.out.println("computeThermodynamics: substituted:");
-            System.out.println(cmlstruct2.toString());
-            
             fullthermo = computeThermodynamics(molecule,thermodynamics);
         } catch (CDKException ex) {
             Logger.getLogger(ComputeThermodynamicsFromMolecule.class.getName()).log(Level.SEVERE, null, ex);

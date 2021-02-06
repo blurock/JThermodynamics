@@ -56,16 +56,18 @@ public class TestInternalSymmetry {
     @Test
     public void TestInternalSymmetry() {
         try {
-            StructureAsCML cmlstruct = GenerateStructures.createPropane();
-            IAtomContainer propane = cmlstruct.getMolecule();
-
-
+        	String nancy = "c(.)(ch3)3";
             ThermoSQLConnection connect = new ThermoSQLConnection();
             connect.connect();
+
+            NancyLinearFormToMolecule nancyFormToMolecule = new NancyLinearFormToMolecule(connect);
+            IAtomContainer molecule; molecule = nancyFormToMolecule.convert(nancy);
+            StructureAsCML cmlstruct = new StructureAsCML(molecule);
+            
             CalculateInternalSymmetryCorrection calculate = new CalculateInternalSymmetryCorrection(connect);
 
             SetOfBensonThermodynamicBase set = new SetOfBensonThermodynamicBase();
-            calculate.calculate(propane,set);
+            calculate.calculate(molecule,set);
 
             System.out.println("\n========================= Corrections =========================\n" +
                     set.toString()
@@ -75,15 +77,13 @@ public class TestInternalSymmetry {
 
         } catch (ThermodynamicException ex) {
             Logger.getLogger(TestInternalSymmetry.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TestInternalSymmetry.class.getName()).log(Level.SEVERE, null, ex);
         } catch (CDKException ex) {
             Logger.getLogger(TestInternalSymmetry.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(TestInternalSymmetry.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(TestInternalSymmetry.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
+        /*
     @Test
     public void TestInternalSymmetryOfMethylPropane() {
         try {
@@ -121,5 +121,5 @@ public class TestInternalSymmetry {
             Logger.getLogger(TestInternalSymmetry.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+*/
 }

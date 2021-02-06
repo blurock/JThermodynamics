@@ -100,8 +100,13 @@ public class SetOfSymmetryAssignments extends Hashtable<String, SymmetryAssignme
         return symmetry;
     }
       public boolean sameSymmetry(SetOfSymmetryAssignments assign1) {
+    	  System.out.println("sameSymmetry:");
         boolean ans = numberOfAssignmentsMatch(assign1);
+        System.out.println("numberOfAssignmentsMatch: assign1: " + assign1.keySet());
+        System.out.println("numberOfAssignmentsMatch: this: " + this.keySet());
+       System.out.println("sameSymmetry: " + ans);
         if (ans) {
+        	
             Set<String> set1 = assign1.keySet();
             Iterator<String> ikeys = set1.iterator();
             while (ikeys.hasNext() && ans) {

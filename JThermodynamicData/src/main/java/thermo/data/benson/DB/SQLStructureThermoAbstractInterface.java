@@ -165,7 +165,6 @@ public abstract class SQLStructureThermoAbstractInterface {
         ArrayList<String> set = new ArrayList<String>();
         Statement statement = database.createStatement();
         String sqlquery = "SELECT " + tableKey + " FROM " + tableName + ";";
-        System.out.println("retrieveDatabaseNames(): " + sqlquery);
         ResultSet names = statement.executeQuery(sqlquery);
         boolean next = names.first();
         while (next) {

@@ -1,2 +1,2 @@
-CXR3    GeneralMethylConnection   SymmetryElement
 R/R     GeneralSingleBond         SymmetryElement
+cR3/cR3  GeneralCarbonSingleBond  SymmetryElement

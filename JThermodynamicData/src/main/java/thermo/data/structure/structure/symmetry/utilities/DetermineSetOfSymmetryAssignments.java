@@ -68,6 +68,7 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
      */
     public SetOfSymmetryMatches findIfMatchInStructures(IAtomContainer structure) throws CDKException {
         List<SetOfSymmetryAssignments> setofassignsets = findAllSetsOfSymmetryAssignments(structure);
+        //System.out.println("findIfMatchInStructures: size()=" + setofassignsets.size());
         return findIfMatchInStructures(setofassignsets);
     }
 
@@ -77,11 +78,14 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
         while (iset.hasNext()) {
             SetOfSymmetryAssignments assignments = iset.next();
             if (assignments != null) {
-                //System.out.println("================ Symmetries =======================");
-                //System.out.println(assignments.toString());
-                //System.out.println("================ Symmetries =======================");
+                System.out.println("================ Symmetries =======================");
+                System.out.println(assignments.toString());
+                System.out.println("================ Symmetries =======================");
                 boolean ans = table.sameSymmetry(assignments);
+                System.out.println("findIfMatchInStructures: same symmetry=" + ans);
+                
                 if (ans) {
+                	System.out.println("Match: \n" + assignments.toString());
                     SymmetryMatch symmatch = new SymmetryMatch(assignments);
                     setofmatches.add(symmatch);
                 }
@@ -99,19 +103,28 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
     public ArrayList<SetOfSymmetryAssignments> findAllSetsOfSymmetryAssignments(IAtomContainer structure) throws CDKException {
         ArrayList<SetOfSymmetryAssignments> setofsets = new ArrayList<SetOfSymmetryAssignments>();
         if (structure.getAtomCount() >= this.getMolecule().getAtomCount()) {
+        	//System.out.println("findAllSetsOfSymmetryAssignments----structure---------------------");
             //System.out.println(MoleculeUtilities.toString(structure));
+            //System.out.println("findAllSetsOfSymmetryAssignments-----molecule--------------------");
+            //System.out.println(MoleculeUtilities.toString(this.getMolecule()));
             List<List<RMap>> sets = getAtomMatches(structure);
+            //System.out.println("findAllSetsOfSymmetryAssignments: matches: " + sets.size());
             Iterator<List<RMap>> iset = sets.iterator();
             while (iset.hasNext()) {
+                //System.out.println("findAllSetsOfSymmetryAssignments===========Begin Corr Analysis============");
                 List<RMap> set = iset.next();
                 //MoleculeUtilities.printCorrespondences(set, structure, this.getMolecule());
                 SetOfSymmetryAssignments assignments = findSymmetryAssignments(structure, set);
                 if (assignments != null) {
+                	//System.out.println("AssignmentAdded");
                     setofsets.add(assignments);
                 }
+                //System.out.println("findAllSetsOfSymmetryAssignments===========End Corr Analysis============");
             }
-            //System.out.println(setofsets.toString());
             setofsets = reduceToUniqueSet(setofsets);
+            System.out.println("findAllSetsOfSymmetryAssignments-------------------------");
+            System.out.println(setofsets.toString());
+            System.out.println("indAllSetsOfSymmetryAssignments-------------------------");
         }
         return setofsets;
     }
@@ -175,7 +188,7 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
      */
     protected SetOfSymmetryAssignments findSymmetryAssignments(IAtomContainer structure, List<RMap> set) throws CDKException {
         boolean ans = false;
-        //System.out.println("========================================================================================");
+        //System.out.println("===========================findSymmetryAssignments=============================================================");
         Hashtable<String, String> matched = null;
         SetOfSymmetryAssignments assignments = null;
         Hashtable<String, IAtomContainer> connections = findConnectedSubstructures(structure, set);
@@ -191,7 +204,7 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
                     assignments = null;
             }
         } else {
-            //System.out.println("Loop found");
+            System.out.println("Loop found");
         }
         return assignments;
     }

@@ -36,6 +36,7 @@ public class ComputeGaucheInteractions extends ThermodyanmicsForSubstructures {
 
     public void compute(IAtomContainer molecule, SetOfBensonThermodynamicBase thermo) throws SQLException, CDKException {
         FindSubstructure findSubstructure = new FindSubstructure(molecule, connection);
+        System.out.println("ComputeGaucheInteractions" + namesOfType);
         ListOfStructureMatches matches = findSubstructure.findNonoverlappingSubstructures(namesOfType);
         Iterator<StructureMatch> iter = matches.iterator();
         //Cycles cycles = Cycles.all(molecule);

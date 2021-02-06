@@ -5,6 +5,8 @@
 package thermo.data.structure.structure.symmetry.utilities;
 
 import thermo.data.structure.structure.symmetry.*;
+import thermo.data.structure.utilities.MoleculeUtilities;
+
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Set;
@@ -48,10 +50,13 @@ public class DetermineSymmetryAssignmentsFromConnections {
         Iterator<String> ikeys = keys.iterator();
         int count = 0;
         // Loop through all the connected structures
+        //System.out.println("determineSymmetryAssignments: connections " + connections.size());
         while (ikeys.hasNext()) {
             String connectionname = ikeys.next();
+            
             IAtomContainer structure = connections.get(connectionname);
 
+            //System.out.println(MoleculeUtilities.toString(structure));
             // Loop through all the symmetry structures identified
             boolean unassigned = true;
             Set<String> assignkeys = getAssignments().keySet();
@@ -79,6 +84,8 @@ public class DetermineSymmetryAssignmentsFromConnections {
                 symmetry.addAssignment(connectionname);
                 assignments.put(connectionname, symmetry);
             }
+            //System.out.println("determineSymmetryAssignments: set done " + connections.size());
+            
         }
     }
 

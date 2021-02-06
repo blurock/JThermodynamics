@@ -35,7 +35,7 @@ public class BuildDatabase {
     private static String moleculesS = "Molecules";
     private static String structuresS = "Structures";
     private static String substructurethermoS = "SubstructureThermo";
-    private static String substructuresS = "Substructures";
+    private static String metaatomdefS = "MetaAtoms";
     private static String symmetryDefinitionS = "SymmetryDefinition";
     private static String deleteS = "Delete";
     private static String resourceS = "JThermodynamicData/src/thermo/resources";
@@ -64,9 +64,9 @@ public class BuildDatabase {
             } else if (type.equalsIgnoreCase(substructurethermoS)) {
                 buildSubStructureThermo(args);
             } else if (type.equalsIgnoreCase(structuresS)) {
-                buildStructures(args);
-            } else if (type.equalsIgnoreCase(substructuresS)) {
-                buildSubStructures(args);
+                buildSubstructures(args);
+            } else if (type.equalsIgnoreCase(metaatomdefS)) {
+                buildMetaAtoms(args);
             } else if (type.equalsIgnoreCase(vibrationalmodeS)) {
                 buildVibrationalModes(args);
             } else if (type.equalsIgnoreCase(initializeS)) {
@@ -99,7 +99,8 @@ public class BuildDatabase {
         System.out.println("Expecting the type of build:");
         System.out.println(bensonS + ":  For adding benson structure rules");
         System.out.println(moleculesS + ": For adding molecular thermodynamic information");
-        System.out.println(structuresS + ": For adding structures");
+        System.out.println(metaatomdefS + ": For adding substructures with type");
+        System.out.println(structuresS + ": For adding structures for meta-atoms");
         System.out.println(initializeS + ": Initialize Database with standard information");
         System.out.println(symmetryDefinitionS + ": For adding symmetry definitions");
         System.out.println("\nEach of these types have further line arguments.");
@@ -174,7 +175,7 @@ public class BuildDatabase {
     }
     private static void buildSubStructureThermo(String[] args) {
         if (args.length < 5) {
-            System.out.println(substructuresS + " Filename Type ReferenceName");
+            System.out.println(substructurethermoS + " Filename Type ReferenceName");
             System.out.println("Filename: The file with the benson thermodynamics");
             System.out.println("Type: The type of substructure for the thermo data");
             System.out.println("Referencename: The name of the source type of this data (for example \"Standard\") ");
@@ -211,13 +212,12 @@ public class BuildDatabase {
         }
     }
 
-    private static void buildStructures(String[] args) throws SQLException {
+    private static void buildMetaAtoms(String[] args) throws SQLException {
         ThermoSQLConnection connection = new ThermoSQLConnection();
         connection.connect();
         if (args.length < 3) {
             System.out.println(structuresS + " Filename ReferenceName");
-            System.out.println("Filename: The file with the benson thermodynamics");
-            System.out.println("Referencename: The name of the source type of this data (for example \"Standard\") ");
+            System.out.println("Filename: ");
             System.out.println("Test: if true, will not enter data in database ");
         } else {
             try {
@@ -244,13 +244,12 @@ public class BuildDatabase {
             }
         }
     }
-    private static void buildSubStructures(String[] args) throws SQLException {
+    private static void buildSubstructures(String[] args) throws SQLException {
         ThermoSQLConnection connection = new ThermoSQLConnection();
         connection.connect();
         if (args.length < 3) {
-            System.out.println(substructuresS + " Filename ReferenceName");
+            System.out.println(metaatomdefS + " Filename ReferenceName");
             System.out.println("Filename: The file with the benson thermodynamics");
-            System.out.println("Referencename: The name of the source type of this data (for example \"Standard\") ");
             System.out.println("Test: if true, will not enter data in database ");
         } else {
             try {
@@ -280,7 +279,7 @@ public class BuildDatabase {
     private static void buildVibrationalModes(String[] args) throws SQLException {
         ThermoSQLConnection connection = new ThermoSQLConnection();
         connection.connect();
-        if (args.length < 3) {
+        if (args.length < 4) {
             System.out.println(vibrationalmodeS + " Filename ReferenceName");
             System.out.println("Filename: The file with the benson thermodynamics");
             System.out.println("Referencename: The name of the source type of this data (for example \"Standard\") ");
@@ -386,8 +385,7 @@ public class BuildDatabase {
         connection.connect();
         if (args.length < 3) {
             System.out.println(symmetryDefinitionS + " Filename ReferenceName");
-            System.out.println("Filename: The file with the benson thermodynamics");
-            System.out.println("Referencename: The name of the source type of this data (for example \"Standard\") ");
+            System.out.println("Filename: The file with the symmetry definition (structure and assignments)");
             System.out.println("Test: if true, will not enter data in database ");
         } else {
             try {

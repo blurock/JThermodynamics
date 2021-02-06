@@ -21,7 +21,7 @@ import thermo.properties.SProperties;
  */
 public class CalculateOpticalSymmetryCorrection extends CalculateSymmetryCorrectionInterface  {
 
-String opticalS = "Optical Isomers";
+String opticalS = "OpticalIsomer";
 String referenceS = "Optical Symmetry Correction";
 SQLSetOfSymmetryDefinitions setOfDefinitions;
 DetermineSymmetryFromSingleDefinition fromSingleDefinition;
@@ -32,6 +32,8 @@ double gasConstant;
        super(c);
         try {
             setOfDefinitions = new SQLSetOfSymmetryDefinitions(connect, opticalS);
+            System.out.println("CalculateOpticalSymmetryCorrection: ");
+            System.out.println(setOfDefinitions.toString());
             fromSingleDefinition = new DetermineSymmetryFromSingleDefinition();
             determineTotal = new DetermineTotalOpticalSymmetry(fromSingleDefinition, setOfDefinitions);
             String gasconstantS = SProperties.getProperty("thermo.data.gasconstant.clasmolsk");
@@ -40,10 +42,12 @@ double gasConstant;
             throw new ThermodynamicException(ex.toString());
         }
     }
-    public void calculate(IAtomContainer mol, SetOfBensonThermodynamicBase corrections) throws ThermodynamicException {
-        try {
+    public boolean calculate(IAtomContainer mol, SetOfBensonThermodynamicBase corrections) throws ThermodynamicException {
+    	boolean found = false;
+    	try {
             double opticalsymmetry = calculateOpticalSymmetry(mol);
             if (opticalsymmetry > 0.0) {
+            	found = true;
                 Double optD = new Double(opticalsymmetry);
                 String optS = referenceS + " (" + optD.toString() + ")";
                 double correction = gasConstant * Math.log(opticalsymmetry);
@@ -54,6 +58,7 @@ double gasConstant;
         } catch (CDKException ex) {
             throw new ThermodynamicException(ex.toString());
         }
+    	return found;
     }
         public double calculateOpticalSymmetry(IAtomContainer mol) throws CDKException {
             return  (double) determineTotal.determineSymmetry(mol);

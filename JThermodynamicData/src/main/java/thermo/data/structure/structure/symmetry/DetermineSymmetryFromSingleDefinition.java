@@ -5,6 +5,7 @@
 
 package thermo.data.structure.structure.symmetry;
 
+import thermo.data.structure.structure.StructureAsCML;
 import thermo.data.structure.structure.symmetry.utilities.DetermineSetOfSymmetryAssignments;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.exception.CDKException;
@@ -43,6 +44,8 @@ public class DetermineSymmetryFromSingleDefinition {
     }
     public void determineSetOfSymmetryAssignments(IAtomContainer struct) throws CDKException {
         structure = struct;
+        //StructureAsCML cml = new StructureAsCML(struct);
+        //System.out.println(cml.toString());
         symmetryMatches = determineSymmetryAssignments.findIfMatchInStructures(struct);
     }
 

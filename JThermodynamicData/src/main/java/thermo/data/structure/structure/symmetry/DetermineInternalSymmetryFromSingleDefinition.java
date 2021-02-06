@@ -7,6 +7,8 @@ package thermo.data.structure.structure.symmetry;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.exception.CDKException;
+
+import thermo.data.benson.BensonThermodynamicBase;
 import thermo.data.structure.structure.symmetry.utilities.DetermineSetOfSymmetryAssignments;
 
 /**

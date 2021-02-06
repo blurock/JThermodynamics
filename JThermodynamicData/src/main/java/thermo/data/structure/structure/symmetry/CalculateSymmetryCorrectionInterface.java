@@ -31,7 +31,7 @@ public class CalculateSymmetryCorrectionInterface {
             
         return corrections;
     }
-    public void calculate(IAtomContainer mol, SetOfBensonThermodynamicBase corrections) throws ThermodynamicException {
-
+    public boolean calculate(IAtomContainer mol, SetOfBensonThermodynamicBase corrections) throws ThermodynamicException {
+    	return false;
     }
 }

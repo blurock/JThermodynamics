@@ -25,10 +25,11 @@ public class CalculateSymmetryCorrection extends CalculateSymmetryCorrectionInte
             internal = new CalculateInternalSymmetryCorrection(connect);
             external = new CalculateExternalSymmetryCorrection(connect);
     }
-    public void calculate(IAtomContainer mol, SetOfBensonThermodynamicBase corrections) throws ThermodynamicException {
-            optical.calculate(mol, corrections);
-            internal.calculate(mol, corrections);
-            external.calculate(mol, corrections);
+    public boolean calculate(IAtomContainer mol, SetOfBensonThermodynamicBase corrections) throws ThermodynamicException {
+        boolean exfound = external.calculate(mol, corrections);
+        boolean infound = internal.calculate(mol, corrections);
+        boolean opfound = optical.calculate(mol, corrections);
+        return exfound | infound | opfound;
     }
     void calculate(IAtomContainer R, IAtomContainer RH, SetOfBensonThermodynamicBase corrections) throws ThermodynamicException {
         SetOfBensonThermodynamicBase correctionsR = new SetOfBensonThermodynamicBase();

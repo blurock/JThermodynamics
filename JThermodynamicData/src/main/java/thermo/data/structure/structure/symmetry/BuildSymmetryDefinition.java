@@ -116,6 +116,7 @@ public class BuildSymmetryDefinition {
             }
         }
         SymmetryDefinition symmdef = new SymmetryDefinition(nameOfSymmetry, cmlstruct, pairs, new Double(symnumberS));
+        
         symmdef.setMetaAtomType(symmetryType);
         if(storedata) {
         	sqlSymmetryDefinition.deleteElement(symmdef);

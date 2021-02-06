@@ -8,6 +8,7 @@ package thermo.data.structure.structure.matching;
 import java.util.Iterator;
 import java.util.List;
 
+import org.openscience.cdk.Atom;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -27,6 +28,9 @@ public class IsolateConnectedStructure {
      * @param connected  The atom with which the connected structure is bonded
      * @param firstinstructure The first atom in the connected structure 
      * @return A molecule which has the connected structure
+     * 
+     * 
+     * 
      */
     public IAtomContainer IsolateConnectedStructure(IAtomContainer mol, IAtom connected, IAtom firstinstructure) {
         List<IAtom> directconnected = mol.getConnectedAtomsList(firstinstructure);
@@ -43,7 +47,9 @@ public class IsolateConnectedStructure {
         substructure.addAtom(firstinstructure);
         boolean noloop = findConnected(mol,substructure, firstinstructure, directconnected, connected);
         if(!noloop) {
-            substructure = null;
+        	Atom catm = (Atom) connected;
+        	MetaRingAtom ringatm = new MetaRingAtom(catm);
+        	substructure.addAtom(ringatm);
         }
         return substructure;
     }

@@ -196,6 +196,7 @@ public class SQLSymmetryDefinition extends SQLStructureThermoAbstractInterface {
 
     public StructureAsCML getSymmetryElement(String name) throws SQLException {
         String elementname = getSymmetryElementName(name);
+        //System.out.println("getSymmetryElement: " + elementname);
         SQLStructureAsCML sqlstructure = new SQLStructureAsCML(database);
         Iterator<StructureAsCML> iter = sqlstructure.retrieveStructuresFromDatabase(elementname).iterator();
         StructureAsCML cmlstruct = iter.next();

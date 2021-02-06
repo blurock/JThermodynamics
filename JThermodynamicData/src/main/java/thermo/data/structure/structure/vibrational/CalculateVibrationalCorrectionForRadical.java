@@ -117,20 +117,22 @@ public class CalculateVibrationalCorrectionForRadical {
                 double frequency = count.getFrequency();
                 double symmetry = count.getSymmetry();
                 double matches = (double) count.countMatches;
-                double factor = matches/symmetry;
-                String reference = referenceRoot + "Frequency:" + frequency;
-                double entropyC = -frequencyCorrection.correctCpInCalories(frequency, standardTemperature)*factor;
-                ArrayList<HeatCapacityTemperaturePair> pairs = heatCapacityPairs(reference);
-                Iterator<HeatCapacityTemperaturePair> capacityiter = pairs.iterator();
-                while(capacityiter.hasNext()){
-                    HeatCapacityTemperaturePair pair = capacityiter.next();
-                    double fcorrection = -frequencyCorrection.correctCpInCalories(frequency, pair.getTemperatureValue());
-                    pair.setHeatCapacityValue(fcorrection*factor);
+                if(Math.abs(matches) > 0.0) {
+                	double factor = matches/symmetry;
+                	String reference = referenceRoot + "Frequency:" + frequency;
+                	double entropyC = -frequencyCorrection.correctCpInCalories(frequency, standardTemperature)*factor;
+                	ArrayList<HeatCapacityTemperaturePair> pairs = heatCapacityPairs(reference);
+                	Iterator<HeatCapacityTemperaturePair> capacityiter = pairs.iterator();
+                	while(capacityiter.hasNext()){
+                		HeatCapacityTemperaturePair pair = capacityiter.next();
+                		double fcorrection = -frequencyCorrection.correctCpInCalories(frequency, pair.getTemperatureValue());
+                		pair.setHeatCapacityValue(fcorrection*factor);
+                	}
+                	String correctionS = referenceRoot + " " + count.getElementName() + ": " + frequency + "\t Count=" + matches;
+                	BensonThermodynamicBase benson = new BensonThermodynamicBase(typeS, pairs, 0.0, entropyC);
+                	benson.setReference(correctionS);
+                	corrections.add(benson);
                 }
-                String correctionS = referenceRoot + " " + count.getElementName() + ": " + frequency + "\t Count=" + matches;
-                BensonThermodynamicBase benson = new BensonThermodynamicBase(typeS, pairs, 0.0, entropyC);
-                benson.setReference(correctionS);
-                corrections.add(benson);
             }
 
         return corrections;

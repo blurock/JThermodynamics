@@ -30,6 +30,7 @@ public class SQLSetOfSymmetryDefinitions extends SetOfSymmetryDefinitions {
         ResultSet results = statement.executeQuery(isomersql);
         while(results.next()) {
             String name = results.getString("SymmetryName");
+            //System.out.println("SQLSetOfSymmetryDefinitions: " + name);
             HashSet vec = sqlSymmetry.retrieveStructuresFromDatabase(name);
             Iterator<SymmetryDefinition> iter = vec.iterator();
             while(iter.hasNext()) {
