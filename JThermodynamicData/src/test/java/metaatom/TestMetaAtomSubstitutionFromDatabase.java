@@ -35,27 +35,24 @@ public class TestMetaAtomSubstitutionFromDatabase {
 		IAtomContainer molecule;
 		NancyLinearFormToMolecule nancyFormToMolecule = new NancyLinearFormToMolecule(c);
 		
-		//String nancy = "ch2//ch/ch3";
-		String nancy = "ch3/ch2/ch2/ch3";
+		//String nancy = "ch3/o/o/ch3";
+		String nancy = "ch(#1)&ch&ch&ch&ch&c(ch3)&1";
+		//String nancy = "ch3/ch2/ch2/ch3";
 		//String nancy = "c(ch3)2//c(ch3)2";
-		//String nancy = "ch2//ch2";
+		//String nancy = "ch2//ch/ch3";
 		molecule = nancyFormToMolecule.convert(nancy);
         System.out.println("Molecule  -----------------------------------------------");
         System.out.println(molecule.toString());
         System.out.println("Molecule  -----------------------------------------------");
-		
-		//String benson = "BensonAtom.c/d";
-		String benson2 = "BensonAtom.o";
+		String bensonS = "BensonAtom.s";
+		String benson = "BensonAtom.c/d";
+		String benson2 = "BensonAtom.oo";
 		String benson1 = "BensonAtom.c";
+		String bensonA = "BensonAtom.c/a";
         
-        System.out.println("-----------------------------------------------");
-        System.out.println("First Substitution");
-        System.out.println("-----------------------------------------------");
-        substitute(c,molecule,benson1);
-        System.out.println("-----------------------------------------------");
-        System.out.println("Second Substitution");
-        System.out.println("-----------------------------------------------");
-        substitute(c,molecule,benson2);
+        substitute(c,molecule,bensonA);
+         //substitute(c,molecule,bensonS);
+        //substitute(c,molecule,benson1);
         
         
         

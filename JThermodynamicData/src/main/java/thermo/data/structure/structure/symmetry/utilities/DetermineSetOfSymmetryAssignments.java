@@ -78,14 +78,14 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
         while (iset.hasNext()) {
             SetOfSymmetryAssignments assignments = iset.next();
             if (assignments != null) {
-                System.out.println("================ Symmetries =======================");
-                System.out.println(assignments.toString());
-                System.out.println("================ Symmetries =======================");
+                //System.out.println("================ Symmetries =======================");
+                //System.out.println(assignments.toString());
+                //System.out.println("================ Symmetries =======================");
                 boolean ans = table.sameSymmetry(assignments);
-                System.out.println("findIfMatchInStructures: same symmetry=" + ans);
+                //System.out.println("findIfMatchInStructures: same symmetry=" + ans);
                 
                 if (ans) {
-                	System.out.println("Match: \n" + assignments.toString());
+                	//System.out.println("Match: \n" + assignments.toString());
                     SymmetryMatch symmatch = new SymmetryMatch(assignments);
                     setofmatches.add(symmatch);
                 }
@@ -122,9 +122,9 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
                 //System.out.println("findAllSetsOfSymmetryAssignments===========End Corr Analysis============");
             }
             setofsets = reduceToUniqueSet(setofsets);
-            System.out.println("findAllSetsOfSymmetryAssignments-------------------------");
-            System.out.println(setofsets.toString());
-            System.out.println("indAllSetsOfSymmetryAssignments-------------------------");
+            //System.out.println("findAllSetsOfSymmetryAssignments-------------------------");
+            //System.out.println(setofsets.toString());
+            //System.out.println("indAllSetsOfSymmetryAssignments-------------------------");
         }
         return setofsets;
     }

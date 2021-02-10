@@ -81,7 +81,7 @@ public class ComputeThermoFromInChIString {
 					e.printStackTrace();
 				}
             } else {
-                System.out.println("Expecting type: " + fileType + " or " + moleculeType);
+                foundCommand = false;
             }
         }
         return foundCommand;

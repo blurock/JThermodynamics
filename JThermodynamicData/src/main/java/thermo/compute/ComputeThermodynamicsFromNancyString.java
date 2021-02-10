@@ -81,7 +81,7 @@ public class ComputeThermodynamicsFromNancyString {
 					Logger.getLogger(ComputeThermodynamicsFromNancyString.class.getName()).log(Level.SEVERE, null, ex);
 				}
 			} else {
-				System.out.println("Expecting type: " + fileType + " or " + moleculeType);
+				foundCommand = false;
 			}
 		}
 		return foundCommand;

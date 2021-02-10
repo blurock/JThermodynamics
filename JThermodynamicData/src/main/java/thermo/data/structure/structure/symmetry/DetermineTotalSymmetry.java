@@ -7,6 +7,9 @@ package thermo.data.structure.structure.symmetry;
 
 import java.util.Iterator;
 import org.openscience.cdk.interfaces.IAtomContainer;
+
+import thermo.data.benson.SetOfBensonThermodynamicBase;
+
 import org.openscience.cdk.exception.CDKException;
 
 /**
@@ -26,7 +29,7 @@ public class DetermineTotalSymmetry {
     public void initializeSymmetry() {
         symmetryValue = 0;
     }
-    public int determineSymmetry(IAtomContainer structure) throws CDKException {
+    public int determineSymmetry(IAtomContainer structure, SetOfBensonThermodynamicBase corrections) throws CDKException {
         initializeSymmetry();
         Iterator<SymmetryDefinition> idef = symmetryDefinitions.iterator();
         while(idef.hasNext()) {
@@ -34,7 +37,11 @@ public class DetermineTotalSymmetry {
             int symmetry = determineSymmetry.determineSymmetry(defintion, structure);
             double sym = determineSymmetry.computeSymmetryContribution(symmetry);
             int symI = (int) Math.floor(sym);
-            System.out.println("DetermineTotalSymmetry:\n" + defintion.getMetaAtomName() + "Symmetry=" + symI);
+            
+            
+            
+            
+            //System.out.println("DetermineTotalSymmetry:\n" + defintion.getMetaAtomName() + "Symmetry=" + symI);
             combineInSymmetryNumber(symI);
         }
         return getSymmetryValue();

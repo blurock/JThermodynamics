@@ -34,6 +34,7 @@ public class StructureAsCML  {
 	private static Convertor standardconvertor;
 	private static Convertor getConvertor() {
 		if(standardconvertor == null) {
+			System.out.println("getConverter------------------------------------------------");
 			standardconvertor = new Convertor(true,null);
 		}
 		return standardconvertor;
@@ -42,7 +43,7 @@ public class StructureAsCML  {
     private String nameOfStructure;
     private String cmlStructureString;
     public String source;
-
+    
     public String getSource() {
         return source;
     }
@@ -52,6 +53,7 @@ public class StructureAsCML  {
     }
 
     public StructureAsCML(IAtomContainer mol) throws CDKException {
+    	
         nameOfStructure = mol.getID();
         source = "Standard";
         ByteArrayOutputStream output = new ByteArrayOutputStream();

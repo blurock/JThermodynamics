@@ -101,7 +101,8 @@ public class TestOpticalSymmetry {
             StructureAsCML testmol = GenerateStructures.createFromSmiles(smiles);
             System.out.println(testmol.getCmlStructureString());
             IAtomContainer molecule = testmol.getMolecule();
-            int opticalsymmetry = total.determineSymmetry(molecule);
+            SetOfBensonThermodynamicBase corrections = new SetOfBensonThermodynamicBase();
+            int opticalsymmetry = total.determineSymmetry(molecule,corrections);
             System.out.println("Total Symmetry of  " + smiles + " is " +  opticalsymmetry);
         } catch (ValidityException ex) {
             Logger.getLogger(TestOpticalSymmetry.class.getName()).log(Level.SEVERE, null, ex);

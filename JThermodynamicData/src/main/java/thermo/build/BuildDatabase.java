@@ -216,7 +216,7 @@ public class BuildDatabase {
         ThermoSQLConnection connection = new ThermoSQLConnection();
         connection.connect();
         if (args.length < 3) {
-            System.out.println(structuresS + " Filename ReferenceName");
+            System.out.println(structuresS + " Filename Test");
             System.out.println("Filename: ");
             System.out.println("Test: if true, will not enter data in database ");
         } else {

@@ -49,7 +49,7 @@ public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrec
     	boolean found = false;
     	try {
         	determineTotal.setSetOfCorrections(corrections);
-            int internalsymmetry = calculateInternalSymmetry(mol);
+            int internalsymmetry = calculateInternalSymmetry(mol,corrections);
             if (internalsymmetry > 0.0 && internalsymmetry != 1.0) {
             	found = true;
                 double correction = -gasConstant * Math.log(internalsymmetry);
@@ -64,8 +64,8 @@ public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrec
     	return found;
     }
 
-    public int calculateInternalSymmetry(IAtomContainer mol) throws CDKException {
-        return determineTotal.determineSymmetry(mol);
+    public int calculateInternalSymmetry(IAtomContainer mol, SetOfBensonThermodynamicBase corrections) throws CDKException {
+        return determineTotal.determineSymmetry(mol,corrections);
     }
 
 	public boolean isExternalsymmetry() {

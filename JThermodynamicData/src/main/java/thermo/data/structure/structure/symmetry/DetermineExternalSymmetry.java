@@ -65,7 +65,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
     }
 
     @Override
-    public int determineSymmetry(IAtomContainer structure) throws CDKException {
+    public int determineSymmetry(IAtomContainer structure, SetOfBensonThermodynamicBase corrections) throws CDKException {
 
         initializeSymmetry();
         
@@ -196,7 +196,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
 
     private double findSymmetryOfConnection(IAtomContainer mol, String connection) throws CDKException {
         //SetOfBensonThermodynamicBase set = setOfCorrections;
-        //setOfCorrections = new SetOfBensonThermodynamicBase();
+        setOfCorrections = new SetOfBensonThermodynamicBase();
         IAtomContainer cpymol = new AtomContainer(mol);
         IAtom connected = MoleculeUtilities.findAtomInMolecule(connection, cpymol);
         Atom x = new Atom("R");
@@ -206,7 +206,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
         cpymol.addAtom(x);
         cpymol.addBond(bndx);
         determineSecondary.setSetOfCorrections(null);
-        double symm = determineSecondary.determineSymmetry(cpymol);
+        double symm = determineSecondary.determineSymmetry(cpymol,setOfCorrections);
         //setOfCorrections = set;
         return symm;
     }

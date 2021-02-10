@@ -64,10 +64,10 @@ public class SubstituteMetaAtom {
         this.molecule = molecule;
         //System.out.println("Number of Atoms:" + molecule.getAtomCount());
         List< List<RMap> > bondmap = matches.getAtomMatches(molecule, metaAtom.getMolecule());
+        //System.out.println(bondmap);
         //System.out.println("substitute: " + metaAtom.getMetaAtomName());
         List< MetaAtomSubstitutions> substitutions = determineSubstitionsFromAtomMaps(bondmap);
         substituteMetaAtoms(substitutions);
-        
     }
 
     private List<MetaAtomSubstitutions> determineSubstitionsFromAtomMaps(List<List<RMap>> bondmap) {

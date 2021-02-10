@@ -104,13 +104,13 @@ public class NormalizeMoleculeFromCMLStructure {
         while(bonds.hasNext()) {
             IBond bond = bonds.next();
             if(bond.getFlag(CDKConstants.ISAROMATIC))
-                bond.setFlag(CDKConstants.ISAROMATIC, false);
+                bond.setFlag(CDKConstants.ISAROMATIC, true);
         }
         Iterator<IAtom> atoms = mol.atoms().iterator();
         while(atoms.hasNext()) {
             IAtom atm = atoms.next();
             if(atm.getFlag(CDKConstants.ISAROMATIC)) {
-                atm.setFlag(CDKConstants.ISAROMATIC, false);
+                atm.setFlag(CDKConstants.ISAROMATIC, true);
             }
         }
    

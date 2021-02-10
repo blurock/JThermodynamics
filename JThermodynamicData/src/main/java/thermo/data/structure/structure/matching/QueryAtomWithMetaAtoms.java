@@ -20,6 +20,7 @@ public class QueryAtomWithMetaAtoms extends Atom implements IQueryAtom {
     String matchAny = "R";
     private Object aromaticMatchAny = "R.Aromatic";
     boolean radical = false;
+    String symbol;
 
     /**
      * 
@@ -27,6 +28,7 @@ public class QueryAtomWithMetaAtoms extends Atom implements IQueryAtom {
      */
     public QueryAtomWithMetaAtoms(IAtom atm) {
         super(atm);
+        atm.setSymbol(atm.getSymbol());
     }
 
     /**
@@ -36,6 +38,14 @@ public class QueryAtomWithMetaAtoms extends Atom implements IQueryAtom {
     public QueryAtomWithMetaAtoms(QueryAtomWithMetaAtoms atm) {
         super(atm);
         radical = atm.radical;
+    }
+    @Override
+    public void setSymbol(String s) {
+    	this.symbol  = s;
+    }
+    @Override
+    public String getSymbol() {
+    	return symbol;
     }
 
     /**

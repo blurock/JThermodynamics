@@ -79,11 +79,13 @@ public class SQLMetaAtomInfo extends SQLStructureThermoAbstractInterface {
     public HashSet transferAllElements(ResultSet elements) throws SQLException {
         HashSet vec = new HashSet();
         boolean next = elements.first();
+        //System.out.println("transferAllElements: Metaatom Definitions ");
         while(next) {
             MetaAtomInfo info = new MetaAtomInfo();
             info.setElementName(elements.getString("ElementName"));
             info.setMetaAtomType(elements.getString("MetaAtomType"));
             info.setMetaAtomName(elements.getString("MetaAtomName"));
+            //System.out.println("transferAllElements: " + info.toString());
             vec.add(info);
             next = elements.next();
         }

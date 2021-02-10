@@ -72,7 +72,7 @@ public class CalculateExternalSymmetryCorrection extends CalculateSymmetryCorrec
 			substituteBack.substitute(newmolecule);
 			StructureAsCML cmlnew = new StructureAsCML(newmolecule);
 			determineTotal.setSetOfCorrections(corrections);
-			totalsymmetry = determineTotal.determineSymmetry(newmolecule);
+			totalsymmetry = determineTotal.determineSymmetry(newmolecule,corrections);
 		} catch (IOException ex) {
 			Logger.getLogger(CalculateExternalSymmetryCorrection.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (CDKException ex) {

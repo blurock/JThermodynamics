@@ -120,6 +120,14 @@ public class GetSubstructureMatches {
     public List<List<RMap>> getAtomMatches(IAtomContainer mol1, IAtomContainer mol2) throws CDKException {
     	QueryMoleculeWithMetaAtoms qmol1 = new QueryMoleculeWithMetaAtoms(mol1);
         QueryMoleculeWithMetaAtoms qmol2 = new QueryMoleculeWithMetaAtoms(mol2);
+        /*
+        System.out.println("-------------------------------------------------");
+        System.out.println("getAtomMatches: molecule:" + qmol1.getAtomCount() + "\n"   + qmol1);
+        System.out.println("-------------------------------------------------");
+        System.out.println("getAtomMatches: substitute:" + qmol2.getAtomCount() + "\n"   + qmol2);
+        System.out.println("-------------------------------------------------");
+        */
+        
         UniversalIsomorphismTester tester = new UniversalIsomorphismTester();
         List<List<RMap>> map = null;
         if(qmol2.getBondCount() == 1) {

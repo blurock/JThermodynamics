@@ -312,21 +312,25 @@ try {
      * @throws ClassNotFoundException
      * @throws IOException
      * @throws SQLException
+     * @throws  
      */
     public void computeThermodynamicsForMolecule(IAtomContainer mol, SetOfBensonThermodynamicBase thermo) throws ThermodynamicException, CDKException, ClassNotFoundException, IOException, SQLException {
-        //StructureAsCML struct = new StructureAsCML(mol);
-        IAtomContainer substituted = metaAtomSubstitutions.substitute(mol);
-        System.out.println("computeThermodynamicsForMolecule  after meta-atom substitutions");
+    	IAtomContainer molorig = null;
+		try {
+			molorig = mol.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+    	IAtomContainer substituted = metaAtomSubstitutions.substitute(mol);
         StructureAsCML cmlstruct = new StructureAsCML(substituted);
-        System.out.println(cmlstruct.toString());
         SetOfBensonGroupStructures bensonset = bensonGroups.deriveBensonGroupStructures(substituted);
         sqlthermodynamics.setUpFromSetOfBensonGroupStructures(bensonset,thermo);
-        symmetryCorrections.calculate(mol, thermo);
-        BensonThermodynamicBase cycle = (BensonThermodynamicBase) findCyclesThermo.FindLargestStructureThermodynamics(substituted);
+        symmetryCorrections.calculate(molorig, thermo);
+        BensonThermodynamicBase cycle = (BensonThermodynamicBase) findCyclesThermo.FindLargestStructureThermodynamics(molorig);
         if(cycle != null)
             thermo.add(cycle);
 
-        gauche.compute(substituted, thermo);
+        gauche.compute(molorig, thermo);
     }
     /** Compute thermodynamic corrections for radical
      *
@@ -355,21 +359,19 @@ try {
 
         SetOfBensonThermodynamicBase thermominus = new SetOfBensonThermodynamicBase();
         IAtomContainer RH = formRH.convert(R);
-
         MoleculeUtilities.normalizeMolecule(RH);
+        
         StructureAsCML struct = new StructureAsCML(RH);
         IAtomContainer substituted = metaAtomSubstitutions.substitute(struct);
         SetOfBensonGroupStructures bensonset = bensonGroups.deriveBensonGroupStructures(substituted);
         
-        BensonThermodynamicBase cycle = (BensonThermodynamicBase) findCyclesThermo.FindLargestStructureThermodynamics(substituted);
+        BensonThermodynamicBase cycle = (BensonThermodynamicBase) findCyclesThermo.FindLargestStructureThermodynamics(RH);
         if(cycle != null)
             thermo.add(cycle);
 
-        gauche.compute(substituted, thermo);
-         
-        
+        gauche.compute(RH, thermo);
         sqlthermodynamics.setUpFromSetOfBensonGroupStructures(bensonset,thermo);
-        symmetryCorrections.calculate(RH, thermo);
+        
         disassociation.calculate(R,thermo);
 
         BensonThermodynamicBase spinthermo = computeSpinContribution();
@@ -381,6 +383,7 @@ try {
         CalculateVibrationalCorrectionForRadical vibrational = new CalculateVibrationalCorrectionForRadical(connect);
         vibrational.calculate(R, RH, thermo);
 
+        symmetryCorrections.calculate(RH, thermo);
         symmetryCorrections.calculate(R, thermominus);
         thermominus.Minus();
         thermo.add(thermominus);
