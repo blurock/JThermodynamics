@@ -44,10 +44,11 @@ public class SQLMetaAtomDefinitionFromMetaAtomInfo  {
     
     public SetOfMetaAtomsForSubstitution createSubstitutionSets(String metaAtomType) throws SQLException, CDKException, ClassNotFoundException, IOException {
         SetOfMetaAtomsForSubstitution subs = new SetOfMetaAtomsForSubstitution();
-        HashSet vecmetaatoms = sqlMetaAtomInfo.retrieveMetaAtomTypesFromDatabase(metaAtomType);
-        Iterator i = vecmetaatoms.iterator();
+        @SuppressWarnings("unchecked")
+		HashSet<MetaAtomInfo> vecmetaatoms = sqlMetaAtomInfo.retrieveMetaAtomTypesFromDatabase(metaAtomType);
+        Iterator<MetaAtomInfo> i = vecmetaatoms.iterator();
         while(i.hasNext()) {
-            MetaAtomInfo info = (MetaAtomInfo) i.next();
+            MetaAtomInfo info = i.next();
             MetaAtomDefinition def = createMetaAtomDefinition(info);
             subs.addDefinition(def);
         }
@@ -59,8 +60,9 @@ public class SQLMetaAtomDefinitionFromMetaAtomInfo  {
         return subs;
     }
      public void  createSubstitutionBackSets(String metaAtomType, SubstituteBackMetaAtomsIntoMolecule subs) throws SQLException, CDKException, ClassNotFoundException, IOException {
-         HashSet vecmetaatoms = sqlMetaAtomInfo.retrieveMetaAtomTypesFromDatabase(metaAtomType);
-        Iterator i = vecmetaatoms.iterator();
+         @SuppressWarnings("unchecked")
+		HashSet<MetaAtomInfo> vecmetaatoms = sqlMetaAtomInfo.retrieveMetaAtomTypesFromDatabase(metaAtomType);
+        Iterator<MetaAtomInfo> i = vecmetaatoms.iterator();
         while(i.hasNext()) {
             MetaAtomInfo info = (MetaAtomInfo) i.next();
             MetaAtomDefinition def = createMetaAtomDefinition(info);

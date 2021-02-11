@@ -14,71 +14,33 @@ import thermo.exception.ThermodynamicException;
 
 public class CorrectionElementTests {
 	static ThermoSQLConnection connection;
+	static String type;
+	static String specificTest = "";
+	static String nancyS = "";
+	static StringBuffer buf;
+	static ArrayList<String> arguments;
+	static boolean foundCommand;
+	static IAtomContainer molecule;
 
 	static String singleTest = "Single";
 	static String fullTest = "Full";
 	static String listelements = "List";
 	static String elementS = "Element";
 	static String opticalTestS = "OpticalSymmetryTest";
+	static String bensonAtomTestS = "BensonAtomTest";
 
 	/**
 	 * @param args the command line arguments
 	 */
 	public static boolean executeCommand(String[] args) {
-		boolean foundCommand = true;
-		if (args.length < 1) {
-			foundCommand = false;
-		} else {
-			String type = args[0];
-			System.out.println(type);
+		foundCommand = true;
+		if (setup(args)) {
 			if (type.equalsIgnoreCase(opticalTestS)) {
-				if (args.length < 3) {
-					System.out.println("Expecting:  " + args[0] + " subtest molecule [other arguments]");
-				} else {
-					String specificTest = args[1];
-					String nancyS = args[2];
-
-					connection = new ThermoSQLConnection();
-					connection.connect();
-
-					StringBuffer buf = new StringBuffer();
-					boolean success = true;
-					NancyLinearFormToMolecule nancyFormToMolecule;
-					IAtomContainer molecule = null;
-					try {
-						nancyFormToMolecule = new NancyLinearFormToMolecule(connection);
-						molecule = nancyFormToMolecule.convert(nancyS);
-
-						buf.append("Molecule  -----------------------------------------------\n");
-						StructureAsCML cmlstruct = new StructureAsCML(molecule);
-						buf.append(cmlstruct.toString() + "\n");
-						buf.append("Molecule  -----------------------------------------------\n");
-					} catch (SQLException e) {
-						System.out.println("Invalid Nancy Linear Form: " + nancyS);
-						success = false;
-					} catch (CDKException e) {
-						System.out.println("Invalid Nancy Linear Form: " + nancyS);
-						success = false;
-					}
-					if (success) {
-						ArrayList<String> arguments = new ArrayList<String>();
-						for (int i = 3; i < args.length; i++) {
-							arguments.add(args[i]);
-						}
-						if (type.equalsIgnoreCase(opticalTestS)) {
-							testOpticalSymmetry(buf, specificTest, molecule, arguments);
-						} else {
-							foundCommand = false;
-						}
-						if (foundCommand) {
-							System.out.println(buf.toString());
-						}
-					}
-				}
-			} else {
-				System.out.println("Got here");
-				foundCommand = false;
+				testOpticalSymmetry();
+			} else if (type.equalsIgnoreCase(bensonAtomTestS)) {
+				metaAtomTest();
 			}
+			System.out.println(buf.toString());
 		}
 		return foundCommand;
 	}
@@ -88,8 +50,62 @@ public class CorrectionElementTests {
 		System.out.println(opticalTestS + ":  Test an optical symmetry element(s)");
 	}
 
-	private static void testOpticalSymmetry(StringBuffer buf, String specificTest, IAtomContainer molecule,
-			ArrayList<String> arguments) {
+	public static boolean setup(String[] args) {
+		boolean success = true;
+		if (args.length < 1) {
+			success = false;
+		} else {
+			type = args[0];
+			if (type.equalsIgnoreCase(opticalTestS) || type.equalsIgnoreCase(bensonAtomTestS)) {
+				if (args.length < 3) {
+					opticalSymmetryCommands();
+					bensonAtomCommands();
+					success = false;
+				} else {
+					specificTest = args[1];
+					nancyS = args[2];
+					buf = new StringBuffer();
+
+					connection = new ThermoSQLConnection();
+					connection.connect();
+
+					IAtomContainer molecule = getMolecule();
+					if (molecule != null) {
+						arguments = new ArrayList<String>();
+						for (int i = 3; i < args.length; i++) {
+							arguments.add(args[i]);
+						}
+					} else {
+						success = false;
+					}
+				}
+			} else {
+				foundCommand = false;
+				success = false;
+			}
+		}
+		return success;
+	}
+
+	public static IAtomContainer getMolecule() {
+		NancyLinearFormToMolecule nancyFormToMolecule;
+		molecule = null;
+		try {
+			nancyFormToMolecule = new NancyLinearFormToMolecule(connection);
+			molecule = nancyFormToMolecule.convert(nancyS);
+			buf.append("Molecule  -----------------------------------------------\n");
+			StructureAsCML cmlstruct = new StructureAsCML(molecule);
+			buf.append(cmlstruct.toString() + "\n");
+			buf.append("Molecule  -----------------------------------------------\n");
+		} catch (SQLException e) {
+			System.out.println("Invalid Nancy Linear Form: " + nancyS);
+		} catch (CDKException e) {
+			System.out.println("Invalid Nancy Linear Form: " + nancyS);
+		}
+		return molecule;
+	}
+
+	private static void testOpticalSymmetry() {
 		boolean success = true;
 		SetOfBensonThermodynamicBase thermoset = new SetOfBensonThermodynamicBase();
 		try {
@@ -98,6 +114,7 @@ public class CorrectionElementTests {
 
 			if (specificTest.equalsIgnoreCase(singleTest)) {
 				if (arguments.size() < 1) {
+					System.out.println("Expecting optical symmetry name");
 					opticalSymmetryCommands();
 				} else {
 					thermoset = TestOpticalSymmetryElement.performSingleTest(buf, molecule, connection,
@@ -105,12 +122,6 @@ public class CorrectionElementTests {
 				}
 			} else if (specificTest.equalsIgnoreCase(fullTest)) {
 				thermoset = TestOpticalSymmetryElement.performWithFullSet(buf, molecule, connection);
-			} else if (specificTest.equalsIgnoreCase(fullTest)) {
-
-			} else if (specificTest.equalsIgnoreCase(fullTest)) {
-
-			} else {
-				opticalSymmetryCommands();
 			}
 		} catch (SQLException e) {
 			buf.append(e.toString());
@@ -133,12 +144,50 @@ public class CorrectionElementTests {
 		}
 	}
 
+	private static void metaAtomTest() {
+		try {
+			boolean success = true;
+			if (specificTest.equalsIgnoreCase(fullTest)) {
+				TestBensonAtom.performWithFullSet(buf, molecule, connection);
+			} else if(specificTest.equalsIgnoreCase(singleTest)) {
+				
+				if(arguments.size() < 1) {
+					System.out.println("Expecting benson atom name");
+					bensonAtomCommands();
+					success = false;
+				} else {
+					String benson = arguments.get(0);
+					TestBensonAtom.performSingleTest(buf, benson, molecule, connection);
+			}
+			}
+				if(success) {
+					buf.append("Molecule after substitution\n");
+					StructureAsCML cml = new StructureAsCML(molecule);
+					buf.append("Molecule  -----------------------------------------------\n");
+					buf.append(cml.toString());
+					buf.append("Molecule  -----------------------------------------------\n");
+				}
+				
+		
+		} catch (CDKException e) {
+			buf.append(e.toString());
+		}
+	}
+
 	private static void opticalSymmetryCommands() {
 		System.out.println(opticalTestS + " SymmetryElement NancyString");
 		System.out.println("Test type: " + singleTest + " or " + fullTest);
 		System.out.println("NancyString: the molecule name as nancy string");
 		System.out.println("Single test:");
 		System.out.println("     SymmetryElement: The name of the optical symmetry element");
+
+	}
+	private static void bensonAtomCommands() {
+		System.out.println(bensonAtomTestS + " Test NancyString [extra]");
+		System.out.println("Test type: " + singleTest + " or " + fullTest);
+		System.out.println("NancyString: the molecule name as nancy string");
+		System.out.println("Single test:");
+		System.out.println("     BensonAtom: The name of the Benson Atom");
 
 	}
 

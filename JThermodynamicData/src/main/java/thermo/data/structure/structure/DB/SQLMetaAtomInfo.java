@@ -63,11 +63,12 @@ public class SQLMetaAtomInfo extends SQLStructureThermoAbstractInterface {
         }
         Statement statement = database.createStatement();
         ResultSet elements = statement.executeQuery(sqlquery);
-        HashSet vec = transferAllElements(elements);
-        return true;        
+        boolean ans = elements.first();
+        return ans;        
     }
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public HashSet retrieveStructuresFromDatabase(String name) throws SQLException {
          Statement statement = database.createStatement();
         String sqlquery = "SELECT MetaAtomType, MetaAtomName, ElementName  FROM MetaAtomInfo WHERE MetaAtomKey=\""
@@ -76,7 +77,8 @@ public class SQLMetaAtomInfo extends SQLStructureThermoAbstractInterface {
         HashSet vec = transferAllElements(elements);
         return vec;
     }
-    public HashSet transferAllElements(ResultSet elements) throws SQLException {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public HashSet transferAllElements(ResultSet elements) throws SQLException {
         HashSet vec = new HashSet();
         boolean next = elements.first();
         //System.out.println("transferAllElements: Metaatom Definitions ");
@@ -98,12 +100,13 @@ public class SQLMetaAtomInfo extends SQLStructureThermoAbstractInterface {
         String key = info.getMetaAtomType() + "." + info.getMetaAtomName();
         return key;
     }
-    public HashSet retrieveMetaAtomTypesFromDatabase(String name) throws SQLException {
+    @SuppressWarnings("rawtypes")
+	public HashSet retrieveMetaAtomTypesFromDatabase(String name) throws SQLException {
          Statement statement = database.createStatement();
         String sqlquery = "SELECT MetaAtomType, MetaAtomName, ElementName  FROM MetaAtomInfo WHERE MetaAtomType=\""
                 + name + "\";";
         ResultSet elements = statement.executeQuery(sqlquery);
-        HashSet vec = transferAllElements(elements);
+		HashSet vec = transferAllElements(elements);
         return vec;
     }
     
