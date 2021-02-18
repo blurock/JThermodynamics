@@ -23,6 +23,8 @@ public class SQLBensonThermodynamicBase extends SQLStructureThermoAbstractInterf
 
     public SQLBensonThermodynamicBase(ThermoSQLConnection connect) {
         super(connect);
+        tableKey = "ElementName";
+        tableName = "GroupElement";
     }
 
     @Override
@@ -119,9 +121,7 @@ public class SQLBensonThermodynamicBase extends SQLStructureThermoAbstractInterf
         HashSet<BensonThermodynamicBase> ans = new HashSet<BensonThermodynamicBase>(1);
         ans.add(grp);
         return ans;
-
     }
-
     @Override
     public String keyFromStructure(Object structure) {
         BensonThermodynamicBase grp = new BensonThermodynamicBase();

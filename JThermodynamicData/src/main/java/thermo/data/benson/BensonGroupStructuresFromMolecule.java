@@ -5,6 +5,7 @@
 
 package thermo.data.benson;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -27,7 +28,6 @@ public class BensonGroupStructuresFromMolecule {
     public SetOfBensonGroupStructures deriveBensonGroupStructures(IAtomContainer molecule) {
         SetOfBensonGroupStructures lst = new SetOfBensonGroupStructures();
         Iterator<IAtom> atoms = molecule.atoms().iterator();
-        int ii=0;
         while(atoms.hasNext()) {
             IAtom atm = atoms.next();
             if(bensonCenterAtom(atm)) {
@@ -38,6 +38,23 @@ public class BensonGroupStructuresFromMolecule {
         }
         setBensonStructures(lst);
         return lst;
+    }
+    
+    public ArrayList<IAtom> atomsMatchingBensonGroupStructure(IAtomContainer molecule,
+    		BensonGroupStructure structure) {
+    	ArrayList<IAtom> lst = new ArrayList<IAtom>();
+        Iterator<IAtom> atoms = molecule.atoms().iterator();
+        while(atoms.hasNext()) {
+            IAtom atm = atoms.next();
+            if(bensonCenterAtom(atm)) {
+                List<IAtom> connected = molecule.getConnectedAtomsList(atm);
+                BensonGroupStructure s = formBensonGroupStructure(atm,connected);
+                if(s.equals(structure)) {
+                	lst.add(atm);
+                }
+            }
+        }
+        return lst;    	
     }
 
     private boolean bensonCenterAtom(IAtom atm) {

@@ -13,14 +13,13 @@ import java.util.Iterator;
  * @author blurock
  */
 public class SetOfBensonGroupStructures extends ArrayList<BensonGroupStructure> {
-    /**
-     * 
-     */
+	private static final long serialVersionUID = 1L;
     public SetOfBensonGroupStructures() {
     }
     public SetOfBensonGroupStructures(ArrayList<BensonGroupStructure> lst) {
         super(lst);
     }
+    
     public String toString() {
         StringBuffer buf = new StringBuffer();
         

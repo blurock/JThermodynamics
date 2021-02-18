@@ -26,7 +26,7 @@ public class JThermgasThermoStructureDataPoint {
      * This gives the number of atoms
      */
     private JThergasThermoData thermodynamics;
-    private JThergasStructureData structure;
+    protected JThergasStructureData structure;
     private JThergasAtomicStructure atomicStructure;
     
     

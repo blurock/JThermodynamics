@@ -18,7 +18,7 @@ package thermo.data.benson;
  *
  * @author blurock
  */
-public class BensonConnectAtomStructure {
+public class BensonConnectAtomStructure implements Comparable<BensonConnectAtomStructure> {
     private String connectedAtomS;
     private int multiplicity;
 
@@ -88,5 +88,21 @@ public class BensonConnectAtomStructure {
         buf.append("]");
         return buf.toString();
     }
+    @Override
+    public boolean equals(Object o) {
+    	BensonConnectAtomStructure obj = (BensonConnectAtomStructure) o;
+    	return compareTo(obj) == 0;
+    }
+	@Override
+	public int compareTo(BensonConnectAtomStructure o) {
+		int ans = 0;
+		if(this.connectedAtomS.equalsIgnoreCase(o.getConnectedAtomS())) {
+			ans = this.multiplicity - o.getMultiplicity();
+		} else {
+			ans = this.connectedAtomS.compareTo(o.getConnectedAtomS());
+		}
+		
+		return ans;
+	}
     
 }

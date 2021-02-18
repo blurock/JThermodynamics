@@ -32,6 +32,7 @@ public class LineCommands {
 		ComputeThermodynamicsFromNancyString.commands();
 		ComputeThermoFromInChIString.commands();
 		CorrectionElementTests.commands();
+		ExamineCorrectionElements.commands();
 	}
 
 }

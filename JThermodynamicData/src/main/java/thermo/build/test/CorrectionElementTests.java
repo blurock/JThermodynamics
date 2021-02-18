@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.openscience.cdk.exception.CDKException;
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import thermo.data.benson.SetOfBensonThermodynamicBase;
@@ -28,6 +29,8 @@ public class CorrectionElementTests {
 	static String elementS = "Element";
 	static String opticalTestS = "OpticalSymmetryTest";
 	static String bensonAtomTestS = "BensonAtomTest";
+	static String linearAtomTestS = "LinearAtomTest";
+	static String bensonRuleTestS = "BensonRuleTest";
 
 	/**
 	 * @param args the command line arguments
@@ -39,6 +42,10 @@ public class CorrectionElementTests {
 				testOpticalSymmetry();
 			} else if (type.equalsIgnoreCase(bensonAtomTestS)) {
 				metaAtomTest();
+			} else if (type.equalsIgnoreCase(linearAtomTestS)) {
+				linearAtomTest();
+			} else if (type.equalsIgnoreCase(bensonRuleTestS)) {
+				bensonRuleTest();
 			}
 			System.out.println(buf.toString());
 		}
@@ -48,6 +55,9 @@ public class CorrectionElementTests {
 	public static void commands() {
 		System.out.println("Expecting the type of Tests:");
 		System.out.println(opticalTestS + ":  Test an optical symmetry element(s)");
+		System.out.println(bensonAtomTestS + ": Test of the BensonAtom element(s)");
+		System.out.println(linearAtomTestS + ": Test of the LinearAtom element(s)");
+		System.out.println(bensonRuleTestS + ":Test of the Benson Group Additivity rule element(s)");
 	}
 
 	public static boolean setup(String[] args) {
@@ -56,10 +66,21 @@ public class CorrectionElementTests {
 			success = false;
 		} else {
 			type = args[0];
-			if (type.equalsIgnoreCase(opticalTestS) || type.equalsIgnoreCase(bensonAtomTestS)) {
+			if (type.equalsIgnoreCase(opticalTestS) || type.equalsIgnoreCase(bensonAtomTestS)
+					|| type.equalsIgnoreCase(linearAtomTestS)
+					|| type.equalsIgnoreCase(bensonRuleTestS)) {
 				if (args.length < 3) {
+					System.out.println("Expecting:  " + args[0] + " Test NancyString [name]");
+					System.out.println("          where Test:");
+					System.out.println("                    Single: test a single element (by database name)");
+					System.out.println("                    Full: test with the full set of elements");
+					System.out.println("                 NancyString: The nancy linear form of the molecule to test");
+					
+					/*
 					opticalSymmetryCommands();
 					bensonAtomCommands();
+					opticalSymmetryCommands();
+					*/
 					success = false;
 				} else {
 					specificTest = args[1];
@@ -149,28 +170,77 @@ public class CorrectionElementTests {
 			boolean success = true;
 			if (specificTest.equalsIgnoreCase(fullTest)) {
 				TestBensonAtom.performWithFullSet(buf, molecule, connection);
-			} else if(specificTest.equalsIgnoreCase(singleTest)) {
-				
-				if(arguments.size() < 1) {
+			} else if (specificTest.equalsIgnoreCase(singleTest)) {
+
+				if (arguments.size() < 1) {
 					System.out.println("Expecting benson atom name");
 					bensonAtomCommands();
 					success = false;
 				} else {
 					String benson = arguments.get(0);
 					TestBensonAtom.performSingleTest(buf, benson, molecule, connection);
-			}
-			}
-				if(success) {
-					buf.append("Molecule after substitution\n");
-					StructureAsCML cml = new StructureAsCML(molecule);
-					buf.append("Molecule  -----------------------------------------------\n");
-					buf.append(cml.toString());
-					buf.append("Molecule  -----------------------------------------------\n");
 				}
-				
-		
+			}
+			if (success) {
+				buf.append("Molecule after substitution\n");
+				StructureAsCML cml = new StructureAsCML(molecule);
+				buf.append("Molecule  -----------------------------------------------\n");
+				buf.append(cml.toString());
+				buf.append("Molecule  -----------------------------------------------\n");
+			}
+
 		} catch (CDKException e) {
 			buf.append(e.toString());
+		}
+	}
+
+	private static void linearAtomTest() {
+		try {
+			boolean success = true;
+			if (specificTest.equalsIgnoreCase(fullTest)) {
+				molecule = TestLinearAtom.performWithFullSet(buf, molecule, connection);
+			} else if (specificTest.equalsIgnoreCase(singleTest)) {
+
+				if (arguments.size() < 1) {
+					System.out.println("Expecting linear atom name");
+					linearAtomCommands();
+					success = false;
+				} else {
+					String benson = arguments.get(0);
+					TestLinearAtom.performSingleTest(buf, benson, molecule, connection);
+				}
+			}
+			if (success) {
+				buf.append("Molecule after substitution\n");
+				StructureAsCML cml = new StructureAsCML(molecule);
+				buf.append("Molecule  -----------------------------------------------\n");
+				buf.append(cml.toString());
+				buf.append("Molecule  -----------------------------------------------\n");
+			}
+
+		} catch (CDKException e) {
+			buf.append(e.toString());
+		}
+
+	}
+
+	private static void bensonRuleTest() {
+		SetOfBensonThermodynamicBase thermo = null;
+		ArrayList<IAtom> atmlst = null;
+		boolean success = true;
+		if (specificTest.equalsIgnoreCase(fullTest)) {
+			thermo = TestBensonGroupAdditivityRules.performWithFullSet(buf, molecule, connection);
+		} else if (specificTest.equalsIgnoreCase(singleTest)) {
+
+			if (arguments.size() < 1) {
+				System.out.println("Expecting linear atom name");
+				linearAtomCommands();
+				success = false;
+			} else {
+				String benson = arguments.get(0);
+				System.out.println(benson);
+				atmlst = TestBensonGroupAdditivityRules.performSingleTest(buf, benson, molecule, connection);
+			}
 		}
 	}
 
@@ -182,12 +252,22 @@ public class CorrectionElementTests {
 		System.out.println("     SymmetryElement: The name of the optical symmetry element");
 
 	}
+
 	private static void bensonAtomCommands() {
 		System.out.println(bensonAtomTestS + " Test NancyString [extra]");
 		System.out.println("Test type: " + singleTest + " or " + fullTest);
 		System.out.println("NancyString: the molecule name as nancy string");
 		System.out.println("Single test:");
 		System.out.println("     BensonAtom: The name of the Benson Atom");
+
+	}
+
+	private static void linearAtomCommands() {
+		System.out.println(linearAtomTestS + " Test NancyString [extra]");
+		System.out.println("Test type: " + singleTest + " or " + fullTest);
+		System.out.println("NancyString: the molecule name as nancy string");
+		System.out.println("Single test:");
+		System.out.println("     linearAtom: The name of the Benson Atom");
 
 	}
 

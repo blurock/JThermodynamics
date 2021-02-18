@@ -106,6 +106,7 @@ public class MetaAtomInfo extends Atom {
         buf.append("Name: " + metaAtomName + "\t");
         buf.append("Type: " + metaAtomType + "\t");
         buf.append("Structure: " + elementName + "\t");
+        buf.append(super.toString());
       
         return buf.toString();
     }

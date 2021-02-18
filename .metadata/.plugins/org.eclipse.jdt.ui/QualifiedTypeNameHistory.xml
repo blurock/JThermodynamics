@@ -1,2 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="thermo.data.structure.structure.symmetry.DB.SQLSymmetryDefinition"/>
+    <fullyQualifiedTypeName name="thermo.data.structure.structure.symmetry.SymmetryDefinition"/>
+    <fullyQualifiedTypeName name="thermo.data.benson.SetOfBensonThermodynamicBase"/>
+    <fullyQualifiedTypeName name="thermo.client.TestOpticalSymmetryElement"/>
+    <fullyQualifiedTypeName name="thermo.client.CorrectionElementTests"/>
+    <fullyQualifiedTypeName name="thermo.build.test.ExamineCorrectionElements"/>
+    <fullyQualifiedTypeName name="org.openscience.cdk.interfaces.IAtomContainer"/>
+    <fullyQualifiedTypeName name="thermo.build.test.TestOpticalSymmetryElement"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="java.lang.Comparable"/>
+    <fullyQualifiedTypeName name="thermo.data.benson.BensonGroupStructuresFromMolecule"/>
+    <fullyQualifiedTypeName name="thermo.data.benson.thergas.BuildBensonThermodynamicFromThergas"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="thermo.data.benson.BensonGroupStructure"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="thermo.data.structure.structure.StructureAsCML"/>
+    <fullyQualifiedTypeName name="org.openscience.cdk.interfaces.IAtom"/>
+    <fullyQualifiedTypeName name="org.openscience.cdk.Atom"/>
+    <fullyQualifiedTypeName name="thermo.build.test.TestBensonGroupAdditivityRules"/>
+    <fullyQualifiedTypeName name="thermo.data.benson.DB.SQLBensonThermodynamicBase"/>
+</qualifiedTypeNameHistroy>

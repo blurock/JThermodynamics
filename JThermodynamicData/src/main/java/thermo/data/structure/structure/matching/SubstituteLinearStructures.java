@@ -42,18 +42,19 @@ public class SubstituteLinearStructures  {
     }
     public IAtomContainer substitute(StructureAsCML cmlstruct) throws CDKException, IOException {
         try {
-            IAtomContainer molecule = substitutions.substitute(cmlstruct);
-            //StructureAsCML cmlstruct1 = new StructureAsCML(molecule);
+            IAtomContainer molecule1 = substitutions.substitute(cmlstruct);
+            StructureAsCML cmlstruct1 = new StructureAsCML(molecule1);
+            System.out.println(cmlstruct1);
             //AtomContainer molecule1 = substitutions.substitute(cmlstruct1);
-            condenseConnectedLinearStructures(molecule);
+            condenseConnectedLinearStructures(molecule1);
 
-            return molecule;
+            return molecule1;
         } catch (ClassNotFoundException ex) {
             throw new IOException("ERROR in SubstituteLinearStructures.substitute");
         }
     }
 
-    private void condenseConnectedLinearStructures(IAtomContainer molecule) {
+    public void condenseConnectedLinearStructures(IAtomContainer molecule) {
         boolean notdone = true;
         Iterator<IBond> iter = molecule.bonds().iterator();
         while(iter.hasNext() && notdone) {

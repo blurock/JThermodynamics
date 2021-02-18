@@ -141,3 +141,6 @@ semanticHighlighting.typedef.strikethrough=false
 semanticHighlighting.typedef.underline=false
 sourceHoverBackgroundColor=0,0,0
 sourceHoverBackgroundColor.SystemDefault=false
+spelling_locale_initialized=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

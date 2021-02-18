@@ -164,7 +164,7 @@ public abstract class SQLStructureThermoAbstractInterface {
     public ArrayList<String> retrieveDatabaseNames() throws SQLException {
         ArrayList<String> set = new ArrayList<String>();
         Statement statement = database.createStatement();
-        String sqlquery = "SELECT " + tableKey + " FROM " + tableName + ";";
+        String sqlquery = "SELECT DISTINCT " + tableKey + " FROM " + tableName + ";";
         ResultSet names = statement.executeQuery(sqlquery);
         boolean next = names.first();
         while (next) {

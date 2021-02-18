@@ -3,6 +3,7 @@
 
 package thermo.data.benson;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 /**The structural information associated with a Benson rule:
@@ -14,7 +15,7 @@ import java.util.Vector;
  *
  * @author blurock
  */
-public class BensonGroupStructure {
+public class BensonGroupStructure implements Comparable<BensonGroupStructure> {
     private String structureName;
     private String centerAtomS;
     private Vector<BensonConnectAtomStructure> bondedAtoms = null;
@@ -96,6 +97,12 @@ public class BensonGroupStructure {
        structureName = "";
        centerAtomS = "";
     }
+    
+    public boolean hasSameCenterAtom(String centerAtom) {
+    	return centerAtom.equalsIgnoreCase(centerAtomS);
+    }
+    
+    
 
     /** Write on one line the group information
      *
@@ -113,4 +120,31 @@ public class BensonGroupStructure {
         }
         return buf.toString();
     }
+    @Override
+    public boolean equals(Object o) {
+    	BensonGroupStructure obj = (BensonGroupStructure) o;
+    	return this.compareTo(obj) == 0;
+    }
+	@Override
+	public int compareTo(BensonGroupStructure o) {
+		int ans = 0;
+		if(this.centerAtomS.equalsIgnoreCase(o.getCenterAtomS())) {
+			if(this.getBondedAtoms().size() == o.getBondedAtoms().size()) {
+				Iterator<BensonConnectAtomStructure> iter = this.getBondedAtoms().iterator();
+				boolean matched = true;
+				while(iter.hasNext() && matched) {
+					BensonConnectAtomStructure n = iter.next();
+					matched = o.getBondedAtoms().contains(iter.next());
+				}
+				if(!matched) {
+					ans= -1;
+				}
+			} else {
+				ans = this.getBondedAtoms().size() - o.getBondedAtoms().size();
+			}
+		} else {
+			ans = this.centerAtomS.compareTo(o.getCenterAtomS());
+		}
+		return ans;
+	}
 }

@@ -7,6 +7,7 @@ package jThergas.data.group;
 import jThergas.data.JThermgasThermoStructureDataPoint;
 import jThergas.data.read.JThergasTokenizer;
 import jThergas.data.structure.JThergasStructureData;
+import jThergas.exceptions.JThergasNotAGroupElement;
 import jThergas.exceptions.JThergasReadException;
 
 import java.sql.Array;
@@ -55,6 +56,8 @@ public class JThergasThermoStructureGroupPoint extends JThermgasThermoStructureD
  */
     private void parseGroupDescription() throws JThergasReadException, NumberFormatException {
         if (this.getStructure().getNancyLinearForm().length() > 0) {
+        	parseGroupDescription(this.getStructure().getNancyLinearForm());
+        	/*
             String[] groupElementsS = separateOutGroupElements();
             groupElements = new HashSet<JThergasGroupElement>();
             centerAtomTypeS = groupElementsS[0];
@@ -64,10 +67,24 @@ public class JThergasThermoStructureGroupPoint extends JThermgasThermoStructureD
                 element.parse(groupElementsS[i]);
                 groupElements.add(element);
             }
+            */
         } else {
             centerAtomType = null;
             groupElements = null;
         }
+    }
+    public void parseGroupDescription(String benson) throws JThergasNotAGroupElement, NumberFormatException {
+    	String[] groupElementsS = separateOutGroupElements(benson);
+        
+        groupElements = new HashSet<JThergasGroupElement>();
+        centerAtomTypeS = groupElementsS[0];
+        centerAtomType = new JThergasCenterAtom(centerAtomTypeS);
+        for (int i = 1; i < groupElementsS.length; i++) {
+            JThergasGroupElement element = new JThergasGroupElement();
+            element.parse(groupElementsS[i]);
+            groupElements.add(element);
+        }
+    	
     }
 /** This parses the group data into a String array.
  *
@@ -78,8 +95,8 @@ public class JThergasThermoStructureGroupPoint extends JThermgasThermoStructureD
  *
  * @return the array of center atom and group elements
  */
-    private String[] separateOutGroupElements() {
-        StringTokenizer tok = new StringTokenizer(this.getStructure().getNancyLinearForm().trim(), "-");
+    private String[] separateOutGroupElements(String benson) {
+        StringTokenizer tok = new StringTokenizer(benson, "-");
 
         ArrayList<String> vec = new ArrayList<String>();
 
@@ -126,5 +143,9 @@ public class JThergasThermoStructureGroupPoint extends JThermgasThermoStructureD
      */
     public JThergasCenterAtom getCenterAtomType() {
         return centerAtomType;
+    }
+    public void setNancyLinearForm(String benson) {
+    	structure = new JThergasStructureData();
+    	structure.setNancyLinearForm(benson);
     }
 }
