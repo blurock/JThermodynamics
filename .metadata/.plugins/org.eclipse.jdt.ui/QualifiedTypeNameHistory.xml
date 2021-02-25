@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="thermo.data.structure.structure.symmetry.DB.SQLSymmetryDefinition"/>
     <fullyQualifiedTypeName name="thermo.data.structure.structure.symmetry.SymmetryDefinition"/>
-    <fullyQualifiedTypeName name="thermo.data.benson.SetOfBensonThermodynamicBase"/>
     <fullyQualifiedTypeName name="thermo.client.TestOpticalSymmetryElement"/>
     <fullyQualifiedTypeName name="thermo.client.CorrectionElementTests"/>
     <fullyQualifiedTypeName name="thermo.build.test.ExamineCorrectionElements"/>
@@ -12,12 +11,33 @@
     <fullyQualifiedTypeName name="java.lang.Comparable"/>
     <fullyQualifiedTypeName name="thermo.data.benson.BensonGroupStructuresFromMolecule"/>
     <fullyQualifiedTypeName name="thermo.data.benson.thergas.BuildBensonThermodynamicFromThergas"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="thermo.data.benson.BensonGroupStructure"/>
-    <fullyQualifiedTypeName name="java.util.Iterator"/>
     <fullyQualifiedTypeName name="thermo.data.structure.structure.StructureAsCML"/>
     <fullyQualifiedTypeName name="org.openscience.cdk.interfaces.IAtom"/>
     <fullyQualifiedTypeName name="org.openscience.cdk.Atom"/>
     <fullyQualifiedTypeName name="thermo.build.test.TestBensonGroupAdditivityRules"/>
     <fullyQualifiedTypeName name="thermo.data.benson.DB.SQLBensonThermodynamicBase"/>
+    <fullyQualifiedTypeName name="java.nio.charset.StandardCharsets"/>
+    <fullyQualifiedTypeName name="org.apache.commons.io.IOUtils"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.analysis.AnalyzeTherGasString"/>
+    <fullyQualifiedTypeName name="java.lang.Double"/>
+    <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.data.TherGasOutputSymmetry"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.TherGasAnalysisException"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.data.TherGasOutputGroupData"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.data.TherGasOutputData"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.data.TherGasAnalysisFrequencyElement"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.data.TherGasOutputVibrationalData"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.data.TherGasOutputStretchData"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.data.TherGasAnalysisTemperatureDependence"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.data.TherGasAnalysisTemperatureDependenceSet"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.data.TherGasOutputTorsionDataSet"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.data.TherGasOutputTorsionData"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.data.TherGasOutputFrequencyData"/>
+    <fullyQualifiedTypeName name="info.esblurock.TherGasAnalysis.data.TherGasAnalysisDisassociationData"/>
+    <fullyQualifiedTypeName name="thermo.data.structure.structure.symmetry.DetermineSymmetryFromSingleDefinition"/>
+    <fullyQualifiedTypeName name="thermo.data.benson.SetOfBensonThermodynamicBase"/>
 </qualifiedTypeNameHistroy>

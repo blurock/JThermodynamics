@@ -183,7 +183,7 @@ public class SQLSymmetryDefinition extends SQLStructureThermoAbstractInterface {
         String mainquery = "SELECT SymmetryFactor FROM SymmetryDefinition WHERE SymmetryName=" + "\"" + name + "\";";
         ResultSet elements = statement.executeQuery(mainquery);
         elements.first();
-        return new Double(elements.getString("SymmetryFactor"));
+        return Double.valueOf(elements.getString("SymmetryFactor"));
     }
 
     public String getSymmetryElementName(String name) throws SQLException {

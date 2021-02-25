@@ -60,25 +60,30 @@ public class TestStructuresFromSymmetry {
             //StructureAsCML cmlstruct = GenerateStructures.createPropane();
             NancyLinearFormToMolecule nancy = new NancyLinearFormToMolecule(connect);
             //Molecule mol = nancy.convert("ch2(c///ch)2");
-            IAtomContainer mol = nancy.convert("ch3ch2ch3");
+            IAtomContainer mol = nancy.convert("ch3/ch2/ch3");
             StructureAsCML cml = new StructureAsCML(mol);
 
             SQLSymmetryDefinition sqlSymmetry = new SQLSymmetryDefinition(connect);
             //String name = "ExternalSymmetry-C(B1)(B1)(B2)(B2)";
-            String name = "ExternalSymmetry-C(B1)(B1)(B1)";
+            String name = "ExternalSymmetry-C(B1)(B1)(B2)(B2)";
             HashSet vec = sqlSymmetry.retrieveStructuresFromDatabase(name);
             Iterator<SymmetryDefinition> siter = vec.iterator();
             SymmetryDefinition symmetry = siter.next();
-
+            System.out.println("------------------------------------------\n");
+            System.out.println(symmetry.toString());
+            System.out.println("------------------------------------------\n");
             SubstructuresFromSymmetry gensubs = new SubstructuresFromSymmetry(symmetry);
             ArrayList<IAtomContainer> subs = gensubs.generateStructures(cml.getMolecule());
 
+            System.out.println("         Isolated Structures");
             Iterator<IAtomContainer> iter = subs.iterator();
             while(iter.hasNext()) {
                 IAtomContainer sub = iter.next();
                 IAtomContainer submol = new AtomContainer(sub);
                 StructureAsCML cmlstruct = new StructureAsCML(submol);
+                System.out.println("------------------------------------------\n");
                 System.out.println(cmlstruct.getCmlStructureString());
+                System.out.println("------------------------------------------\n");
             }
 
 

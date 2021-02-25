@@ -13,7 +13,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import thermo.data.benson.BensonThermodynamicBase;
 import thermo.data.benson.HeatCapacityTemperaturePair;
-import thermo.data.benson.ThermodynamicInformation;
 
 /**
  *
@@ -100,14 +99,16 @@ public class SQLBensonThermodynamicBase extends SQLStructureThermoAbstractInterf
 
         String sqlenthalpy = "SELECT ElementName, StandardEnthalpy, Reference From GroupStandardEnthalpy WHERE ElementName=\"" + name + "\";";
         ResultSet enthalpyresults = statement.executeQuery(sqlenthalpy);
-        boolean nextenthalpy = enthalpyresults.first();
-        grp.setStandardEnthalpy(new Double(enthalpyresults.getDouble("StandardEnthalpy")));
+        //boolean nextenthalpy = enthalpyresults.first();
+        enthalpyresults.first();
+        grp.setStandardEnthalpy(Double.valueOf(enthalpyresults.getDouble("StandardEnthalpy")));
         grp.setReference(enthalpyresults.getString("Reference"));
         
         String sqlentropy = "SELECT ElementName, StandardEntropy, Reference From GroupStandardEntropy WHERE ElementName=\"" + name + "\";";
         ResultSet entropyresults = statement.executeQuery(sqlentropy);
-        boolean nextentropy = entropyresults.first();
-        grp.setStandardEntropy(new Double(entropyresults.getDouble("StandardEntropy")));
+        //boolean nextentropy = entropyresults.first();
+        entropyresults.first();
+        grp.setStandardEntropy(Double.valueOf(entropyresults.getDouble("StandardEntropy")));
         
         
         SQLHeatCapacityTemperaturePair cps = new SQLHeatCapacityTemperaturePair(database);

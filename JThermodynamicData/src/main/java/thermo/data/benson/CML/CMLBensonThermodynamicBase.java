@@ -86,11 +86,11 @@ public class CMLBensonThermodynamicBase extends CMLAbstractThermo {
 
             CMLScalar enthalpycml = (CMLScalar) proplist.get(2);
             double enthalpy = enthalpycml.getDouble();
-            thermo.setStandardEnthalpy(new Double(enthalpy));
+            thermo.setStandardEnthalpy(Double.valueOf(enthalpy));
 
             CMLScalar entropycml = (CMLScalar) proplist.get(3);
             double entropy = entropycml.getDouble();
-            thermo.setStandardEntropy(new Double(entropy));
+            thermo.setStandardEntropy(Double.valueOf(entropy));
 
             ArrayList<HeatCapacityTemperaturePair> vec = new ArrayList<HeatCapacityTemperaturePair>();
             CMLPropertyList props = (CMLPropertyList) proplist.get(4);

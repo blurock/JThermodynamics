@@ -6,8 +6,6 @@
 package thermo.data.structure.structure.symmetry;
 
 import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  *

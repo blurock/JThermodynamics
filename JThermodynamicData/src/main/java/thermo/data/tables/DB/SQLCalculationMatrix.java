@@ -61,7 +61,7 @@ public class SQLCalculationMatrix extends SQLStructureThermoAbstractInterface {
             NumericColumn column = matrix.get(i);
 
             String value = column.toString();
-            Integer positionI = new Integer(i);
+            Integer positionI = Integer.valueOf(i);
             String elementName = matrixName + ".C" + positionI.toString();
             commands[index] = "INSERT INTO Vectors (ElementName, MatrixName, Position, Vector) "
                 + "Values("
@@ -123,7 +123,7 @@ public class SQLCalculationMatrix extends SQLStructureThermoAbstractInterface {
         while(t) {
             String line = elementVector.getString("Vector");
             int pos = line.indexOf(" ");
-            Integer indexI = new Integer(line.substring(0,pos));
+            Integer indexI = Integer.valueOf(line.substring(0,pos));
             String vecS = line.substring(pos).trim();
             NumericColumn col = new NumericColumn();
             col.add(vecS);
@@ -136,7 +136,7 @@ public class SQLCalculationMatrix extends SQLStructureThermoAbstractInterface {
         matrix.setNameOfData(name);
         matrix.setDescription(description);
         for(int i=0;i<temp.size();i++) {
-            Integer iI = new Integer(i);
+            Integer iI = Integer.valueOf(i);
             NumericColumn col = temp.get(iI);
             matrix.add(col);
         }

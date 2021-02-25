@@ -143,8 +143,8 @@ public class BondLength implements Comparable<BondLength> {
            String a2 = tok.nextToken();
            String bondOrderS = tok.nextToken();
            String bondLengthS = tok.nextToken();
-           Integer bondOrderI = new Integer(bondOrderS);
-           Double bondLengthD = new Double(bondLengthS);
+           Integer bondOrderI = Integer.valueOf(bondOrderS);
+           Double bondLengthD = Double.valueOf(bondLengthS);
            setAtoms(a1,a2);
            this.bondOrder = bondOrderI.intValue();
            this.bondLength = bondLengthD.doubleValue();

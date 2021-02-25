@@ -18,12 +18,10 @@ import org.openscience.cdk.Atom;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.exception.CDKException;
-import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import thermo.data.structure.structure.StructureAsCML;
 import thermo.data.structure.structure.symmetry.utilities.DetermineSymmetryAssignmentsFromConnections;
 import thermo.test.GenerateStructures;
-import static org.junit.Assert.*;
 
 /**
  *

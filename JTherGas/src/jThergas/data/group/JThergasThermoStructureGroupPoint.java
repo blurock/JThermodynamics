@@ -10,7 +10,6 @@ import jThergas.data.structure.JThergasStructureData;
 import jThergas.exceptions.JThergasNotAGroupElement;
 import jThergas.exceptions.JThergasReadException;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;

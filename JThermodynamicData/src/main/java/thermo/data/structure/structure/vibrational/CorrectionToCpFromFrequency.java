@@ -56,12 +56,12 @@ public class CorrectionToCpFromFrequency extends Vector<HeatCapacityTemperatureP
         StringTokenizer tok = new StringTokenizer(linedata,delimitor);
         if(tok.countTokens() != temperatures.length + 1) {
             String freqS = tok.nextToken();
-            Double frequencyD = new Double(freqS);
+            Double frequencyD = Double.valueOf(freqS);
             frequencyValue = frequencyD.doubleValue();
             formCorrectionName();
             for(int i=0;i<temperatures.length;i++) {
                 String correctionS = tok.nextToken();
-                Double correctionD = new Double(correctionS);
+                Double correctionD = Double.valueOf(correctionS);
                 double correction = correctionD.doubleValue();
                 HeatCapacityTemperaturePair pair = 
                         new HeatCapacityTemperaturePair(elementName, temperatures[i], correction, reference);

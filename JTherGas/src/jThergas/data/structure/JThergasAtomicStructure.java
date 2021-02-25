@@ -104,10 +104,10 @@ public class JThergasAtomicStructure {
         numberOfAtoms = Integer.parseInt(numberOfAtomsS);
         for(int i = 0; i<20;i++) {
             if(atomsS[i].length() == 0) {
-                boolean add = atoms.add(new Integer(0));
+                boolean add = atoms.add(Integer.valueOf(0));
             }
             else {
-                atoms.add(i,new Integer(atomsS[i]));
+                atoms.add(i,Integer.valueOf(atomsS[i]));
             }
         }
         

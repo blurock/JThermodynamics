@@ -105,8 +105,8 @@ public class ReadDisassociationData {
                 IAtomContainer molecule = nancyform.convert(nancy);
                 substitute.substitute(molecule);
                 molecule.setID(nameS);
-                Double energyD = new Double(energyS);
-                Double errorD = new Double(errorS);
+                Double energyD = Double.valueOf(energyS);
+                Double errorD = Double.valueOf(errorS);
                 try {
                     StructureAsCML cml = new StructureAsCML(molecule);
                     System.out.println(cml.getCmlStructureString());

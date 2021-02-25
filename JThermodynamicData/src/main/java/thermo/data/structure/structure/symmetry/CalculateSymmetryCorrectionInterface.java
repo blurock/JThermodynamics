@@ -5,13 +5,9 @@
 
 package thermo.data.structure.structure.symmetry;
 
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.benson.SetOfBensonThermodynamicBase;
-import thermo.data.structure.linearform.NancyLinearFormToMolecule;
 import thermo.exception.ThermodynamicException;
 
 /**

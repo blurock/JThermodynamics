@@ -11,7 +11,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.openscience.cdk.Atom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
@@ -95,9 +94,9 @@ public class MetaAtomDefinition extends MetaAtomInfo {
         for(int i=0;i<getMolecule().getAtomCount();i++) {
             IAtom atom = getMolecule().getAtom(i);
             if(isUnspecifiedAtom(atom)) {
-                getUnspecifiedAtoms().add(new Integer(i));
+                getUnspecifiedAtoms().add(Integer.valueOf(i));
             } else {
-                getSpecifiedAtoms().add(new Integer(i));
+                getSpecifiedAtoms().add(Integer.valueOf(i));
             }
         }
     }
@@ -148,12 +147,12 @@ public class MetaAtomDefinition extends MetaAtomInfo {
             IAtom atm2 = bnd.getAtom(1);
             if(isUnspecifiedAtom(atm1) && !isUnspecifiedAtom(atm2)) {
                 getConnectingBonds().add(bnd);
-                Integer aI = new Integer(molecule.getAtomNumber(atm2));
+                Integer aI = Integer.valueOf(molecule.indexOf(atm2));
                 if(!connectingAtoms.contains(aI)) 
                     getConnectingAtoms().add(aI);
             } if(!isUnspecifiedAtom(atm1) && isUnspecifiedAtom(atm2)) {
                 getConnectingBonds().add(bnd);
-                Integer aI = new Integer(molecule.getAtomNumber(atm1));
+                Integer aI = Integer.valueOf(molecule.indexOf(atm1));
                 if(!connectingAtoms.contains(aI)) 
                     getConnectingAtoms().add(aI);
             }
@@ -237,7 +236,7 @@ public class MetaAtomDefinition extends MetaAtomInfo {
     	atm.setMetaAtomType(getMetaAtomType());
         atm.setSymbol(getMetaAtomName());
         atm.setAtomTypeName(getMetaAtomType());
-        atm.setCharge(new Double(0.0));
+        atm.setCharge(Double.valueOf(0.0));
         atm.setFormalNeighbourCount(unspecifiedAtoms.size());
         atm.setValency(unspecifiedAtoms.size());
         return atm;

@@ -18,7 +18,6 @@ import org.junit.Test;
 import org.openscience.cdk.Atom;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.AtomContainer;
-import static org.junit.Assert.*;
 
 import org.openscience.cdk.exception.CDKException;
 import thermo.data.structure.structure.DB.SQLSubstituteBackMetaAtomIntoMolecule;

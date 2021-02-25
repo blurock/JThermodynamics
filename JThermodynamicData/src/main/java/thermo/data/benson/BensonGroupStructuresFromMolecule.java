@@ -10,8 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtom;
-import thermo.data.structure.structure.StructureAsCML;
-import thermo.data.structure.utilities.MoleculeUtilities;
 
 /**
  *
@@ -73,7 +71,6 @@ public class BensonGroupStructuresFromMolecule {
         return structure;
     }
 
-    @SuppressWarnings("empty-statement")
     private BensonConnectAtomStructure formNextConnection(IAtom atm, List<IAtom> connected) {
         Iterator<IAtom> i = connected.iterator();
         IAtom c = i.next();

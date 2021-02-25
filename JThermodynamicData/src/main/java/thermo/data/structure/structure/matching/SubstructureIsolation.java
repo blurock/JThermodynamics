@@ -11,7 +11,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtom;
-import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 
 /** Isolates structures given atom lists
@@ -112,8 +111,8 @@ public class SubstructureIsolation {
             IBond bond = bonds.get(i);
             IAtom atm1 = bond.getAtom(0);
             IAtom atm2 = bond.getAtom(1);
-            Integer n1 = (Integer) molecule.getAtomNumber(atm1);
-            Integer n2 = (Integer) molecule.getAtomNumber(atm2);
+            Integer n1 = (Integer) molecule.indexOf(atm1);
+            Integer n2 = (Integer) molecule.indexOf(atm2);
             if (set.contains(n1) && !set.contains(n2)) {
                 subset.add(bond);
             } if (!set.contains(n1) && set.contains(n2)) {

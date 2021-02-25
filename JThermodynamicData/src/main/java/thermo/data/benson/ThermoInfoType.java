@@ -6,7 +6,6 @@ package thermo.data.benson;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Vector;
 
 /** This base class (others will be derived from this) holds the meta
  * information about the benson information.
@@ -120,7 +119,7 @@ public class ThermoInfoType {
      * @return
      */
     public synchronized boolean add(double temperature) {
-        Double tD = new Double(temperature);
+        Double tD = Double.valueOf(temperature);
         return Temperatures.add(tD);
     }
 

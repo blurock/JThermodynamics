@@ -18,12 +18,10 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.exception.CDKException;
 import thermo.data.structure.structure.StructureAsCML;
 import thermo.data.structure.structure.symmetry.CML.CMLSymmetryDefinition;
-import thermo.data.structure.structure.symmetry.ListOfSymmetryPairs;
 import thermo.data.structure.structure.symmetry.SymmetryDefinition;
 import thermo.data.structure.structure.symmetry.SymmetryPair;
 import thermo.test.GenerateStructures;
@@ -59,7 +57,7 @@ public class CMLSymmetryDefinitionTest {
             StructureAsCML ethane = generate.createEthane();
             
             String name = "ethaneSymmetry";
-            Double symmetryFactor = new Double(2.0);
+            Double symmetryFactor = Double.valueOf(2.0);
             
             ArrayList<SymmetryPair>  pairlist = new ArrayList<SymmetryPair>();
             String name1 = "pair1";

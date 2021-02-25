@@ -66,7 +66,7 @@ public class AtomGroupStringNode {
      */
     public void addConnection(AtomGroupStringNode atmnode, int bondorder) {
         connections.add(atmnode);
-        Integer bo = new Integer(bondorder);
+        Integer bo = Integer.valueOf(bondorder);
         bondorders.add(bo);
     }
     /** This connects an atom to be the next in the linked list.

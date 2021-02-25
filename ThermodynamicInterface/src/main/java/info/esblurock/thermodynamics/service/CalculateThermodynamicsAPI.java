@@ -6,14 +6,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import org.apache.http.client.protocol.ClientContext;
-
-import com.google.gwt.user.client.Window;
 
 import info.esblurock.thermodynamics.base.benson.SetOfBensonThermodynamicBaseElements;
 import info.esblurock.thermodynamics.service.convert.ConvertBensonStructures;
 import nu.xom.ParsingException;
-import nu.xom.ValidityException;
 import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.benson.CML.CMLSetOfBensonThermodynamicBase;
 

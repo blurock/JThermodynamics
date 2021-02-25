@@ -5,7 +5,6 @@
 
 package symmetry;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,8 +21,6 @@ import thermo.data.structure.linearform.NancyLinearFormToMolecule;
 import thermo.data.structure.structure.StructureAsCML;
 import thermo.data.structure.structure.symmetry.CalculateInternalSymmetryCorrection;
 import thermo.exception.ThermodynamicException;
-import thermo.test.GenerateStructures;
-import static org.junit.Assert.*;
 
 /**
  *

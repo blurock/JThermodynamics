@@ -28,7 +28,7 @@ public class StandardThergasBensonThermoType extends ThermoInfoType {
         StringTokenizer tok = new StringTokenizer(tempS,",");
         while(tok.hasMoreTokens()) {
             String tS = tok.nextToken();
-            Double t = new Double(tS);
+            Double t = Double.valueOf(tS);
             this.add(t);
         }
     }

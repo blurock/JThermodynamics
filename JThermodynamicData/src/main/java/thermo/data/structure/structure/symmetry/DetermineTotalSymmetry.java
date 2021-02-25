@@ -37,11 +37,6 @@ public class DetermineTotalSymmetry {
             int symmetry = determineSymmetry.determineSymmetry(defintion, structure);
             double sym = determineSymmetry.computeSymmetryContribution(symmetry);
             int symI = (int) Math.floor(sym);
-            
-            
-            
-            
-            //System.out.println("DetermineTotalSymmetry:\n" + defintion.getMetaAtomName() + "Symmetry=" + symI);
             combineInSymmetryNumber(symI);
         }
         return getSymmetryValue();

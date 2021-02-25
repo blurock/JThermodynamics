@@ -4,10 +4,8 @@
  */
 package thermo.data.benson;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Iterator;
 import org.openscience.cdk.ChemObject;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -59,8 +57,8 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 	public void initialize(String name, String ref, double[] temperatures) {
 		reference = ref;
 		setOfHeatCapacities = new ArrayList<HeatCapacityTemperaturePair>();
-		standardEnthalpy = new Double(0.0);
-		standardEntropy = new Double(0.0);
+		standardEnthalpy = Double.valueOf(0.0);
+		standardEntropy = Double.valueOf(0.0);
 		for (int i = 0; i < temperatures.length; i++) {
 			HeatCapacityTemperaturePair pair = new HeatCapacityTemperaturePair(name, temperatures[i], 0.0);
 			setOfHeatCapacities.add(pair);
@@ -234,7 +232,7 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 		} else {
 			for (int i = 0; i < temperatures.length; i++) {
 				HeatCapacityTemperaturePair pair = new HeatCapacityTemperaturePair();
-				pair.setHeatCapacityValue(new Double(0.0));
+				pair.setHeatCapacityValue(Double.valueOf(0.0));
 				pair.setReference(reference);
 				pair.setStructureName("Zero");
 				pair.setTemperatureValue(temperatures[i]);

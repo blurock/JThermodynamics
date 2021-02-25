@@ -199,13 +199,13 @@ public class NancyLinearFormToMolecule {
         Atom atm = null;
         String atmS = atminfo.atomGroup.toUpperCase();
         if (atminfo.endOfCycle) {
-            Integer cycle = new Integer(atminfo.cycleNumber);
+            Integer cycle = Integer.valueOf(atminfo.cycleNumber);
             Atom connect = ringConnections.get(cycle);
             Bond bnd = new Bond(connect, prevatm);
             bnd.setFlag(CDKConstants.ISAROMATIC, previous.atomElement.aromaticBond);
             molecule.addBond(bnd);
         } else if (atminfo.bridgeToCycleAtom) {
-            Integer cycle = new Integer(atminfo.cycleNumber);
+            Integer cycle = Integer.valueOf(atminfo.cycleNumber);
         //atm = ringConnections.get(cycle);
         //node = ringInfo.get(cycle);
         } else if (singleAtom(atmS)) {
@@ -225,7 +225,7 @@ public class NancyLinearFormToMolecule {
                 molecule.addElectronContainer(electron);
             }
             if (atminfo.cycleNumber > 0) {
-                Integer cycle = new Integer(atminfo.cycleNumber);
+                Integer cycle = Integer.valueOf(atminfo.cycleNumber);
                 ringConnections.put(cycle, atm);
                 ringInfo.put(cycle, node);
             }
@@ -267,7 +267,7 @@ public class NancyLinearFormToMolecule {
         }
         if (node.mainConnection != null) {
             if (atminfo.bridgeToCycleAtom) {
-                Integer cycle = new Integer(atminfo.cycleNumber);
+                Integer cycle = Integer.valueOf(atminfo.cycleNumber);
                 atm = ringConnections.get(cycle);
                 previous = ringInfo.get(cycle);
                 addNodeToMolecule(node.mainConnection, molecule, previous, atm,true,1);

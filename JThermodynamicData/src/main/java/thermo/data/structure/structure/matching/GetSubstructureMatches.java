@@ -9,15 +9,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
-import org.openscience.cdk.isomorphism.matchers.IQueryAtomContainer;
 import org.openscience.cdk.isomorphism.mcss.RMap;
-import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 /**
  *
@@ -140,6 +136,7 @@ public class GetSubstructureMatches {
         }
         return map;
     }
+    
     private void assignRadicals(List<IAtom> radicals1, QueryMoleculeWithMetaAtoms qmol) {
         Iterator<IAtom> iter = radicals1.iterator();
         while(iter.hasNext()) {
@@ -180,7 +177,7 @@ public class GetSubstructureMatches {
             for (int j = 0; j < lst.size(); j++) {
                 RMap m = lst.get(j);
                 if (m.getId2() == atmnum) {
-                    Integer n = new Integer(m.getId1());
+                    Integer n = Integer.valueOf(m.getId1());
                     if (!set.contains(n)) {
                         set.add(n);
                     }
@@ -231,8 +228,8 @@ public class GetSubstructureMatches {
 
             if(molatm1.matches(atm1)) {
                 if(molatm2.matches(atm2)) {
-                    RMap match1 = new RMap(qmol1.getAtomNumber(molatm1),qmol2.getAtomNumber(atm1));
-                    RMap match2 = new RMap(qmol1.getAtomNumber(molatm2),qmol2.getAtomNumber(atm2));
+                    RMap match1 = new RMap(qmol1.indexOf(molatm1),qmol2.indexOf(atm1));
+                    RMap match2 = new RMap(qmol1.indexOf(molatm2),qmol2.indexOf(atm2));
                     match = new ArrayList<RMap>();
                     match.add(match1);
                     match.add(match2);
@@ -241,8 +238,8 @@ public class GetSubstructureMatches {
             } else {
                 if(molatm1.matches(atm2)) {
                     if(molatm2.matches(atm1)) {
-                    RMap match1 = new RMap(qmol1.getAtomNumber(molatm1),qmol2.getAtomNumber(atm2));
-                    RMap match2 = new RMap(qmol1.getAtomNumber(molatm2),qmol2.getAtomNumber(atm1));
+                    RMap match1 = new RMap(qmol1.indexOf(molatm1),qmol2.indexOf(atm2));
+                    RMap match2 = new RMap(qmol1.indexOf(molatm2),qmol2.indexOf(atm1));
                     match = new ArrayList<RMap>();
                     match.add(match1);
                     match.add(match2);

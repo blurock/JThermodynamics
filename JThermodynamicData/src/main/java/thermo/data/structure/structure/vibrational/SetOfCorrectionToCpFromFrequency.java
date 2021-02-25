@@ -62,7 +62,7 @@ public class SetOfCorrectionToCpFromFrequency  extends Vector<CorrectionToCpFrom
         int count = 0;
         while(tok.hasMoreElements()) {
             String tempS = tok.nextToken();
-            Double tempD = new Double(tempS);
+            Double tempD = Double.valueOf(tempS);
             temperatureValues[count] = tempD.doubleValue();
             count++;
         }

@@ -78,7 +78,7 @@ public class NASAPolynomial implements ThermodynamicInformation {
                 if (nS < count || nS == nN) {
                     throw new IOException("Formula not correct: " + formula);
                 }
-                Integer aI = new Integer(formula.substring(nS + 1, nN + 1));
+                Integer aI = Integer.valueOf(formula.substring(nS + 1, nN + 1));
                 atomcnt[index] = aI.intValue();
                 atoms[index] = formula.substring(count, nS + 1);
                 index++;

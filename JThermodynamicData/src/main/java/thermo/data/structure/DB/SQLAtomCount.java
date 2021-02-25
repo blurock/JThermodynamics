@@ -74,7 +74,7 @@ public class SQLAtomCount extends SQLStructureThermoAbstractInterface {
             AtomCount count = new AtomCount();
             count.setMolecule(elements.getString("Molecule"));
             count.setSymbolName(elements.getString("AtomSymbol"));
-            count.setAtomCount(new Integer(elements.getString("AtomCount")));
+            count.setAtomCount(Integer.valueOf(elements.getString("AtomCount")));
             vec.add(count);
             next = elements.next();
         }

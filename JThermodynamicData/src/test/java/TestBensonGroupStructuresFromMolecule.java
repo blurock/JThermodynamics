@@ -22,7 +22,6 @@ import thermo.data.structure.structure.NormalizeMoleculeFromCMLStructure;
 import thermo.data.structure.structure.StructureAsCML;
 import thermo.data.structure.structure.matching.SubstituteMetaAtom;
 import thermo.test.GenerateStructures;
-import static org.junit.Assert.*;
 
 /**
  *

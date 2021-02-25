@@ -54,7 +54,7 @@ double gasConstant;
             double opticalsymmetry = calculateOpticalSymmetry(mol, corrections);
             if (opticalsymmetry > 0.0) {
             	found = true;
-                Double optD = new Double(opticalsymmetry);
+                Double optD = Double.valueOf(opticalsymmetry);
                 String optS = referenceS + " (" + optD.toString() + ")";
                 double correction = gasConstant * Math.log(opticalsymmetry);
                 BensonThermodynamicBase benson = new BensonThermodynamicBase(opticalS, null, 0.0, correction);

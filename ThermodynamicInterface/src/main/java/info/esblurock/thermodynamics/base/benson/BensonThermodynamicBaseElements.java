@@ -10,7 +10,7 @@ public class BensonThermodynamicBaseElements implements Serializable {
 	private String ID;
 	private String reference;
 	private String thermodynamicType;
-    private HashSet<info.esblurock.thermodynamics.base.benson.HeatCapacityTemperaturePair> setOfHeatCapacities;
+    private ArrayList<HeatCapacityTemperaturePair> setOfHeatCapacities;
     private Double standardEnthalpy;
     private Double standardEntropy;
     private double dHtoCalories = 1000.0;

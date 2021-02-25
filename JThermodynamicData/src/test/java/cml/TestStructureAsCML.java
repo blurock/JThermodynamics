@@ -19,7 +19,6 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond.Order;
 import thermo.data.structure.structure.StructureAsCML;
-import static org.junit.Assert.*;
 
 /**
  *

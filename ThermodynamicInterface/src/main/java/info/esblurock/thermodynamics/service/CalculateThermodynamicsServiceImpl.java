@@ -4,9 +4,6 @@ import java.io.IOException;
 
 import info.esblurock.thermodynamics.async.CalculateThermodynamicsService;
 import info.esblurock.thermodynamics.base.benson.SetOfBensonThermodynamicBaseElements;
-import info.esblurock.thermodynamics.service.CalculateThermodynamicsAPI;
-import nu.xom.ParsingException;
-import nu.xom.ValidityException;
 
 @SuppressWarnings("serial")
 public class CalculateThermodynamicsServiceImpl extends ServerBase implements CalculateThermodynamicsService {

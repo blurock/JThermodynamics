@@ -5,7 +5,6 @@
 
 package thermo.data.structure.structure.symmetry;
 
-import thermo.data.structure.structure.StructureAsCML;
 import thermo.data.structure.structure.symmetry.utilities.DetermineSetOfSymmetryAssignments;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.exception.CDKException;

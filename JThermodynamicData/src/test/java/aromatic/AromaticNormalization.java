@@ -72,17 +72,17 @@ public class AromaticNormalization {
             StructureAsCML cmlorig = new StructureAsCML(molecule);
             System.out.println("Original Aromatic Molecule:\n" + cmlorig.getCmlStructureString());
 
-            CDKHueckelAromaticityDetector aromatic = new CDKHueckelAromaticityDetector();
+            //CDKHueckelAromaticityDetector aromatic = new CDKHueckelAromaticityDetector();
             AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(molecule);
-            boolean sromaticB = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
+            //boolean sromaticB = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
             StructureAsCML cmlstruct = new StructureAsCML(molecule);
             System.out.println("Molecule after Aromatic Detection: \n" + cmlstruct.getCmlStructureString());
 
-            CMLMetaAtomInfo metaatominfo = new CMLMetaAtomInfo();
+            //CMLMetaAtomInfo metaatominfo = new CMLMetaAtomInfo();
             ThermoSQLConnection connect = new ThermoSQLConnection();
             boolean connected = connect.connect();
             if(connected) {
-                SQLMetaAtomInfo infoSQL = new SQLMetaAtomInfo(connect);
+                //SQLMetaAtomInfo infoSQL = new SQLMetaAtomInfo(connect);
                 
                 SQLStructureAsCML structSQL = new SQLStructureAsCML(connect);
                 String carbonS = "AromaticCarbon";
@@ -143,9 +143,9 @@ public class AromaticNormalization {
             NancyLinearFormToMolecule nancyFormToMolecule = new NancyLinearFormToMolecule(connect);
             IAtomContainer molecule = nancyFormToMolecule.convert(nancy);
 
-            CDKHueckelAromaticityDetector aromatic = new CDKHueckelAromaticityDetector();
+            //CDKHueckelAromaticityDetector aromatic = new CDKHueckelAromaticityDetector();
             AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(molecule);
-            boolean sromaticB = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
+           //boolean sromaticB = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
             StructureAsCML cmlstruct = new StructureAsCML(molecule);
             System.out.println("Molecule after Aromatic Detection: \n" + cmlstruct.getCmlStructureString());
                 String carbonS = "AromaticCarbon";
@@ -158,8 +158,8 @@ public class AromaticNormalization {
 
                     //Molecule aromaticCarbon = info.getMolecule();
                     IAtomContainer mol = info.getMolecule();
-                    MetaAtomDefinition def = new MetaAtomDefinition("c/b", mol);
-                    SubstituteMetaAtom sub = new SubstituteMetaAtom(def);
+                    //MetaAtomDefinition def = new MetaAtomDefinition("c/b", mol);
+                    //SubstituteMetaAtom sub = new SubstituteMetaAtom(def);
 
                     GetSubstructureMatches matches = new GetSubstructureMatches();
                     List<List<RMap>> atomMatches = matches.getAtomMatches(molecule, mol);
@@ -177,13 +177,7 @@ public class AromaticNormalization {
                  * 
                  */
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AromaticNormalization.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AromaticNormalization.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (CDKException ex) {
-            Logger.getLogger(AromaticNormalization.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(AromaticNormalization.class.getName()).log(Level.SEVERE, null, ex);
         }
 

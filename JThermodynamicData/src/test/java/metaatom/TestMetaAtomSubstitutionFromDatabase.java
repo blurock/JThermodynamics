@@ -1,7 +1,5 @@
 package metaatom;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -11,17 +9,13 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import thermo.data.benson.DB.ThermoSQLConnection;
-import thermo.data.structure.DB.SQLStructureAsCML;
 import thermo.data.structure.linearform.NancyLinearFormToMolecule;
 import thermo.data.structure.structure.MetaAtomDefinition;
 import thermo.data.structure.structure.MetaAtomInfo;
-import thermo.data.structure.structure.SetOfMetaAtomsForSubstitution;
 import thermo.data.structure.structure.StructureAsCML;
-import thermo.data.structure.structure.SubstituteBackMetaAtomsIntoMolecule;
 import thermo.data.structure.structure.DB.SQLMetaAtomDefinitionFromMetaAtomInfo;
 import thermo.data.structure.structure.DB.SQLMetaAtomInfo;
 import thermo.data.structure.structure.matching.SubstituteMetaAtom;
-import thermo.data.structure.structure.MetaAtomInfo;
 
 
 public class TestMetaAtomSubstitutionFromDatabase {

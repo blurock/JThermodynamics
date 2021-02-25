@@ -43,9 +43,6 @@ public class SubstituteLinearStructures  {
     public IAtomContainer substitute(StructureAsCML cmlstruct) throws CDKException, IOException {
         try {
             IAtomContainer molecule1 = substitutions.substitute(cmlstruct);
-            StructureAsCML cmlstruct1 = new StructureAsCML(molecule1);
-            System.out.println(cmlstruct1);
-            //AtomContainer molecule1 = substitutions.substitute(cmlstruct1);
             condenseConnectedLinearStructures(molecule1);
 
             return molecule1;

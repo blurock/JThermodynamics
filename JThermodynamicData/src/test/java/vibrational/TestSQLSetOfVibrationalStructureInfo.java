@@ -14,7 +14,6 @@ import org.junit.Test;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.structure.structure.vibrational.DB.SQLSetOfVibrationalStructureInfo;
 import thermo.data.structure.structure.vibrational.SetOfVibrationalStructureInfo;
-import static org.junit.Assert.*;
 
 /**
  *

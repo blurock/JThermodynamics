@@ -6,7 +6,6 @@
 package disassociation;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -19,7 +18,6 @@ import org.junit.Test;
 import org.openscience.cdk.exception.CDKException;
 import thermo.build.ReadDisassociationData;
 import thermo.data.benson.DB.ThermoSQLConnection;
-import static org.junit.Assert.*;
 import thermo.exception.ThermodynamicException;
 
 /**

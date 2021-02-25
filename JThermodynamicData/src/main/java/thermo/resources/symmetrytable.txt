@@ -30,8 +30,8 @@ ExternalSymmetry-C(B1)(B2)(B2)(B2)-L	CarbonAtom	ExternalSymmetry
 1: a3 a4 a5 : N
 Symmetry: 3
 ExternalSymmetry-C(B1)(B1)(B2)(B2)	CarbonAtom	ExternalSymmetry
-0: a2 a3 :X
-1: a4 a5 : X
+0: a2 a4 : X
+1: a3 a5 : X
 Symmetry: 2
 ExternalSymmetry-(B1)(B2)C=C(B1)(B2) CarbonCarbonDoubleBond ExternalSymmetry
 0: a1 a5 : X
@@ -79,10 +79,10 @@ Symmetry: 6
 ExternalSymmetry-SingleBond-(B1)(B1)(B1)CC(B2)(B2)(B2) GeneralCarbonSingleBond ExternalSymmetry
 0: a1 a2 a3 : X
 1: a5 a6 a7 : X
-Symmetry: 
-ExternalSymmetry-SingleBond-(B1)(B2)(B2)CC(B1)(B2)(B2) GeneralCarbonSingleBond ExternalSymmetry
-0: a1 a5: X
-0: a2 a3 a6 a7: X
+Symmetry: 3
+ExternalSymmetry-SingleBond-(B1)(B2)(B2)CC(B1)(B1)(B2)(B2) GeneralCarbonSingleBond ExternalSymmetry
+0: a1 a2 a5 a6: X
+0: a3 a7: X
 Symmetry: 2
 ExternalSymmetry-SingleBond-(B1)(B2)(B3)CC(B1)(B2)(B3) GeneralCarbonSingleBond ExternalSymmetry
 0: a1 a5 : X

@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.inchi.InChIGeneratorFactory;
 import org.openscience.cdk.inchi.InChIToStructure;
@@ -169,7 +168,7 @@ try {
      * @throws ThermodynamicComputeException
      */
     public ThermodynamicInformation computeThermodynamics(String nancy) throws ThermodynamicComputeException {
-        ThermodynamicInformation thermo = null;
+        //ThermodynamicInformation thermo = null;
         SetOfBensonThermodynamicBase thermodynamics = new SetOfBensonThermodynamicBase();
         return computeThermodynamics(nancy,thermodynamics);
         }
@@ -188,14 +187,14 @@ try {
         ThermodynamicInformation fullthermo = null;
         try {
             molecule = nancyFormToMolecule.convert(nancy);
-            CDKHueckelAromaticityDetector aromatic = new CDKHueckelAromaticityDetector();
+            //CDKHueckelAromaticityDetector aromatic = new CDKHueckelAromaticityDetector();
             AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(molecule);
-            boolean sromaticB = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
+           // boolean sromaticB = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
             StructureAsCML cmlstruct = new StructureAsCML(molecule);
             System.out.println("computeThermodynamics: " + nancy);
             System.out.println(cmlstruct.toString());
             substitute.substitute(molecule);
-            StructureAsCML cmlstruct2 = new StructureAsCML(molecule);
+            //StructureAsCML cmlstruct2 = new StructureAsCML(molecule);
             fullthermo = computeThermodynamics(molecule,thermodynamics);
         } catch (CDKException ex) {
             Logger.getLogger(ComputeThermodynamicsFromMolecule.class.getName()).log(Level.SEVERE, null, ex);
@@ -264,7 +263,7 @@ try {
     public ThermodynamicInformation computeThermodynamics(IAtomContainer moleculetocompute, SetOfBensonThermodynamicBase thermodynamics) throws ThermodynamicComputeException {
         BensonThermodynamicBase combinedThermodynamics = null;
         try {
-            CDKHueckelAromaticityDetector aromatic = new CDKHueckelAromaticityDetector();
+            //CDKHueckelAromaticityDetector aromatic = new CDKHueckelAromaticityDetector();
 
             AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(moleculetocompute);
             StructureAsCML cmlstruct = new StructureAsCML(moleculetocompute);
@@ -322,7 +321,6 @@ try {
 			e.printStackTrace();
 		}
     	IAtomContainer substituted = metaAtomSubstitutions.substitute(mol);
-        StructureAsCML cmlstruct = new StructureAsCML(substituted);
         SetOfBensonGroupStructures bensonset = bensonGroups.deriveBensonGroupStructures(substituted);
         sqlthermodynamics.setUpFromSetOfBensonGroupStructures(bensonset,thermo);
         symmetryCorrections.calculate(molorig, thermo);
@@ -390,8 +388,8 @@ try {
     }
     BensonThermodynamicBase computeSpinContribution() {
         double spin = gasConstant * Math.log1p(1.0);
-        Double ln2 = Math.log1p(1.0);
-        Double spinD = new Double(spin);
+        //Double ln2 = Math.log1p(1.0);
+        Double spinD = Double.valueOf(spin);
         String spinS = "Spin Contribution: Rln(2) = (" + gasConstant + ")*(" + Math.log1p(1.0) + ")";
         BensonThermodynamicBase spinthermo = new BensonThermodynamicBase(spinS, null, 0.0, spinD);
         spinthermo.setReference(spinS);
@@ -403,7 +401,7 @@ try {
 
     private BensonThermodynamicBase computeHydrogenRadicalContribution() {
         double hrad = -52.1;
-        Double hradD = new Double(hrad);
+        Double hradD = Double.valueOf(hrad);
         String hradS = "Hydrogen Radical";
         BensonThermodynamicBase hradical = new BensonThermodynamicBase(hradS, null, hradD, 0.0);
         hradical.setReference(hradS);

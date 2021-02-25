@@ -18,7 +18,6 @@ import org.junit.Test;
 import thermo.data.structure.structure.symmetry.CML.CMLListOfSymmetryPairs;
 import thermo.data.structure.structure.symmetry.ListOfSymmetryPairs;
 import thermo.data.structure.structure.symmetry.SymmetryPair;
-import static org.junit.Assert.*;
 
 /**
  *

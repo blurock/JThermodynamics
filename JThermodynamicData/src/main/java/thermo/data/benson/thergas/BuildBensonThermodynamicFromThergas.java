@@ -8,7 +8,6 @@ import jThergas.data.group.JThergasGroupElement;
 import jThergas.data.group.JThergasThermoStructureGroupPoint;
 import java.sql.SQLException;
 import java.util.StringTokenizer;
-import java.util.Vector;
 import jThergas.data.structure.JThergasStructureData;
 import jThergas.data.thermo.JThergasThermoData;
 
@@ -127,8 +126,8 @@ public class BuildBensonThermodynamicFromThergas {
         thermo.setID(name);
         JThergasThermoData data = thergasgrp.getThermodynamics();
         double cp[] = data.getCpValues();
-        Double enthalpy = new Double(data.getStandardEnthalpy());
-        Double entropy = new Double(data.getStandardEntropy());
+        Double enthalpy = Double.valueOf(data.getStandardEnthalpy());
+        Double entropy = Double.valueOf(data.getStandardEntropy());
 
         thermo.setReference(reference);
         thermo.setStandardEnthalpy(enthalpy);

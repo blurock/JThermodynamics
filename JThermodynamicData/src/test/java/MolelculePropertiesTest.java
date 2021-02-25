@@ -14,7 +14,6 @@ import org.openscience.cdk.Atom;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.RingSet;
-import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.exception.NoSuchAtomException;
 //import org.openscience.cdk.tools.ValencyChecker;
 //import org.openscience.cdk.atomtype.HybridizationMatcher;

@@ -5,13 +5,10 @@
 
 package thermo.data.structure.structure.matching;
 
-import org.openscience.cdk.Atom;
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
-import org.openscience.cdk.isomorphism.matchers.IQueryBond;
 import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
 
 /**
@@ -19,6 +16,7 @@ import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
  *
  * @author edwardblurock
  */
+@SuppressWarnings("deprecation")
 public class QueryBondWithMetaAtoms extends OrderQueryBond {
 
 
@@ -45,7 +43,7 @@ public class QueryBondWithMetaAtoms extends OrderQueryBond {
         //System.out.println("(" + this.getOrder() + "," + ibond.getOrder() + ") = " + ans);
         if(!ans) {
             QueryAtomWithMetaAtoms atm1a = (QueryAtomWithMetaAtoms) ibond.getAtom(0);
-            QueryAtomWithMetaAtoms atm2a = (QueryAtomWithMetaAtoms) ibond.getAtom(1);
+            //QueryAtomWithMetaAtoms atm2a = (QueryAtomWithMetaAtoms) ibond.getAtom(1);
             QueryAtomWithMetaAtoms atm1b = (QueryAtomWithMetaAtoms) this.getAtom(0);
             QueryAtomWithMetaAtoms atm2b = (QueryAtomWithMetaAtoms) this.getAtom(1);
         

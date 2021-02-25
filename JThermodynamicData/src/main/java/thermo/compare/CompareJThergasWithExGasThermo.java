@@ -11,16 +11,11 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.activation.FileTypeMap;
 import thermo.compute.CompareThermodynamicInformationSets;
 import thermo.compute.ComputeThermodynamicsFromMolecule;
 import thermo.compute.SetOfThermodynamicDifferences;
-import thermo.data.benson.BensonThermodynamicBase;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.benson.NASAPolynomial;
-import thermo.data.benson.NASAPolynomialFromBenson;
 import thermo.data.benson.SetOfThermodynamicInformation;
 import thermo.data.benson.ThermodynamicInformation;
 import thermo.exception.ThermodynamicComputeException;
@@ -113,7 +108,7 @@ public class CompareJThergasWithExGasThermo {
         double[] coeffs = new double[7];
         for(int i=0;i<7;i++) {
             String cS = tok.nextToken();
-            Double cD = new Double(cS);
+            Double cD = Double.valueOf(cS);
             coeffs[i] = cD.doubleValue();
         }
         return coeffs;

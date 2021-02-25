@@ -36,7 +36,7 @@ public class CalculateDisassociationEnergy {
         corrections.add(thermo);
     }
     public ThermodynamicInformation calculate(IAtomContainer mol) throws SQLException, CDKException {
-        Double entropyD = new Double(0.0);
+        Double entropyD = Double.valueOf(0.0);
 
         DisassociationEnergy energy = getDisassociationEnergyForMolecule(mol);
         Double energyD = energy.getDisassociationEnergy();
@@ -54,7 +54,9 @@ public class CalculateDisassociationEnergy {
        DisassociationEnergy energy = null;
        FindSubstructure find = new FindSubstructure(mol, connect);
        StructureAsCML cml = new StructureAsCML(mol);
+       /*
        System.out.println(cml.toString());
+       */
        SQLDisassociationEnergy sqldiss = new SQLDisassociationEnergy(connect);
        List<String> names = sqldiss.listOfDisassociationStructures();
        String name = find.findLargestSubstructure(names);

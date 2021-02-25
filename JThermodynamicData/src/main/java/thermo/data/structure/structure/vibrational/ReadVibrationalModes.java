@@ -56,8 +56,8 @@ public class ReadVibrationalModes {
             String frequencyS     = tok.nextToken();
             String symmetryS      = tok.nextToken();
 
-            Double frequencyD = new Double(frequencyS);
-            Double symmetryD  = new Double(symmetryS);
+            Double frequencyD = Double.valueOf(frequencyS);
+            Double symmetryD  = Double.valueOf(symmetryS);
 
             VibrationalStructureInfo info = new VibrationalStructureInfo(elementName,structureName,
                     frequencyD.doubleValue(),symmetryD.doubleValue());

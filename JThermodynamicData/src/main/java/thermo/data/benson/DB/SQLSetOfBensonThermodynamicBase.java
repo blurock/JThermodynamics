@@ -7,7 +7,6 @@ package thermo.data.benson.DB;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import thermo.data.benson.BensonGroupStructure;

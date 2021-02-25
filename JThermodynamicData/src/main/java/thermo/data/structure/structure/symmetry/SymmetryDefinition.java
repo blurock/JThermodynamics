@@ -23,7 +23,7 @@ public class SymmetryDefinition extends MetaAtomDefinition {
             StructureAsCML structure, 
             List<SymmetryPair> pairlist) throws CDKException, ClassNotFoundException, IOException {
         super(symname, structure);
-        internalSymmetryFactor = new Double(1.0);
+        internalSymmetryFactor = Double.valueOf(1.0);
         table = new SetOfSymmetryAssignments(pairlist,getMolecule());
     }
     public SymmetryDefinition(MetaAtomDefinition info,
@@ -49,7 +49,7 @@ public class SymmetryDefinition extends MetaAtomDefinition {
     public SymmetryDefinition(SymmetryDefinition symmetry) {
         super(symmetry);
         table = new SetOfSymmetryAssignments(symmetry.table);
-        internalSymmetryFactor = new Double(symmetry.internalSymmetryFactor);
+        internalSymmetryFactor = Double.valueOf(symmetry.internalSymmetryFactor);
     }
     /**
      * 

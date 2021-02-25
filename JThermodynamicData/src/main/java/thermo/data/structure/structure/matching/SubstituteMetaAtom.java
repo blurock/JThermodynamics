@@ -110,7 +110,7 @@ public class SubstituteMetaAtom {
             RMap pair = i.next();
             Integer i2I = pair.getId2();
             if(speclist.contains(i2I)) {
-                molmatches.add(new Integer(pair.getId1()));
+                molmatches.add(Integer.valueOf(pair.getId1()));
             }
         }
         return molmatches;

@@ -135,13 +135,13 @@ public class JThergasThermoData {
         DecimalFormat dec8 = new DecimalFormat("####.000",new DecimalFormatSymbols(Locale.US));
         
         buf.append(" ");
-        buf.append(String.format("%2d", new Integer(getTableNumber())));
-        buf.append(String.format("%4d", new Integer(getGroupNumber())));
-        buf.append(String.format("%2d", new Integer(2)));
+        buf.append(String.format("%2d", Integer.valueOf(getTableNumber())));
+        buf.append(String.format("%4d", Integer.valueOf(getGroupNumber())));
+        buf.append(String.format("%2d", Integer.valueOf(2)));
         buf.append(" ");
-        buf.append(String.format("%2d", new Integer(getEnthalpyReference())));
+        buf.append(String.format("%2d", Integer.valueOf(getEnthalpyReference())));
         buf.append(String.format("%8s",dec8.format(getStandardEnthalpy())));
-        buf.append(String.format("%2d", new Integer(getEntropyReference())));
+        buf.append(String.format("%2d", Integer.valueOf(getEntropyReference())));
         buf.append(String.format("%8s",dec8.format(getStandardEntropy())));
         buf.append(String.format("%2d",getHeatCapacityReference1()));
         for(int i=0;i<7;i++) {

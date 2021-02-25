@@ -18,7 +18,8 @@ import java.util.StringTokenizer;
  * @author edwardblurock
  */
 public class NumericColumn extends ArrayList<Double> {
-    /** empty constructor
+	private static final long serialVersionUID = 1L;
+	/** empty constructor
      *
      */
     public NumericColumn() {
@@ -35,7 +36,7 @@ public class NumericColumn extends ArrayList<Double> {
      * @param value the double value to add to the end of the column
      */
     public void addValue(double value) {
-        this.add(new Double(value));
+        this.add(Double.valueOf(value));
     }
     /** Add a set of double values to a column
      *
@@ -54,7 +55,7 @@ public class NumericColumn extends ArrayList<Double> {
         StringTokenizer tok = new StringTokenizer(line);
         while(tok.hasMoreTokens()) {
             String numS = tok.nextToken();
-            Double numD = new Double(numS);
+            Double numD = Double.valueOf(numS);
             this.add(numD);
         }
     }
@@ -66,7 +67,7 @@ public class NumericColumn extends ArrayList<Double> {
      */
     public void modify(double value, int i) throws Exception {
         if(i < this.size() && i > 0) {
-            Double valueD = new Double(value);
+            //Double valueD = Double.valueOf(value);
             this.add(i, value);
         } else {
             String errorS = "Adding to vector beyond dimensions: " + i + " > " + this.size();

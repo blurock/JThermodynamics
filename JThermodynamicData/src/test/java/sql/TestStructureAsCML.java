@@ -19,7 +19,6 @@ import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.structure.DB.SQLStructureAsCML;
 import thermo.data.structure.structure.StructureAsCML;
 import thermo.test.GenerateStructures;
-import static org.junit.Assert.*;
 
 /**
  *

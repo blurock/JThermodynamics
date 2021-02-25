@@ -10,15 +10,12 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import jThergas.data.group.JThergasThermoStructureGroupPoint;
-import jThergas.data.structure.JThergasStructureData;
-import thermo.compute.ComputeThermodynamicsFromMolecule;
 import thermo.data.benson.BensonGroupStructure;
 import thermo.data.benson.BensonGroupStructuresFromMolecule;
 import thermo.data.benson.BensonThermodynamicBase;
 import thermo.data.benson.SetOfBensonGroupStructures;
 import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.benson.StandardThergasBensonThermoType;
-import thermo.data.benson.ThermodynamicInformation;
 import thermo.data.benson.DB.SQLBensonThermodynamicBase;
 import thermo.data.benson.DB.SQLSetOfBensonThermodynamicBase;
 import thermo.data.benson.DB.ThermoSQLConnection;

@@ -100,7 +100,7 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
         Iterator<String> names = atomNames.iterator();
         while (names.hasNext()) {
             String name = names.next();
-            Integer zero = new Integer(0);
+            Integer zero = Integer.valueOf(0);
             this.put(name, zero);
         }
     }

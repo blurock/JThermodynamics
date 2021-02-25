@@ -70,7 +70,6 @@ public class CalculateExternalSymmetryCorrection extends CalculateSymmetryCorrec
 			StructureAsCML cmlstruct = new StructureAsCML(mol);
 			IAtomContainer newmolecule = substitutions.substitute(cmlstruct);
 			substituteBack.substitute(newmolecule);
-			StructureAsCML cmlnew = new StructureAsCML(newmolecule);
 			determineTotal.setSetOfCorrections(corrections);
 			totalsymmetry = determineTotal.determineSymmetry(newmolecule,corrections);
 		} catch (IOException ex) {

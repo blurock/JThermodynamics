@@ -7,7 +7,6 @@ package cml;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import nu.xom.ParsingException;
@@ -69,10 +68,10 @@ public class TestCMLBensonThermodynamicBase {
 
         BensonThermodynamicBase base1
                 = new BensonThermodynamicBase(name1,cp1,
-                             new Double(10.0), new Double(20.0));
+                		Double.valueOf(10.0), Double.valueOf(20.0));
         BensonThermodynamicBase base2
                 = new BensonThermodynamicBase(name2,cp2,
-                             new Double(20.0), new Double(40.0));
+                		Double.valueOf(20.0), Double.valueOf(40.0));
         SetOfBensonThermodynamicBase set = new SetOfBensonThermodynamicBase();
         set.add(base1);
         set.add(base2);

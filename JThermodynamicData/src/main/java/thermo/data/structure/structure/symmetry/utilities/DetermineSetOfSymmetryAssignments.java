@@ -14,7 +14,6 @@ import java.util.Vector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
-import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.mcss.RMap;
 import thermo.data.structure.structure.StructureAsCML;
 import thermo.data.structure.structure.matching.GetSubstructureMatches;
@@ -28,6 +27,9 @@ import thermo.data.structure.utilities.MoleculeUtilities;
  * @author blurock
  */
 public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
+	private static final long serialVersionUID = 1L;
+
+	boolean debug = false;
 
     GetSubstructureMatches matches = new GetSubstructureMatches();
     NoStructureOverlap overlap = new NoStructureOverlap();
@@ -68,7 +70,9 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
      */
     public SetOfSymmetryMatches findIfMatchInStructures(IAtomContainer structure) throws CDKException {
         List<SetOfSymmetryAssignments> setofassignsets = findAllSetsOfSymmetryAssignments(structure);
-        //System.out.println("findIfMatchInStructures: size()=" + setofassignsets.size());
+        if(debug) {
+        	System.out.println("findIfMatchInStructures: size()=" + setofassignsets.size());
+        }
         return findIfMatchInStructures(setofassignsets);
     }
 
@@ -78,14 +82,19 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
         while (iset.hasNext()) {
             SetOfSymmetryAssignments assignments = iset.next();
             if (assignments != null) {
-                //System.out.println("================ Symmetries =======================");
-                //System.out.println(assignments.toString());
-                //System.out.println("================ Symmetries =======================");
+            	if(debug) {
+            		System.out.println("================ Symmetries =======================");
+            		System.out.println(assignments.toString());
+            		System.out.println("================ Symmetries =======================");
+            	}
                 boolean ans = table.sameSymmetry(assignments);
-                //System.out.println("findIfMatchInStructures: same symmetry=" + ans);
-                
+                if(debug) {
+                	System.out.println("findIfMatchInStructures: same symmetry=" + ans);
+                }
                 if (ans) {
-                	//System.out.println("Match: \n" + assignments.toString());
+                	if(debug) {
+                		System.out.println("Match: \n" + assignments.toString());
+                	}
                     SymmetryMatch symmatch = new SymmetryMatch(assignments);
                     setofmatches.add(symmatch);
                 }
@@ -187,9 +196,7 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
      *
      */
     protected SetOfSymmetryAssignments findSymmetryAssignments(IAtomContainer structure, List<RMap> set) throws CDKException {
-        boolean ans = false;
         //System.out.println("===========================findSymmetryAssignments=============================================================");
-        Hashtable<String, String> matched = null;
         SetOfSymmetryAssignments assignments = null;
         Hashtable<String, IAtomContainer> connections = findConnectedSubstructures(structure, set);
         if(connections != null) {
@@ -360,7 +367,7 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
  */
     protected Hashtable<String, IAtomContainer> findConnectedSubstructures(IAtomContainer structure, List<RMap> set) {
         Hashtable<String, IAtomContainer> connections = new Hashtable<String, IAtomContainer>();
-        int count = 0;
+        //int count = 0;
         Iterator<RMap> i = set.iterator();
         boolean noloop = true;
         while (i.hasNext() && noloop) {
@@ -374,7 +381,7 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
                 IAtomContainer substructure =
                         isolate.IsolateConnectedStructure(structure, matchedspecified, matchedunspecified);
                 if(substructure != null) {
-                    Integer countI = new Integer(count);
+                    //Integer countI = Integer.valueOf(count);
                     //System.out.println("ID: " + matchedunspecified.getID() + "\t Symbol: " + matchedunspecified.getSymbol());
                     //System.out.println("Substructure: A=" + substructure.getAtomCount() + " B=" + substructure.getBondCount());
                     if (substructure == null || matchedunspecified.getID() == null) {

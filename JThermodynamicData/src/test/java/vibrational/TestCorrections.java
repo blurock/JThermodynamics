@@ -6,14 +6,10 @@
 package vibrational;
 
 import java.text.DecimalFormat;
-import java.text.FieldPosition;
-import java.text.NumberFormat;
-import java.text.ParsePosition;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import thermo.data.structure.structure.vibrational.FrequencyCorrection;
-import static org.junit.Assert.*;
 
 /**
  *

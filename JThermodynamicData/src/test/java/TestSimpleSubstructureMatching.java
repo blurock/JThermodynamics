@@ -12,15 +12,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openscience.cdk.Atom;
-import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
-import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 import org.openscience.cdk.isomorphism.mcss.RMap;
 import thermo.data.structure.structure.matching.GetSubstructureMatches;
-import org.openscience.cdk.CDKConstants;
 import thermo.data.structure.structure.matching.QueryAtomWithMetaAtoms;
 /**
  *

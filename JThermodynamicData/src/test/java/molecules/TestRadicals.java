@@ -15,19 +15,15 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IElectronContainer;
-import org.openscience.cdk.interfaces.ISingleElectron;
 import org.openscience.cdk.isomorphism.mcss.RMap;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.structure.linearform.NancyLinearFormToGeneralStructure;
 import thermo.data.structure.structure.StructureAsCML;
 import thermo.data.structure.structure.matching.GetSubstructureMatches;
 import thermo.data.structure.utilities.MoleculeUtilities;
-import static org.junit.Assert.*;
 
 /**
  *

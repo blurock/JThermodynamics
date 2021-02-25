@@ -115,7 +115,7 @@ public class BuildSymmetryDefinition {
                 throw new CDKException("Expecting 'Symmetry factor but got '" + group + "'");
             }
         }
-        SymmetryDefinition symmdef = new SymmetryDefinition(nameOfSymmetry, cmlstruct, pairs, new Double(symnumberS));
+        SymmetryDefinition symmdef = new SymmetryDefinition(nameOfSymmetry, cmlstruct, pairs, Double.valueOf(symnumberS));
         
         symmdef.setMetaAtomType(symmetryType);
         if(storedata) {

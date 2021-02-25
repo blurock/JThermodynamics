@@ -70,8 +70,8 @@ public class TestNancyLinearForm {
                     ISingleElectron ele = iter.next();
                     IAtom atm = ele.getAtom();
                     System.out.println(atm.getID());
-                    System.out.println(molecule.getAtomNumber(atm));
-                    System.out.println(molecule.getAtomNumber(atm));
+                    System.out.println(molecule.indexOf(atm));
+                    System.out.println(molecule.indexOf(atm));
                     molecule.removeElectronContainer(ele);
                 }
                 StructureAsCML cmlstruct = new StructureAsCML(molecule);

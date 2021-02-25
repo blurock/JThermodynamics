@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import nu.xom.ParsingException;
-import nu.xom.ValidityException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,7 +16,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import thermo.data.structure.structure.CML.CMLMetaAtomInfo;
 import thermo.data.structure.structure.MetaAtomInfo;
-import static org.junit.Assert.*;
 
 /**
  *

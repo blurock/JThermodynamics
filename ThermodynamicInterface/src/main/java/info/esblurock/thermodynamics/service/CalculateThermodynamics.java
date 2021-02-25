@@ -1,7 +1,6 @@
 package info.esblurock.thermodynamics.service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +14,6 @@ import thermo.compute.ComputeThermodynamicsFromMolecule;
 import thermo.data.benson.BensonThermodynamicBase;
 import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.benson.ThermodynamicInformation;
-import thermo.data.benson.CML.CMLBensonThermodynamicBase;
 import thermo.data.benson.CML.CMLSetOfBensonThermodynamicBase;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.structure.structure.NormailizeStructureFromSmiles;

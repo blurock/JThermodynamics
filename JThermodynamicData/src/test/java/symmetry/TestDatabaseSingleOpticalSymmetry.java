@@ -1,7 +1,5 @@
 package symmetry;
 
-import static org.junit.Assert.*;
-
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -14,7 +12,6 @@ import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.structure.linearform.NancyLinearFormToMolecule;
 import thermo.data.structure.structure.StructureAsCML;
 import thermo.data.structure.structure.symmetry.DetermineSymmetryFromSingleDefinition;
-import thermo.data.structure.structure.symmetry.DetermineTotalOpticalSymmetry;
 import thermo.data.structure.structure.symmetry.SymmetryDefinition;
 import thermo.data.structure.structure.symmetry.DB.SQLSetOfSymmetryDefinitions;
 import thermo.data.structure.structure.symmetry.DB.SQLSymmetryDefinition;

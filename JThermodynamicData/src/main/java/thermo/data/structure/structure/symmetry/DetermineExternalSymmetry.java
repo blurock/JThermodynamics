@@ -5,7 +5,6 @@
 package thermo.data.structure.structure.symmetry;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.openscience.cdk.Atom;
@@ -14,7 +13,6 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
-import org.openscience.cdk.interfaces.IAtomContainer;
 import thermo.data.benson.BensonThermodynamicBase;
 import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.structure.utilities.MoleculeUtilities;
@@ -25,7 +23,9 @@ import thermo.properties.SProperties;
  * @author edwardblurock
  */
 public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
-
+	
+	boolean debug = false;
+	
     private int highestSymmetry = 12;
     String dontCheck = "X";
     String noCheckS = "N";
@@ -66,7 +66,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
 
     @Override
     public int determineSymmetry(IAtomContainer structure, SetOfBensonThermodynamicBase corrections) throws CDKException {
-
+    	setOfCorrections = new SetOfBensonThermodynamicBase();
         initializeSymmetry();
         
         double topsymmetry = 1.0;
@@ -78,17 +78,36 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
                 int defsymmetry = defintion.getInternalSymmetryFactor().intValue();
                 if (defsymmetry == currentSymmetry) {
                     if (topsymmetry < defintion.getInternalSymmetryFactor().doubleValue()) {
+                    	if(debug) {
+                    		System.out.println("Determine Symmetry: def=" + defintion.getMetaAtomName());
+                    	}
                         int symmetry = determineSymmetry.determineSymmetry(defintion, structure);
+                        if(debug) {
+                        	System.out.println("Determine Symmetry: ans= " + symmetry);
+                        }
                          combineInSymmetryNumber(symmetry);
                         topsymmetry = symmetryValue;
+                        if(debug) {
+                        	System.out.println("Determine Symmetry: topsymmetry= " + symmetry);
+                        	System.out.println(corrections.toString());
+                        }
                     } else {
-                        //System.out.println("Symmetry Skipped, cannot yield higher symmetry");
+                    	if(debug) {
+                    		System.out.println("Symmetry Skipped, cannot yield higher symmetry");
+                    	}
                     }
                 }
             }
-            //System.out.println("Top Symmetry: " + topsymmetry);
+            if(debug) {
+            	System.out.println("Top Symmetry: " + topsymmetry);
+            }
             currentSymmetry--;
         }
+        if(debug) {
+        	System.out.println("setOfCorrections: \n" + setOfCorrections.toString());
+        	System.out.println("corrections: \n" + corrections.toString());
+        }
+        corrections.add(setOfCorrections);
         return getSymmetryValue();
     }
  /*  combineInSymmetryNumber
@@ -97,18 +116,25 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
  *
  */
     public void combineInSymmetryNumber(int symmetry) {
+    	if(debug) {
+    		System.out.println("combineInSymmetryNumber: " + symmetry);
+    	}
         Iterator<SymmetryMatch> iter = determineSymmetry.getSymmetryMatches().iterator();
         while (iter.hasNext()) {
             SymmetryMatch match = iter.next();
-            //System.out.println("Find Symmetry of " + match.toString());
+            if(debug) {
+            	System.out.println("Find Symmetry of " + match.toString());
+            }
             try {
                 double symmD = findSymmetryContribution(match);
                 if (symmetryValue < symmD) {
                     symmetryValue = (int) symmD;
                 } else {
-                    //System.out.println("Found Symmetry: " + symmD + "\t but less than current top " + symmetryValue);
+                	if(debug) {
+                		System.out.println("Found Symmetry: " + symmD + "\t but less than current top " + symmetryValue);
+                	}
                 }
-                //symmetryValue *= symmD;
+                symmetryValue *= symmD;
             } catch (CDKException ex) {
                 Logger.getLogger(DetermineExternalSymmetry.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -138,11 +164,14 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
  *         all tests must be true not to fail (i.e. notdone remains true).
  */
     private double findSymmetryContribution(SymmetryMatch match) throws CDKException {
+    	if(debug) {
+    		System.out.println("findSymmetryContribution");
+    	}
         double symmD = 1.0;
         SetOfSymmetryAssignments assignments = match.getFromMolecule();
         Iterator<String> iter = assignments.keySet().iterator();
         //System.out.println("\tFind symmetry of Connections for " + match.toString());
-        List<SymmetryPair> pairs = this.determineSymmetry.symmetryDefinition.extractListOfSymmetryPairs();
+        //List<SymmetryPair> pairs = this.determineSymmetry.symmetryDefinition.extractListOfSymmetryPairs();
         boolean notdone = true;
         while (iter.hasNext() && notdone) {
             SymmetryAssignment assignment = assignments.get(iter.next());
@@ -168,19 +197,37 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
             }
 
         }
+        if(debug) {
+        	System.out.println("findSymmetryContribution notdone=" + notdone);
+        }
         if(notdone) {
             symmD = this.determineSymmetry.symmetryDefinition.getInternalSymmetryFactor();
         }
+        if(debug) {
+        	System.out.println("findSymmetryContribution symmD=" + symmD);
+        }
         if (symmD != 1.0) {
             String symname = this.determineSymmetry.symmetryDefinition.getMetaAtomName();
+            if(debug) {
+            	System.out.println("findSymmetryContribution symname=" + symname);
+            }
             double correction = -gasConstant * Math.log(symmD);
+            if(debug) {
+            	System.out.println("findSymmetryContribution correction=" + correction);
+            }
             if (setOfCorrections != null) {
                 BensonThermodynamicBase benson = new BensonThermodynamicBase(referenceS, null, 0.0, correction);
+                symname = symname + "(" + symmD + ")";
                 benson.setReference(symname);
+                if(debug) {
+                	System.out.println(benson.toString());
+                }
                 setOfCorrections.add(benson);
             }
         } else {
-            //System.out.println("Did not satisfy secondary requirement");
+        	if(debug) {
+        		System.out.println("Did not satisfy secondary requirement");
+        	}
         }
 
         return symmD;
@@ -210,7 +257,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
         //setOfCorrections = set;
         return symm;
     }
-
+/*
     private String findConnectionSymmetry(SymmetryAssignment assignment, List<SymmetryPair> pairs) {
         String connectedsymmetry = "N";
         String name = assignment.getGroupName();
@@ -225,4 +272,5 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
         }
         return connectedsymmetry;
     }
+    */
 }

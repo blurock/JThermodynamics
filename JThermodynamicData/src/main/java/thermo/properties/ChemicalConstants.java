@@ -20,7 +20,7 @@ public class ChemicalConstants extends SProperties {
         if(gasconstantS == null) {
             gasconstantS = "1.98587755";
         }
-        Double gasconstantD = new Double(gasconstantS.trim());
+        Double gasconstantD = Double.valueOf(gasconstantS.trim());
         return gasconstantD.doubleValue();
     }
 }
