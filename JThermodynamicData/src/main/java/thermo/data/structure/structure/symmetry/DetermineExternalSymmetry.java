@@ -4,6 +4,7 @@
  */
 package thermo.data.structure.structure.symmetry;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +35,8 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
     double gasConstant;
     String referenceS = "External Symmetry Correction";
     private final DetermineExternalSymmetry determineSecondary;
+    
+    SymmetryMatch finalmatch;
 
     public SetOfBensonThermodynamicBase getSetOfCorrections() {
         return setOfCorrections;
@@ -57,6 +60,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
         } else {
             determineSecondary = this;
         }
+        finalmatch = null;
     }
 
     @Override
@@ -68,16 +72,19 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
     public int determineSymmetry(IAtomContainer structure, SetOfBensonThermodynamicBase corrections) throws CDKException {
     	setOfCorrections = new SetOfBensonThermodynamicBase();
         initializeSymmetry();
-        
-        double topsymmetry = 1.0;
+        if(debug) {
+        System.out.println("DetermineExternalSymmetry.determineSymmetry");
+        System.out.println(MoleculeUtilities.toString(structure));
+        }
+        //double topsymmetry = 1.0;
+        boolean notdone = true;
         int currentSymmetry = highestSymmetry;
-        while (currentSymmetry > 0 && topsymmetry == 1.0) {
+        while (currentSymmetry > 0 && notdone) {
             Iterator<SymmetryDefinition> idef = symmetryDefinitions.iterator();
-            while (idef.hasNext()) {
+            while (idef.hasNext() && notdone) {
                 SymmetryDefinition defintion = idef.next();
                 int defsymmetry = defintion.getInternalSymmetryFactor().intValue();
                 if (defsymmetry == currentSymmetry) {
-                    if (topsymmetry < defintion.getInternalSymmetryFactor().doubleValue()) {
                     	if(debug) {
                     		System.out.println("Determine Symmetry: def=" + defintion.getMetaAtomName());
                     	}
@@ -85,61 +92,78 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
                         if(debug) {
                         	System.out.println("Determine Symmetry: ans= " + symmetry);
                         }
-                         combineInSymmetryNumber(symmetry);
-                        topsymmetry = symmetryValue;
+                        combineInSymmetryNumber(symmetry);
+                        notdone = finalmatch == null;
                         if(debug) {
-                        	System.out.println("Determine Symmetry: topsymmetry= " + symmetry);
-                        	System.out.println(corrections.toString());
+                        if(notdone) {
+                        	System.out.println("determineSymmetry Symmetry match NOT found");                        	
+                        } else {
+                        	System.out.println("determineSymmetry Symmetry match found");
                         }
-                    } else {
-                    	if(debug) {
-                    		System.out.println("Symmetry Skipped, cannot yield higher symmetry");
-                    	}
-                    }
+                        }
                 }
             }
-            if(debug) {
-            	System.out.println("Top Symmetry: " + topsymmetry);
-            }
             currentSymmetry--;
+        }
+        
+        if(finalmatch != null) {
+            double symmD = this.determineSymmetry.symmetryDefinition.getInternalSymmetryFactor();
+            double correction = -gasConstant * Math.log(symmD);
+            String symname = this.determineSymmetry.symmetryDefinition.getMetaAtomName();
+            BensonThermodynamicBase benson = new BensonThermodynamicBase(referenceS, null, 0.0, correction);
+            symname = symname + " (" + symmD + ")";
+            benson.setReference(symname);
+            corrections.add(benson);
+            symmetryValue = (int) symmD;
         }
         if(debug) {
         	System.out.println("setOfCorrections: \n" + setOfCorrections.toString());
         	System.out.println("corrections: \n" + corrections.toString());
         }
-        corrections.add(setOfCorrections);
+        
         return getSymmetryValue();
     }
  /*  combineInSymmetryNumber
   * 
+  * The purpose of combineInSymmetryNumber is to see whether the secondary conditions hold.
+  * The SymmetryMatch element that satisfy secondary conditions are put in a list.
+  * 
+  * For external symmetry, only one of the matches, including secondary conditions, should hold
+  * If so, then finalmatch element is set to the SymmetryMatch that holds.
+  * 
+  * A non-null finalmatch means that a SymmetryMatch has been found.
   *
  *
  */
     public void combineInSymmetryNumber(int symmetry) {
+    	ArrayList<SymmetryMatch>  matchlist = new ArrayList<SymmetryMatch>();
     	if(debug) {
-    		System.out.println("combineInSymmetryNumber: " + symmetry);
+    		System.out.println("DetermineExternalSymmetry: combineInSymmetryNumber: " + symmetry);
+    		System.out.println("symmetry matches: " + determineSymmetry.getSymmetryMatches().size());
     	}
         Iterator<SymmetryMatch> iter = determineSymmetry.getSymmetryMatches().iterator();
         while (iter.hasNext()) {
             SymmetryMatch match = iter.next();
+            
             if(debug) {
             	System.out.println("Find Symmetry of " + match.toString());
             }
             try {
-                double symmD = findSymmetryContribution(match);
-                if (symmetryValue < symmD) {
-                    symmetryValue = (int) symmD;
-                } else {
-                	if(debug) {
-                		System.out.println("Found Symmetry: " + symmD + "\t but less than current top " + symmetryValue);
-                	}
+                if(findSymmetryContribution(match))  {
+                	matchlist.add(match);
                 }
-                symmetryValue *= symmD;
-            } catch (CDKException ex) {
+                
+           } catch (CDKException ex) {
                 Logger.getLogger(DetermineExternalSymmetry.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }
-
+        if(matchlist.size() == 1) {
+        	finalmatch = matchlist.get(0);
+        	if(debug) {
+        		System.out.println("Symmetry Match found: \n" + finalmatch.toString());
+        	}
+        }
 
     }
 
@@ -163,26 +187,23 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
  *         if notdone is set to false, that means one of the tests failed.
  *         all tests must be true not to fail (i.e. notdone remains true).
  */
-    private double findSymmetryContribution(SymmetryMatch match) throws CDKException {
+    private boolean findSymmetryContribution(SymmetryMatch match) throws CDKException {
     	if(debug) {
     		System.out.println("findSymmetryContribution");
     	}
-        double symmD = 1.0;
         SetOfSymmetryAssignments assignments = match.getFromMolecule();
         Iterator<String> iter = assignments.keySet().iterator();
-        //System.out.println("\tFind symmetry of Connections for " + match.toString());
-        //List<SymmetryPair> pairs = this.determineSymmetry.symmetryDefinition.extractListOfSymmetryPairs();
         boolean notdone = true;
         while (iter.hasNext() && notdone) {
             SymmetryAssignment assignment = assignments.get(iter.next());
-            //String connectionSymmetry = findConnectionSymmetry(assignment, pairs);
             String connectionSymmetry = assignment.getSymmetryConnection();
             IAtomContainer mol = assignment.getStructure();
             if (connectionSymmetry.contains(linearCheckS)) {
                 boolean isLinear = isMoleculeLinear(mol);
                 if (isLinear) {
-                    //System.out.println("\t\tSymmetry of Connection: " + assignment.getGroupName() + " is linear");
-                    //System.out.println("Contributing Symmetry: " + symmD);
+                	if(debug) {
+                		System.out.println("\t\tSymmetry of Connection: " + assignment.getGroupName() + " is linear");
+                	}
                 } else {
                     notdone = false;
                     }
@@ -200,37 +221,8 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
         if(debug) {
         	System.out.println("findSymmetryContribution notdone=" + notdone);
         }
-        if(notdone) {
-            symmD = this.determineSymmetry.symmetryDefinition.getInternalSymmetryFactor();
-        }
-        if(debug) {
-        	System.out.println("findSymmetryContribution symmD=" + symmD);
-        }
-        if (symmD != 1.0) {
-            String symname = this.determineSymmetry.symmetryDefinition.getMetaAtomName();
-            if(debug) {
-            	System.out.println("findSymmetryContribution symname=" + symname);
-            }
-            double correction = -gasConstant * Math.log(symmD);
-            if(debug) {
-            	System.out.println("findSymmetryContribution correction=" + correction);
-            }
-            if (setOfCorrections != null) {
-                BensonThermodynamicBase benson = new BensonThermodynamicBase(referenceS, null, 0.0, correction);
-                symname = symname + "(" + symmD + ")";
-                benson.setReference(symname);
-                if(debug) {
-                	System.out.println(benson.toString());
-                }
-                setOfCorrections.add(benson);
-            }
-        } else {
-        	if(debug) {
-        		System.out.println("Did not satisfy secondary requirement");
-        	}
-        }
 
-        return symmD;
+        return notdone;
     }
 
     private boolean isMoleculeLinear(IAtomContainer mol) {
@@ -242,7 +234,6 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
     }
 
     private double findSymmetryOfConnection(IAtomContainer mol, String connection) throws CDKException {
-        //SetOfBensonThermodynamicBase set = setOfCorrections;
         setOfCorrections = new SetOfBensonThermodynamicBase();
         IAtomContainer cpymol = new AtomContainer(mol);
         IAtom connected = MoleculeUtilities.findAtomInMolecule(connection, cpymol);

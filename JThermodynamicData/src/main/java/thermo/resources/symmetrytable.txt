@@ -22,8 +22,8 @@ InternalSymmetry-B(B1)(B2)(B2)	GeneralCarbonRadical InternalSymmetry
 1: a1 : X
 Symmetry: 2
 ExternalSymmetry-C(B1)(B2)(B2)(B2)-3	CarbonAtom	ExternalSymmetry
-0: a2 : 3
-1: a3 a4 a5 : N
+0: a2 : N
+1: a3 a4 a5 : 3
 Symmetry: 3
 ExternalSymmetry-C(B1)(B2)(B2)(B2)-L	CarbonAtom	ExternalSymmetry
 0: a2 : L
