@@ -160,4 +160,15 @@ public class MoleculeUtilities {
         normalizeAtomNames(mol);
         assignIDs(mol);
     }
+    
+    public static String atomSetToString(IAtomContainer mol) {
+    	StringBuffer buf = new StringBuffer();
+    	buf.append("Number of atoms: " + mol.getAtomCount());
+    	Iterable<IAtom> iter =  mol.atoms();
+    	for (IAtom iAtom : iter) {
+			buf.append(iAtom.toString());
+			buf.append("\n");
+		}
+    	return buf.toString();
+    }
 }

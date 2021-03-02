@@ -118,17 +118,22 @@ public class CalculateVibrationalCorrectionForRadical {
                 double symmetry = count.getSymmetry();
                 double matches = (double) count.countMatches;
                 if(Math.abs(matches) > 0.0) {
-                	double factor = matches/symmetry;
+                	//double factor = matches/symmetry;
+                	double factor = matches;
                 	String reference = referenceRoot + "Frequency:" + frequency;
-                	double entropyC = -frequencyCorrection.correctCpInCalories(frequency, standardTemperature)*factor;
+                	System.out.println("CalculateVibrationalCorrectionForRadical : " +
+                			frequency + " mat=" + matches + " sym= " + symmetry + " fac= " + factor);
+                	double entropyC = frequencyCorrection.correctEntropyInCalories(frequency, standardTemperature)*factor;
                 	ArrayList<HeatCapacityTemperaturePair> pairs = heatCapacityPairs(reference);
                 	Iterator<HeatCapacityTemperaturePair> capacityiter = pairs.iterator();
                 	while(capacityiter.hasNext()){
                 		HeatCapacityTemperaturePair pair = capacityiter.next();
-                		double fcorrection = -frequencyCorrection.correctCpInCalories(frequency, pair.getTemperatureValue());
+                		double fcorrection = frequencyCorrection.correctCpInCalories(frequency, pair.getTemperatureValue());
                 		pair.setHeatCapacityValue(fcorrection*factor);
                 	}
                 	String correctionS = referenceRoot + " " + count.getElementName() + ": " + frequency + "\t Count=" + matches;
+                	System.out.println("CalculateVibrationalCorrectionForRadical : corr=" +
+                            correctionS);    	
                 	BensonThermodynamicBase benson = new BensonThermodynamicBase(typeS, pairs, 0.0, entropyC);
                 	benson.setReference(correctionS);
                 	corrections.add(benson);

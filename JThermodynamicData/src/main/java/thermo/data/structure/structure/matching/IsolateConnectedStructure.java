@@ -5,13 +5,20 @@
 
 package thermo.data.structure.structure.matching;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.openscience.cdk.Atom;
 import org.openscience.cdk.AtomContainer;
+import org.openscience.cdk.AtomRef;
 import org.openscience.cdk.Bond;
+import org.openscience.cdk.graph.Cycles;
 import org.openscience.cdk.interfaces.IAtomContainer;
+
+import thermo.data.structure.structure.StructureAsCML;
+import thermo.data.structure.utilities.MoleculeUtilities;
+
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -34,6 +41,7 @@ public class IsolateConnectedStructure {
      */
     public IAtomContainer IsolateConnectedStructure(IAtomContainer mol, IAtom connected, IAtom firstinstructure) {
         List<IAtom> directconnected = mol.getConnectedAtomsList(firstinstructure);
+        IAtomContainer substructure = new AtomContainer();
         boolean notfound = true;
         Iterator<IAtom> i = directconnected.iterator();
         while(i.hasNext() && notfound) {
@@ -43,14 +51,40 @@ public class IsolateConnectedStructure {
                 directconnected.remove(atm);
             }
         }
-        IAtomContainer substructure = new AtomContainer();
-        substructure.addAtom(firstinstructure);
-        boolean noloop = findConnected(mol,substructure, firstinstructure, directconnected, connected);
-        if(!noloop) {
-        	Atom catm = (Atom) connected;
-        	MetaRingAtom ringatm = new MetaRingAtom(catm);
-        	substructure.addAtom(ringatm);
-        }
+        /*
+        if(firstinstructure.isInRing() && connected.isInRing()) {
+        	substructure.addAtom(firstinstructure);
+        	substructure.addAtom(connected);
+
+            List<IAtom> direct = new ArrayList<IAtom>(directconnected);
+        	Iterator<IAtom> iter = direct.iterator();
+        	while(iter.hasNext()) {
+        		IAtom atm = iter.next();
+        		substructure.addAtom(atm);
+        		int count = 0;
+        		if(atm.isInRing()) {
+            		AtomRef catm = new AtomRef(connected);
+            		MetaRingAtom ringatm = new MetaRingAtom(catm);  
+            		ringatm.setSymbol(catm.getSymbol() + count++);
+        			substructure.addAtom(ringatm);
+        		} else {
+                	findConnected(mol,substructure, firstinstructure, directconnected, connected);        			
+        		}
+        	}
+        
+        } else {
+        */
+        	substructure.addAtom(firstinstructure);
+        	//boolean noloop = 
+        	findConnected(mol,substructure, firstinstructure, directconnected, connected);
+/*
+        	if(!noloop) {
+        		AtomRef catm = new AtomRef(connected);
+        		MetaRingAtom ringatm = new MetaRingAtom(catm);
+        		substructure.addAtom(ringatm);
+        	}
+*/
+        //}
         return substructure;
     }
 

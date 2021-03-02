@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.exception.CDKException;
+import org.openscience.cdk.graph.Cycles;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
 
@@ -102,6 +103,7 @@ public class MetaAtomDefinition extends MetaAtomInfo {
     }
     private void putMolecule(IAtomContainer mol) throws CDKException, ClassNotFoundException, IOException {
         molecule = mol;
+        Cycles.markRingAtomsAndBonds(mol);
          isolateSpecifiedAtoms();
          determineConnectingBondsAndAtoms();
          setElementName(molecule.getID());

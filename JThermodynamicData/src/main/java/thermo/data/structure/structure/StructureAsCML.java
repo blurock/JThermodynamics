@@ -14,6 +14,7 @@ import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.ChemFile;
 import org.openscience.cdk.ChemModel;
 import org.openscience.cdk.exception.CDKException;
+import org.openscience.cdk.graph.Cycles;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IChemFile;
@@ -127,6 +128,7 @@ public class StructureAsCML  {
         IAtomContainerSet setOfMolecules = chemModel.getMoleculeSet();
         IAtomContainer molecule = (IAtomContainer) setOfMolecules.getAtomContainer(0);
         setAromaticAtomsFromBonds(molecule);
+        Cycles.markRingAtomsAndBonds(molecule);
         return molecule;
      }
     public void setAromaticAtomsFromBonds(IAtomContainer molecule) {

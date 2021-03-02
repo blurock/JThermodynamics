@@ -46,6 +46,7 @@ public class QueryMoleculeWithMetaAtoms extends AtomContainer {
 					qatm.setToRadical();
 				}
 			}
+			qatm.setIsInRing(atm.isInRing());
 			this.addAtom(qatm);
 		}
 		for (int i = 0; i < mol.getBondCount(); i++) {

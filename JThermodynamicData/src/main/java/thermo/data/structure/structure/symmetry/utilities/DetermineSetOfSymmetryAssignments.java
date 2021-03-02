@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Vector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.exception.CDKException;
+import org.openscience.cdk.graph.Cycles;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.isomorphism.mcss.RMap;
 import thermo.data.structure.structure.StructureAsCML;
@@ -116,6 +117,7 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
             //System.out.println(MoleculeUtilities.toString(structure));
             //System.out.println("findAllSetsOfSymmetryAssignments-----molecule--------------------");
             //System.out.println(MoleculeUtilities.toString(this.getMolecule()));
+            Cycles.markRingAtomsAndBonds(structure);
             List<List<RMap>> sets = getAtomMatches(structure);
             //System.out.println("findAllSetsOfSymmetryAssignments: matches: " + sets.size());
             Iterator<List<RMap>> iset = sets.iterator();

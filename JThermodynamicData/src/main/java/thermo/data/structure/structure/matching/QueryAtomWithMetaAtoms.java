@@ -76,7 +76,7 @@ public class QueryAtomWithMetaAtoms extends Atom implements IQueryAtom {
             System.out.print("     ");
         }
         */
-        if (formalChargeMatch(atm) && radicalMatch(atm) && aromaticMatch(atm)) {
+        if (formalChargeMatch(atm) && radicalMatch(atm) && aromaticMatch(atm) && ringMatch(atm)) {
             if (symbolMatch(atm)) {
                 ans = true;
             } else if (this.matchesAll(atm) && aromaticMatch(atm)) {
@@ -95,7 +95,21 @@ public class QueryAtomWithMetaAtoms extends Atom implements IQueryAtom {
         return ans;
     }
 
-    /**
+    private boolean ringMatch(QueryAtomWithMetaAtoms atm) {
+    	boolean ans = false;
+    	if(this.matchesAll(this) || this.matchesAll(atm)) {
+    		ans = true;
+    	} else {
+    	if(this.isInRing()) {
+    		ans = atm.isInRing();
+    	} else {
+    		ans = !atm.isInRing();
+    	}
+    	}
+		return ans;
+	}
+
+	/**
      * 
      * @param atm
      * @return

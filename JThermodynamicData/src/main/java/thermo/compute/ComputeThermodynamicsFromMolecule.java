@@ -381,8 +381,8 @@ try {
         CalculateVibrationalCorrectionForRadical vibrational = new CalculateVibrationalCorrectionForRadical(connect);
         vibrational.calculate(R, RH, thermo);
 
-        symmetryCorrections.calculate(RH, thermo);
-        symmetryCorrections.calculate(R, thermominus);
+        symmetryCorrections.calculate(R, thermo);
+        symmetryCorrections.calculate(RH, thermominus);
         thermominus.Minus();
         thermo.add(thermominus);
     }
