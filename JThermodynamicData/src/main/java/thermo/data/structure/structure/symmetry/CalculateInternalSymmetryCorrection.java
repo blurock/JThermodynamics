@@ -25,13 +25,18 @@ public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrec
     String internalS = "InternalSymmetry";
     String referenceS = "Internal Symmetry Correction";
     SQLSetOfSymmetryDefinitions setOfDefinitions;
-    DetermineSymmetryFromSingleDefinition fromSingleDefinition;
+    DetermineInternalSymmetryFromSingleDefinition fromSingleDefinition;
     DetermineInternalSymmetry determineTotal;
     double gasConstant;
     boolean externalsymmetry;
+    
+    SymmetryMatch externalSymmetryMatch;
+    CalculateExternalSymmetryCorrection externalCorrection;
 
-    public CalculateInternalSymmetryCorrection(ThermoSQLConnection c) throws ThermodynamicException {
+    public CalculateInternalSymmetryCorrection(ThermoSQLConnection c,
+    		CalculateExternalSymmetryCorrection externalCorrection) throws ThermodynamicException {
         super(c);
+        this.externalCorrection = externalCorrection;
         try {
             setOfDefinitions = new SQLSetOfSymmetryDefinitions(connect, internalS);
             //System.out.println("CalculateInternalSymmetryCorrection\n" +  setOfDefinitions.toString());
@@ -47,8 +52,11 @@ public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrec
     @Override
     public boolean calculate(IAtomContainer mol, SetOfBensonThermodynamicBase corrections) throws ThermodynamicException {
     	boolean found = false;
+        this.externalSymmetryMatch = externalCorrection.getSymmetryMatch();
+
     	try {
         	determineTotal.setSetOfCorrections(corrections);
+        	fromSingleDefinition.setExternalSymmetryMatch(externalSymmetryMatch);
             int internalsymmetry = calculateInternalSymmetry(mol,corrections);
             if (internalsymmetry > 0.0 && internalsymmetry != 1.0) {
             	found = true;

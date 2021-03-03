@@ -6,6 +6,8 @@
 package thermo.data.structure.structure.symmetry;
 
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  *
@@ -27,22 +29,44 @@ public class SymmetryMatch {
         StringBuffer buf = new StringBuffer();
         buf.append("Symmetry Match;\n");
         buf.append(getFromMolecule().toString());
-        /*
-        Set<String> names = matchedSymmetries.keySet();
-        Iterator<String> i = names.iterator();
-        buf.append("Correspondences: ");
-        while(i.hasNext()) {
-            String key = i.next();
-            String match = matchedSymmetries.get(key);
-            buf.append("[" + key + "," + match + "]\t");
-        }
-        buf.append("\n");
-        */
-        
         return buf.toString();
     }
 
     public SetOfSymmetryAssignments getFromMolecule() {
         return fromMolecule;
     }
+	public boolean sameAtoms(SymmetryMatch matchToCompare) {
+		SetOfSymmetryAssignments compareFromMolecule = matchToCompare.getFromMolecule();
+		boolean matched = true;
+		if(fromMolecule.size() == compareFromMolecule.size()) {
+			Set<String> keylist = fromMolecule.keySet();
+			Iterator<String> iter = keylist.iterator();
+			while(iter.hasNext() && matched) {
+				SymmetryAssignment match = fromMolecule.get(iter.next());
+				//System.out.println("sameAtoms: SymmetryAssignment: " + match.toString());
+				//System.out.println("sameAtoms: Set: " + compareFromMolecule.toString());
+				matched = atomSetMatch(match,compareFromMolecule);
+				//System.out.println("sameAtoms: matched?: " + matched);
+			}
+			
+		} else {
+			matched = false;
+		}
+		return matched;
+	}
+	
+	private boolean atomSetMatch(SymmetryAssignment match, 
+			SetOfSymmetryAssignments compareFromMolecule) {
+		Set<String> compkeylist = compareFromMolecule.keySet();
+		Iterator<String> compiter = compkeylist.iterator();
+		boolean notmatched = true;
+		while(compiter.hasNext() && notmatched) {
+			SymmetryAssignment compmatch = compareFromMolecule.get(compiter.next());
+			//System.out.println("atomSetMatch compare: " + match.toString());
+			//System.out.println("atomSetMatch compare: " + compmatch.toString());
+			notmatched = !match.matches(compmatch);
+			//System.out.println("atomSetMatch compare: " + !notmatched);
+		}
+		return !notmatched;
+	}
 }

@@ -36,7 +36,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
     String referenceS = "External Symmetry Correction";
     private final DetermineExternalSymmetry determineSecondary;
     
-    SymmetryMatch finalmatch;
+    SymmetryMatch symmetryMatch;
 
     public SetOfBensonThermodynamicBase getSetOfCorrections() {
         return setOfCorrections;
@@ -60,7 +60,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
         } else {
             determineSecondary = this;
         }
-        finalmatch = null;
+        symmetryMatch = null;
     }
 
     @Override
@@ -68,7 +68,16 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
         symmetryValue = 1;
     }
 
-    @Override
+    
+	public SymmetryMatch getSymmetryMatch() {
+		return symmetryMatch;
+	}
+
+	public void setSymmetryMatch(SymmetryMatch symmetryMatch) {
+		this.symmetryMatch = symmetryMatch;
+	}
+
+	@Override
     public int determineSymmetry(IAtomContainer structure, SetOfBensonThermodynamicBase corrections) throws CDKException {
     	setOfCorrections = new SetOfBensonThermodynamicBase();
         initializeSymmetry();
@@ -93,7 +102,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
                         	System.out.println("Determine Symmetry: ans= " + symmetry);
                         }
                         combineInSymmetryNumber(symmetry);
-                        notdone = finalmatch == null;
+                        notdone = symmetryMatch == null;
                         if(debug) {
                         if(notdone) {
                         	System.out.println("determineSymmetry Symmetry match NOT found");                        	
@@ -106,7 +115,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
             currentSymmetry--;
         }
         
-        if(finalmatch != null) {
+        if(symmetryMatch != null) {
             double symmD = this.determineSymmetry.symmetryDefinition.getInternalSymmetryFactor();
             double correction = -gasConstant * Math.log(symmD);
             String symname = this.determineSymmetry.symmetryDefinition.getMetaAtomName();
@@ -159,9 +168,9 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
             
         }
         if(matchlist.size() == 1) {
-        	finalmatch = matchlist.get(0);
+        	symmetryMatch = matchlist.get(0);
         	if(debug) {
-        		System.out.println("Symmetry Match found: \n" + finalmatch.toString());
+        		System.out.println("Symmetry Match found: \n" + symmetryMatch.toString());
         	}
         }
 
