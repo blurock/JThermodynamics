@@ -19,7 +19,7 @@ import thermo.data.benson.SetOfBensonThermodynamicBase;
  * @author blurock
  */
 public class SQLSetOfBensonThermodynamicBase {
-
+	
     ThermoSQLConnection connection;
     SetOfBensonThermodynamicBase thermoSet;
     SQLBensonThermodynamicBase sqlthermo;

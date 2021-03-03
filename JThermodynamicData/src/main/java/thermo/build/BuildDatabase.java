@@ -216,8 +216,8 @@ public class BuildDatabase {
         ThermoSQLConnection connection = new ThermoSQLConnection();
         connection.connect();
         if (args.length < 3) {
-            System.out.println(structuresS + " Filename Test");
-            System.out.println("Filename: ");
+            System.out.println(metaatomdefS + " Filename Test");
+            System.out.println("Filename: File with structure name and meta atom name and type");
             System.out.println("Test: if true, will not enter data in database ");
         } else {
             try {
@@ -248,8 +248,8 @@ public class BuildDatabase {
         ThermoSQLConnection connection = new ThermoSQLConnection();
         connection.connect();
         if (args.length < 3) {
-            System.out.println(metaatomdefS + " Filename ReferenceName");
-            System.out.println("Filename: The file with the benson thermodynamics");
+            System.out.println(structuresS + " Filename ReferenceName");
+            System.out.println("Filename: The file with nancy structures, name and type");
             System.out.println("Test: if true, will not enter data in database ");
         } else {
             try {

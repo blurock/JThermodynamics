@@ -1,2 +1,9 @@
-R/R     GeneralSingleBond         SymmetryElement
-cR3/cR3  GeneralCarbonSingleBond  SymmetryElement
+R/R              GeneralSingleBond        SymmetryElement
+cR3/cR3          GeneralCarbonSingleBond  SymmetryElement
+R/R/R            GeneralLinearBond        SymmetryElement
+cR4              CarbonAtom               SymmetryElement
+cR2//cR2         CarbonCarbonDoubleBond   SymmetryElement
+cR///cR          CarbonCarbonTripleBond   SymmetryElement
+cR2//o           AldehydeKetone           SymmetryElement
+cR2//cR/cR2(.)   GeneralResonantCarbon    SymmetryElement
+

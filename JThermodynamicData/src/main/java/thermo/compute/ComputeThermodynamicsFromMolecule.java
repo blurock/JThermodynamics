@@ -321,7 +321,10 @@ try {
 			e.printStackTrace();
 		}
     	IAtomContainer substituted = metaAtomSubstitutions.substitute(mol);
+    	System.out.println("computeThermodynamicsForMolecule\n" + MoleculeUtilities.toString(substituted));
+
         SetOfBensonGroupStructures bensonset = bensonGroups.deriveBensonGroupStructures(substituted);
+        System.out.println("computeThermodynamicsForMolecule\n" + bensonset.toString());
         sqlthermodynamics.setUpFromSetOfBensonGroupStructures(bensonset,thermo);
         symmetryCorrections.calculate(molorig, thermo);
         BensonThermodynamicBase cycle = (BensonThermodynamicBase) findCyclesThermo.FindLargestStructureThermodynamics(molorig);

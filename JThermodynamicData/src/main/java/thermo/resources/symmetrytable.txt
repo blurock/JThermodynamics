@@ -1,29 +1,18 @@
 ExternalSymmetry-C(B1)(B1)(B1) GeneralMethylConnection SecondaryExternalSymmetry
 0: a3 a4 a5: X
 Symmetry: 3
+ExternalSymmetry-C(B1)(B1)(B1)(B1)-L	CarbonAtom	ExternalSymmetry
+0: a2 a3 a4 a5 : L
+Symmetry: 12
 ExternalSymmetry-C(B1)(B1)(B1)(B1)-3	CarbonAtom	ExternalSymmetry
 0: a2 a3 a4 a5 : 3
 Symmetry: 12
 ExternalSymmetry-C(B1)(B1)(B1)(B1)-X	CarbonAtom	ExternalSymmetry
 0: a2 a5 a3 a4:X
 Symmetry: 4
-ExternalSymmetry-C(B1)(B1)(B1)(B1)-L	CarbonAtom	ExternalSymmetry
-0: a2 a3 a4 a5 : L
-Symmetry: 3
-InternalSymmetry-B(B1)(B2)(B2)(B2)	CarbonAtom	InternalSymmetry
-0: a5 a4 a3 : N
-1: a2: N
-Symmetry: 3
-InternalSymmetry-B(B1)(B1)(B1)	GeneralCarbonRadical InternalSymmetry
-0: a1 a2 a3 : X
-Symmetry: 2
-InternalSymmetry-B(B1)(B2)(B2)	GeneralCarbonRadical InternalSymmetry
-0: a2 a3 : X
-1: a1 : X
-Symmetry: 2
 ExternalSymmetry-C(B1)(B2)(B2)(B2)-3	CarbonAtom	ExternalSymmetry
-0: a2 : N
-1: a3 a4 a5 : 3
+0: a2 : 3
+1: a3 a4 a5 : N
 Symmetry: 3
 ExternalSymmetry-C(B1)(B2)(B2)(B2)-L	CarbonAtom	ExternalSymmetry
 0: a2 : L
@@ -32,22 +21,6 @@ Symmetry: 3
 ExternalSymmetry-C(B1)(B1)(B2)(B2)	CarbonAtom	ExternalSymmetry
 0: a2 a4 : X
 1: a3 a5 : X
-Symmetry: 2
-ExternalSymmetry-(B1)(B2)C=C(B1)(B2) CarbonCarbonDoubleBond ExternalSymmetry
-0: a1 a5 : X
-1: a3 a6 : X
-Symmetry: 2
-ExternalSymmetry-(B1)(B1)C=C(B1)(B1) CarbonCarbonDoubleBond ExternalSymmetry
-0: a1 a3 a5 a6 : X
-Symmetry: 4
-ExternalSymmetry-CCTriple(B1)B1)-X  CarbonCarbonTripleBond ExternalSymmetry
-0: a1 a4 : X
-Symmetry: 2
-ExternalSymmetry-CCTriple(B1)B1)-3  CarbonCarbonTripleBond ExternalSymmetry
-0: a1 a4 : 3
-Symmetry: 6
-ExternalSymmetry-C=O(B1)(B1) AldehydeKetone ExternalSymmetry
-0: a2 a5 : X
 Symmetry: 2
 ExternalSymmetry-C(B1)(B1)(B1)-X GeneralCarbonRadical	ExternalSymmetry
 0: a1 a2 a3 : X
@@ -73,6 +46,22 @@ Symmetry: 2
 ExternalSymmetry-(B1)(B1)C=CC.(B1)(B1) GeneralResonantCarbon ExternalSymmetry
 1: a1 a2 a5 a6 : X
 Symmetry: 2
+ExternalSymmetry-(B1)(B2)C=C(B1)(B2) CarbonCarbonDoubleBond ExternalSymmetry
+0: a1 a5 : X
+1: a3 a6 : X
+Symmetry: 2
+ExternalSymmetry-(B1)(B1)C=C(B1)(B1) CarbonCarbonDoubleBond ExternalSymmetry
+0: a1 a3 a5 a6 : X
+Symmetry: 4
+ExternalSymmetry-CCTriple(B1)B1)-X  CarbonCarbonTripleBond ExternalSymmetry
+0: a1 a4 : X
+Symmetry: 2
+ExternalSymmetry-CCTriple(B1)B1)-3  CarbonCarbonTripleBond ExternalSymmetry
+0: a1 a4 : 3
+Symmetry: 6
+ExternalSymmetry-C=O(B1)(B1) AldehydeKetone ExternalSymmetry
+0: a2 a5 : X
+Symmetry: 2
 ExternalSymmetry-SingleBond-(B1)(B1)(B1)CC(B1)(B1)(B1) GeneralCarbonSingleBond ExternalSymmetry
 0: a1 a2 a3 a5 a6 a7 : X
 Symmetry: 6
@@ -89,5 +78,19 @@ ExternalSymmetry-SingleBond-(B1)(B2)(B3)CC(B1)(B2)(B3) GeneralCarbonSingleBond E
 1: a2 a6 : X
 2: a3 a7 : X
 Symmetry: 2
+InternalSymmetry-B(B1)(B2)(B2)(B2)	CarbonAtom	InternalSymmetry
+0: a5 a4 a3 : N
+1: a2: N
+Symmetry: 3
+InternalSymmetry-B(B1)(B1)(B1)	GeneralCarbonRadical InternalSymmetry
+0: a1 a2 a3 : X
+Symmetry: 2
+InternalSymmetry-B(B1)(B2)(B2)	GeneralCarbonRadical InternalSymmetry
+0: a2 a3 : X
+1: a1 : X
+Symmetry: 2
+ExternalSymmetry-SymmetricLinear-(B1)L(B1)-3 GeneralLinearBond InternalSymmetry
+1: a1 a2: 3
+Symmetry: 3
 
 
