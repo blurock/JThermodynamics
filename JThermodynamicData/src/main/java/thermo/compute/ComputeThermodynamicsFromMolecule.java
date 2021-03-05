@@ -385,12 +385,17 @@ try {
         //System.out.println("Radical Symmetry Calculations============================================");
         CalculateSymmetryCorrection symmetryCorrectionsR = new CalculateSymmetryCorrection(connect);
         symmetryCorrectionsR.calculate(R, thermo);
-        //System.out.println("Molecule Symmetry Calculations============================================");
-        CalculateSymmetryCorrection symmetryCorrectionsRH = new CalculateSymmetryCorrection(connect);
-        symmetryCorrectionsRH.calculate(RH, thermominus);
-        //System.out.println("Done     Symmetry Calculations============================================");
-        thermominus.Minus();
-        thermo.add(thermominus);
+        
+        /*
+         * The calculation reduces to -Rln(Sym(R.))... so this part not needed
+         System.out.println("Molecule Symmetry Calculations============================================");
+         CalculateSymmetryCorrection symmetryCorrectionsRH = new CalculateSymmetryCorrection(connect);
+         symmetryCorrectionsRH.calculate(RH, thermominus);
+         System.out.println("Done     Symmetry Calculations============================================");
+         thermominus.Minus();
+         thermo.add(thermominus);
+         * 
+         */
     }
     BensonThermodynamicBase computeSpinContribution() {
         double spin = gasConstant * Math.log1p(1.0);
