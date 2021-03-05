@@ -59,7 +59,6 @@ public class ComputeThermodynamicsFromMolecule {
     SQLSubstituteBackMetaAtomIntoMolecule substitute;
     CalculateDisassociationEnergy disassociation;
     AddHydrogenToSingleRadical formRH;
-    CalculateSymmetryCorrection symmetryCorrections;
     String cycleTypesS = "Cycles";
     ThermodyanmicsForSubstructures findCyclesThermo;
     String torsionTypesS = "StericCorrections";
@@ -97,14 +96,11 @@ public class ComputeThermodynamicsFromMolecule {
             String gasconstantS = SProperties.getProperty("thermo.data.gasconstant.clasmolsk");
             gasConstant = Double.valueOf(gasconstantS).doubleValue();
             formRH = new AddHydrogenToSingleRadical();
-            symmetryCorrections = new CalculateSymmetryCorrection(connect);
             findCyclesThermo = new ThermodyanmicsForSubstructures(cycleTypesS, connect);
             findTorsionsThermo = new ThermodyanmicsForSubstructures(torsionTypesS, connect);
             gauche = new ComputeGaucheInteractions(connect);
 
-        } catch (ThermodynamicException ex) {
-            Logger.getLogger(ComputeThermodynamicsFromMolecule.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        }catch (SQLException ex) {
             Logger.getLogger(ComputeThermodynamicsFromMolecule.class.getName()).log(Level.SEVERE, null, ex);
             throw new ThermodynamicComputeException("Error in setting up database: " + ex.toString());
         } catch (CDKException ex) {
@@ -326,6 +322,8 @@ try {
         SetOfBensonGroupStructures bensonset = bensonGroups.deriveBensonGroupStructures(substituted);
         System.out.println("computeThermodynamicsForMolecule\n" + bensonset.toString());
         sqlthermodynamics.setUpFromSetOfBensonGroupStructures(bensonset,thermo);
+        CalculateSymmetryCorrection symmetryCorrections = new CalculateSymmetryCorrection(connect);
+
         symmetryCorrections.calculate(molorig, thermo);
         BensonThermodynamicBase cycle = (BensonThermodynamicBase) findCyclesThermo.FindLargestStructureThermodynamics(molorig);
         if(cycle != null)
@@ -384,8 +382,13 @@ try {
         CalculateVibrationalCorrectionForRadical vibrational = new CalculateVibrationalCorrectionForRadical(connect);
         vibrational.calculate(R, RH, thermo);
 
-        symmetryCorrections.calculate(R, thermo);
-        symmetryCorrections.calculate(RH, thermominus);
+        //System.out.println("Radical Symmetry Calculations============================================");
+        CalculateSymmetryCorrection symmetryCorrectionsR = new CalculateSymmetryCorrection(connect);
+        symmetryCorrectionsR.calculate(R, thermo);
+        //System.out.println("Molecule Symmetry Calculations============================================");
+        CalculateSymmetryCorrection symmetryCorrectionsRH = new CalculateSymmetryCorrection(connect);
+        symmetryCorrectionsRH.calculate(RH, thermominus);
+        //System.out.println("Done     Symmetry Calculations============================================");
         thermominus.Minus();
         thermo.add(thermominus);
     }

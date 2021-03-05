@@ -148,16 +148,12 @@ public class ComputeThermodynamicsFromNancyString {
 	}
 
 	public static String cleanup(String token) {
-		if (token.startsWith("\"")) {
+		if (token.startsWith("\"") && token.endsWith("\"")) {
 			token = token.substring(1, token.length());
-		}
-		if (token.endsWith("\"")) {
 			token = token.substring(0, token.length()-1);
 		}
-		if (token.startsWith("'")) {
+		if (token.startsWith("'") && token.endsWith("'")) {
 			token = token.substring(1, token.length());
-		}
-		if (token.endsWith("'")) {
 			token = token.substring(0, token.length()-1);
 		}
 		return token;

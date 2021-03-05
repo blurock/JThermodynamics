@@ -68,6 +68,9 @@ public class CalculateSymmetryCorrection extends CalculateSymmetryCorrectionInte
 		} catch (CDKException | IOException e) {
 			throw new ThermodynamicException(e.toString());
 		}
+		//System.out.println("CalculateSymmetryCorrection.calculate");
+		//System.out.println(MoleculeUtilities.toString(mol));
+		
 		
         boolean exfound = external.calculate(newmolecule, corrections);
         boolean infound = internal.calculate(newmolecule, corrections);

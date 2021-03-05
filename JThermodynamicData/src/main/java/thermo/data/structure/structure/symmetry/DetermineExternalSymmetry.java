@@ -253,7 +253,13 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
         cpymol.addAtom(x);
         cpymol.addBond(bndx);
         determineSecondary.setSetOfCorrections(null);
+        if(debug) {
+        	System.out.println("findSymmetryOfConnection: determineSecondary.determineSymmetry");
+        }
         double symm = determineSecondary.determineSymmetry(cpymol,setOfCorrections);
+        if(debug) {
+        	System.out.println("Secondary Symmetry=" + symm);
+        }
         //setOfCorrections = set;
         return symm;
     }

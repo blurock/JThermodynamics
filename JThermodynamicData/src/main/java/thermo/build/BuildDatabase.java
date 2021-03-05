@@ -450,24 +450,15 @@ public class BuildDatabase {
     private static void buildCalculationTable(String[] args) {
         ThermoSQLConnection connection = new ThermoSQLConnection();
         connection.connect();
-        if (args.length < 3) {
+        if (args.length < 2) {
             System.out.println(readCalculationTableS + " Filename");
             System.out.println("Filename: The file with the table information");
-            System.out.println("Test: if true, will not enter data in database ");
         } else {
             try {
                 String filename = args[1];
-                String testS = args[2];
-                boolean test = true;
-                if(testS.compareTo("false") == 0) {
-                	test = false;
-                	System.out.println("Read file and upload to database");
-                } else {
-                	System.out.println("Just read in file, no upload to database");
-                }
-
                 File fileF = new File(filename);
-                BuildCalculationTable table = new BuildCalculationTable(fileF,connection);
+                @SuppressWarnings("unused")
+				BuildCalculationTable table = new BuildCalculationTable(fileF,connection);
             } catch (SQLException ex) {
                 Logger.getLogger(BuildDatabase.class.getName()).log(Level.SEVERE, null, ex);
             }

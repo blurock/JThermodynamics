@@ -8,7 +8,6 @@ package thermo.data.structure.structure.vibrational;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -20,7 +19,6 @@ import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.structure.structure.AddHydrogenToSingleRadical;
 import thermo.exception.NotARadicalException;
 import thermo.properties.SProperties;
-import thermo.data.structure.structure.StructureAsCML;
 
 /** CalculateVibrationalCorrectionForRadical
  *
@@ -36,6 +34,7 @@ import thermo.data.structure.structure.StructureAsCML;
  * @version 2009
  */
 public class CalculateVibrationalCorrectionForRadical {
+	boolean debug = false;
     ThermoSQLConnection connect;
     SubstituteVibrationalStructures substitute;
     FrequencyCorrection frequencyCorrection;
@@ -106,9 +105,9 @@ public class CalculateVibrationalCorrectionForRadical {
         }
 
         public SetOfBensonThermodynamicBase calculate(IAtomContainer mol,IAtomContainer RH, SetOfBensonThermodynamicBase corrections) throws NotARadicalException, SQLException, CDKException, IOException {
-         	StructureAsCML cmlRH = new StructureAsCML(RH);
+         	//StructureAsCML cmlRH = new StructureAsCML(RH);
         	SetOfVibrationalStructureCounts counts = substitute.findSubstitutions(RH);
-        	StructureAsCML cmlR = new StructureAsCML(RH);
+        	//StructureAsCML cmlR = new StructureAsCML(RH);
             SetOfVibrationalStructureCounts countsR = substitute.findSubstitutions(mol);
             counts.subtract(countsR);
             Iterator<VibrationalStructureInfoCount> iter = counts.iterator();
@@ -121,8 +120,10 @@ public class CalculateVibrationalCorrectionForRadical {
                 	//double factor = matches/symmetry;
                 	double factor = matches;
                 	String reference = referenceRoot + "Frequency:" + frequency;
-                	System.out.println("CalculateVibrationalCorrectionForRadical : " +
-                			frequency + " mat=" + matches + " sym= " + symmetry + " fac= " + factor);
+                	if(debug) {
+                		System.out.println("CalculateVibrationalCorrectionForRadical : " +
+                				frequency + " mat=" + matches + " sym= " + symmetry + " fac= " + factor);
+                	}
                 	double entropyC = frequencyCorrection.correctEntropyInCalories(frequency, standardTemperature)*factor;
                 	ArrayList<HeatCapacityTemperaturePair> pairs = heatCapacityPairs(reference);
                 	Iterator<HeatCapacityTemperaturePair> capacityiter = pairs.iterator();
@@ -132,8 +133,10 @@ public class CalculateVibrationalCorrectionForRadical {
                 		pair.setHeatCapacityValue(fcorrection*factor);
                 	}
                 	String correctionS = referenceRoot + " " + count.getElementName() + ": " + frequency + "\t Count=" + matches;
-                	System.out.println("CalculateVibrationalCorrectionForRadical : corr=" +
+                	if(debug) {
+                		System.out.println("CalculateVibrationalCorrectionForRadical : corr=" +
                             correctionS);    	
+                	}
                 	BensonThermodynamicBase benson = new BensonThermodynamicBase(typeS, pairs, 0.0, entropyC);
                 	benson.setReference(correctionS);
                 	corrections.add(benson);

@@ -5,17 +5,11 @@
 
 package thermo.data.structure.structure.symmetry;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.exception.CDKException;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.benson.SetOfBensonThermodynamicBase;
-import thermo.data.structure.structure.DB.SQLSubstituteBackMetaAtomIntoMolecule;
-import thermo.data.structure.structure.StructureAsCML;
-import thermo.data.structure.structure.matching.SubstituteLinearStructures;
 import thermo.data.structure.structure.symmetry.DB.SQLSetOfSymmetryDefinitions;
 import thermo.exception.ThermodynamicException;
 import thermo.properties.SProperties;
