@@ -15,6 +15,7 @@ import thermo.data.structure.structure.symmetry.utilities.DetermineSymmetryAssig
  * @author blurock
  */
 public class DetermineSymmetryFromSingleDefinition {
+	boolean symmdebug = true;
     SymmetryDefinition symmetryDefinition;
     DetermineSetOfSymmetryAssignments determineSymmetryAssignments;
     IAtomContainer structure;
@@ -33,6 +34,7 @@ public class DetermineSymmetryFromSingleDefinition {
         structure = struct;
         symmetryDefinition = symmetry;
         determineSymmetryAssignments = new DetermineSetOfSymmetryAssignments(symmetryDefinition,matchAssignments);
+        determineSymmetryAssignments.setDebug(symmdebug);
         symmetryDefinition = symmetry;
         determineSetOfSymmetryAssignments(structure);
         return symmetryMatches.size();

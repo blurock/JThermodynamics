@@ -52,6 +52,9 @@ public class CalculateExternalSymmetryCorrection extends CalculateSymmetryCorrec
 	public void setSymmetryMatch(SymmetryMatch symmetryMatch) {
 		determineTotal.setSymmetryMatch(symmetryMatch);
 	}
+	public double getExternalSymmetryValue() {
+		return Double.valueOf(determineTotal.getSymmetryValue());
+	}
 	
 
 	public boolean calculate(IAtomContainer mol, SetOfBensonThermodynamicBase corrections)
@@ -69,4 +72,5 @@ public class CalculateExternalSymmetryCorrection extends CalculateSymmetryCorrec
 		}
 		return found;
 	}
+
 }

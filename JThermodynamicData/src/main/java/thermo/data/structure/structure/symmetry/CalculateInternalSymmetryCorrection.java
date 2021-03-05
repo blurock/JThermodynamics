@@ -13,6 +13,7 @@ import thermo.data.benson.BensonThermodynamicBase;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.structure.structure.symmetry.DB.SQLSetOfSymmetryDefinitions;
+import thermo.data.structure.utilities.MoleculeUtilities;
 import thermo.exception.ThermodynamicException;
 import thermo.properties.SProperties;
 
@@ -21,7 +22,7 @@ import thermo.properties.SProperties;
  * @author edwardblurock
  */
 public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrectionInterface  {
-
+	boolean debug = true;
     String internalS = "InternalSymmetry";
     String referenceS = "Internal Symmetry Correction";
     SQLSetOfSymmetryDefinitions setOfDefinitions;
@@ -31,6 +32,8 @@ public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrec
     boolean externalsymmetry;
     
     SymmetryMatch externalSymmetryMatch;
+    double externalSymmetryValue = 1.0;
+    double externalSymmetry = 1.0;
     CalculateExternalSymmetryCorrection externalCorrection;
 
     public CalculateInternalSymmetryCorrection(ThermoSQLConnection c,
@@ -51,12 +54,18 @@ public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrec
 
     @Override
     public boolean calculate(IAtomContainer mol, SetOfBensonThermodynamicBase corrections) throws ThermodynamicException {
+    	if(debug) {
+    		System.out.println("CalculateInternalSymmetryCorrection.calculate");
+    		System.out.println(MoleculeUtilities.toString(mol));
+    	}
     	boolean found = false;
         this.externalSymmetryMatch = externalCorrection.getSymmetryMatch();
+        this.externalSymmetryValue = externalCorrection.getExternalSymmetryValue();
 
     	try {
         	determineTotal.setSetOfCorrections(corrections);
         	fromSingleDefinition.setExternalSymmetryMatch(externalSymmetryMatch);
+        	fromSingleDefinition.setExternalSymmetry(externalSymmetryValue);
             int internalsymmetry = calculateInternalSymmetry(mol,corrections);
             if (internalsymmetry > 0.0 && internalsymmetry != 1.0) {
             	found = true;
@@ -74,6 +83,7 @@ public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrec
 
     public int calculateInternalSymmetry(IAtomContainer mol, SetOfBensonThermodynamicBase corrections) throws CDKException {
         return determineTotal.determineSymmetry(mol,corrections);
+        
     }
 
 	public boolean isExternalsymmetry() {

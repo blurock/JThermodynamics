@@ -63,7 +63,11 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
         substructuresFromSymmetry = new SubstructuresFromSymmetry(this);
     }
 
-    /**
+    public void setDebug(boolean debug) {
+		this.debug = debug;
+	}
+
+	/**
      * 
      * @param structure
      * @return
