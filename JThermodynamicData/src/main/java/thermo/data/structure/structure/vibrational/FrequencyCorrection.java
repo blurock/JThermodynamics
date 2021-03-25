@@ -29,11 +29,14 @@ public class FrequencyCorrection {
         
         double expx = Math.exp(x);
         double expmx = Math.exp(-x);
+        
+        //double x1 = x/(expx-1.0);
+        //double x2 = 1.0 - Math.log(1.0-expmx);
+        //double value = Rconstant*x1*x2;
         double x1 = x/(expx-1.0);
-        double x2 = 1.0 - Math.log(1.0-expmx);
-        
-        double value = Rconstant*x1*x2;
-        
+        double x2 = Math.log(1.0-expmx);  
+        double value = Rconstant* (x1 -x2);
+
         return value;
     }
 }

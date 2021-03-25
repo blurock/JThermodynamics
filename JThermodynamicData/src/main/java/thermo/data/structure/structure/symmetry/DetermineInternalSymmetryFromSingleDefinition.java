@@ -21,7 +21,7 @@ import thermo.data.structure.structure.symmetry.utilities.DetermineSetOfSymmetry
  */
 public class DetermineInternalSymmetryFromSingleDefinition extends DetermineSymmetryFromSingleDefinition {
 
-	boolean debug = true;
+	boolean debug = false;
 	SymmetryMatch externalSymmetryMatch;
 	double externalSymmetry = 1.0;
     public SymmetryMatch getExternalSymmetryMatch() {

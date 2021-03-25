@@ -22,7 +22,7 @@ import thermo.properties.SProperties;
  * @author edwardblurock
  */
 public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrectionInterface  {
-	boolean debug = true;
+	boolean debug = false;
     String internalS = "InternalSymmetry";
     String referenceS = "Internal Symmetry Correction";
     SQLSetOfSymmetryDefinitions setOfDefinitions;
