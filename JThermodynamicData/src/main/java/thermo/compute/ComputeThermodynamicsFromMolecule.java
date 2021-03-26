@@ -35,6 +35,7 @@ import thermo.data.structure.structure.StructureAsCML;
 import thermo.data.structure.structure.symmetry.CalculateSymmetryCorrection;
 import thermo.data.structure.structure.vibrational.CalculateVibrationalCorrectionForRadical;
 import thermo.data.structure.substructure.ThermodyanmicsForSubstructures;
+import thermo.data.structure.translational.CalculateTranslationalCorrection;
 import thermo.data.structure.utilities.MoleculeUtilities;
 import thermo.exception.NotARadicalException;
 import thermo.exception.ThermodynamicComputeException;
@@ -258,6 +259,8 @@ try {
      */
     public ThermodynamicInformation computeThermodynamics(IAtomContainer moleculetocompute, SetOfBensonThermodynamicBase thermodynamics) throws ThermodynamicComputeException {
         BensonThermodynamicBase combinedThermodynamics = null;
+		MoleculeUtilities.setImplicitHydrogensToZero(moleculetocompute);
+
         try {
             //CDKHueckelAromaticityDetector aromatic = new CDKHueckelAromaticityDetector();
 
@@ -372,6 +375,9 @@ try {
         sqlthermodynamics.setUpFromSetOfBensonGroupStructures(bensonset,thermo);
         
         disassociation.calculate(R,thermo);
+        
+        BensonThermodynamicBase translation = CalculateTranslationalCorrection.translationalEnergy(RH);
+        thermo.add(translation);
 
         BensonThermodynamicBase spinthermo = computeSpinContribution();
         thermo.add(spinthermo);

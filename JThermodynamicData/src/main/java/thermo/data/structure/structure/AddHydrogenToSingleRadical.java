@@ -74,6 +74,7 @@ public class AddHydrogenToSingleRadical {
                 ISingleElectron electron = electrons.get(0);
                 molecule.removeSingleElectron(electron);
                 IAtom hydrogen = formHydrogenAtom();
+                hydrogen.setImplicitHydrogenCount(0);
                 molecule.addAtom(hydrogen);
                 Bond bnd = new Bond(atm, hydrogen, Order.SINGLE);
                 molecule.addBond(bnd);

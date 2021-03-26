@@ -62,6 +62,19 @@ public class MoleculeUtilities {
         }
     }
 
+    /** Set implicit hydrogens to zero
+     *
+     * @param molecule The molecule to reassign
+     */
+    public static void setImplicitHydrogensToZero(IAtomContainer molecule) {
+        Iterator<IAtom> iter = molecule.atoms().iterator();
+        int count = 0;
+        while (iter.hasNext()) {
+            IAtom a = iter.next();
+            a.setImplicitHydrogenCount(0);
+        }
+    }
+
     public static IAtomContainer eliminateHydrogens(IAtomContainer molecule) {
         IAtomContainer nohydrogens = new AtomContainer(molecule);
         List<IAtom> hydrogens = findHydrogens(nohydrogens);
