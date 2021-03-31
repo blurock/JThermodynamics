@@ -33,6 +33,7 @@ import jThergas.exceptions.JThergasReadException;
  * @author blurock
  */
 public class JThergasReadStructureThermo {
+	boolean debug = false;
     // The block parsing tokenizer
     JThergasTokenizer fileTokenized;
     // The vector of parsed block information
@@ -156,6 +157,9 @@ public class JThergasReadStructureThermo {
         point.parse(fileTokenized);
         //System.out.println(point.writeToString());
         } catch(JThergasReadException ex) {
+        	if(debug) {
+        		System.out.println("Read Error: " + ex.toString());
+        	}
             errorBuffer.append("Exception: ==================================================================\n");
             errorBuffer.append(ex.writeToString()).append("\n");
             errorBuffer.append("------------ The Block--------------------\n");
@@ -164,8 +168,13 @@ public class JThergasReadStructureThermo {
                 errorBuffer.append(fileTokenized.line1a).append("\n");
             errorBuffer.append(fileTokenized.line2).append("\n");
             errorBuffer.append(fileTokenized.line3).append("\n");
-        } catch(NumberFormatException ex) {
-            errorBuffer.append("Exception: ==================================================================\n");
+        }
+        /*
+        catch(NumberFormatException ex) {
+           	if(debug) {
+        		System.out.println("Number Error: " + ex.toString());
+        	}
+             errorBuffer.append("Exception: ==================================================================\n");
             errorBuffer.append("------------ The Block--------------------\n");
             errorBuffer.append(fileTokenized.line1).append("\n");
             if(fileTokenized.line1a.length() > 0)
@@ -173,6 +182,7 @@ public class JThergasReadStructureThermo {
             errorBuffer.append(fileTokenized.line2).append("\n");
             errorBuffer.append(fileTokenized.line3).append("\n");
         }
+        */
         getData().add(point);
         
     }

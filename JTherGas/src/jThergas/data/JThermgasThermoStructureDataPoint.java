@@ -22,6 +22,7 @@ import jThergas.exceptions.JThergasReadException;
  * @author blurock
  */
 public class JThermgasThermoStructureDataPoint {
+	boolean debug = false;
     /**
      * This gives the number of atoms
      */
@@ -46,9 +47,28 @@ public class JThermgasThermoStructureDataPoint {
         atomicStructure = new JThergasAtomicStructure();
         
         try {
+        	if(debug) {
+        		System.out.println("Get Structure        : " + fileTokenized.line1);
+        		System.out.println("Get Structure (extra): " + fileTokenized.line1a);
+        	}
             getStructure().parse(fileTokenized.line1, fileTokenized.line1a,fileTokenized.group);
+            if(debug) {
+            	System.out.println("Structure: " + getStructure().writeToString());
+            }
+            if(debug) {
+        		System.out.println("Thermodynamics        : " + fileTokenized.line2);
+        	}
             getThermodynamics().parse(fileTokenized.line2);
+            if(debug) {
+            	System.out.println("Thermodynamics: " + getThermodynamics().writeToString());
+            }
+        	if(debug) {
+        		System.out.println("AtomicStructure        : " + fileTokenized.line3);
+        	}
             getAtomicStructure().parse(fileTokenized.line3);
+            if(debug) {
+            	System.out.println("AtomicStructure: " + getAtomicStructure().writeToString());
+            }
         } catch(JThergasReadException ex) {
             throw new JThergasReadException("ERROR at line: " + fileTokenized.getLineNumber() + ", block: " + fileTokenized.getBlockNumber() + "\n" + ex.writeToString());
         }

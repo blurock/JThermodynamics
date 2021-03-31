@@ -34,7 +34,7 @@ public class JThergasGroupElement {
         if (elementS.substring(0, 1).equals("(")) {
             int index = elementS.indexOf(')');
             if (index > 0) {
-                groupElementName = elementS.substring(1, index);
+                groupElementName = elementS.substring(1, index);                
                 if (index + 1 < elementS.length()) {
                     if (elementS.substring(index + 1, index + 2).equals("/")) {
                         String numberOfElementsS = elementS.substring(index + 2).trim();

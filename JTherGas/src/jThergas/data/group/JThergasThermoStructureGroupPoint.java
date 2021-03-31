@@ -100,7 +100,7 @@ public class JThergasThermoStructureGroupPoint extends JThermgasThermoStructureD
         ArrayList<String> vec = new ArrayList<String>();
 
         while (tok.hasMoreTokens()) {
-            String elementS = tok.nextToken();
+            String elementS = tok.nextToken().trim();
             
             int index = elementS.substring(1).indexOf("(");
             while (index > 0) {
