@@ -19,6 +19,7 @@ import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.structure.linearform.NancyLinearFormToMolecule;
 import thermo.data.structure.structure.StructureAsCML;
+import thermo.data.structure.structure.symmetry.CalculateExternalSymmetryCorrection;
 import thermo.data.structure.structure.symmetry.CalculateInternalSymmetryCorrection;
 import thermo.exception.ThermodynamicException;
 
@@ -61,7 +62,8 @@ public class TestInternalSymmetry {
             IAtomContainer molecule; molecule = nancyFormToMolecule.convert(nancy);
             StructureAsCML cmlstruct = new StructureAsCML(molecule);
             
-            CalculateInternalSymmetryCorrection calculate = new CalculateInternalSymmetryCorrection(connect);
+            CalculateExternalSymmetryCorrection external = new CalculateExternalSymmetryCorrection(connect);
+            CalculateInternalSymmetryCorrection calculate = new CalculateInternalSymmetryCorrection(connect,external);
 
             SetOfBensonThermodynamicBase set = new SetOfBensonThermodynamicBase();
             calculate.calculate(molecule,set);

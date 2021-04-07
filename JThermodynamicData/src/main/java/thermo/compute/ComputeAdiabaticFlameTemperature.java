@@ -56,18 +56,18 @@ public class ComputeAdiabaticFlameTemperature {
         h2oThermo = iter.next();
 
     }
-    public void setFuel(IAtomContainer atoms) throws ThermodynamicComputeException{
+    public void setFuel(IAtomContainer atoms, boolean frombensonradical) throws ThermodynamicComputeException{
         fuelAtoms = new HydrocarbonCompleteCombustion(atoms);
         fuelAtoms.findCompleteCombustionInOxygen();
-        initializeThermodynamicsForFuel(atoms);
+        initializeThermodynamicsForFuel(atoms,frombensonradical);
     }
-    public double computeFlameTemperatureOxygen(IAtomContainer atoms,double beginT) throws ThermodynamicComputeException {
-        setFuel(atoms);
+    public double computeFlameTemperatureOxygen(IAtomContainer atoms,double beginT, boolean frombensonradical) throws ThermodynamicComputeException {
+        setFuel(atoms,frombensonradical);
         return computeFlameTemperatureOxygen(beginT);
     }
-    public void initializeThermodynamicsForFuel(IAtomContainer atoms) throws ThermodynamicComputeException {
+    public void initializeThermodynamicsForFuel(IAtomContainer atoms, boolean frombensonradical) throws ThermodynamicComputeException {
         ComputeThermodynamicsFromMolecule thermo = new ComputeThermodynamicsFromMolecule(connect);
-        fuelThermo = thermo.computeThermodynamics(atoms);
+        fuelThermo = thermo.computeThermodynamics(atoms,frombensonradical);
     }
     public double computeFlameTemperatureOxygen(double beginT) throws ThermodynamicComputeException {
         double temperature = beginT;

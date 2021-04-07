@@ -97,7 +97,8 @@ public class ReadDisassociationData {
                 String nameS   = tok1.nextToken();
                 
                 
-                String startS  = tok2.nextToken();
+                @SuppressWarnings("unused")
+				String startS  = tok2.nextToken();
                 String nancy   = tok2.nextToken();
                 System.out.println("Form Structure: " + nameS + "\t" + nancy );
 

@@ -85,7 +85,7 @@ public class TestComputeThermodynamicsFromInChiString {
             c.connect();
             ComputeThermodynamicsFromMolecule compute = new ComputeThermodynamicsFromMolecule(c);
             System.out.println("Start computing");
-            ThermodynamicInformation value = (ThermodynamicInformation) compute.computeThermodynamicsFromInChI(inchi);
+            ThermodynamicInformation value = (ThermodynamicInformation) compute.computeThermodynamicsFromInChI(inchi,false);
             System.out.println("Done");
             System.out.println(value.toString());
         } catch (ThermodynamicComputeException ex) {

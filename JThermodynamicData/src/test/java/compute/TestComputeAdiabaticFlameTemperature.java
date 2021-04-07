@@ -53,7 +53,7 @@ public class TestComputeAdiabaticFlameTemperature {
             if (connection.connect()) {
                 ComputeAdiabaticFlameTemperature flametemp = new ComputeAdiabaticFlameTemperature(connection);
                 double beginT = 300;
-                double flameTemperature = flametemp.computeFlameTemperatureOxygen(propanecml.getMolecule(), beginT);
+                double flameTemperature = flametemp.computeFlameTemperatureOxygen(propanecml.getMolecule(), beginT,false);
 
                 System.out.println("Adiabatic Flame Temperature at " + beginT + " for propane is " + flameTemperature);
             }

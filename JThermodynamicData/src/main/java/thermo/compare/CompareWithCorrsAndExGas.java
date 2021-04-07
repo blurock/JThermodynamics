@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import thermo.build.ReadThermodynamicsFromExGas;
@@ -50,9 +49,10 @@ public class CompareWithCorrsAndExGas {
      * @throws FileNotFoundException
      * @throws ThermodynamicComputeException
      */
-    public void compare(File corrsF, File thermoF) throws IOException, FileNotFoundException, ThermodynamicComputeException{
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public void compare(File corrsF, File thermoF, boolean frombensonradical) throws IOException, FileNotFoundException, ThermodynamicComputeException{
         exgasThermo = readTherm.read(thermoF);
-        jthergasThermo = computeNancy.computeFromFile(corrsF);
+        jthergasThermo = computeNancy.computeFromFile(corrsF,frombensonradical);
 
         HashMap<String,ThermodynamicInformation> map = createHashTable();
         SetOfThermodynamicInformation set = buildSet(map);
@@ -61,8 +61,8 @@ public class CompareWithCorrsAndExGas {
         System.out.println(jthergasThermo.toString());
 
         SetOfThermodynamicDifferences diff = compareThermo.computeDifference(jthergasThermo, set);
-        List difflist = diff;
-        Collections.sort( difflist);
+        List<ThermodynamicInformation> difflist = diff;
+        Collections.sort((List) difflist);
 
         System.out.println(difflist.toString());
     }

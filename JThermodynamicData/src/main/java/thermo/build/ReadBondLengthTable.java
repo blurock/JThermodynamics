@@ -19,7 +19,8 @@ import thermo.data.structure.bonds.DB.SQLBondLength;
  * @author edwardblurock
  */
 public class ReadBondLengthTable extends BondLengthTable {
-    ThermoSQLConnection connection;
+	private static final long serialVersionUID = 1L;
+	ThermoSQLConnection connection;
     ReadFileToString readFileToString;
     SQLBondLength sqlbondlength;
 

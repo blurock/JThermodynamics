@@ -38,7 +38,8 @@ public class ReadThermodynamicsFromExGas {
         }
 
         SetOfThermodynamicInformation set = new SetOfThermodynamicInformation(fileF.toString());
-        String temp = tok.nextToken();
+        @SuppressWarnings("unused")
+		String temp = tok.nextToken();
         notdone = true;
         while (notdone) {
             String line1 = tok.nextToken();

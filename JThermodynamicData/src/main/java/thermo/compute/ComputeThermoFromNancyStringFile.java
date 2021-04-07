@@ -30,7 +30,7 @@ public class ComputeThermoFromNancyStringFile {
         compute = new ComputeThermodynamicsFromMolecule(connect);
     }
 
-    public SetOfThermodynamicInformation computeFromFile(File fileF) throws FileNotFoundException, ThermodynamicComputeException {
+    public SetOfThermodynamicInformation computeFromFile(File fileF, boolean frombensonradical) throws FileNotFoundException, ThermodynamicComputeException {
         SetOfThermodynamicInformation set = new SetOfThermodynamicInformation("Benson");
         StringBuilder buf = new StringBuilder();
 
@@ -42,7 +42,7 @@ public class ComputeThermoFromNancyStringFile {
         buf.append("   300.000  1000.000  5000.000");
         while (tok.hasMoreTokens()) {
             String line = tok.nextToken();
-            NASAPolynomialFromBenson nasa = computeBenson(line);
+            NASAPolynomialFromBenson nasa = computeBenson(line,frombensonradical);
             buf.append(nasa.toString());
             set.add(nasa);
         }
@@ -50,11 +50,11 @@ public class ComputeThermoFromNancyStringFile {
         return set;
     }
 
-    private NASAPolynomialFromBenson computeBenson(String line) throws ThermodynamicComputeException {
+    private NASAPolynomialFromBenson computeBenson(String line, boolean frombensonradical) throws ThermodynamicComputeException {
         StringTokenizer linetok = new StringTokenizer(line);
         String name = linetok.nextToken();
         String nancy = linetok.nextToken();
-        ThermodynamicInformation thermo = compute.computeThermodynamics(nancy);
+        ThermodynamicInformation thermo = compute.computeThermodynamics(nancy,frombensonradical);
         NASAPolynomialFromBenson nasa = new NASAPolynomialFromBenson((BensonThermodynamicBase) thermo);
         nasa.name = name;
 

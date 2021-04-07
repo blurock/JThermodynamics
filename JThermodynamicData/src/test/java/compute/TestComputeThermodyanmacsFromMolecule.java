@@ -64,7 +64,7 @@ public class TestComputeThermodyanmacsFromMolecule {
             ComputeThermodynamicsFromMolecule compute = new ComputeThermodynamicsFromMolecule(c);
             //ThermodynamicInformation value = compute.computeThermodynamics(cmlstruct.getMolecule());
             SetOfBensonThermodynamicBase thermodynamics = new SetOfBensonThermodynamicBase();
-            ThermodynamicInformation value = (ThermodynamicInformation) compute.computeThermodynamics(nancy,thermodynamics);
+            ThermodynamicInformation value = (ThermodynamicInformation) compute.computeThermodynamics(nancy,thermodynamics,false);
             System.out.println(value.toString());
 
             CMLSetOfBensonThermodynamicBase cmlbenson = new CMLSetOfBensonThermodynamicBase();
@@ -115,7 +115,7 @@ public class TestComputeThermodyanmacsFromMolecule {
             //String nancy = "ch3/co/c///ch";
             //String nancy = "ch3/c(#1)&ch&ch&ch&ch&ch&1";
             String nancy = "ch3/c(ch3)2/ch2/ch(ch3)/ch3";
-            ThermodynamicInformation value = compute.computeThermodynamics(nancy);
+            ThermodynamicInformation value = compute.computeThermodynamics(nancy,false);
             System.out.println(value.toString());
             
         } catch (ThermodynamicComputeException ex) {

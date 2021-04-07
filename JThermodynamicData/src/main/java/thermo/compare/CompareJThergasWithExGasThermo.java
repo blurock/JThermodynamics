@@ -44,21 +44,21 @@ public class CompareJThergasWithExGasThermo {
         computeThermo = new ComputeThermodynamicsFromMolecule(connect);
         compareThermo = new CompareThermodynamicInformationSets();
     }
-    public CompareJThergasWithExGasThermo(String filename) throws ThermodynamicComputeException {
+    public CompareJThergasWithExGasThermo(String filename, boolean frombensonradical) throws ThermodynamicComputeException {
         initialize();
         File fileF = new File(filename);
-        read(fileF);
+        read(fileF,frombensonradical);
     }
-    public CompareJThergasWithExGasThermo(File fileF) throws ThermodynamicComputeException {
+    public CompareJThergasWithExGasThermo(File fileF, boolean frombensonradical) throws ThermodynamicComputeException {
          initialize();
-         read(fileF);
+         read(fileF, frombensonradical);
     }
-    private void read(File fileF) {
+    private void read(File fileF, boolean frombensonradical) {
         ReadFileToString read = new ReadFileToString();
         read.read(fileF);
         inputString = read.outputString;
     }
-    public void compare() throws ThermodynamicComputeException {
+    public void compare(boolean frombensonradical) throws ThermodynamicComputeException {
         jthergasValues = new SetOfThermodynamicInformation("JThergas");
         exgasThermValues = new SetOfThermodynamicInformation("ExGas");
         StringBuilder errorbuf = new StringBuilder();
@@ -66,7 +66,7 @@ public class CompareJThergasWithExGasThermo {
         while(tok.hasMoreTokens()) {
             String line = tok.nextToken();
             try {
-                build(line);
+                build(line,frombensonradical);
             } catch (IOException ex) {
                 errorbuf.append(ex.toString());
                 errorbuf.append("\n");
@@ -78,17 +78,18 @@ public class CompareJThergasWithExGasThermo {
         System.out.println(difflist.toString());
         //diff.toStringInTable();
     }
-    private void printDifferenceAsTable(SetOfThermodynamicDifferences diff) {
-
+    @SuppressWarnings("unused")
+	private void printDifferenceAsTable(SetOfThermodynamicDifferences diff) {
     }
-    public void build(String line) throws IOException, ThermodynamicComputeException {
+    
+    public void build(String line,boolean frombensonradical) throws IOException, ThermodynamicComputeException {
         StringTokenizer tok = new StringTokenizer(line);
         if(tok.countTokens() >= 16) {
             String nancystring = tok.nextToken();
             String name = tok.nextToken();
             NASAPolynomial exgasNASA = setUpNASAPolynomial(name, tok);
             System.out.println(exgasNASA.toString());
-            ThermodynamicInformation jthergasNASA = setUpJThergasNASAPolynomial(nancystring,name);
+            ThermodynamicInformation jthergasNASA = setUpJThergasNASAPolynomial(nancystring,name,frombensonradical);
 
             double jthergasEnthalpy = jthergasNASA.getStandardEnthalpy298();
             double exgasEnthalpy = exgasNASA.getStandardEnthalpy298();
@@ -128,8 +129,10 @@ public class CompareJThergasWithExGasThermo {
             return nasa;
     }
 
-    private ThermodynamicInformation setUpJThergasNASAPolynomial(String nancystring, String name) throws ThermodynamicComputeException {
-        ThermodynamicInformation thermo = computeThermo.computeThermodynamics(nancystring);
+    private ThermodynamicInformation setUpJThergasNASAPolynomial(String nancystring, 
+    		String name,
+    		boolean frombensonradical) throws ThermodynamicComputeException {
+        ThermodynamicInformation thermo = computeThermo.computeThermodynamics(nancystring,frombensonradical);
         return thermo;
     }
 }

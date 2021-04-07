@@ -55,7 +55,7 @@ public class ComputeThermoFromInChIString {
             	} else {
                 try {
                 	String name = new String(args[1]);
-                    computeFromFile(name);
+                    computeFromFile(name,false);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(ComputeThermodynamicsFromNancyString.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (CDKException e) {
@@ -69,7 +69,7 @@ public class ComputeThermoFromInChIString {
                     	String name = new String(args[1]);
                         String inchi = name;
                         name = new String(args[2]);
-                        computeFromInChI(inchi,name);
+                        computeFromInChI(inchi,name,false);
                         } else {
                             System.out.println("Expecting name of molecule as third argument");
                         }
@@ -92,7 +92,7 @@ public class ComputeThermoFromInChIString {
 		System.out.println("INCHIFILE: Calculate thermodynamics from a file of molecule names in InchI");    	
     }
     
-    private static void computeFromFile(String fileroot) throws FileNotFoundException, CDKException {
+    private static void computeFromFile(String fileroot, boolean frombensonradical) throws FileNotFoundException, CDKException {
         ThermoSQLConnection c = new ThermoSQLConnection();
         c.connect();
         ComputeThermodynamicsFromMolecule compute = null;
@@ -117,7 +117,7 @@ public class ComputeThermoFromInChIString {
                 StringTokenizer linetok = new StringTokenizer(line);
                 String inchi = linetok.nextToken();
                 String name = linetok.nextToken();
-                ThermodynamicInformation thermo = compute.computeThermodynamicsFromInChI(inchi);
+                ThermodynamicInformation thermo = compute.computeThermodynamicsFromInChI(inchi,frombensonradical);
                 NASAPolynomialFromBenson nasa = new NASAPolynomialFromBenson((BensonThermodynamicBase) thermo);
                 nasa.name = name;
                 prt.print(nasa.toString());
@@ -128,11 +128,13 @@ public class ComputeThermoFromInChIString {
         prt.println("END");
          prt.close();
     }
-    private static void computeFromInChI(String inchi,String name) throws ThermodynamicComputeException, CDKException {
+    private static void computeFromInChI(String inchi,
+    		String name,
+    		boolean frombensonradical) throws ThermodynamicComputeException, CDKException {
         ThermoSQLConnection c = new ThermoSQLConnection();
         c.connect();
         ComputeThermodynamicsFromMolecule compute = new ComputeThermodynamicsFromMolecule(c);
-        ThermodynamicInformation thermo = compute.computeThermodynamicsFromInChI(inchi);
+        ThermodynamicInformation thermo = compute.computeThermodynamicsFromInChI(inchi,frombensonradical);
         NASAPolynomialFromBenson nasa = new NASAPolynomialFromBenson((BensonThermodynamicBase) thermo);
         nasa.name = name;
     }

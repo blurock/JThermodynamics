@@ -121,9 +121,10 @@ public class ComputeThermodynamicsFromMolecule {
      * @return The full thermodynamics (all Benson rules and corrections combined)
      * @throws ThermodynamicComputeException
      */
-    public ThermodynamicInformation computeThermodynamicsFromInChI(String inchi) throws ThermodynamicComputeException {
+    public ThermodynamicInformation computeThermodynamicsFromInChI(String inchi,
+    		boolean frombensonradical) throws ThermodynamicComputeException {
         SetOfBensonThermodynamicBase thermodynamics = new SetOfBensonThermodynamicBase();
-       return computeThermodynamicsFromInChI(inchi,thermodynamics);
+       return computeThermodynamicsFromInChI(inchi,thermodynamics,frombensonradical);
    }
     /** Compute the combined thermodynamics from the InChI string.
      * 
@@ -135,7 +136,9 @@ public class ComputeThermodynamicsFromMolecule {
         * @return The full thermodynamics (all Benson rules and corrections combined)
      * @throws ThermodynamicComputeException
      */
-    public ThermodynamicInformation computeThermodynamicsFromInChI(String inchi,SetOfBensonThermodynamicBase thermodynamics) throws ThermodynamicComputeException {
+    public ThermodynamicInformation computeThermodynamicsFromInChI(String inchi,
+    		SetOfBensonThermodynamicBase thermodynamics,
+    		boolean fromradicalbenson) throws ThermodynamicComputeException {
         ThermodynamicInformation thermo = null;
 try {
         
@@ -146,7 +149,7 @@ try {
             InChIToStructure istruct = inchifactory.getInChIToStructure(inchi, DefaultChemObjectBuilder.getInstance());
             molecule = new AtomContainer(istruct.getAtomContainer());
              substitute.substitute(molecule);
-            thermo = computeThermodynamics(molecule, thermodynamics);
+            thermo = computeThermodynamics(molecule, thermodynamics,fromradicalbenson);
             
 
         } catch (CDKException ex) {
@@ -164,10 +167,11 @@ try {
      * @return The full thermodynamics (all Benson rules and corrections combined).
      * @throws ThermodynamicComputeException
      */
-    public ThermodynamicInformation computeThermodynamics(String nancy) throws ThermodynamicComputeException {
+    public ThermodynamicInformation computeThermodynamics(String nancy,
+    		boolean fromradicalbenson) throws ThermodynamicComputeException {
         //ThermodynamicInformation thermo = null;
         SetOfBensonThermodynamicBase thermodynamics = new SetOfBensonThermodynamicBase();
-        return computeThermodynamics(nancy,thermodynamics);
+        return computeThermodynamics(nancy,thermodynamics,fromradicalbenson);
         }
 
     /** Compute thermodynamics from the Nancy Linear form.
@@ -180,7 +184,9 @@ try {
      * @return The full thermodynamics (all Benson rules and corrections combined).
      * @throws ThermodynamicComputeException
      */
-    public ThermodynamicInformation computeThermodynamics(String nancy,SetOfBensonThermodynamicBase thermodynamics) throws ThermodynamicComputeException {
+    public ThermodynamicInformation computeThermodynamics(String nancy,
+    		SetOfBensonThermodynamicBase thermodynamics,
+    		boolean fromradicalbenson) throws ThermodynamicComputeException {
         ThermodynamicInformation fullthermo = null;
         try {
             molecule = nancyFormToMolecule.convert(nancy);
@@ -192,7 +198,7 @@ try {
             System.out.println(cmlstruct.toString());
             substitute.substitute(molecule);
             //StructureAsCML cmlstruct2 = new StructureAsCML(molecule);
-            fullthermo = computeThermodynamics(molecule,thermodynamics);
+            fullthermo = computeThermodynamics(molecule,thermodynamics, fromradicalbenson);
         } catch (CDKException ex) {
             Logger.getLogger(ComputeThermodynamicsFromMolecule.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -207,9 +213,10 @@ try {
      * @return The full thermodynamics (all Benson rules and corrections combined)
      * @throws ThermodynamicComputeException
      */
-    public ThermodynamicInformation computeThermodynamics(StructureAsCML struct) throws ThermodynamicComputeException {
+    public ThermodynamicInformation computeThermodynamics(StructureAsCML struct, 
+    		boolean fromradicalbenson) throws ThermodynamicComputeException {
         SetOfBensonThermodynamicBase thermodynamics = new SetOfBensonThermodynamicBase();
-        return computeThermodynamics(struct,thermodynamics);
+        return computeThermodynamics(struct,thermodynamics,fromradicalbenson);
     }
     /**
      * 
@@ -221,13 +228,15 @@ try {
      * @return The full thermodynamics (all Benson rules and corrections combined)
      * @throws ThermodynamicComputeException
      */
-    public ThermodynamicInformation computeThermodynamics(StructureAsCML struct,SetOfBensonThermodynamicBase thermodynamics) throws ThermodynamicComputeException {
+    public ThermodynamicInformation computeThermodynamics(StructureAsCML struct,
+    		SetOfBensonThermodynamicBase thermodynamics,
+    		boolean fromradicalbenson) throws ThermodynamicComputeException {
         try {
             molecule = struct.getMolecule();
         } catch (CDKException ex) {
             throw new ThermodynamicComputeException(ex.toString());
         }
-        return computeThermodynamics(molecule,thermodynamics);
+        return computeThermodynamics(molecule,thermodynamics,fromradicalbenson);
     }
 
     /** This computes the thermodynamic information given the CDK molecule
@@ -236,10 +245,11 @@ try {
      * @return The full thermodynamics (all Benson rules and corrections combined)
      * @throws ThermodynamicComputeException
      */
-    public ThermodynamicInformation computeThermodynamics(IAtomContainer mol) throws ThermodynamicComputeException {
+    public ThermodynamicInformation computeThermodynamics(IAtomContainer mol, 
+    		boolean fromradicalbenson) throws ThermodynamicComputeException {
         molecule = mol;
         SetOfBensonThermodynamicBase thermodynamics = new SetOfBensonThermodynamicBase();
-        return computeThermodynamics(mol,thermodynamics);
+        return computeThermodynamics(mol,thermodynamics,fromradicalbenson);
     }
     /** Compute the thermodynamics from the CDK molecule.
      *
@@ -257,7 +267,9 @@ try {
      * @return The full thermodynamics (all Benson rules and corrections combined)
      * @throws ThermodynamicComputeException
      */
-    public ThermodynamicInformation computeThermodynamics(IAtomContainer moleculetocompute, SetOfBensonThermodynamicBase thermodynamics) throws ThermodynamicComputeException {
+    public ThermodynamicInformation computeThermodynamics(IAtomContainer moleculetocompute, 
+    		SetOfBensonThermodynamicBase thermodynamics,
+    		boolean fromradicalbenson) throws ThermodynamicComputeException {
         BensonThermodynamicBase combinedThermodynamics = null;
 		MoleculeUtilities.setImplicitHydrogensToZero(moleculetocompute);
 
@@ -267,12 +279,16 @@ try {
             AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(moleculetocompute);
             StructureAsCML cmlstruct = new StructureAsCML(moleculetocompute);
             //boolean sromaticB = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
+            
+            if(fromradicalbenson) {
+            	
+            }  else {
             if(formRH.isARadical(moleculetocompute)) {
                 computeThermodynamicsForRadicalContributions(moleculetocompute, thermodynamics);
             } else {
                 computeThermodynamicsForMolecule(moleculetocompute, thermodynamics);
             }
-           
+            }
             System.out.println(cmlstruct.toString());
             System.out.println("=========== Contributions ==============================");
             System.out.println(thermodynamics.toString());
