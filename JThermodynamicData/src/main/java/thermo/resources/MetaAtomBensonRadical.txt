@@ -1,0 +1,5 @@
+cR3(.)             BensonCarbonRadical                 c/r    BensonAtom
+oR(.)              BensonSP3OxygenRadical              o/r    BensonAtom
+nR2(.)             BensonSingleBondNitrogenRadical     n/r    BensonAtom
+sR(.)              BensonSP3SRadical                   s/r    BensonAtom
+c(o)(.)//o         BensonCO2Radical                    co2/r  BensonAtom

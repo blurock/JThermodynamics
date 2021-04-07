@@ -85,7 +85,7 @@ public class ComputeThermodynamicsFromNancyString {
 				} catch (ThermodynamicComputeException ex) {
 					Logger.getLogger(ComputeThermodynamicsFromNancyString.class.getName()).log(Level.SEVERE, null, ex);
 				}
-			} if(type.startsWith(bensonradicalType)) {
+			} else if(type.startsWith(bensonradicalType)) {
 				try {
 				if (args.length >= 3) {
 					String name = new String(args[1]);
