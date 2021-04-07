@@ -261,9 +261,14 @@ try {
      *
      * The list of corrections from either routine (added to the thermodynamics structure) is then combined into one value
      * and this value is returned and printed.
+     * 
+     * The only difference when using Benson radical rules is a check is not made for a radical 
+     * (which would add a hydrogen and compute with radical). The computation for a molecule or radical is the same,
+     * only with a radical, the rules for radicals have to be included (otherwise no contribution for radical atoms).
      *
      * @param molecule The molecule in CDK Molecule form
      * @param thermodynamics The Benson rules and corrections are added individually to this structure.
+     * @param fromBensonRules if true, compute using Benson radical rules
      * @return The full thermodynamics (all Benson rules and corrections combined)
      * @throws ThermodynamicComputeException
      */
@@ -281,7 +286,7 @@ try {
             //boolean sromaticB = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
             
             if(fromradicalbenson) {
-            	
+            	computeThermodynamicsForMolecule(moleculetocompute, thermodynamics);
             }  else {
             if(formRH.isARadical(moleculetocompute)) {
                 computeThermodynamicsForRadicalContributions(moleculetocompute, thermodynamics);
@@ -317,7 +322,7 @@ try {
         }
         return combinedThermodynamics;
     }
-    /** This computes the thermodynamics for a CDK stable molecule.
+	/** This computes the thermodynamics for a CDK stable molecule.
      *
      * @param mol The molecule in CDK Molecule form
      * @param thermo The Benson rules and corrections are added individually to this structure.
@@ -350,6 +355,12 @@ try {
 
         gauche.compute(molorig, thermo);
     }
+    public void computeThermodynamicsFromBensonRadicalRules(IAtomContainer moleculetocompute,
+			SetOfBensonThermodynamicBase thermodynamics) {
+		// TODO Auto-generated method stub
+		
+	}
+
     /** Compute thermodynamic corrections for radical
      *
      * For both the radical and the stable species (radical with a hydrogen added: {@link AddHydrogenToSingleRadical} compute:
@@ -375,7 +386,7 @@ try {
      */
     public void computeThermodynamicsForRadicalContributions(IAtomContainer R, SetOfBensonThermodynamicBase thermo) throws NotARadicalException, ThermodynamicException, SQLException, CDKException, IOException, ClassNotFoundException{
 
-        SetOfBensonThermodynamicBase thermominus = new SetOfBensonThermodynamicBase();
+        //SetOfBensonThermodynamicBase thermominus = new SetOfBensonThermodynamicBase();
         IAtomContainer RH = formRH.convert(R);
         MoleculeUtilities.normalizeMolecule(RH);
         

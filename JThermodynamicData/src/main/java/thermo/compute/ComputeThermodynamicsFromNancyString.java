@@ -164,12 +164,6 @@ public class ComputeThermodynamicsFromNancyString {
 		commandLinePrintout(nancy,name,compute.getMolecule(),thermodynamics,thermo);
 	}
 	
-	private static void computeFromNancyLinearFormUsingBensonRadicals(String nancy, String name) {
-		ThermoSQLConnection c = new ThermoSQLConnection();
-		c.connect();
-		
-	}
-
 	private static void commandLinePrintout(String nancy, String name, IAtomContainer molecule, SetOfBensonThermodynamicBase thermodynamics, ThermodynamicInformation thermo) throws ThermodynamicComputeException {
 		System.out.println("Compute From Nancy Linear Form: -->" + nancy + "<--");
 		System.out.println("-------------- Corrections --------------");
