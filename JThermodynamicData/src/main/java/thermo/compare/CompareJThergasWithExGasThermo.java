@@ -11,11 +11,16 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import org.openscience.cdk.AtomContainer;
+
 import thermo.compute.CompareThermodynamicInformationSets;
 import thermo.compute.ComputeThermodynamicsFromMolecule;
 import thermo.compute.SetOfThermodynamicDifferences;
+import thermo.compute.utilities.StringToAtomContainer;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.benson.NASAPolynomial;
+import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.benson.SetOfThermodynamicInformation;
 import thermo.data.benson.ThermodynamicInformation;
 import thermo.exception.ThermodynamicComputeException;
@@ -34,6 +39,7 @@ public class CompareJThergasWithExGasThermo {
     private ThermoSQLConnection connect;
     private ComputeThermodynamicsFromMolecule computeThermo;
     private CompareThermodynamicInformationSets compareThermo;
+    StringToAtomContainer convertStringToMolecule;
 
     SetOfThermodynamicInformation exgasThermValues;
     SetOfThermodynamicInformation jthergasValues;
@@ -43,22 +49,18 @@ public class CompareJThergasWithExGasThermo {
         connect.connect();
         computeThermo = new ComputeThermodynamicsFromMolecule(connect);
         compareThermo = new CompareThermodynamicInformationSets();
+        convertStringToMolecule = new StringToAtomContainer(connect);
     }
-    public CompareJThergasWithExGasThermo(String filename, boolean frombensonradical) throws ThermodynamicComputeException {
-        initialize();
-        File fileF = new File(filename);
-        read(fileF,frombensonradical);
-    }
-    public CompareJThergasWithExGasThermo(File fileF, boolean frombensonradical) throws ThermodynamicComputeException {
+    public CompareJThergasWithExGasThermo(File fileF) throws ThermodynamicComputeException {
          initialize();
-         read(fileF, frombensonradical);
+         read(fileF);
     }
-    private void read(File fileF, boolean frombensonradical) {
+    private void read(File fileF) {
         ReadFileToString read = new ReadFileToString();
         read.read(fileF);
         inputString = read.outputString;
     }
-    public void compare(boolean frombensonradical) throws ThermodynamicComputeException {
+    public void compare(String molform, String method) throws ThermodynamicComputeException {
         jthergasValues = new SetOfThermodynamicInformation("JThergas");
         exgasThermValues = new SetOfThermodynamicInformation("ExGas");
         StringBuilder errorbuf = new StringBuilder();
@@ -66,7 +68,7 @@ public class CompareJThergasWithExGasThermo {
         while(tok.hasMoreTokens()) {
             String line = tok.nextToken();
             try {
-                build(line,frombensonradical);
+                build(line,molform,method);
             } catch (IOException ex) {
                 errorbuf.append(ex.toString());
                 errorbuf.append("\n");
@@ -82,14 +84,14 @@ public class CompareJThergasWithExGasThermo {
 	private void printDifferenceAsTable(SetOfThermodynamicDifferences diff) {
     }
     
-    public void build(String line,boolean frombensonradical) throws IOException, ThermodynamicComputeException {
+    public void build(String line, String molform, String method) throws IOException, ThermodynamicComputeException {
         StringTokenizer tok = new StringTokenizer(line);
         if(tok.countTokens() >= 16) {
-            String nancystring = tok.nextToken();
+            String moldescription = tok.nextToken();
             String name = tok.nextToken();
             NASAPolynomial exgasNASA = setUpNASAPolynomial(name, tok);
             System.out.println(exgasNASA.toString());
-            ThermodynamicInformation jthergasNASA = setUpJThergasNASAPolynomial(nancystring,name,frombensonradical);
+            ThermodynamicInformation jthergasNASA = setUpJThergasNASAPolynomial(method,molform,moldescription,name);
 
             double jthergasEnthalpy = jthergasNASA.getStandardEnthalpy298();
             double exgasEnthalpy = exgasNASA.getStandardEnthalpy298();
@@ -129,10 +131,13 @@ public class CompareJThergasWithExGasThermo {
             return nasa;
     }
 
-    private ThermodynamicInformation setUpJThergasNASAPolynomial(String nancystring, 
-    		String name,
-    		boolean frombensonradical) throws ThermodynamicComputeException {
-        ThermodynamicInformation thermo = computeThermo.computeThermodynamics(nancystring,frombensonradical);
+    private ThermodynamicInformation setUpJThergasNASAPolynomial(String method, 
+    		String molform, String moldescription,
+    		String name) throws ThermodynamicComputeException {
+        SetOfBensonThermodynamicBase thermodynamics = new SetOfBensonThermodynamicBase();
+        
+        AtomContainer molecule = convertStringToMolecule.stringToAtomContainer(molform, moldescription);
+        ThermodynamicInformation thermo = computeThermo.computeThermodynamics(molecule,thermodynamics,method);
         return thermo;
     }
 }

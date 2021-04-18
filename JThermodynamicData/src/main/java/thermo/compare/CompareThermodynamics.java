@@ -18,31 +18,29 @@ import thermo.exception.ThermodynamicComputeException;
  */
 public class CompareThermodynamics {
 	
-	static String fromRadicalKeyS = "FromRadical";
-
     private static void oneLinePerMolecule(String[] args) throws ThermodynamicComputeException {
-        String fileS = args[1];
-        boolean frombensonradical = false;
-        if(args.length > 2) {
-        	String fromradicalS = args[2];
-        	frombensonradical = fromradicalS.startsWith(fromRadicalKeyS);
-        }
-        CompareJThergasWithExGasThermo compare = new CompareJThergasWithExGasThermo(fileS,frombensonradical);
-        compare.compare(frombensonradical);
+    	if(args.length < 4) {
+    		System.out.println("Expecting: Compare Filename method molform");
+    	} else {
+    		String fileS = args[1];
+    		String method = args[2];
+    		String molform = args[3];
+    		File file = new File(fileS);
+    		CompareJThergasWithExGasThermo compare = new CompareJThergasWithExGasThermo(file);
+    		compare.compare(molform,method);
+    	}
     }
 
     private static void corrsAndThermo(String[] args) throws IOException, FileNotFoundException, ThermodynamicComputeException {
         String corrsS = args[1];
         String thermoS = args[2];
+        String method = args[3];
+        String molform = args[4];
         boolean frombensonradical = false;
-        if(args.length > 3) {
-        	String fromBensonRadicalS = args[3];
-        	frombensonradical = fromBensonRadicalS.startsWith(fromRadicalKeyS);
-        }
         File corrsF = new File(corrsS);
         File thermoF = new File(thermoS);
         CompareWithCorrsAndExGas compare = new CompareWithCorrsAndExGas();
-        compare.compare(corrsF, thermoF,frombensonradical);
+        compare.compare(corrsF, thermoF,method,molform);
     }
     static String oneLineS = "OneLine";
     static String twoFilesS = "CorrsAndThermo";

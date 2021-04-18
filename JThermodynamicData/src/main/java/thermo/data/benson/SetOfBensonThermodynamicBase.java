@@ -6,7 +6,6 @@
 package thermo.data.benson;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import thermo.exception.ThermodynamicComputeException;
@@ -16,8 +15,8 @@ import thermo.exception.ThermodynamicComputeException;
  * @author blurock
  */
 public class SetOfBensonThermodynamicBase extends ArrayList<BensonThermodynamicBase> {
-    
-    public SetOfBensonThermodynamicBase() {
+	private static final long serialVersionUID = 1L;
+	public SetOfBensonThermodynamicBase() {
     }
     public SetOfBensonThermodynamicBase(ArrayList<BensonThermodynamicBase> lst) {
         super(lst);

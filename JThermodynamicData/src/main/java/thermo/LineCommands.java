@@ -3,8 +3,7 @@ package thermo;
 import thermo.build.BuildDatabase;
 import thermo.build.test.CorrectionElementTests;
 import thermo.build.test.ExamineCorrectionElements;
-import thermo.compute.ComputeThermodynamicsFromNancyString;
-import thermo.compute.ComputeThermoFromInChIString;
+import thermo.compute.ComputeThermodynamics;
 
 public class LineCommands {
 
@@ -15,13 +14,11 @@ public class LineCommands {
 		}
 
 		if (!BuildDatabase.executeCommand(args)) {
-			if (!ComputeThermodynamicsFromNancyString.executeCommand(args)) {
-				if (!ComputeThermoFromInChIString.executeCommand(args)) {
+			if (!ComputeThermodynamics.executeCommand(args)) {
 					if (!CorrectionElementTests.executeCommand(args)) {
 						if(!ExamineCorrectionElements.executeCommand(args)) {
 							commands();
 						}
-					}
 				}
 			}
 		}
@@ -29,8 +26,7 @@ public class LineCommands {
 
 	private static void commands() {
 		BuildDatabase.commands();
-		ComputeThermodynamicsFromNancyString.commands();
-		ComputeThermoFromInChIString.commands();
+		ComputeThermodynamics.commands();
 		CorrectionElementTests.commands();
 		ExamineCorrectionElements.commands();
 	}

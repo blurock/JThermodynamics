@@ -7,17 +7,17 @@ package thermo.compute;
 
 import java.util.Iterator;
 import thermo.compare.ThermodynamicDifference;
-import thermo.data.benson.SetOfThermodynamicInformation;
-import thermo.data.benson.ThermodynamicInformation;
+import thermo.data.benson.BensonThermodynamicBase;
+import thermo.data.benson.SetOfBensonThermodynamicBase;
 
 /**
  *
  * @author edwardblurock
  */
-public class SetOfThermodynamicDifferences extends SetOfThermodynamicInformation {
+public class SetOfThermodynamicDifferences extends SetOfBensonThermodynamicBase {
+	private static final long serialVersionUID = 1393621733486845590L;
 
-    public SetOfThermodynamicDifferences(String name) {
-        super(name);
+	public SetOfThermodynamicDifferences(String name) {
     }
 
     public String stringTableHeader(){
@@ -27,23 +27,23 @@ public class SetOfThermodynamicDifferences extends SetOfThermodynamicInformation
         buf.append("Enthalpy");
         buf.append("\t");
         buf.append("Entropy");
-        Iterator<ThermodynamicInformation> iterator = this.iterator();
-        ThermodynamicDifference diff = (ThermodynamicDifference) iterator.next();
+        //Iterator<ThermodynamicDifference> iterator = this.iterator();
+        //ThermodynamicDifference diff = (ThermodynamicDifference) iterator.next();
 
         return buf.toString();
     }
-
+    
  public String toStringInTable() {
      StringBuilder buf = new StringBuilder();
      String header = stringTableHeader();
      buf.append(header);
-        Iterator<ThermodynamicInformation> iterator = this.iterator();
+        Iterator<BensonThermodynamicBase> iterator = this.iterator();
         while(iterator.hasNext()) {
-            ThermodynamicDifference diff = (ThermodynamicDifference) iterator.next();
+        	ThermodynamicDifference diff = (ThermodynamicDifference) iterator.next();
         buf.append(diff.toStringInTable());
         buf.append("\n");
         }
      return buf.toString();
  }
-
+ 
 }

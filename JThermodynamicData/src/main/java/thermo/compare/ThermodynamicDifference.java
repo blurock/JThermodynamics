@@ -8,14 +8,14 @@ package thermo.compare;
 import java.util.Iterator;
 import thermo.data.benson.BensonThermodynamicBase;
 import thermo.data.benson.HeatCapacityTemperaturePair;
-import thermo.data.benson.ThermodynamicInformation;
 
 /**
  *
  * @author edwardblurock
  */
 public class ThermodynamicDifference extends BensonThermodynamicBase implements Comparable<BensonThermodynamicBase> {
-    double veryClose;
+	private static final long serialVersionUID = 1L;
+	double veryClose;
 
     public ThermodynamicDifference(double veryClose) {
         this.veryClose = veryClose;

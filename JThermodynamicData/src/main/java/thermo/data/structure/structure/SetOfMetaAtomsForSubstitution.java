@@ -25,6 +25,7 @@ import thermo.data.structure.utilities.MoleculeUtilities;
  */
 public class SetOfMetaAtomsForSubstitution extends ArrayList<SubstituteMetaAtom> {
 
+	boolean debug = true;
     int topPriority = 5;
 
     /**
@@ -90,15 +91,21 @@ public IAtomContainer substitute(IAtomContainer molecule) throws CDKException, C
             while (sub.hasNext()) {
                 SubstituteMetaAtom substitute = sub.next();
                 if (substitute.getPriority() == pr) {
-                    //System.out.println("SetOfMetaAtomsForSubstitution:  " + substitute.toString());
+                	if(debug) {
+                        System.out.println("SetOfMetaAtomsForSubstitution:  " + substitute.toString());
+                	}
                     substitute.substitute(molecule);
                     cml = new StructureAsCML(molecule);
-                    //System.out.println("SetOfMetaAtomsForSubstitution:  " + cml.toString());
+                    if(debug) {
+                    	System.out.println("SetOfMetaAtomsForSubstitution:  " + cml.toString());
+                    }
                 }
             }
         }
         MoleculeUtilities.normalizeMolecule(molecule);
-        //System.out.println("SetOfMetaAtomsForSubstitution: Last\n " + cml.toString());
+        if(debug) {
+          System.out.println("SetOfMetaAtomsForSubstitution: Last\n " + cml.toString());
+        }
         return molecule;
     }
 

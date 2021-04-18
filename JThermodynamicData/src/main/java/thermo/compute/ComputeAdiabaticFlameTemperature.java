@@ -15,6 +15,7 @@ import thermo.data.benson.ThermodynamicInformation;
 import thermo.data.structure.structure.HydrocarbonCompleteCombustion;
 import thermo.exception.ThermodynamicComputeException;
 import thermo.data.benson.BensonThermodynamicBase;
+import thermo.data.benson.SetOfBensonThermodynamicBase;
 
 /**
  *
@@ -56,18 +57,19 @@ public class ComputeAdiabaticFlameTemperature {
         h2oThermo = iter.next();
 
     }
-    public void setFuel(IAtomContainer atoms, boolean frombensonradical) throws ThermodynamicComputeException{
+    public void setFuel(IAtomContainer atoms, String method) throws ThermodynamicComputeException{
         fuelAtoms = new HydrocarbonCompleteCombustion(atoms);
         fuelAtoms.findCompleteCombustionInOxygen();
-        initializeThermodynamicsForFuel(atoms,frombensonradical);
+        initializeThermodynamicsForFuel(atoms,method);
     }
-    public double computeFlameTemperatureOxygen(IAtomContainer atoms,double beginT, boolean frombensonradical) throws ThermodynamicComputeException {
-        setFuel(atoms,frombensonradical);
+    public double computeFlameTemperatureOxygen(IAtomContainer atoms,double beginT, String method) throws ThermodynamicComputeException {
+        setFuel(atoms,method);
         return computeFlameTemperatureOxygen(beginT);
     }
-    public void initializeThermodynamicsForFuel(IAtomContainer atoms, boolean frombensonradical) throws ThermodynamicComputeException {
+    public void initializeThermodynamicsForFuel(IAtomContainer atoms, String method) throws ThermodynamicComputeException {
         ComputeThermodynamicsFromMolecule thermo = new ComputeThermodynamicsFromMolecule(connect);
-        fuelThermo = thermo.computeThermodynamics(atoms,frombensonradical);
+        SetOfBensonThermodynamicBase thermodynamics = new SetOfBensonThermodynamicBase();
+        fuelThermo = thermo.computeThermodynamics(atoms, thermodynamics, method);
     }
     public double computeFlameTemperatureOxygen(double beginT) throws ThermodynamicComputeException {
         double temperature = beginT;

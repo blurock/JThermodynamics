@@ -145,7 +145,19 @@ public class QueryAtomWithMetaAtoms extends Atom implements IQueryAtom {
     }
 
     private boolean symbolMatch(Atom atm) {
-        return this.getSymbol().equalsIgnoreCase(atm.getSymbol());
+    	String name1 = this.getSymbol();
+    	String name2 = atm.getSymbol();
+    	/*
+    	int r1 = name1.indexOf("/r");
+    	int r2 = name2.indexOf("/r");
+    	if(r1 >  0) {
+    		name1 = name1.substring(0,r1);
+    	}
+    	if(r2 >  0) {
+    		name2 = name2.substring(0,r2);
+    	}
+    	*/
+        return name1.equalsIgnoreCase(name2);
     }
 
     /**

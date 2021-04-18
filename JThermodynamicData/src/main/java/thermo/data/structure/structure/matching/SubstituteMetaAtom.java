@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.checkerframework.common.reflection.qual.GetMethod;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
@@ -31,6 +32,8 @@ import thermo.data.structure.structure.StructureAsCML;
  * @author blurock
  */
 public class SubstituteMetaAtom {
+	
+	boolean debug = false;
     
     MetaAtomDefinition metaAtom;
     IAtomContainer molecule;
@@ -61,13 +64,21 @@ public class SubstituteMetaAtom {
      *
      */
     public void substitute(IAtomContainer molecule) throws CDKException {
+    	if(metaAtom.getMetaAtomName().matches("o/r")) debug = true;
         this.molecule = molecule;
-        //System.out.println("Number of Atoms:" + molecule.getAtomCount());
+        if(debug) {
+        	System.out.println("Number of Atoms:" + molecule.getAtomCount());
+        }
+        matches.debug = debug;
         List< List<RMap> > bondmap = matches.getAtomMatches(molecule, metaAtom.getMolecule());
-        //System.out.println(bondmap);
-        //System.out.println("substitute: " + metaAtom.getMetaAtomName());
+        matches.debug = false;
+        if(debug)  {
+        	System.out.println(bondmap);
+        	System.out.println("substitute: " + metaAtom.getMetaAtomName());
+        }
         List< MetaAtomSubstitutions> substitutions = determineSubstitionsFromAtomMaps(bondmap);
         substituteMetaAtoms(substitutions);
+        debug = false;
     }
 
     private List<MetaAtomSubstitutions> determineSubstitionsFromAtomMaps(List<List<RMap>> bondmap) {

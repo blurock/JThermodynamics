@@ -13,7 +13,8 @@ import java.util.Iterator;
  * @author edwardblurock
  */
 public class SetOfThermodynamicInformation extends ArrayList<ThermodynamicInformation> {
-    String nameOfList;
+	private static final long serialVersionUID = 1L;
+	String nameOfList;
     public SetOfThermodynamicInformation(String name) {
         nameOfList = name;
     }

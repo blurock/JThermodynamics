@@ -14,7 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 import thermo.build.ReadThermodynamicsFromExGas;
 import thermo.compute.CompareThermodynamicInformationSets;
-import thermo.compute.ComputeThermoFromNancyStringFile;
+import thermo.compute.ComputeThermodynamicsFromSet;
 import thermo.compute.SetOfThermodynamicDifferences;
 import thermo.data.benson.SetOfThermodynamicInformation;
 import thermo.data.benson.ThermodynamicInformation;
@@ -26,11 +26,11 @@ import thermo.exception.ThermodynamicComputeException;
  */
 public class CompareWithCorrsAndExGas {
     private ReadThermodynamicsFromExGas readTherm;
-    private ComputeThermoFromNancyStringFile computeNancy;
     private CompareThermodynamicInformationSets compareThermo;
 
     SetOfThermodynamicInformation exgasThermo;
     SetOfThermodynamicInformation jthergasThermo;
+    ComputeThermodynamicsFromSet computeFromSet;
 
     /**
      *
@@ -38,7 +38,6 @@ public class CompareWithCorrsAndExGas {
     public CompareWithCorrsAndExGas() throws ThermodynamicComputeException {
         readTherm = new ReadThermodynamicsFromExGas();
         compareThermo = new CompareThermodynamicInformationSets();
-        computeNancy = new ComputeThermoFromNancyStringFile();
     }
     
     /**
@@ -49,10 +48,11 @@ public class CompareWithCorrsAndExGas {
      * @throws FileNotFoundException
      * @throws ThermodynamicComputeException
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	public void compare(File corrsF, File thermoF, boolean frombensonradical) throws IOException, FileNotFoundException, ThermodynamicComputeException{
+    @SuppressWarnings({ })
+	public SetOfThermodynamicDifferences compare(File corrsF, File thermoF, String method, String molform) throws IOException, FileNotFoundException, ThermodynamicComputeException{
         exgasThermo = readTherm.read(thermoF);
-        jthergasThermo = computeNancy.computeFromFile(corrsF,frombensonradical);
+        List< List<String> > nameset = ComputeThermodynamicsFromSet.extractSetsFromFile(corrsF,2);
+        jthergasThermo = ComputeThermodynamicsFromSet.computeFromSet(nameset.get(0),method,molform,method);
 
         HashMap<String,ThermodynamicInformation> map = createHashTable();
         SetOfThermodynamicInformation set = buildSet(map);
@@ -61,10 +61,9 @@ public class CompareWithCorrsAndExGas {
         System.out.println(jthergasThermo.toString());
 
         SetOfThermodynamicDifferences diff = compareThermo.computeDifference(jthergasThermo, set);
-        List<ThermodynamicInformation> difflist = diff;
-        Collections.sort((List) difflist);
-
-        System.out.println(difflist.toString());
+        Collections.sort(diff);
+        
+        return diff;
     }
 
     private HashMap<String,ThermodynamicInformation> createHashTable() {

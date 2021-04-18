@@ -41,6 +41,10 @@ public class SProperties {
 		setProperty("thermo.data.bensonstandard.temperatures", "300,400,500,600,800,1000,1500");
 		setProperty("thermo.types.name.thergasbenson", "StandardThergasBenson");
 		setProperty("thermo.data.gasconstant.clasmolsk", "1.98587755");
+		
+		
+		
+		
 		load();
 	}
 

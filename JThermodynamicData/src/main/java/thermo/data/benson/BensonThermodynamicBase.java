@@ -23,7 +23,7 @@ import thermo.exception.ThermodynamicComputeException;
  * @author blurock
  */
 public class BensonThermodynamicBase extends ChemObject implements ThermodynamicInformation, Comparable<BensonThermodynamicBase> {
-
+	private static final long serialVersionUID = 1L;
 	private String reference;
 	String thermodynamicType = "";
 	ArrayList<HeatCapacityTemperaturePair> setOfHeatCapacities;
