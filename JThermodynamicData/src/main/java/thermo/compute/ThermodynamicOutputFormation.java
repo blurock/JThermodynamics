@@ -1,5 +1,7 @@
 package thermo.compute;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.StringTokenizer;
@@ -31,6 +33,19 @@ public class ThermodynamicOutputFormation {
 			Iterator<String> headiter = headings.iterator();
 			
 		if(outputform.equals(LineCommandsParameters.htmltablekey)) {
+			String prefix = "<html lang=\"en\">\n"
+					+ "<head>\n"
+					+ "  <meta charset=\"utf-8\">\n"
+					+ "\n"
+					+ "  <title>Thermodynamics</title>\n"
+					+ "  <meta name=\"description\" content=\"Thermodynamic Calculation\">\n"
+					+ "  <meta name=\"Edward S. Blurock\" content=\"JThermodynamics\">\n"
+					+ "\n"
+					+ "</head>\n"
+					+ "\n"
+					+ "<body>\n"
+					+ "<table style=\"width:100%\">\n";
+			buf.append(prefix);
 			buf.append("<tr>\n");
 			while(headiter.hasNext()) {
 				buf.append("<th>");
@@ -41,16 +56,9 @@ public class ThermodynamicOutputFormation {
 			Iterator<BensonThermodynamicBase> bensoniter = bensonset.iterator();
 			while(bensoniter.hasNext()) {
 				BensonThermodynamicBase benson = bensoniter.next();
-				ArrayList<String> line = generateThermoData(outdetail,benson);
-				Iterator<String> lineiter = line.iterator();
-				buf.append("<tr>\n");
-				while(lineiter.hasNext()) {
-					buf.append("<td>");
-					buf.append(lineiter.next());
-					buf.append("<\td> ");
-				}
-				buf.append("<\tr>\n");
+				htmlBensonLine(benson,buf,outdetail);
 			}
+			htmlBensonLine((BensonThermodynamicBase) thermo,buf,outdetail);
 		} else if(outputform.equals(LineCommandsParameters.cvstablekey)) {
 			buf.append(headiter.next());
 			while(headiter.hasNext()) {
@@ -66,7 +74,11 @@ public class ThermodynamicOutputFormation {
 			}
 			cvsBensonLine((BensonThermodynamicBase) thermo,buf,outdetail);
 			buf.append("\n");
-
+			String postfix = "</table>\n"
+					+ "</body>\n"
+					+ "</html>\n"
+					+ "";
+			buf.append(postfix);
 		} else if(outputform.equals(LineCommandsParameters.wikioutkey)) {
 			
 			buf.append("{| class=\"wikitable\"\n");
@@ -106,6 +118,19 @@ private static void cvsBensonLine(BensonThermodynamicBase benson, StringBuffer b
 	}
 	buf.append("\n");
 }	
+private static void htmlBensonLine(BensonThermodynamicBase benson, StringBuffer buf, String outdetail) throws ThermodynamicComputeException {
+	ArrayList<String> line = generateThermoData(outdetail,benson);
+	Iterator<String> lineiter = line.iterator();
+	buf.append("<tr>\n");
+	while(lineiter.hasNext()) {
+		buf.append("<td>");
+		buf.append(lineiter.next());
+		buf.append("</td> ");
+	}
+	buf.append("</tr>\n");
+
+}
+
 	public static ArrayList<String> generateThermoHeadings(String outdetail)  {
 		ArrayList<String> heading = new ArrayList<String>();
 		heading.add(SProperties.getProperty("thermo.output.name"));
@@ -148,8 +173,8 @@ private static void cvsBensonLine(BensonThermodynamicBase benson, StringBuffer b
 		String hf = String.format(formatS,benson.getStandardEnthalpy());
 		String sf = String.format(formatS,benson.getStandardEntropy());
 		System.out.println(benson.toString());
-		line.add("'"+ title + "'");
-		line.add("'" + reference + "'");
+		line.add("\""+ title + "\"");
+		line.add("\"" + reference + "\"");
 		if(outdetail.equals(LineCommandsParameters.shortkey)) {
 			line.add(hf);
 			line.add(sf);
@@ -174,6 +199,12 @@ private static void cvsBensonLine(BensonThermodynamicBase benson, StringBuffer b
 		}
  		return line;
 		
+	}
+
+	public static void printToFile(String thermoS, String outfile) throws FileNotFoundException {
+		PrintWriter out = new PrintWriter(outfile);
+		out.println(thermoS);
+		out.close();
 	}
 		
 }

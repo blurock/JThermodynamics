@@ -1,5 +1,6 @@
 package thermo.compute;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 import org.openscience.cdk.AtomContainer;
@@ -26,12 +27,14 @@ public class ComputeThermodynamics {
 			String moleculename = parameters.get(LineCommandsParameters.molnamekey);
 			String outputform = parameters.get(LineCommandsParameters.outformatkey);
 			String outdetail = parameters.get(LineCommandsParameters.outdetailkey);
+			String outfile = parameters.get(LineCommandsParameters.compfilekey);
 			System.out.println("method= " + method);
 			System.out.println("molform= " + molform);
 			System.out.println("moldescription= " + moldescription);
 			System.out.println("moleculename= " + moleculename);
 			System.out.println("outputform= " + outputform);
 			System.out.println("outdetail= " + outdetail);
+			System.out.println("outfile= " + outfile);
 
 			SetOfBensonThermodynamicBase thermodynamics = new SetOfBensonThermodynamicBase();
 			try {
@@ -40,7 +43,11 @@ public class ComputeThermodynamics {
 						
 				String thermoS = ThermodynamicOutputFormation.printThermodynamics(thermodynamics, thermo, outputform,
 						outdetail);
-				System.out.println(thermoS);
+				if(outfile != null) {
+					ThermodynamicOutputFormation.printToFile(thermoS,outfile);
+				} else {
+					System.out.println(thermoS);
+				}
 						
 				System.out.println("method= " + method);
 				System.out.println("molform= " + molform);
@@ -48,7 +55,10 @@ public class ComputeThermodynamics {
 				System.out.println("moleculename= " + moleculename);
 				System.out.println("outputform= " + outputform);
 				System.out.println("outdetail= " + outdetail);
+				System.out.println("outfile= " + outfile);
 			} catch (ThermodynamicComputeException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
 			
