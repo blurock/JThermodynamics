@@ -93,12 +93,12 @@ public class ThermodynamicOutputFormation {
 				Iterator<String> lineiter = line.iterator();
 				buf.append("|-\n");
 				while(lineiter.hasNext()) {
-					buf.append(" | ");
+					buf.append("| ");
 					buf.append(lineiter.next());
 					buf.append("\n");
 				}
-				buf.append("\n|}\n");
 			}
+			buf.append("\n|}\n");
 			
 		} else if(outputform.equals(LineCommandsParameters.formattedkey)) {
 			
