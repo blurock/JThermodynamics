@@ -31,7 +31,8 @@ public class CalculateTranslationalCorrection {
 		String typeS = "Correction";
         BensonThermodynamicBase thermo = new BensonThermodynamicBase(typeS,
         		null,zeroD,transEntropyCorrectionD);
-        thermo.setReference(translationS);
+        thermo.setID(translationS);
+        thermo.setReference("Radical Correction");
 
         return thermo;
 	}

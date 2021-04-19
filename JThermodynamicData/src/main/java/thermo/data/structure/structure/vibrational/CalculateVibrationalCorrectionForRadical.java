@@ -138,7 +138,8 @@ public class CalculateVibrationalCorrectionForRadical {
                             correctionS);    	
                 	}
                 	BensonThermodynamicBase benson = new BensonThermodynamicBase(typeS, pairs, 0.0, entropyC);
-                	benson.setReference(correctionS);
+                	benson.setID(correctionS);
+                	benson.setReference("Vibration Correction");
                 	corrections.add(benson);
                 }
             }

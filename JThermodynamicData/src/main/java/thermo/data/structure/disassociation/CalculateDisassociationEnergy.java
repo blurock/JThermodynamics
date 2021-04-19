@@ -42,7 +42,8 @@ public class CalculateDisassociationEnergy {
         Double energyD = energy.getDisassociationEnergy();
         BensonThermodynamicBase thermo = new BensonThermodynamicBase(disassociationS,null,energyD,entropyD);
         String referenceS = "Disassociation Energy From: " + energy.getSubstructure().getID();
-        thermo.setReference(referenceS);
+        thermo.setID(referenceS);
+        thermo.setReference("Disassociation Energy");
         return thermo;
     }
 

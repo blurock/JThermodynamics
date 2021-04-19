@@ -58,21 +58,15 @@ public class ThermodynamicOutputFormation {
 				buf.append(headiter.next());
 				buf.append("\" ");
 			}
+			buf.append("\n");
 			Iterator<BensonThermodynamicBase> bensoniter = bensonset.iterator();
 			while(bensoniter.hasNext()) {
 				BensonThermodynamicBase benson = bensoniter.next();
-				ArrayList<String> line = generateThermoData(outdetail,benson);
-				Iterator<String> lineiter = line.iterator();
-				buf.append(lineiter.next());
-				while(lineiter.hasNext()) {
-					buf.append(",\"");
-					buf.append(lineiter.next());
-					buf.append("\" ");
-				}
-				buf.append("\n");
+				cvsBensonLine(benson,buf,outdetail);
 			}
-			buf.append("/n");
-			
+			cvsBensonLine((BensonThermodynamicBase) thermo,buf,outdetail);
+			buf.append("\n");
+
 		} else if(outputform.equals(LineCommandsParameters.wikioutkey)) {
 			
 			buf.append("{| class=\"wikitable\"\n");
@@ -101,9 +95,21 @@ public class ThermodynamicOutputFormation {
 		return buf.toString();
 	}
 	
-	
+private static void cvsBensonLine(BensonThermodynamicBase benson, StringBuffer buf, String outdetail) throws ThermodynamicComputeException {
+	ArrayList<String> line = generateThermoData(outdetail,benson);
+	Iterator<String> lineiter = line.iterator();
+	buf.append(lineiter.next());
+	while(lineiter.hasNext()) {
+		buf.append(",\"");
+		buf.append(lineiter.next());
+		buf.append("\" ");
+	}
+	buf.append("\n");
+}	
 	public static ArrayList<String> generateThermoHeadings(String outdetail)  {
 		ArrayList<String> heading = new ArrayList<String>();
+		heading.add(SProperties.getProperty("thermo.output.name"));
+		heading.add(SProperties.getProperty("thermo.output.reference"));
 		if(outdetail.equals(LineCommandsParameters.shortkey)) {
 			heading.add(SProperties.getProperty("thermo.output.hf"));
 			heading.add(SProperties.getProperty("thermo.output.sf"));
@@ -121,7 +127,7 @@ public class ThermodynamicOutputFormation {
 			String stdtemps = SProperties.getProperty("thermo.data.bensonstandard.temperatures");
 			StringTokenizer tok = new StringTokenizer(stdtemps,",");
 			while(tok.hasMoreElements()) {
-				heading.add(SProperties.getProperty("thermo.output.cp" + tok.nextToken()));				
+				heading.add(SProperties.getProperty("thermo.output.cp") + tok.nextToken());				
 			}
 
 		}
@@ -131,23 +137,37 @@ public class ThermodynamicOutputFormation {
 	public static ArrayList<String> generateThermoData(String outdetail, BensonThermodynamicBase benson) throws ThermodynamicComputeException {
 		ArrayList<String> line = new ArrayList<String>();
 		String formatS = "%6.2f";
+		String title = "";
+		if(benson.getID() != null) {
+			title = benson.getID();
+		}
+		String reference = "";
+		if(benson.getReference() !=null ) {
+			reference = benson.getReference();
+		}
 		String hf = String.format(formatS,benson.getStandardEnthalpy());
 		String sf = String.format(formatS,benson.getStandardEntropy());
-
+		System.out.println(benson.toString());
+		line.add("'"+ title + "'");
+		line.add("'" + reference + "'");
 		if(outdetail.equals(LineCommandsParameters.shortkey)) {
 			line.add(hf);
 			line.add(sf);
 			String cp300 = String.format(formatS,benson.getHeatCapacity(300.0));
+			line.add(cp300);
 		} else if(outdetail.equals(LineCommandsParameters.summarykey)) {
 			line.add(hf);
 			line.add(sf);
-			String cp300 = String.format(formatS,benson.getHeatCapacity(300.0));			
+			String cp300 = String.format(formatS,benson.getHeatCapacity(300.0));
+			line.add(cp300);
 		} else {
+			line.add(hf);
+			line.add(sf);
 			String stdtemps = SProperties.getProperty("thermo.data.bensonstandard.temperatures");
 			StringTokenizer tok = new StringTokenizer(stdtemps,",");
 			while(tok.hasMoreElements()) {
-				Double cpD= Double.parseDouble(tok.nextToken());
-				String cp = String.format(formatS,benson.getHeatCapacity(cpD.doubleValue()));
+				Double tempD= Double.parseDouble(tok.nextToken());
+				String cp = String.format(formatS,benson.getHeatCapacity(tempD.doubleValue()));
 				line.add(cp);
 			}
 

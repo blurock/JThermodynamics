@@ -18,9 +18,9 @@ public class LineCommandsParameters {
 	public static String[] commands = { thermoKeyword, thermosetKeyword, thermocompareKeyword };
 
 	// Computational Methods
-	public static String thergaskey = SProperties.getProperty("thermo.parameter.thergas");
-	public static String thermkey = SProperties.getProperty("thermo.parameter.therm");;
-	public static String bensonkey = SProperties.getProperty("thermo.parameter.BensonRadical");
+	public static String thergaskey = SProperties.getProperty("thermo.parameter.thergaskey");
+	public static String thermkey = SProperties.getProperty("thermo.parameter.thermkey");;
+	public static String bensonkey = SProperties.getProperty("thermo.parameter.bensonradicalkey");
 	public static String[] methods = { thergaskey, thermkey, bensonkey };
 
 	// String input formats
@@ -68,6 +68,7 @@ public class LineCommandsParameters {
 	public static HashMap<String, ArrayList<String>> parametersets;
 
 	public static void initialize() {
+		parametersets = new HashMap<String, ArrayList<String>>();
 		parametersets.put(calclasskey, new ArrayList<String>(Arrays.asList(commands)));
 		parametersets.put(outformatkey, new ArrayList<String>(Arrays.asList(outformat)));
 		parametersets.put(outdetailkey, new ArrayList<String>(Arrays.asList(outdetail)));
@@ -80,6 +81,7 @@ public class LineCommandsParameters {
 	public static HashMap<String, String> defaultvalues;
 
 	public static void defaults() {
+		defaultvalues = new HashMap<String, String>();
 		defaultvalues.put(calclasskey, thermoKeyword);
 		defaultvalues.put(methodkey, thergaskey);
 		defaultvalues.put(moldescrkey, "ch3/ch2/ch2/ch2(.)");
@@ -106,13 +108,14 @@ public class LineCommandsParameters {
 
 	public static String returnStandardizedParameter(String type, String parameter) {
 		String standard = null;
-		String typeU = type.toUpperCase();
+		String parameterU = parameter.toUpperCase();
+		initialize();
 		ArrayList<String> params = parametersets.get(type);
 		if (params != null) {
 			Iterator<String> iter = params.iterator();
 			while (standard == null && iter.hasNext()) {
 				String param = iter.next();
-				if (typeU.equals(param.toUpperCase())) {
+				if (parameterU.equals(param.toUpperCase())) {
 					standard = param;
 				}
 			}
@@ -125,7 +128,9 @@ public class LineCommandsParameters {
 	 */
 	public static Map<String,String> initialParameters() {
 		Map<String,String> map = new HashMap<String,String>();
-		Set<String> keys = map.keySet();
+		initialize();
+		defaults();
+		Set<String> keys = parametersets.keySet();
 		Iterator<String> iter = keys.iterator();
 		while(iter.hasNext()) {
 			String keyname = iter.next();
@@ -161,7 +166,8 @@ public class LineCommandsParameters {
 	 * @return The full list of attribute value pairs (if not in the arguments, the default value is inserted)
 	 */
 	public static Map<String,String> parameterSetFromArguments(String args[]) {
-		Map<String,String> paramset = initialParameters();
+		defaults();
+		Map<String,String> paramset = defaultvalues;
 		for(int i=0;i<args.length;i++) {
 			String parampair = args[i];
 			int index = parampair.indexOf("=");
@@ -172,6 +178,7 @@ public class LineCommandsParameters {
 				paramset.put(standard,value);
 			}
 		}
+		System.out.println("Parameters: " + paramset);
 		return paramset;
 	}
 

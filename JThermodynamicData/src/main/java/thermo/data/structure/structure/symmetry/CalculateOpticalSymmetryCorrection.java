@@ -58,7 +58,8 @@ double gasConstant;
                 String optS = referenceS + " (" + optD.toString() + ")";
                 double correction = gasConstant * Math.log(opticalsymmetry);
                 BensonThermodynamicBase benson = new BensonThermodynamicBase(opticalS, null, 0.0, correction);
-                benson.setReference(optS);
+                benson.setID(optS);
+                benson.setReference("Symmetry");
                 corrections.add(benson);
             }
         } catch (CDKException ex) {

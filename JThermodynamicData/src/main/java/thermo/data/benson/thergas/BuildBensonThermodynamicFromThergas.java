@@ -128,7 +128,6 @@ public class BuildBensonThermodynamicFromThergas {
         double cp[] = data.getCpValues();
         Double enthalpy = Double.valueOf(data.getStandardEnthalpy());
         Double entropy = Double.valueOf(data.getStandardEntropy());
-
         thermo.setReference(reference);
         thermo.setStandardEnthalpy(enthalpy);
         thermo.setStandardEntropy(entropy);

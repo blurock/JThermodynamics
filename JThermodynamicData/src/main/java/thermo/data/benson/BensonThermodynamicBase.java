@@ -347,13 +347,14 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 	 */
 	@Override
 	public double getHeatCapacity(double temperature) throws ThermodynamicComputeException {
-		ThermoInfoType type = new ThermoInfoType(this.getTemperatures());
+		double heatCapacity = 0;
+		if(setOfHeatCapacities != null) {
 		int numelements = setOfHeatCapacities.size();
+		ThermoInfoType type = new ThermoInfoType(this.getTemperatures());
 		HeatCapacityTemperaturePair[] arraySet = new HeatCapacityTemperaturePair[numelements];
 		setOfHeatCapacities.toArray(arraySet);
 		Arrays.sort(arraySet);
 		int i = type.getTemperatureLowerIndex(temperature);
-		double heatCapacity = 0;
 		if (i == -1) {
 			HeatCapacityTemperaturePair pair = arraySet[0];
 			heatCapacity = pair.getHeatCapacityValue();
@@ -369,6 +370,7 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 			double upperT = pairupper.getTemperatureValue();
 			double delta = (upperCp - lowerCp) / (upperT - lowerT);
 			heatCapacity = lowerCp + delta * (temperature - lowerT);
+		}
 		}
 		return heatCapacity;
 	}

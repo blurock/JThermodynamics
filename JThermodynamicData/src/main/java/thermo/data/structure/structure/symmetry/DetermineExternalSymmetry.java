@@ -121,7 +121,8 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
             String symname = this.determineSymmetry.symmetryDefinition.getMetaAtomName();
             BensonThermodynamicBase benson = new BensonThermodynamicBase(referenceS, null, 0.0, correction);
             symname = symname + " (" + symmD + ")";
-            benson.setReference(symname);
+            benson.setID(symname);
+            benson.setReference("Symmetry");
             corrections.add(benson);
             symmetryValue = (int) symmD;
         }

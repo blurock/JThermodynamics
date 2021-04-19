@@ -46,7 +46,8 @@ public class DetermineInternalSymmetry extends DetermineTotalSymmetry {
     		double symmD = symmetry;
     		double correction = -gasConstant * Math.log(symmD);
     	    BensonThermodynamicBase benson = new BensonThermodynamicBase(referenceS, null, 0.0, correction);
-    	    benson.setReference(name);
+    	    benson.setID(name);
+    	    benson.setReference("Symmetry");
     	    if(setOfCorrections != null) {
     	    	setOfCorrections.add(benson);
     	    }

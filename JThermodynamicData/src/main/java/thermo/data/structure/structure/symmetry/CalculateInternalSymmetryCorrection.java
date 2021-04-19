@@ -72,7 +72,8 @@ public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrec
                 double correction = -gasConstant * Math.log(internalsymmetry);
                 String name = internalS + "(" + Integer.toString(internalsymmetry) + ")";
                 BensonThermodynamicBase benson = new BensonThermodynamicBase(name, null, 0.0, correction);
-                benson.setReference(name);
+                benson.setID(name);
+                benson.setReference("Symmetry");
                 //corrections.add(benson);
             }
         } catch (CDKException ex) {

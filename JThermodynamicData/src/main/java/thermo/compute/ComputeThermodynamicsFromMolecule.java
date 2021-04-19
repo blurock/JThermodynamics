@@ -287,7 +287,8 @@ public class ComputeThermodynamicsFromMolecule {
         Double spinD = Double.valueOf(spin);
         String spinS = "Spin Contribution: Rln(2) = (" + gasConstant + ")*(" + Math.log1p(1.0) + ")";
         BensonThermodynamicBase spinthermo = new BensonThermodynamicBase(spinS, null, 0.0, spinD);
-        spinthermo.setReference(spinS);
+        spinthermo.setID(spinS);
+        spinthermo.setReference("Radical Correction");
         return spinthermo;
     }
     IAtomContainer getMolecule() {
@@ -299,7 +300,8 @@ public class ComputeThermodynamicsFromMolecule {
         Double hradD = Double.valueOf(hrad);
         String hradS = "Hydrogen Radical";
         BensonThermodynamicBase hradical = new BensonThermodynamicBase(hradS, null, hradD, 0.0);
-        hradical.setReference(hradS);
+        hradical.setID(hradS);
+        hradical.setReference("Radical Correction");
         return hradical;
 
     }
