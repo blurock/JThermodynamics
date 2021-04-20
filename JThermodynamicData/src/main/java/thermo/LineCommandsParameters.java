@@ -48,6 +48,14 @@ public class LineCommandsParameters {
 	public static String nasa = SProperties.getProperty("thermo.parameter.nasa");
 	public static String benson = SProperties.getProperty("thermo.parameter.benson");
 	public static String[] thermoformats = { nasa, benson };
+	
+	public static String nasafile = SProperties.getProperty("thermo.parameter.nasa");
+	public static String bensonfile = SProperties.getProperty("thermo.parameter.benson");
+	public static String thergascomp = SProperties.getProperty("thermo.parameter.thergaskey");
+	public static String thermcomp = SProperties.getProperty("thermo.parameter.thermkey");;
+	public static String bensoncomp = SProperties.getProperty("thermo.parameter.bensonradicalkey");
+	public static String[] comptypes = {nasafile, bensonfile, thergascomp, thermcomp,bensoncomp};
+	
 
 	// Parameter names
 	public static String calclasskey = SProperties.getProperty("thermo.parameter.calclass");
@@ -58,12 +66,13 @@ public class LineCommandsParameters {
 	public static String molformkey = SProperties.getProperty("thermo.parameter.molform");
 	public static String moldescrkey = SProperties.getProperty("thermo.parameter.moldescr");
 	public static String molnamekey = SProperties.getProperty("thermo.parameter.molname");
-	public static String compfilekey = SProperties.getProperty("thermo.parameter.compfile");
-	public static String thermoformatkey = SProperties.getProperty("thermo.parameter.compformat");
+	public static String comptypekey = SProperties.getProperty("thermo.parameter.comptype");
+	public static String comparesrc = SProperties.getProperty("thermo.parameter.comparesrc");
+	public static String compareref = SProperties.getProperty("thermo.parameter.compareref");
 	public static String parameternames = "ParameterNames";
 
 	public static String[] parameters = { calclasskey, outformatkey, outdetailkey, outdetailkey, methodkey, molformkey,
-			moldescrkey, molnamekey, compfilekey, thermoformatkey };
+			moldescrkey, molnamekey, comparesrc, compareref };
 
 	public static HashMap<String, ArrayList<String>> parametersets;
 
@@ -74,7 +83,7 @@ public class LineCommandsParameters {
 		parametersets.put(outdetailkey, new ArrayList<String>(Arrays.asList(outdetail)));
 		parametersets.put(methodkey, new ArrayList<String>(Arrays.asList(methods)));
 		parametersets.put(molformkey, new ArrayList<String>(Arrays.asList(molformats)));
-		parametersets.put(thermoformatkey, new ArrayList<String>(Arrays.asList(thermoformats)));
+		parametersets.put(comparesrc, new ArrayList<String>(Arrays.asList(comptypes)));
 		parametersets.put(parameternames, new ArrayList<String>(Arrays.asList(parameters)));
 	}
 
@@ -88,8 +97,8 @@ public class LineCommandsParameters {
 		defaultvalues.put(outformatkey, stroutkey);
 		defaultvalues.put(outdetailkey, detailedkey);
 		defaultvalues.put(molformkey, nancykey);
-		defaultvalues.put(compfilekey, null);
-		defaultvalues.put(thermoformatkey, benson);
+		defaultvalues.put(compareref, null);
+		defaultvalues.put(comparesrc, benson);
 		defaultvalues.put(molnamekey, "1-butyl radical");
 	}
 

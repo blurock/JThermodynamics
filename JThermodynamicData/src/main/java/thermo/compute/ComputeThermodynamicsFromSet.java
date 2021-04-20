@@ -36,9 +36,9 @@ public class ComputeThermodynamicsFromSet {
 	 * 
 	 * If there is an error in the calculation, then an empty BensonThermodynamicBase will be in the list for that molecule.
 	 */
-	public static SetOfThermodynamicInformation computeFromSet(List<String> names, 
+	public static SetOfThermodynamicInformation computeFromSet(List<String> descrs, List<String> molnames, 
 			String method, String molform, String nameOfList) {
-		SetOfThermodynamicInformation thermodynamicSet = new SetOfThermodynamicInformation(nameOfList);
+		SetOfThermodynamicInformation thermodynamicSet = new SetOfThermodynamicInformation(method);
 
 		ThermoSQLConnection c = new ThermoSQLConnection();
 		c.connect();
@@ -49,13 +49,17 @@ public class ComputeThermodynamicsFromSet {
 		} catch (ThermodynamicComputeException ex) {
 			Logger.getLogger(ComputeThermodynamicsFromSet.class.getName()).log(Level.SEVERE, null, ex);
 		}
-			Iterator<String> iter = names.iterator();
+		Iterator<String> iter = descrs.iterator();
+		Iterator<String> nameiter = molnames.iterator();
 			while(iter.hasNext()) {
 				String molS = iter.next();
+				String molname = nameiter.next();
 				try {
 					AtomContainer molecule = convertMoleculeString.stringToAtomContainer(molform, molS);
 					SetOfBensonThermodynamicBase thermodynamics = new SetOfBensonThermodynamicBase();
 					BensonThermodynamicBase thermo = (BensonThermodynamicBase) compute.computeThermodynamics(molecule, thermodynamics, method);
+					thermo.setID(molS);
+					thermo.setReference(molname);
 					thermodynamicSet.add(thermo);
 				} catch (ThermodynamicComputeException ex) {
 					BensonThermodynamicBase base = new BensonThermodynamicBase();

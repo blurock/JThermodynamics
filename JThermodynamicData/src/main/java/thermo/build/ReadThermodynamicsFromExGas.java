@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.StringTokenizer;
 import thermo.data.benson.NASAPolynomial;
+import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.benson.SetOfThermodynamicInformation;
 
 /**

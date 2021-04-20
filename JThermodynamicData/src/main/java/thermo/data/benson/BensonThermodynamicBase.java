@@ -37,7 +37,6 @@ public class BensonThermodynamicBase extends ChemObject implements Thermodynamic
 	 */
 	public BensonThermodynamicBase() {
 	}
-
 	/**
 	 * Initializing constructor
 	 *

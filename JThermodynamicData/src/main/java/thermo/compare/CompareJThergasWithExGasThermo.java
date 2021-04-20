@@ -41,8 +41,8 @@ public class CompareJThergasWithExGasThermo {
     private CompareThermodynamicInformationSets compareThermo;
     StringToAtomContainer convertStringToMolecule;
 
-    SetOfThermodynamicInformation exgasThermValues;
-    SetOfThermodynamicInformation jthergasValues;
+    SetOfThermodynamicInformation compareValues;
+    SetOfThermodynamicInformation computedValues;
 
     private void initialize() throws ThermodynamicComputeException {
         connect = new ThermoSQLConnection();
@@ -61,8 +61,8 @@ public class CompareJThergasWithExGasThermo {
         inputString = read.outputString;
     }
     public void compare(String molform, String method) throws ThermodynamicComputeException {
-        jthergasValues = new SetOfThermodynamicInformation("JThergas");
-        exgasThermValues = new SetOfThermodynamicInformation("ExGas");
+        compareValues = new SetOfThermodynamicInformation("Compare");
+        computedValues = new SetOfThermodynamicInformation("Computed");
         StringBuilder errorbuf = new StringBuilder();
         StringTokenizer tok = new StringTokenizer(inputString,"\n");
         while(tok.hasMoreTokens()) {
@@ -74,7 +74,7 @@ public class CompareJThergasWithExGasThermo {
                 errorbuf.append("\n");
             }
         }
-        SetOfThermodynamicDifferences diff = compareThermo.computeDifference(jthergasValues, exgasThermValues);
+        SetOfThermodynamicDifferences diff = compareThermo.computeDifference(compareValues, computedValues);
         List difflist = diff;
         Collections.sort( difflist);
         System.out.println(difflist.toString());
@@ -100,8 +100,8 @@ public class CompareJThergasWithExGasThermo {
                     + "\t"
                     + exgasEnthalpy);
             jthergasNASA.setName(exgasNASA.getName());
-            jthergasValues.add(jthergasNASA);
-            exgasThermValues.add(exgasNASA);
+            computedValues.add(jthergasNASA);
+            compareValues.add(exgasNASA);
         } else {
             throw new IOException("ERROR in parsing line (not enough tokens" + line);
         }

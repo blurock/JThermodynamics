@@ -7,17 +7,18 @@ package thermo.compute;
 
 import java.util.Iterator;
 import thermo.compare.ThermodynamicDifference;
-import thermo.data.benson.BensonThermodynamicBase;
-import thermo.data.benson.SetOfBensonThermodynamicBase;
+import thermo.data.benson.SetOfThermodynamicInformation;
+import thermo.data.benson.ThermodynamicInformation;
 
 /**
  *
  * @author edwardblurock
  */
-public class SetOfThermodynamicDifferences extends SetOfBensonThermodynamicBase {
+public class SetOfThermodynamicDifferences extends SetOfThermodynamicInformation {
 	private static final long serialVersionUID = 1393621733486845590L;
 
 	public SetOfThermodynamicDifferences(String name) {
+		super(name);
     }
 
     public String stringTableHeader(){
@@ -37,7 +38,7 @@ public class SetOfThermodynamicDifferences extends SetOfBensonThermodynamicBase 
      StringBuilder buf = new StringBuilder();
      String header = stringTableHeader();
      buf.append(header);
-        Iterator<BensonThermodynamicBase> iterator = this.iterator();
+        Iterator<ThermodynamicInformation> iterator = this.iterator();
         while(iterator.hasNext()) {
         	ThermodynamicDifference diff = (ThermodynamicDifference) iterator.next();
         buf.append(diff.toStringInTable());
