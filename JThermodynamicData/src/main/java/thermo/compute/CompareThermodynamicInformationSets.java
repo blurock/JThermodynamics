@@ -46,6 +46,7 @@ public class CompareThermodynamicInformationSets {
 			if (thermo1 != null && thermo2 != null) {
 				double enthalpy1 = thermo1.getStandardEnthalpy298();
 				double enthalpy2 = thermo2.getStandardEnthalpy298();
+				System.out.println(thermo1.getName() + "  (" + enthalpy1 + ", " + enthalpy2 + ")");
 				ThermodynamicDifference benson = new ThermodynamicDifference(veryClose);
 				benson.initialize(thermo1.getName(), benson.getReference(), temperatures);
 				benson.setName(thermo1.getName());
@@ -81,12 +82,15 @@ public class CompareThermodynamicInformationSets {
 	}
 
 	private static double calculatePercent(double x1, double x2) {
+		double percent = x1-x2;
+		/*
 		double percent = 0.0;
 		double sum = Math.abs(x1) + Math.abs(x2);
 
 		if (sum > veryClose) {
 			percent = (x2 - x1) / sum;
 		}
+		*/
 		return percent;
 	}
 

@@ -71,7 +71,7 @@ public class LineCommandsParameters {
 	public static String compareref = SProperties.getProperty("thermo.parameter.compareref");
 	public static String parameternames = "ParameterNames";
 
-	public static String[] parameters = { calclasskey, outformatkey, outdetailkey, outdetailkey, methodkey, molformkey,
+	public static String[] parameters = { calclasskey, outformatkey, outdetailkey, outfilekey, methodkey, molformkey,
 			moldescrkey, molnamekey, comparesrc, compareref };
 
 	public static HashMap<String, ArrayList<String>> parametersets;
