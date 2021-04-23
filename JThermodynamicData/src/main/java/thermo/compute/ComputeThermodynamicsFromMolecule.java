@@ -56,6 +56,8 @@ public class ComputeThermodynamicsFromMolecule {
     SQLSubstituteBackMetaAtomIntoMolecule substitute;
     CalculateDisassociationEnergy disassociation;
     AddHydrogenToSingleRadical formRH;
+    String HBITypesS = "HBI";
+    ThermodyanmicsForSubstructures findHBIThermo;
     String cycleTypesS = "Cycles";
     ThermodyanmicsForSubstructures findCyclesThermo;
     String torsionTypesS = "StericCorrections";
@@ -93,6 +95,7 @@ public class ComputeThermodynamicsFromMolecule {
             String gasconstantS = SProperties.getProperty("thermo.data.gasconstant.clasmolsk");
             gasConstant = Double.valueOf(gasconstantS).doubleValue();
             formRH = new AddHydrogenToSingleRadical();
+            findHBIThermo = new ThermodyanmicsForSubstructures(HBITypesS, connect);
             findCyclesThermo = new ThermodyanmicsForSubstructures(cycleTypesS, connect);
             findTorsionsThermo = new ThermodyanmicsForSubstructures(torsionTypesS, connect);
             gauche = new ComputeGaucheInteractions(connect);
@@ -148,7 +151,9 @@ public class ComputeThermodynamicsFromMolecule {
                 computeThermodynamicsForMolecule(moleculetocompute, thermodynamics);
             }
             } else if(method.equals(SProperties.getProperty("thermo.parameter.thermkey"))) {
-            	throw new ThermodynamicComputeException("THERM not implemented yet");
+            	computeTHERMThermodynamicsForMolecule(moleculetocompute, thermodynamics);
+            } else {
+            	System.out.println("Method not found: " + method);
             }
             combinedThermodynamics = thermodynamics.combineToOneBensonRule(temperatures);
             combinedThermodynamics.setID("Total");
@@ -192,10 +197,7 @@ public class ComputeThermodynamicsFromMolecule {
 			e.printStackTrace();
 		}
     	IAtomContainer substituted = metaAtomSubstitutions.substitute(mol);
-    	System.out.println("computeThermodynamicsForMolecule\n" + MoleculeUtilities.toString(substituted));
-
         SetOfBensonGroupStructures bensonset = bensonGroups.deriveBensonGroupStructures(substituted);
-        System.out.println("computeThermodynamicsForMolecule\n" + bensonset.toString());
         sqlthermodynamics.setUpFromSetOfBensonGroupStructures(bensonset,thermo);
         CalculateSymmetryCorrection symmetryCorrections = new CalculateSymmetryCorrection(connect);
 
@@ -211,6 +213,32 @@ public class ComputeThermodynamicsFromMolecule {
 		// TODO Auto-generated method stub
 		
 	}
+    public void computeTHERMThermodynamicsForMolecule(IAtomContainer R, SetOfBensonThermodynamicBase thermo) throws NotARadicalException, ThermodynamicException, SQLException, CDKException, IOException, ClassNotFoundException{
+        IAtomContainer RH = formRH.convert(R);
+        MoleculeUtilities.normalizeMolecule(RH);
+        computeThermodynamicsForMolecule(RH, thermo);
+        
+        BensonThermodynamicBase hbi = (BensonThermodynamicBase) findHBIThermo.FindLargestStructureThermodynamics(R);
+        if(hbi != null) {
+        	System.out.println(hbi.toString());
+        	thermo.add(hbi);
+        } else {
+        	BensonThermodynamicBase nohbi = new BensonThermodynamicBase("HBI Correction not found",
+        			null,0.0,0.0);
+        	nohbi.setID("HBI Correction not found");
+        	nohbi.setReference("No Radical Correction, just disassociation and spin");
+        	System.out.println(nohbi.toString());
+        	thermo.add(nohbi);
+            disassociation.calculate(R,thermo);        	
+        }
+        BensonThermodynamicBase spinthermo = computeSpinContribution();
+        thermo.add(spinthermo);
+        System.out.println(spinthermo.toString());
+
+        BensonThermodynamicBase hradical = computeHydrogenRadicalContribution();
+        thermo.add(hradical);
+        System.out.println(hradical.toString());
+    }
 
     /** Compute thermodynamic corrections for radical
      *

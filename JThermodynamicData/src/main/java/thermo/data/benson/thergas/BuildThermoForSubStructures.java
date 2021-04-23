@@ -6,7 +6,6 @@
 package thermo.data.benson.thergas;
 
 import jThergas.data.JThermgasThermoStructureDataPoint;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +16,6 @@ import thermo.data.structure.DB.SQLAtomCounts;
 import thermo.data.structure.DB.SQLStructureAsCML;
 import thermo.data.structure.DB.SQLStructureType;
 import thermo.data.structure.structure.AtomCounts;
-import thermo.data.structure.structure.DB.SQLSubstituteBackMetaAtomIntoMolecule;
 import thermo.data.structure.structure.StructureAsCML;
 import thermo.data.structure.structure.StructureType;
 
@@ -85,24 +83,16 @@ public class BuildThermoForSubStructures extends BuildThermoForMolecules {
 			IAtomContainer molecule = buildBenson.buildMolecule(point, c);
 			substitute.substitute(molecule);
 			StructureAsCML cmlstruct = new StructureAsCML(molecule, sourceS);
-			IAtomContainer substituted = metaAtomSubstitutions.substitute(cmlstruct);
-			StructureAsCML cml = new StructureAsCML(substituted, sourceS);
-
-			sqlCMLStructure.deleteByKey(sqlCMLStructure.keyFromStructure(cml));
-			sqlCMLStructure.addToDatabase(cml);
+			sqlCMLStructure.deleteByKey(sqlCMLStructure.keyFromStructure(cmlstruct));
+			sqlCMLStructure.addToDatabase(cmlstruct);
 
 			StructureType structuretype = new StructureType(cmlstruct.getNameOfStructure(), substructureType);
 			sqlStructureType.deleteByKey(sqlStructureType.keyFromStructure(structuretype));
 			sqlStructureType.addToDatabase(structuretype);
-
-			AtomCounts counts = new AtomCounts(substituted);
+			AtomCounts counts = new AtomCounts(molecule);
 			sqlAtomCounts.deleteElement(counts);
 			sqlAtomCounts.addToDatabase(counts);
 
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(BuildThermoForSubStructures.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (IOException ex) {
-			Logger.getLogger(BuildThermoForSubStructures.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (CDKException ex) {
 			Logger.getLogger(BuildThermoForMolecules.class.getName()).log(Level.SEVERE, null, ex);
 		}
