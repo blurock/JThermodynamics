@@ -64,7 +64,6 @@ public class SubstituteMetaAtom {
      *
      */
     public void substitute(IAtomContainer molecule) throws CDKException {
-    	if(metaAtom.getMetaAtomName().matches("o/r")) debug = true;
         this.molecule = molecule;
         if(debug) {
         	System.out.println("Number of Atoms:" + molecule.getAtomCount());

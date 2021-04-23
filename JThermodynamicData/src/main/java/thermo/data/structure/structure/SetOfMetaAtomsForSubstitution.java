@@ -25,7 +25,7 @@ import thermo.data.structure.utilities.MoleculeUtilities;
  */
 public class SetOfMetaAtomsForSubstitution extends ArrayList<SubstituteMetaAtom> {
 
-	boolean debug = true;
+	boolean debug = false;
     int topPriority = 5;
 
     /**
