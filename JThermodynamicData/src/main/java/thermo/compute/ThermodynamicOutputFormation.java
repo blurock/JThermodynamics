@@ -175,8 +175,8 @@ public class ThermodynamicOutputFormation {
 		String hf = String.format(formatS, benson.getStandardEnthalpy());
 		String sf = String.format(formatS, benson.getStandardEntropy());
 		System.out.println(benson.toString());
-		line.add("\"" + title + "\"");
-		line.add("\"" + reference + "\"");
+		line.add(title);
+		line.add(reference);
 		if (outdetail.equals(LineCommandsParameters.shortkey)) {
 			line.add(hf);
 			line.add(sf);
@@ -219,7 +219,6 @@ public class ThermodynamicOutputFormation {
 			ThermodynamicInformation benson = iter.next();
 			String bensonS = printThermodynamics(null, benson, outputform, outdetail, title, false);
 			buf.append(bensonS);
-			buf.append("\n");
 		}
 		String suf = printThermodynamicSuffix(outputform);
 		buf.append(suf);
