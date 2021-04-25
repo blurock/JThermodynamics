@@ -219,7 +219,6 @@ public class ComputeThermodynamics {
 	    	compareSet = executeSetCommand(compareref,LineCommandsParameters.bensoncomp,molform);
 	       	computeSet = executeSetCommand(compareref,method,molform);
 	    }
- 	    
     	SetOfThermodynamicDifferences  diff = CompareThermodynamicInformationSets.computeDifference(compareSet, computeSet);
 		return diff;
 	}
