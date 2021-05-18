@@ -11,8 +11,10 @@ import java.util.logging.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.exception.CDKException;
 import thermo.compute.ComputeThermodynamicsFromMolecule;
+import thermo.compute.utilities.StringToAtomContainer;
 import thermo.data.benson.BensonThermodynamicBase;
 import thermo.data.benson.CML.CMLSetOfBensonThermodynamicBase;
 import thermo.data.benson.DB.ThermoSQLConnection;
@@ -22,6 +24,7 @@ import thermo.data.benson.ThermodynamicInformation;
 import thermo.data.structure.structure.StructureAsCML;
 import thermo.exception.ThermodynamicComputeException;
 import thermo.properties.ChemicalConstants;
+import thermo.properties.SProperties;
 import thermo.test.GenerateStructures;
 
 /**
@@ -62,9 +65,13 @@ public class TestComputeThermodyanmacsFromMolecule {
             ThermoSQLConnection c = new ThermoSQLConnection();
             c.connect();
             ComputeThermodynamicsFromMolecule compute = new ComputeThermodynamicsFromMolecule(c);
+    		StringToAtomContainer convertMoleculeString = new StringToAtomContainer(c);
+    		AtomContainer molecule = convertMoleculeString.stringToAtomContainer(SProperties.getProperty("thermo.parameter.nancy"), nancy);
             //ThermodynamicInformation value = compute.computeThermodynamics(cmlstruct.getMolecule());
             SetOfBensonThermodynamicBase thermodynamics = new SetOfBensonThermodynamicBase();
-            ThermodynamicInformation value = (ThermodynamicInformation) compute.computeThermodynamics(nancy,thermodynamics,false);
+            ThermodynamicInformation value = (ThermodynamicInformation) compute.computeThermodynamics(molecule,
+            		thermodynamics,
+            		SProperties.getProperty("thermo.parameter.thergaskey"));
             System.out.println(value.toString());
 
             CMLSetOfBensonThermodynamicBase cmlbenson = new CMLSetOfBensonThermodynamicBase();
@@ -115,7 +122,12 @@ public class TestComputeThermodyanmacsFromMolecule {
             //String nancy = "ch3/co/c///ch";
             //String nancy = "ch3/c(#1)&ch&ch&ch&ch&ch&1";
             String nancy = "ch3/c(ch3)2/ch2/ch(ch3)/ch3";
-            ThermodynamicInformation value = compute.computeThermodynamics(nancy,false);
+    		StringToAtomContainer convertMoleculeString = new StringToAtomContainer(c);
+    		AtomContainer molecule = convertMoleculeString.stringToAtomContainer(SProperties.getProperty("thermo.parameter.nancy"), nancy);
+            SetOfBensonThermodynamicBase thermodynamics = new SetOfBensonThermodynamicBase();
+            ThermodynamicInformation value = compute.computeThermodynamics(molecule,
+            		thermodynamics,
+            		SProperties.getProperty("thermo.parameter.thergaskey"));
             System.out.println(value.toString());
             
         } catch (ThermodynamicComputeException ex) {

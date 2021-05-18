@@ -49,6 +49,13 @@ public class LineCommandsParameters {
 	public static String benson = SProperties.getProperty("thermo.parameter.benson");
 	public static String[] thermoformats = { nasa, benson };
 	
+	// Energy units
+	public static String joule = SProperties.getProperty("thermo.parameter.joule");
+	public static String calorie = SProperties.getProperty("thermo.parameter.calorie");
+	public static String[] eunits = {joule, calorie};
+	
+	
+	
 	public static String nasafile = SProperties.getProperty("thermo.parameter.nasa");
 	public static String bensonfile = SProperties.getProperty("thermo.parameter.benson");
 	public static String thergascomp = SProperties.getProperty("thermo.parameter.thergaskey");
@@ -69,12 +76,13 @@ public class LineCommandsParameters {
 	public static String comptypekey = SProperties.getProperty("thermo.parameter.comptype");
 	public static String comparesrc = SProperties.getProperty("thermo.parameter.comparesrc");
 	public static String compareref = SProperties.getProperty("thermo.parameter.compareref");
+	public static String energyunits = SProperties.getProperty("thermo.parameter.energyunits");
 	public static String parameternames = "ParameterNames";
 
 	public static String[] parameters = { calclasskey, outformatkey, outdetailkey, outfilekey, methodkey, molformkey,
-			moldescrkey, molnamekey, comparesrc, compareref };
+			moldescrkey, molnamekey, comparesrc, compareref, energyunits};
 
-	public static HashMap<String, ArrayList<String>> parametersets;
+	public static HashMap<String, ArrayList<String>> parametersets = null;
 
 	public static void initialize() {
 		parametersets = new HashMap<String, ArrayList<String>>();
@@ -85,6 +93,7 @@ public class LineCommandsParameters {
 		parametersets.put(molformkey, new ArrayList<String>(Arrays.asList(molformats)));
 		parametersets.put(comparesrc, new ArrayList<String>(Arrays.asList(comptypes)));
 		parametersets.put(parameternames, new ArrayList<String>(Arrays.asList(parameters)));
+		parametersets.put(energyunits, new ArrayList<String>(Arrays.asList(eunits)));
 	}
 
 	public static HashMap<String, String> defaultvalues;
@@ -100,6 +109,7 @@ public class LineCommandsParameters {
 		defaultvalues.put(compareref, null);
 		defaultvalues.put(comparesrc, benson);
 		defaultvalues.put(molnamekey, "1-butyl radical");
+		defaultvalues.put(energyunits, "calorie");
 	}
 
 	public static String listOfValidParameters(String parameter) {

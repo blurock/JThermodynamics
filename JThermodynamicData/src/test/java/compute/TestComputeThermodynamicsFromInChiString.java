@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.openscience.cdk.exception.CDKException;
 import thermo.compute.ComputeThermodynamicsFromMolecule;
+import thermo.compute.utilities.StringToAtomContainer;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,9 +20,12 @@ import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.inchi.InChIGeneratorFactory;
 import org.openscience.cdk.inchi.InChIToStructure;
+
+import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.benson.ThermodynamicInformation;
 import thermo.data.structure.structure.StructureAsCML;
 import thermo.exception.ThermodynamicComputeException;
+import thermo.properties.SProperties;
 
 /**
  *
@@ -85,7 +89,12 @@ public class TestComputeThermodynamicsFromInChiString {
             c.connect();
             ComputeThermodynamicsFromMolecule compute = new ComputeThermodynamicsFromMolecule(c);
             System.out.println("Start computing");
-            ThermodynamicInformation value = (ThermodynamicInformation) compute.computeThermodynamicsFromInChI(inchi,false);
+    		StringToAtomContainer convertMoleculeString = new StringToAtomContainer(c);
+    		AtomContainer molecule = convertMoleculeString.stringToAtomContainer(SProperties.getProperty("thermo.parameter.inchi"), inchi);
+            SetOfBensonThermodynamicBase thermodynamics = new SetOfBensonThermodynamicBase();
+            ThermodynamicInformation value = compute.computeThermodynamics(molecule,
+            		thermodynamics,
+            		SProperties.getProperty("thermo.parameter.thergaskey"));
             System.out.println("Done");
             System.out.println(value.toString());
         } catch (ThermodynamicComputeException ex) {

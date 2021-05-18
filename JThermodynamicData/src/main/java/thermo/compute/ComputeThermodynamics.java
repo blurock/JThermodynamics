@@ -21,8 +21,8 @@ public class ComputeThermodynamics {
 
 	public static boolean executeCommand(String[] args) {
 		boolean foundCommand = false;
+		if(args.length > 0) {
 		Map<String, String> parameters = LineCommandsParameters.parameterSetFromArguments(args);
-		System.out.println(parameters);
 		List<String> standardargs = LineCommandsParameters.requiredParameterInOrder(args);
 		String type = new String(args[0]);
 		System.out.println(type + "   " + LineCommandsParameters.thermoKeyword);
@@ -157,7 +157,7 @@ public class ComputeThermodynamics {
 			}
 			
 		}
-
+		}
 		return foundCommand;
 	}
 

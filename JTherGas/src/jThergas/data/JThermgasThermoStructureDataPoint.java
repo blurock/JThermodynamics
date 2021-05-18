@@ -112,4 +112,17 @@ public class JThermgasThermoStructureDataPoint {
         return atomicStructure;
     }
 
+    public void energyConversion(double conversion) {
+		JThergasThermoData thermo = getThermodynamics();
+		double entropy    = thermo.getStandardEntropy();
+		double enthalpy   = thermo.getStandardEnthalpy();
+		double[] cpvalues = thermo.getCpValues();
+		
+		thermo.setStandardEntropy(entropy*conversion);
+		thermo.setStandardEnthalpy(enthalpy*conversion);
+		for(int i=0;i<cpvalues.length;i++) {
+			cpvalues[i] = cpvalues[i]*conversion;
+		}
+  	
+    }
 }

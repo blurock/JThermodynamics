@@ -13,11 +13,14 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.exception.CDKException;
 import thermo.compute.ComputeAdiabaticFlameTemperature;
+import thermo.compute.utilities.StringToAtomContainer;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.structure.structure.StructureAsCML;
 import thermo.exception.ThermodynamicComputeException;
+import thermo.properties.SProperties;
 import thermo.test.GenerateStructures;
 
 /**
@@ -53,7 +56,11 @@ public class TestComputeAdiabaticFlameTemperature {
             if (connection.connect()) {
                 ComputeAdiabaticFlameTemperature flametemp = new ComputeAdiabaticFlameTemperature(connection);
                 double beginT = 300;
-                double flameTemperature = flametemp.computeFlameTemperatureOxygen(propanecml.getMolecule(), beginT,false);
+                String nancy = "ch3/ch2/ch3";
+        		StringToAtomContainer convertMoleculeString = new StringToAtomContainer(connection);
+        		AtomContainer molecule = convertMoleculeString.stringToAtomContainer(SProperties.getProperty("thermo.parameter.nancy"), nancy);
+                
+                double flameTemperature = flametemp.computeFlameTemperatureOxygen(molecule, beginT,SProperties.getProperty("thermo.parameter.thergaskey"));
 
                 System.out.println("Adiabatic Flame Temperature at " + beginT + " for propane is " + flameTemperature);
             }

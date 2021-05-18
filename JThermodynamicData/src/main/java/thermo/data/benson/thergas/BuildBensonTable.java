@@ -117,99 +117,34 @@ public class BuildBensonTable {
      * @throws IOException 
      * 
      */
-    public String build(File f, boolean cmltest) throws JThergasReadException, FileNotFoundException, IOException {
-        String errorString = "No Parsing Errors Detected";
+    public String build(File f, String reference, boolean test, String energyunits) throws JThergasReadException, FileNotFoundException, IOException {
+        String errorString = "";
         String sqlerror = "No Database Errors Detected";
-        String reference = f.toString();
         readThergasTable = new JThergasReadGroupStructureThermo();
         try {
             readThergasTable.readAndParse(f);
+            errorString += ConvertUnits.convertUnits(readThergasTable.getData(),energyunits, test);
         } catch (JThergasReadException ex) {
             errorString = ex.toString();
             Logger.getLogger(BuildBensonTable.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            setUpDatabase(cmltest, reference);
-        } catch (SQLException ex) {
-            sqlerror = ex.toString();
-            Logger.getLogger(BuildBensonTable.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return errorString + "\n=========================================\n" + sqlerror;
-    }
-   /** Build the benson tables from input stream
-     * 
-     * The raw Thergas information file (f) is parsed with
-     * {@link JThergasReadStructureThermo} and forms a vector of
-     * {@link JThermgasThermoStructureDataPoint} classes.
-     *  Then the {@link BuildBensonTable#setUpDatabase(boolean, java.lang.String)
-     * method is called to set up the database
-     * 
-    * @param inp  The input stream
-    * @param reference  The reference string
-    * @param cmltest true if a cmltest is to be performed on {@link BensonThermodynamicBase}
-     * @return The (error) string giving the result of build
-     * @throws JThergasReadException
-     * @throws FileNotFoundException
-     * @throws IOException 
-     * 
-     */
-    public String build(InputStream inp, String reference, boolean storedata, boolean cmltest) throws JThergasReadException, FileNotFoundException, IOException {
-        String errorString = "No Parsing Errors Detected";
-        String sqlerror = "No Database Errors Detected";
-        readThergasTable = new JThergasReadGroupStructureThermo();
-        try {
-            readThergasTable.readAndParse(inp);
-        } catch (JThergasReadException ex) {
-            errorString = ex.toString();
-            Logger.getLogger(BuildBensonTable.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-        	if(storedata) {
-        		setUpDatabase(cmltest, reference);
-        		System.out.println("\nDatabase successfully updated");
+        	if(!test) {
+        		setUpDatabase(reference);
+        		errorString += "\n=========================================";
+        		errorString += "Database successfully written\n";
+        		errorString += "\n=========================================";
         	} else {
-        		System.out.println("\n=========================================");
-        		System.out.println("Parsed Information=======================");
-        		System.out.println("=========================================");
-        		System.out.println(readThergasTable.writeToString());
-        		System.out.println("=========================================");
+        		errorString += "Parsed Information=======================\n";
+        		errorString += "=========================================\n";
+        		errorString += readThergasTable.writeToString();
+        		errorString += "\n=========================================\n";      		
         	}
         } catch (SQLException ex) {
             sqlerror = ex.toString();
             Logger.getLogger(BuildBensonTable.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return errorString + "\n=========================================\n" + sqlerror;
-    }
-
-    /**
-     * A data string of the raw Thergas information is parsed with
-     * {@link JThergasReadStructureThermo} and forms a vector of
-     * {@link JThermgasThermoStructureDataPoint} classes.
-     *  Then the {@link BuildBensonTable#setUpDatabase(boolean, java.lang.String)
-     * method is called to set up the database
-     *
-     * @param data
-     * @param cmltest
-     * @param reference
-     * @return 
-     */
-    public String build(String data, boolean cmltest, String reference) {
-        readThergasTable = new JThergasReadGroupStructureThermo();
-        String errorString = "No Parsing Errors Detected";
-        String sqlerror = "No Database Errors Detected";
-        try {
-            readThergasTable.readAndParse(data);
-        } catch (JThergasReadException ex) {
-            Logger.getLogger(BuildBensonTable.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            setUpDatabase(cmltest, reference);
-        } catch (SQLException ex) {
-            sqlerror = ex.toString();
-            Logger.getLogger(BuildBensonTable.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return errorString + "\n=========================================\n" + sqlerror;
     }
 
@@ -229,7 +164,7 @@ public class BuildBensonTable {
      * @param reference The reference string name
      * @throws java.sql.SQLException
      */
-    public void setUpDatabase(boolean cmltest, String reference) throws SQLException {
+    public void setUpDatabase(String reference) throws SQLException {
         String errorString = "";
 
         //sqlelement.initializeStructureInDatabase();
@@ -238,10 +173,12 @@ public class BuildBensonTable {
         for (int i = 0; i < data.size(); i++) {
             JThergasThermoStructureGroupPoint point = (JThergasThermoStructureGroupPoint) readThergasTable.getData().elementAt(i);
             try {
-                BensonThermodynamicBase thermo = addBensonToDatabase(point, reference);
+                addBensonToDatabase(point, reference);
+                /*
                 if (cmltest) {
                     testCMLBensonThermodynamicBase(thermo);
                 }
+                */
             } catch (SQLException ex) {
 
                 errorString = errorString + "\n------------SQL Error #" + i + " --------------\n" + point.writeToString() + "\n" + ex.toString();
@@ -290,7 +227,7 @@ public class BuildBensonTable {
      *
      * @param thermo
      * @throws java.sql.SQLException
-     */
+    
     private void testCMLBensonThermodynamicBase(BensonThermodynamicBase thermo) throws SQLException {
         CMLBensonThermodynamicBase cmlthermo = new CMLBensonThermodynamicBase();
         cmlthermo.setStructure(thermo);
@@ -310,4 +247,5 @@ public class BuildBensonTable {
         Iterator<BensonThermodynamicBase>  iter = vec.iterator();
         BensonThermodynamicBase thermo3 = iter.next();
      }
+      */
 }

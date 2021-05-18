@@ -10,9 +10,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.openscience.cdk.exception.CDKException;
+
+import thermo.LineCommandsParameters;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.benson.thergas.BuildBensonTable;
 import thermo.data.benson.thergas.BuildThermoForMolecules;
@@ -53,24 +57,26 @@ public class BuildDatabase {
     	if(args.length < 1) {
     		foundCommand = false;
     	} else {
-        String type = args[0];
+    		Map<String, String> parameters = LineCommandsParameters.parameterSetFromArguments(args);
+    		System.out.println(parameters);
+    		List<String> standardargs = LineCommandsParameters.requiredParameterInOrder(args);
+    		String type = new String(args[0]);
+    		System.out.println(type + "   " + LineCommandsParameters.thermoKeyword);
         try {
             if (type.equalsIgnoreCase(bensonS)) {
-                buildBenson(args);
+                buildBenson(standardargs, parameters);
             } else if (type.equalsIgnoreCase(moleculesS)) {
-                buildMolecules(args);
+                buildMolecules(standardargs, parameters);
             } else if (type.equalsIgnoreCase(disassociationS)) {
                 buildDisasociationEnergy(args);
             } else if (type.equalsIgnoreCase(substructurethermoS)) {
-                buildSubStructureThermo(args);
+                buildSubStructureThermo(standardargs, parameters);
             } else if (type.equalsIgnoreCase(structuresS)) {
                 buildSubstructures(args);
             } else if (type.equalsIgnoreCase(metaatomdefS)) {
                 buildMetaAtoms(args);
             } else if (type.equalsIgnoreCase(vibrationalmodeS)) {
                 buildVibrationalModes(args);
-            } else if (type.equalsIgnoreCase(initializeS)) {
-                initializeDatabase(args);
             } else if (type.equalsIgnoreCase(symmetryDefinitionS)) {
                 buildSymmetryDefinition(args);
             } else if (type.equalsIgnoreCase(deleteS)) {
@@ -109,16 +115,22 @@ public class BuildDatabase {
     
 
 
-    private static void buildBenson(String[] args) throws FileNotFoundException, JThergasReadException, IOException {
-        if (args.length < 3) {
-            System.out.println(bensonS + " Filename ReferenceName");
+    private static void buildBenson(List<String> standardargs, Map<String, String> parameters) throws FileNotFoundException, JThergasReadException, IOException {
+        if (standardargs.size()< 4) {
+            System.out.println(moleculesS + " Filename ReferenceName");
             System.out.println("Filename: The file with the benson thermodynamics");
             System.out.println("Referencename: The name of the source type of this data (for example \"Standard\") ");
             System.out.println("Test: if true, will not enter data in database ");
         } else {
-            String fileS = args[1];
-            String referenceS = args[2];
-            String testS = args[3];
+            String fileS = standardargs.get(1);
+            String referenceS = standardargs.get(2);
+            String testS = standardargs.get(3);
+            String energyunits = parameters.get(LineCommandsParameters.energyunits);
+            
+            System.out.println("File         : " + fileS);
+            System.out.println("Reference    : " + referenceS);
+            System.out.println("Energy       : " + energyunits);
+            
             boolean test = true;
             if(testS.compareTo("false") == 0) {
             	test = false;
@@ -127,22 +139,23 @@ public class BuildDatabase {
             	System.out.println("Just read in file, no upload to database");
             }
             File fileF = new File(fileS);
-            FileInputStream fileR = new FileInputStream(fileF);
             BuildBensonTable buildBenson = new BuildBensonTable();
-            buildBenson.build(fileR, referenceS, !test, false);
+            String output = buildBenson.build(fileF, referenceS,test,energyunits);
+            System.out.println(output);
         }
     }
 
-    private static void buildMolecules(String[] args) {
-        if (args.length < 4) {
+    private static void buildMolecules(List<String> standardargs, Map<String, String> parameters) {
+        if (standardargs.size()< 4) {
             System.out.println(moleculesS + " Filename ReferenceName");
             System.out.println("Filename: The file with the benson thermodynamics");
             System.out.println("Referencename: The name of the source type of this data (for example \"Standard\") ");
             System.out.println("Test: if true, will not enter data in database ");
         } else {
-            String fileS = args[1];
-            String referenceS = args[2];
-            String testS = args[3];
+            String fileS = standardargs.get(1);
+            String referenceS = standardargs.get(2);
+            String testS = standardargs.get(3);
+            String energyunits = parameters.get(LineCommandsParameters.energyunits);
             boolean test = true;
             if(testS.compareTo("false") == 0) {
             	test = false;
@@ -163,7 +176,7 @@ public class BuildDatabase {
             System.out.println("Read in File (" + referenceS + "): " + fileS);
             try {
                 File bensonFile = new File(fileS);
-                build.build(connection, bensonFile, referenceS, !test, false);
+                build.build(connection, bensonFile, referenceS, !test, energyunits);
             } catch (JThergasReadException ex) {
                 Logger.getLogger(BuildDatabase.class.getName()).log(Level.SEVERE, null, ex);
             } catch (FileNotFoundException ex) {
@@ -173,18 +186,19 @@ public class BuildDatabase {
             }
         }
     }
-    private static void buildSubStructureThermo(String[] args) {
-        if (args.length < 5) {
+    private static void buildSubStructureThermo(List<String> standardargs, Map<String, String> parameters) {
+        if (standardargs.size() < 5) {
             System.out.println(substructurethermoS + " Filename Type ReferenceName");
             System.out.println("Filename: The file with the benson thermodynamics");
             System.out.println("Type: The type of substructure for the thermo data");
             System.out.println("Referencename: The name of the source type of this data (for example \"Standard\") ");
             System.out.println("Test: if true, will not enter data in database ");
         } else {
-            String fileS = args[1];
-            String typeS = args[2];
-            String referenceS = args[3];
-            String testS = args[4];
+            String fileS = standardargs.get(1);
+            String typeS = standardargs.get(2);
+            String referenceS = standardargs.get(3);
+            String testS = standardargs.get(4);
+            String energyunits = parameters.get(LineCommandsParameters.energyunits);
             boolean testB = true;
             if(testS.compareTo("false") == 0) {
             	testB = false;
@@ -201,7 +215,7 @@ public class BuildDatabase {
             System.out.println("Read in File (" + referenceS + "): " + fileS);
             try {
                 File bensonFile = new File(fileS);
-                build.build(connection, bensonFile, referenceS, !testB, false);
+                build.build(connection, bensonFile, referenceS, !testB, energyunits);
             } catch (JThergasReadException ex) {
                 Logger.getLogger(BuildDatabase.class.getName()).log(Level.SEVERE, null, ex);
             } catch (FileNotFoundException ex) {
@@ -307,40 +321,6 @@ public class BuildDatabase {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(BuildDatabase.class.getName()).log(Level.SEVERE, null, ex);
             } catch (CDKException ex) {
-                Logger.getLogger(BuildDatabase.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
-    private static void initializeDatabase(String[] args) {
-        if (args.length < 3) {
-            System.out.println(initializeS + " RootOfDirectory");
-            System.out.println("RootOfDirectory: ");
-            System.out.println("Test: if true, will not enter data in database ");
-        } else {
-            FileInputStream fileR = null;
-            try {
-                String rootS = args[1];
-                String testS = args[2];
-                boolean test = true;
-                if(testS.compareTo("false") == 0) {
-                	test = false;
-                	System.out.println("Read file and upload to database");
-                } else {
-                	System.out.println("Just read in file, no upload to database");
-                }
-
-                String referenceS = "StandardInitialize";
-                File rootF = new File(rootS, resourceS);
-                File resourceDirF = new File(rootF, bensonGroupFileS);
-                fileR = new FileInputStream(resourceDirF);
-
-                BuildBensonTable buildBenson = new BuildBensonTable();
-                buildBenson.build(fileR, referenceS, !test, false);
-                fileR.close();
-            } catch (JThergasReadException ex) {
-                Logger.getLogger(BuildDatabase.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
                 Logger.getLogger(BuildDatabase.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

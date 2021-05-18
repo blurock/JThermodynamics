@@ -48,7 +48,7 @@ public class JThergasReadStructureThermo {
     }
     public void readAndParse(InputStream inp) throws JThergasReadException, IOException {
          data = new Vector<JThermgasThermoStructureDataPoint>();
-        ReadFileToString read = new ReadFileToString();
+        //ReadFileToString read = new ReadFileToString();
         InputStreamReader inpreader = new InputStreamReader(inp);
         BufferedReader breader = new BufferedReader(inpreader);
         readAndParse(breader);

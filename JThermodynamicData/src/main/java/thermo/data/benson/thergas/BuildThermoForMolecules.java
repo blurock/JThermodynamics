@@ -7,6 +7,7 @@ package thermo.data.benson.thergas;
 
 import jThergas.data.JThermgasThermoStructureDataPoint;
 import jThergas.data.read.JThergasReadStructureThermo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,14 +18,15 @@ import java.util.logging.Logger;
 import jThergas.exceptions.JThergasReadException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.exception.CDKException;
+
 import thermo.data.benson.BensonThermodynamicBase;
+import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.benson.DB.SQLBensonThermodynamicBase;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.structure.DB.SQLMolecule;
 import thermo.data.structure.structure.DB.SQLMetaAtomDefinitionFromMetaAtomInfo;
 import thermo.data.structure.structure.DB.SQLSubstituteBackMetaAtomIntoMolecule;
 import thermo.data.structure.structure.SetOfMetaAtomsForSubstitution;
-import thermo.data.structure.structure.StructureAsCML;
 
 /**
  *
@@ -43,6 +45,9 @@ public class BuildThermoForMolecules {
     boolean success;
     SQLSubstituteBackMetaAtomIntoMolecule substitute;
     SQLMolecule sqlmolecule;
+    SetOfBensonThermodynamicBase databaseset;
+    
+    
     public BuildThermoForMolecules() {
         initialize();
     }
@@ -85,9 +90,9 @@ public class BuildThermoForMolecules {
     	}
         sqlmolecule.deleteFromSource(reference,storedata);
     }
-    public String build(ThermoSQLConnection c, File f, boolean storedata, boolean cmltest) throws JThergasReadException, FileNotFoundException, IOException {
+    public String build(ThermoSQLConnection c, File f, boolean storedata, String energyunits) throws JThergasReadException, FileNotFoundException, IOException {
         String referenceS = f.toString();
-        return build(c,f,referenceS,storedata, cmltest);
+        return build(c,f,referenceS,storedata, energyunits);
     }
 
         /** Build the benson tables from file
@@ -108,33 +113,32 @@ public class BuildThermoForMolecules {
      * @throws IOException 
      *
      */
-    public String build(ThermoSQLConnection c, File f, String reference, boolean storedata, boolean cmltest) throws JThergasReadException, FileNotFoundException, IOException {
+    public String build(ThermoSQLConnection c, File f, String reference, boolean storedata, String energyunits) throws JThergasReadException, FileNotFoundException, IOException {
         String errorString = "No Parsing Errors Detected";
         String sqlerror = "No Database Errors Detected";
         sourceS = reference;
         readThergasTable = new JThergasReadStructureThermo();
         try {
             readThergasTable.readAndParse(f);
-        } catch (JThergasReadException ex) {
-            errorString = ex.toString();
-            Logger.getLogger(BuildBensonTable.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
+            errorString += ConvertUnits.convertUnits(readThergasTable.getData(),energyunits, !storedata);
         	if(storedata) {
-        		setUpDatabase(c,cmltest, reference);
-        		System.out.println("Database successfully written");
+        		setUpDatabase(c, reference);
+        		errorString += "\n=========================================";
+        		errorString += "Database successfully written\n";
+        		errorString += "\n=========================================";
         	} else {
-        		System.out.println("\n=========================================");
-        		System.out.println("Parsed Information=======================");
-        		System.out.println("=========================================");
-        		System.out.println(readThergasTable.writeToString());
-        		System.out.println("=========================================");        		
+        		errorString += "Parsed Information=======================\n";
+        		errorString += "=========================================\n";
+        		errorString += readThergasTable.writeToString();
+        		errorString += "\n=========================================\n";      		
         	}
         } catch (CDKException ex) {
             Logger.getLogger(BuildThermoForMolecules.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             sqlerror = ex.toString();
             Logger.getLogger(BuildBensonTable.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JThergasReadException ex) {
+            errorString = ex.toString();
         }
 
         return errorString + "\n=========================================\n" + sqlerror;
@@ -152,18 +156,19 @@ public class BuildThermoForMolecules {
      * </ul>
      *
      * @param c 
-     * @param cmltest true if a cmltest is to be performed on {@link BensonThermodynamicBase}
      * @param reference The reference string name
      * @throws java.sql.SQLException
      */
-    public void setUpDatabase(ThermoSQLConnection c, boolean cmltest, String reference) throws SQLException, CDKException {
+    public void setUpDatabase(ThermoSQLConnection c, String reference) throws SQLException, CDKException {
         String errorString = "";
+        databaseset = new SetOfBensonThermodynamicBase();
         Vector<JThermgasThermoStructureDataPoint> data = readThergasTable.getData();
         for (int i = 0; i < data.size(); i++) {
             JThermgasThermoStructureDataPoint point = readThergasTable.getData().elementAt(i);
             try {
                 addMoleculeStructureToDatabase(point,c);
                 BensonThermodynamicBase thermo = addBensonToDatabase(point, reference);
+                databaseset.add(thermo);
             } catch (SQLException ex) {
                 errorString = errorString + "\n------------SQL Error #" + i + " --------------\n" + point.writeToString() + "\n" + ex.toString();
             }
@@ -173,20 +178,19 @@ public class BuildThermoForMolecules {
             throw new SQLException(errorString);
         }
     }
+    /**
+     * @param point The THERGAS information (direct from THERGAS file)
+     * @param c database connection
+     * @throws CDKException error in build Benson
+     * @throws SQLException error in build Benson 
+     */
     protected void addMoleculeStructureToDatabase(JThermgasThermoStructureDataPoint point,ThermoSQLConnection c) throws CDKException, SQLException {
-        try {
             IAtomContainer molecule = buildBenson.buildMolecule(point,c);
             substitute.substitute(molecule);
-           StructureAsCML cmlstruct = new StructureAsCML(molecule);
-            IAtomContainer substituted = metaAtomSubstitutions.substitute(cmlstruct);
+           //StructureAsCML cmlstruct = new StructureAsCML(molecule);
+            //IAtomContainer substituted = metaAtomSubstitutions.substitute(cmlstruct);
             sqlmolecule.addToDatabase(molecule, sourceS);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(BuildThermoForMolecules.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(BuildThermoForMolecules.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (CDKException ex) {
-            Logger.getLogger(BuildThermoForMolecules.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
     /** Adds the thermo data to the SQL database
      *
@@ -211,4 +215,5 @@ public class BuildThermoForMolecules {
         SQLMolecule sqlmol = new SQLMolecule(connection);
         sqlmol.deleteFromSource(reference, storedata);
     }
+    
 }

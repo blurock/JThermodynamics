@@ -8,6 +8,9 @@ import thermo.compute.ComputeThermodynamics;
 public class LineCommands {
 
 	public static void main(String[] args) {
+		
+		LineCommandsParameters.initialize();
+		LineCommandsParameters.defaults();
 
 		if (args.length < 1) {
 			commands();
