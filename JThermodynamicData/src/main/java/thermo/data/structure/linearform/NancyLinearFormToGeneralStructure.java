@@ -5,10 +5,12 @@
 package thermo.data.structure.linearform;
 
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.Iterator;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtom;
 import thermo.data.benson.DB.ThermoSQLConnection;
+import thermo.data.structure.structure.MetaAtomInfo;
 
 /**
  *
@@ -22,6 +24,10 @@ public class NancyLinearFormToGeneralStructure extends NancyLinearFormToMolecule
 
     public NancyLinearFormToGeneralStructure(ThermoSQLConnection c) throws SQLException {
         super(c);
+    }
+    
+    public NancyLinearFormToGeneralStructure(HashSet<MetaAtomInfo> ans) {
+        super(ans);
     }
 
     @Override

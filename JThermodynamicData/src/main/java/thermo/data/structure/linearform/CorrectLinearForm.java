@@ -16,10 +16,6 @@ import thermo.data.structure.structure.MetaAtomInfo;
  * @author blurock
  */
 public class CorrectLinearForm {
-
-    SQLMetaAtomInfo sqlMetaInfo;
-    private ThermoSQLConnection connect;
-    String nancyLinearFormS = "NancyLinearForm";
     HashSet<String> groupNames = null;
     private int maxNumberOfCharactersForGroupName = 7;
 
@@ -33,10 +29,23 @@ public class CorrectLinearForm {
      * @throws java.sql.SQLException
      */
     public CorrectLinearForm(ThermoSQLConnection c) throws SQLException {
-        connect = c;
-        sqlMetaInfo = new SQLMetaAtomInfo(connect);
-
+        String nancyLinearFormS = "NancyLinearForm";
+    	ThermoSQLConnection connect = c;
+        SQLMetaAtomInfo sqlMetaInfo = new SQLMetaAtomInfo(connect);
         HashSet<MetaAtomInfo> ans = sqlMetaInfo.retrieveMetaAtomTypesFromDatabase(nancyLinearFormS);
+        groupNames(ans);
+   }
+    
+    public CorrectLinearForm(HashSet<MetaAtomInfo> ans) {
+    	groupNames(ans);
+    }
+    
+    /**
+     * @param ans
+     * 
+     * Order groupNames from largest to smallest. If the name has quotes, then eliminate them
+     */
+    private void groupNames(HashSet<MetaAtomInfo> ans) {
         groupNames = new HashSet<String>();
         for (int sze = maxNumberOfCharactersForGroupName; sze > 0 ; sze--) {
             Iterator<MetaAtomInfo> info = ans.iterator();
@@ -53,8 +62,14 @@ public class CorrectLinearForm {
                 }
             }
         }
+     	
     }
+    
 
+    /**
+     * @param original The 
+     * @return
+     */
     public String correctNancyLinearForm(String original) {
         boolean parens = false;
         int i = 0;

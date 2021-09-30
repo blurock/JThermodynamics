@@ -41,7 +41,7 @@ public class BuildThermoForMolecules {
     String sourceS;
     String bensonAtomType = "BensonAtom";
     SQLMetaAtomDefinitionFromMetaAtomInfo sqlMetaAtom;
-    SetOfMetaAtomsForSubstitution metaAtomSubstitutions;
+    //SetOfMetaAtomsForSubstitution metaAtomSubstitutions;
     boolean success;
     SQLSubstituteBackMetaAtomIntoMolecule substitute;
     SQLMolecule sqlmolecule;
@@ -61,7 +61,7 @@ public class BuildThermoForMolecules {
             String nancy = new String("NancyLinearForm");
             try {
                 sqlMetaAtom = new SQLMetaAtomDefinitionFromMetaAtomInfo(connection);
-                metaAtomSubstitutions = sqlMetaAtom.createSubstitutionSets(bensonAtomType);
+                //metaAtomSubstitutions = sqlMetaAtom.createSubstitutionSets(bensonAtomType);
                 substitute = new SQLSubstituteBackMetaAtomIntoMolecule(nancy, connection);
             } catch (SQLException ex) {
                 Logger.getLogger(BuildThermoForMolecules.class.getName()).log(Level.SEVERE, null, ex);

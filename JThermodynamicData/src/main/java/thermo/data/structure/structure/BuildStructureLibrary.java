@@ -12,9 +12,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.StringTokenizer;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
+import org.openscience.cdk.aromaticity.Aromaticity;
+//import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import thermo.data.benson.DB.ThermoSQLConnection;
@@ -41,6 +43,13 @@ public class BuildStructureLibrary {
         sqlMetaAtomInfo = new SQLMetaAtomInfo(connect);
         sqlStructureAsCML = new SQLStructureAsCML(connect);
     }
+    
+    
+    public BuildStructureLibrary(HashSet<MetaAtomInfo> ans) {
+        linearStructure = new NancyLinearFormToGeneralStructure(ans);    	
+    }
+    
+    
     public void build(File fileF, boolean storedata) throws FileNotFoundException, IOException, SQLException, CDKException, ClassNotFoundException {
         ReadFileToString read = new ReadFileToString();
         FileReader r = new FileReader(fileF);
@@ -59,42 +68,61 @@ public class BuildStructureLibrary {
     }
 
     public void parseLine(String line, boolean storedata) throws SQLException, CDKException, ClassNotFoundException, IOException {
-    	if(!storedata) {
+    	MetaAtomLine atomline = parseToMetaAtom(line,storedata);
+    	StructureAsCML cmlstruct = setUpStructureAsCML(atomline.getNancy(),atomline.getElementName());
+    	storeMetaAtomDefinition(cmlstruct,atomline,storedata);
+    }
+	
+	public MetaAtomLine parseToMetaAtom(String line, boolean storedata) {
+	   	if(!storedata) {
     		System.out.println("\n=========================================");
     		System.out.println("Parsed Information=======================");
     	}
     	StringTokenizer tok = new StringTokenizer(line);
+    	MetaAtomInfo info = new MetaAtomInfo();
+    	MetaAtomLine atomline = new MetaAtomLine(info);
         if(tok.countTokens() > 3) {
             String nancy           = tok.nextToken();
             String nameOfStructure = tok.nextToken();
             String metaAtomName    = tok.nextToken();
             String typeOfStructure = tok.nextToken();
 
+            
+            atomline.setElementName(nameOfStructure);
+            atomline.setMetaAtomName(metaAtomName);
+            atomline.setMetaAtomType(typeOfStructure);
+            atomline.setNancy(nancy);
+        }
+        return atomline;
+	}
+	public StructureAsCML setUpStructureAsCML(String nancy, String nameOfStructure) throws SQLException, CDKException {
+
             IAtomContainer molecule = linearStructure.convert(nancy);
             AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(molecule);
-            boolean detectAromaticity = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
+            boolean detectAromaticity = Aromaticity.cdkLegacy().apply(molecule);
+            
+            //boolean detectAromaticity = CDKHueckelAromaticityDetector.detectAromaticity(molecule);
             molecule.setID(nameOfStructure);
             StructureAsCML cmlstruct = new StructureAsCML(molecule);
             if(detectAromaticity) {
                 System.out.println("detect Aromaticity: \n" + cmlstruct.getCmlStructureString());
             }
-            MetaAtomInfo info = new MetaAtomInfo();
-            info.setElementName(nameOfStructure);
-            info.setMetaAtomName(metaAtomName);
-            info.setMetaAtomType(typeOfStructure);
-            //MetaAtomDefinition metadef = new MetaAtomDefinition(info,cmlstruct);
-            if(storedata) {
-            sqlMetaAtomInfo.deleteElement(info);
-            sqlMetaAtomInfo.addToDatabase(info);
-            sqlStructureAsCML.deleteElement(cmlstruct);
-            sqlStructureAsCML.addToDatabase(cmlstruct);
-            } else {
-        		System.out.println("\n=========================================");
-        		System.out.println(info.toString());
-        		System.out.println(cmlstruct.toString());
-            }
-        }
-    }
+            return cmlstruct;
+	}
+		
 
+    public void storeMetaAtomDefinition(StructureAsCML cmlstruct, MetaAtomInfo info, boolean storedata) throws SQLException {
+        if(storedata) {
+        sqlMetaAtomInfo.deleteElement(info);
+        sqlMetaAtomInfo.addToDatabase(info);
+        sqlStructureAsCML.deleteElement(cmlstruct);
+        sqlStructureAsCML.addToDatabase(cmlstruct);
+        } else {
+    		System.out.println("\n=========================================");
+    		System.out.println(info.toString());
+    		System.out.println(cmlstruct.toString());
+        }
+    	
+    }
 
 }

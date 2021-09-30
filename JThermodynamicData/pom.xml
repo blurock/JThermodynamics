@@ -66,36 +66,24 @@
 			<artifactId>google-http-client-appengine</artifactId>
 			<version>1.28.0</version>
 		</dependency>
-		<dependency>
-			<groupId>com.google.http-client</groupId>
-			<artifactId>google-http-client</artifactId>
-			<version>1.28.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.oauth-client</groupId>
-			<artifactId>google-oauth-client</artifactId>
-			<version>1.28.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.oauth-client</groupId>
-			<artifactId>google-oauth-client-servlet</artifactId>
-			<version>1.28.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.oauth-client</groupId>
-			<artifactId>google-oauth-client-appengine</artifactId>
-			<version>1.22.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.http-client</groupId>
-			<artifactId>google-http-client-jackson2</artifactId>
-			<version>1.28.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.http-client</groupId>
-			<artifactId>google-http-client-jackson</artifactId>
-			<version>1.28.0</version>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/com.google.http-client/google-http-client -->
+<dependency>
+    <groupId>com.google.http-client</groupId>
+    <artifactId>google-http-client</artifactId>
+    <version>1.40.0</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.google.oauth-client/google-oauth-client -->
+<dependency>
+    <groupId>com.google.oauth-client</groupId>
+    <artifactId>google-oauth-client</artifactId>
+    <version>1.32.1</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.google.http-client/google-http-client-jackson2 -->
+<dependency>
+    <groupId>com.google.http-client</groupId>
+    <artifactId>google-http-client-jackson2</artifactId>
+    <version>1.40.0</version>
+</dependency>
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
@@ -106,17 +94,19 @@
 			<artifactId>jackson-core</artifactId>
 			<version>2.9.4</version>
 		</dependency>
-		<dependency>
-			<groupId>com.google.cloud</groupId>
-			<artifactId>google-cloud-core</artifactId>
-			<version>1.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.cloud</groupId>
-			<artifactId>google-cloud-core-http</artifactId>
-			<version>1.2.1</version>
-		</dependency>
-		<dependency>
+<!-- https://mvnrepository.com/artifact/com.google.cloud/google-cloud-core -->
+<dependency>
+    <groupId>com.google.cloud</groupId>
+    <artifactId>google-cloud-core</artifactId>
+    <version>2.1.7</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.google.cloud/google-cloud-core-http -->
+<dependency>
+    <groupId>com.google.cloud</groupId>
+    <artifactId>google-cloud-core-http</artifactId>
+    <version>2.1.7</version>
+</dependency>
+		<!--  dependency>
 			<groupId>com.google.auth</groupId>
 			<artifactId>google-auth-library-oauth2-http</artifactId>
 			<version>0.7.0</version>
@@ -125,7 +115,7 @@
 			<groupId>com.google.auth</groupId>
 			<artifactId>google-auth-library-credentials</artifactId>
 			<version>0.7.0</version>
-		</dependency>
+		</dependency -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>

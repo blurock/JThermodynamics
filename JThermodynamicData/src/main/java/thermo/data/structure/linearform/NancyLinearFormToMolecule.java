@@ -5,6 +5,7 @@
 package thermo.data.structure.linearform;
 
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -20,6 +21,7 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IBond.Order;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import thermo.data.benson.DB.ThermoSQLConnection;
+import thermo.data.structure.structure.MetaAtomInfo;
 import thermo.data.structure.structure.StructureAsCML;
 import thermo.data.structure.utilities.MoleculeUtilities;
 
@@ -92,6 +94,16 @@ public class NancyLinearFormToMolecule {
     public NancyLinearFormToMolecule(ThermoSQLConnection c) throws SQLException {
         connection = c;
         correctForm = new CorrectLinearForm(connection);
+        ringConnections = new Hashtable<Integer, Atom>();
+        ringInfo = new Hashtable<Integer, AtomGroupStringNode>();
+    }
+
+    /** The constructor
+     * @param c
+     * @throws SQLException 
+     */
+    public NancyLinearFormToMolecule(HashSet<MetaAtomInfo> ans) {
+        correctForm = new CorrectLinearForm(ans);
         ringConnections = new Hashtable<Integer, Atom>();
         ringInfo = new Hashtable<Integer, AtomGroupStringNode>();
     }

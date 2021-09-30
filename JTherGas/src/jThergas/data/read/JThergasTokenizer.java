@@ -34,7 +34,7 @@ public class JThergasTokenizer extends StringTokenizer {
     public boolean group = false;
     
     String blankS = new String(" ");
-    JThergasTokenizer(String input) {
+    public JThergasTokenizer(String input) {
         super(input,"\n");
     }
 
