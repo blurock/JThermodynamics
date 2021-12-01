@@ -44,6 +44,12 @@ public class JThergasThermoStructureGroupPoint extends JThermgasThermoStructureD
 
         parseGroupDescription();
     }
+    
+    public  void parse(String line1, String line1a, String line2, String line3, 
+    		boolean group, int linenumber, int groupnumber)  throws JThergasReadException {
+    	super.parse(line1, line1a, line2, line3, group, linenumber, groupnumber);
+    	parseGroupDescription();
+    }
 /** The group description in
  *  (from {@link JThergasStructureData#getNancyLinearForm()  Nancy Linear form} is parsed
  *  using the {@link JThergasThermoStructureGroupPoint#separateOutGroupElements() separateOutGroupElements()} method.

@@ -74,10 +74,6 @@ public class BuildStructureLibrary {
     }
 	
 	public MetaAtomLine parseToMetaAtom(String line, boolean storedata) {
-	   	if(!storedata) {
-    		System.out.println("\n=========================================");
-    		System.out.println("Parsed Information=======================");
-    	}
     	StringTokenizer tok = new StringTokenizer(line);
     	MetaAtomInfo info = new MetaAtomInfo();
     	MetaAtomLine atomline = new MetaAtomLine(info);

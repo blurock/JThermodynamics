@@ -1,6 +1,7 @@
 package thermo.compute.utilities;
 
 import java.sql.SQLException;
+import java.util.HashSet;
 
 import org.openscience.cdk.Atom;
 import org.openscience.cdk.AtomContainer;
@@ -24,6 +25,7 @@ import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.structure.linearform.NancyLinearFormToMolecule;
+import thermo.data.structure.structure.MetaAtomInfo;
 import thermo.exception.ThermodynamicComputeException;
 import thermo.properties.SProperties;
 
@@ -33,8 +35,17 @@ public class StringToAtomContainer {
     NancyLinearFormToMolecule nancyFormToMolecule;
 
 
-    public StringToAtomContainer(ThermoSQLConnection c) {
+    public StringToAtomContainer(ThermoSQLConnection c) throws ThermodynamicComputeException {
     	connect = c;
+        try {
+			nancyFormToMolecule = new NancyLinearFormToMolecule(connect);
+		} catch (SQLException e1) {
+			throw new ThermodynamicComputeException("Cannot convert from Nancy Linear Form");
+		}
+    }
+    
+    public StringToAtomContainer(HashSet<MetaAtomInfo> metaatoms) {
+    	nancyFormToMolecule = new NancyLinearFormToMolecule(metaatoms);
     }
     
     public AtomContainer stringToAtomContainer(String molform, String moldescription) throws ThermodynamicComputeException {
@@ -74,11 +85,6 @@ public class StringToAtomContainer {
     
     public AtomContainer nancylinearToAtomContainer(String nancy) throws ThermodynamicComputeException {
        	AtomContainer molecule = null;   	
-        try {
-			nancyFormToMolecule = new NancyLinearFormToMolecule(connect);
-		} catch (SQLException e1) {
-			throw new ThermodynamicComputeException("Cannot convert from Nancy Linear Form: '" + nancy + "'");
-		}
         try {
 			molecule = (AtomContainer) nancyFormToMolecule.convert(nancy);
 		} catch (SQLException e) {

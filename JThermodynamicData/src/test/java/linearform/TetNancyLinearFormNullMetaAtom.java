@@ -1,45 +1,45 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package linearform;
+
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.ISingleElectron;
+
+import thermo.compute.utilities.StringToAtomContainer;
 import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.structure.linearform.NancyLinearFormToMolecule;
-import thermo.data.structure.structure.DB.SQLSubstituteBackMetaAtomIntoMolecule;
+import thermo.data.structure.structure.MetaAtomInfo;
 import thermo.data.structure.structure.StructureAsCML;
+import thermo.data.structure.structure.DB.SQLSubstituteBackMetaAtomIntoMolecule;
+import thermo.exception.ThermodynamicComputeException;
 
-/**
- *
- * @author blurock
- */
-public class TestNancyLinearForm {
+public class TetNancyLinearFormNullMetaAtom {
 
     NancyLinearFormToMolecule nancy = null;
 
-    public TestNancyLinearForm() throws SQLException {
+    public TetNancyLinearFormNullMetaAtom() throws SQLException {
         ThermoSQLConnection connect = new ThermoSQLConnection();
         if (connect.connect()) {
-            nancy = new NancyLinearFormToMolecule(connect);
+            nancy = new NancyLinearFormToMolecule(new HashSet<MetaAtomInfo>());
         } else {
             throw new SQLException("Failure to connect to Thermodynamic Database");
         }
     }
-
     @BeforeClass
     public static void setUpClass() throws Exception {
     }
@@ -57,46 +57,26 @@ public class TestNancyLinearForm {
     }
 
     private void convertToMolecule(String molS) throws CDKException, SQLException {
-        ThermoSQLConnection connection = new ThermoSQLConnection();
-    if(connection.connect()) {
-            try {
-                String nancylinear = "NancyLinearForm";
-                SQLSubstituteBackMetaAtomIntoMolecule sqlsub = new SQLSubstituteBackMetaAtomIntoMolecule(nancylinear, connection);
-                System.out.println("-------------------------------------------------------");
-                IAtomContainer molecule = nancy.convert(molS);
-                Iterable<ISingleElectron> sing = molecule.singleElectrons();
-                Iterator<ISingleElectron> iter = sing.iterator();
-                while (iter.hasNext()) {
-                    ISingleElectron ele = iter.next();
-                    IAtom atm = ele.getAtom();
-                    System.out.println(atm.getID());
-                    System.out.println(molecule.indexOf(atm));
-                    System.out.println(molecule.indexOf(atm));
-                    molecule.removeElectronContainer(ele);
-                }
+		HashSet<MetaAtomInfo> metaatoms = new HashSet<MetaAtomInfo>();
+		StringToAtomContainer convert = new StringToAtomContainer(metaatoms);
+		String form = "NANCY";
+		AtomContainer molecule;
+		try {
+			molecule = convert.stringToAtomContainer(form, molS);
                 StructureAsCML cmlstruct = new StructureAsCML(molecule);
                 System.out.println("Nancy Linear Form: " + molS);
                 System.out.println(cmlstruct.getCmlStructureString());
                 System.out.println("-------------------------------------------------------");
-                sqlsub.substitute(molecule);
-                
-                StructureAsCML cmlstruct1 = new StructureAsCML(molecule);
-                System.out.println(cmlstruct1.getCmlStructureString());
-                System.out.println("-------------------------------------------------------");
-
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(TestNancyLinearForm.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(TestNancyLinearForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
+		} catch (ThermodynamicComputeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     @Test
     public void branchedAlkaneTest() {
         try {
-            String molS = "c(#1)(ch3)h/ch2/o/1";
+            String molS = "ch2//c(ch3)/ch3";
             //String molS = "h";
             //String molS = "ch4";
             //String molS = "ch3(.)";
@@ -139,4 +119,5 @@ public class TestNancyLinearForm {
         }
 
     }
+
 }

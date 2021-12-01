@@ -9,6 +9,8 @@
  */
 package thermo.data.structure.structure;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -221,9 +223,11 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
                 name.append(hydrogens.toString());
             }
         }
-        Iterator<String> iter = atomNames.iterator();
-        while (iter.hasNext()) {
-            String atomname = iter.next();
+        ArrayList<String> lst = new ArrayList<String>(atomNames);
+        Object[] sorted = lst.toArray();
+        Arrays.sort(sorted);
+        for(int i=0; i < sorted.length; i++) {
+            String atomname = (String) sorted[i];
             if (!atomname.equals(carbonS) && !atomname.equals(hydrogenS)) {
                 Integer count = this.get(atomname);
                 if (count.intValue() > 0) {

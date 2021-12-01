@@ -48,6 +48,7 @@ public class NancyLinearFormToMolecule {
     public boolean detectAromaticity = false;
     CorrectLinearForm correctForm;
     String linearForm;
+    HashSet<MetaAtomInfo> atominfoset;
     /** The current character.
      *
      * This keeps track of the current parsing position.
@@ -103,6 +104,8 @@ public class NancyLinearFormToMolecule {
      * @throws SQLException 
      */
     public NancyLinearFormToMolecule(HashSet<MetaAtomInfo> ans) {
+    	atominfoset = ans;
+    	connection = null;
         correctForm = new CorrectLinearForm(ans);
         ringConnections = new Hashtable<Integer, Atom>();
         ringInfo = new Hashtable<Integer, AtomGroupStringNode>();
@@ -122,6 +125,7 @@ public class NancyLinearFormToMolecule {
                               currentCharPosition = 0;
                 moleculeNodeForm = processString();
                 molecule = convertToMolecule();
+                
             } catch (NullPointerException ex) {
                 String reason = "Illegal Nancy Linear Form: '" + linearform + "'";
                 throw new SQLException(reason);
@@ -484,7 +488,12 @@ public class NancyLinearFormToMolecule {
             c = nextCharacter();
         }
         //nextCharacter();
-        NancyLinearFormToMolecule sublinear = new NancyLinearFormToMolecule(connection);
+        NancyLinearFormToMolecule sublinear;
+        if(connection != null) {
+        	sublinear = new NancyLinearFormToMolecule(connection);
+        } else {
+        	sublinear = new NancyLinearFormToMolecule(atominfoset);
+        }
         sublinear.convert(substring);
         return sublinear.moleculeNodeForm;
     }

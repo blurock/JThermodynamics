@@ -42,35 +42,46 @@ public class JThermgasThermoStructureDataPoint {
      * @throws jthergas.exceptions.JThergasReadException
      */
     public  void parse(JThergasTokenizer fileTokenized)  throws JThergasReadException {
+    	String line1 = fileTokenized.line1;
+    	String line1a = fileTokenized.line1a;
+    	String line2 = fileTokenized.line2;
+    	String line3 = fileTokenized.line3;
+    	boolean group = fileTokenized.group;
+    	int linenumber = fileTokenized.getLineNumber();
+    	int groupnumber = fileTokenized.getLineNumber();
+    	parse(line1,line1a,line2,line3,group,linenumber,groupnumber);
+    }
+    public  void parse(String line1, String line1a, String line2, String line3, 
+    		boolean group, int linenumber, int groupnumber)  throws JThergasReadException {
         thermodynamics = new JThergasThermoData();
         structure = new JThergasStructureData();
         atomicStructure = new JThergasAtomicStructure();
         
         try {
         	if(debug) {
-        		System.out.println("Get Structure        : " + fileTokenized.line1);
-        		System.out.println("Get Structure (extra): " + fileTokenized.line1a);
+        		System.out.println("Get Structure        : " + line1);
+        		System.out.println("Get Structure (extra): " + line1a);
         	}
-            getStructure().parse(fileTokenized.line1, fileTokenized.line1a,fileTokenized.group);
+            getStructure().parse(line1, line1a,group);
             if(debug) {
             	System.out.println("Structure: " + getStructure().writeToString());
             }
             if(debug) {
-        		System.out.println("Thermodynamics        : " + fileTokenized.line2);
+        		System.out.println("Thermodynamics        : " + line2);
         	}
-            getThermodynamics().parse(fileTokenized.line2);
+            getThermodynamics().parse(line2);
             if(debug) {
             	System.out.println("Thermodynamics: " + getThermodynamics().writeToString());
             }
         	if(debug) {
-        		System.out.println("AtomicStructure        : " + fileTokenized.line3);
+        		System.out.println("AtomicStructure        : " + line3);
         	}
-            getAtomicStructure().parse(fileTokenized.line3);
+            getAtomicStructure().parse(line3);
             if(debug) {
             	System.out.println("AtomicStructure: " + getAtomicStructure().writeToString());
             }
         } catch(JThergasReadException ex) {
-            throw new JThergasReadException("ERROR at line: " + fileTokenized.getLineNumber() + ", block: " + fileTokenized.getBlockNumber() + "\n" + ex.writeToString());
+            throw new JThergasReadException("ERROR at line: " + linenumber + ", block: " + groupnumber + "\n" + ex.writeToString());
         }
     }
     /** This writes the data in (close to) the standard form of Thergas

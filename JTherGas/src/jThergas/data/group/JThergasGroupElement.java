@@ -10,11 +10,20 @@ import jThergas.exceptions.JThergasNotAGroupElement;
  *
  * @author blurock
  */
-public class JThergasGroupElement {
+public class JThergasGroupElement implements Comparable<JThergasGroupElement> {
     private String groupElementName;
     private int numberOfElements;
 
-    /* parse a single group element
+    
+    public JThergasGroupElement() {
+	}
+
+	public JThergasGroupElement(String groupElementName, int numberOfElements) {
+		this.groupElementName = groupElementName;
+		this.numberOfElements = numberOfElements;
+	}
+
+	/* parse a single group element
      *
      * The group name begins with a left parenthesis
      * and ends with a right parens.
@@ -69,4 +78,42 @@ public class JThergasGroupElement {
     public int getNumberOfElements() {
         return numberOfElements;
     }
+
+	@Override
+	public int compareTo(JThergasGroupElement element) {
+		int ans = 0;
+		String name = element.getGroupElementName();
+		if(groupElementName.length() == 1) {
+			if(name.length() == 1) {
+				if(groupElementName.equals("c")) {
+					if(name.equals("c")) {
+						ans = 0;
+					} else {
+						ans = -1;
+					}
+				} else if(groupElementName.equals("h")) {
+					if(name.equals("h")) {
+						ans = 0;
+					} else if(name.equals("c")) {
+						ans = 1;
+					} else {
+						ans = -1;
+					}
+				} else {
+					ans = groupElementName.compareTo(name);
+				}
+			} else {
+				ans = -1;
+			}
+		} else {
+			if(name.length() < groupElementName.length()) {
+				ans = 1;
+			} else if(name.length() < groupElementName.length()) {
+				ans = -1;
+			} else {
+				ans = groupElementName.compareTo(name);
+			}
+		}
+		return ans;
+	}
 }

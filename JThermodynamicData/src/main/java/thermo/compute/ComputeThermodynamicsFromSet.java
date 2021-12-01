@@ -42,9 +42,10 @@ public class ComputeThermodynamicsFromSet {
 
 		ThermoSQLConnection c = new ThermoSQLConnection();
 		c.connect();
-		StringToAtomContainer convertMoleculeString = new StringToAtomContainer(c);
 		ComputeThermodynamicsFromMolecule compute = null;
+		StringToAtomContainer convertMoleculeString = null;
 		try {
+			convertMoleculeString = new StringToAtomContainer(c);
 			compute = new ComputeThermodynamicsFromMolecule(c);
 		} catch (ThermodynamicComputeException ex) {
 			Logger.getLogger(ComputeThermodynamicsFromSet.class.getName()).log(Level.SEVERE, null, ex);
