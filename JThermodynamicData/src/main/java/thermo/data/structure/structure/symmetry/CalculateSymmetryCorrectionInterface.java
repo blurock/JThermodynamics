@@ -17,8 +17,11 @@ import thermo.exception.ThermodynamicException;
 public class CalculateSymmetryCorrectionInterface {
         ThermoSQLConnection connect;
 
-    public CalculateSymmetryCorrectionInterface(ThermoSQLConnection c) throws ThermodynamicException {
+        public CalculateSymmetryCorrectionInterface(ThermoSQLConnection c) throws ThermodynamicException {
             connect = c;
+    }
+        public CalculateSymmetryCorrectionInterface() throws ThermodynamicException {
+            connect = null;
     }
 
     public SetOfBensonThermodynamicBase calculate(IAtomContainer mol) throws ThermodynamicException {

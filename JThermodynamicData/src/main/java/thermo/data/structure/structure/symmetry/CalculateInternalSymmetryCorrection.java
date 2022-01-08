@@ -21,71 +21,85 @@ import thermo.properties.SProperties;
  *
  * @author edwardblurock
  */
-public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrectionInterface  {
+public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrectionInterface {
 	boolean debug = false;
-    String internalS = "InternalSymmetry";
-    String referenceS = "Internal Symmetry Correction";
-    SQLSetOfSymmetryDefinitions setOfDefinitions;
-    DetermineInternalSymmetryFromSingleDefinition fromSingleDefinition;
-    DetermineInternalSymmetry determineTotal;
-    double gasConstant;
-    boolean externalsymmetry;
-    
-    SymmetryMatch externalSymmetryMatch;
-    double externalSymmetryValue = 1.0;
-    double externalSymmetry = 1.0;
-    CalculateExternalSymmetryCorrection externalCorrection;
+	String internalS = "InternalSymmetry";
+	String referenceS = "Internal Symmetry Correction";
+	SetOfSymmetryDefinitions setOfDefinitions;
+	DetermineInternalSymmetryFromSingleDefinition fromSingleDefinition;
+	DetermineInternalSymmetry determineTotal;
+	double gasConstant;
+	boolean externalsymmetry;
 
-    public CalculateInternalSymmetryCorrection(ThermoSQLConnection c,
-    		CalculateExternalSymmetryCorrection externalCorrection) throws ThermodynamicException {
-        super(c);
-        this.externalCorrection = externalCorrection;
-        try {
-            setOfDefinitions = new SQLSetOfSymmetryDefinitions(connect, internalS);
-            //System.out.println("CalculateInternalSymmetryCorrection\n" +  setOfDefinitions.toString());
-            fromSingleDefinition = new DetermineInternalSymmetryFromSingleDefinition();
-            determineTotal = new DetermineInternalSymmetry(fromSingleDefinition, setOfDefinitions);
-            String gasconstantS = SProperties.getProperty("thermo.data.gasconstant.clasmolsk");
-            gasConstant = Double.valueOf(gasconstantS).doubleValue();
-        } catch (SQLException ex) {
-            Logger.getLogger(CalculateInternalSymmetryCorrection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+	SymmetryMatch externalSymmetryMatch;
+	double externalSymmetryValue = 1.0;
+	double externalSymmetry = 1.0;
+	CalculateExternalSymmetryCorrection externalCorrection;
 
-    @Override
-    public boolean calculate(IAtomContainer mol, SetOfBensonThermodynamicBase corrections) throws ThermodynamicException {
-    	if(debug) {
-    		System.out.println("CalculateInternalSymmetryCorrection.calculate");
-    		System.out.println(MoleculeUtilities.toString(mol));
-    	}
-    	boolean found = false;
-        this.externalSymmetryMatch = externalCorrection.getSymmetryMatch();
-        this.externalSymmetryValue = externalCorrection.getExternalSymmetryValue();
+	public CalculateInternalSymmetryCorrection(ThermoSQLConnection c,
+			CalculateExternalSymmetryCorrection externalCorrection) throws ThermodynamicException {
+		super(c);
+		this.externalCorrection = externalCorrection;
+		try {
+			setOfDefinitions = new SQLSetOfSymmetryDefinitions(connect, internalS);
+			initialize();
+			// System.out.println("CalculateInternalSymmetryCorrection\n" +
+			// setOfDefinitions.toString());
+		} catch (SQLException ex) {
+			Logger.getLogger(CalculateInternalSymmetryCorrection.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 
-    	try {
-        	determineTotal.setSetOfCorrections(corrections);
-        	fromSingleDefinition.setExternalSymmetryMatch(externalSymmetryMatch);
-        	fromSingleDefinition.setExternalSymmetry(externalSymmetryValue);
-            int internalsymmetry = calculateInternalSymmetry(mol,corrections);
-            if (internalsymmetry > 0.0 && internalsymmetry != 1.0) {
-            	found = true;
-                double correction = -gasConstant * Math.log(internalsymmetry);
-                String name = internalS + "(" + Integer.toString(internalsymmetry) + ")";
-                BensonThermodynamicBase benson = new BensonThermodynamicBase(name, null, 0.0, correction);
-                benson.setID(name);
-                benson.setReference("Symmetry");
-                //corrections.add(benson);
-            }
-        } catch (CDKException ex) {
-            Logger.getLogger(CalculateInternalSymmetryCorrection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    	return found;
-    }
+	public CalculateInternalSymmetryCorrection(SetOfSymmetryDefinitions setOfDefinitions,
+			CalculateExternalSymmetryCorrection externalCorrection) throws ThermodynamicException {
+		super();
+		this.setOfDefinitions = setOfDefinitions;
+		initialize();
+	}
 
-    public int calculateInternalSymmetry(IAtomContainer mol, SetOfBensonThermodynamicBase corrections) throws CDKException {
-        return determineTotal.determineSymmetry(mol,corrections);
-        
-    }
+	private void initialize() {
+		fromSingleDefinition = new DetermineInternalSymmetryFromSingleDefinition();
+		determineTotal = new DetermineInternalSymmetry(fromSingleDefinition, setOfDefinitions);
+		String gasconstantS = SProperties.getProperty("thermo.data.gasconstant.clasmolsk");
+		gasConstant = Double.valueOf(gasconstantS).doubleValue();
+	}
+
+	@Override
+	public boolean calculate(IAtomContainer mol, SetOfBensonThermodynamicBase corrections)
+			throws ThermodynamicException {
+		if (debug) {
+			System.out.println("CalculateInternalSymmetryCorrection.calculate");
+			System.out.println(MoleculeUtilities.toString(mol));
+		}
+		boolean found = false;
+		this.externalSymmetryMatch = externalCorrection.getSymmetryMatch();
+		this.externalSymmetryValue = externalCorrection.getExternalSymmetryValue();
+
+		try {
+			determineTotal.setSetOfCorrections(corrections);
+			fromSingleDefinition.setExternalSymmetryMatch(externalSymmetryMatch);
+			fromSingleDefinition.setExternalSymmetry(externalSymmetryValue);
+			int internalsymmetry = calculateInternalSymmetry(mol, corrections);
+			if (internalsymmetry > 0.0 && internalsymmetry != 1.0) {
+				found = true;
+				double correction = -gasConstant * Math.log(internalsymmetry);
+				String name = internalS + "(" + Integer.toString(internalsymmetry) + ")";
+				BensonThermodynamicBase benson = new BensonThermodynamicBase(name, null, 0.0, correction);
+				benson.setID(name);
+				benson.setReference("Symmetry");
+				// corrections.add(benson);
+			}
+		} catch (CDKException ex) {
+			Logger.getLogger(CalculateInternalSymmetryCorrection.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return found;
+	}
+
+	public int calculateInternalSymmetry(IAtomContainer mol, SetOfBensonThermodynamicBase corrections)
+			throws CDKException {
+		return determineTotal.determineSymmetry(mol, corrections);
+
+	}
 
 	public boolean isExternalsymmetry() {
 		return externalsymmetry;
@@ -94,5 +108,5 @@ public class CalculateInternalSymmetryCorrection extends CalculateSymmetryCorrec
 	public void setExternalsymmetry(boolean externalsymmetry) {
 		this.externalsymmetry = externalsymmetry;
 	}
-    
+
 }

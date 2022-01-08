@@ -39,6 +39,7 @@ public class MetaAtomDefinition extends MetaAtomInfo {
      * @param definition
      */
     public MetaAtomDefinition(MetaAtomDefinition definition) {
+    	super(definition);
         molecule = definition.molecule;
         specifiedAtoms = new ArrayList<Integer>(definition.specifiedAtoms);
          unspecifiedAtoms = new ArrayList<Integer>(definition.unspecifiedAtoms);
@@ -166,6 +167,7 @@ public class MetaAtomDefinition extends MetaAtomInfo {
         StringBuffer buf = new StringBuffer();
         
         buf.append("MetaAtomDefinition: " + getMetaAtomName() + "\n");
+        buf.append("MetaAtom Type     : " + getMetaAtomType() + "\n");
         String specS = arrayListAsString("specifiedAtoms",getSpecifiedAtoms());
         String unspecS = arrayListAsString("unspecifiedAtoms",getUnspecifiedAtoms());
         //String bondsS = arrayListAsString("connectingBonds",connectingBonds);

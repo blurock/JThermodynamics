@@ -18,6 +18,8 @@ import thermo.data.benson.DB.ThermoSQLConnection;
 import thermo.data.benson.SetOfBensonThermodynamicBase;
 import thermo.data.structure.linearform.NancyLinearFormToMolecule;
 import thermo.data.structure.structure.symmetry.CalculateExternalSymmetryCorrection;
+import thermo.data.structure.structure.symmetry.SetOfSymmetryDefinitions;
+import thermo.data.structure.structure.symmetry.DB.SQLSetOfSymmetryDefinitions;
 import thermo.exception.ThermodynamicException;
 
 /**
@@ -67,7 +69,15 @@ public class TestExternalSymmetry {
             //Molecule mol = nancy.convert("ch///c/c(oh)3");
             //IAtomContainer mol = nancy.convert("ch3/c(ch3)2/ch3");
             IAtomContainer mol = nancy.convert("ch3/ch2/ch3");
-            CalculateExternalSymmetryCorrection calculate = new CalculateExternalSymmetryCorrection(connect);
+            
+        	String externalS = "ExternalSymmetry";
+            SetOfSymmetryDefinitions setOfDefinitions = new SQLSetOfSymmetryDefinitions(connect, externalS);
+            SetOfSymmetryDefinitions secondaryDefinitions = new SetOfSymmetryDefinitions();
+
+            
+            CalculateExternalSymmetryCorrection calculate = new CalculateExternalSymmetryCorrection(
+            		setOfDefinitions, 
+            		secondaryDefinitions);
             SetOfBensonThermodynamicBase set = new SetOfBensonThermodynamicBase();
             calculate.calculate(mol, set);
             System.out.println(

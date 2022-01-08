@@ -139,7 +139,7 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
             setofsets = reduceToUniqueSet(setofsets);
             //System.out.println("findAllSetsOfSymmetryAssignments-------------------------");
             //System.out.println(setofsets.toString());
-            //System.out.println("indAllSetsOfSymmetryAssignments-------------------------");
+           // System.out.println("indAllSetsOfSymmetryAssignments-------------------------");
         }
         return setofsets;
     }
@@ -160,6 +160,7 @@ public class DetermineSetOfSymmetryAssignments extends SymmetryDefinition {
             }
             if (notfound) {
                 //System.out.println("Add to Set");
+                //System.out.println(symset.toString());
                 newset.add(symset);
             } else {
                 //System.out.println("Already there");

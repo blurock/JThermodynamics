@@ -25,7 +25,7 @@ import thermo.properties.SProperties;
  */
 public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
 	
-	boolean debug = false;
+	boolean debug = true;
 	
     private int highestSymmetry = 12;
     String dontCheck = "X";
@@ -35,6 +35,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
     double gasConstant;
     String referenceS = "External Symmetry Correction";
     private final DetermineExternalSymmetry determineSecondary;
+    SymmetryDefinition defintion;
     
     SymmetryMatch symmetryMatch;
 
@@ -76,6 +77,10 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
 	public void setSymmetryMatch(SymmetryMatch symmetryMatch) {
 		this.symmetryMatch = symmetryMatch;
 	}
+	
+	public SymmetryDefinition getMatchedSymmetry() {
+		return defintion;
+	}
 
 	@Override
     public int determineSymmetry(IAtomContainer structure, SetOfBensonThermodynamicBase corrections) throws CDKException {
@@ -91,7 +96,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
         while (currentSymmetry > 0 && notdone) {
             Iterator<SymmetryDefinition> idef = symmetryDefinitions.iterator();
             while (idef.hasNext() && notdone) {
-                SymmetryDefinition defintion = idef.next();
+                defintion = idef.next();
                 int defsymmetry = defintion.getInternalSymmetryFactor().intValue();
                 if (defsymmetry == currentSymmetry) {
                     	if(debug) {

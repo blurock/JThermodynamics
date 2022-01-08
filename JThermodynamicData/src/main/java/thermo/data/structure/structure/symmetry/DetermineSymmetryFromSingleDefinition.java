@@ -15,7 +15,7 @@ import thermo.data.structure.structure.symmetry.utilities.DetermineSymmetryAssig
  * @author blurock
  */
 public class DetermineSymmetryFromSingleDefinition {
-	boolean symmdebug = false;
+	boolean symmdebug = true;
     SymmetryDefinition symmetryDefinition;
     DetermineSetOfSymmetryAssignments determineSymmetryAssignments;
     IAtomContainer structure;
@@ -24,6 +24,9 @@ public class DetermineSymmetryFromSingleDefinition {
 
     public SetOfSymmetryMatches getSymmetryMatches() {
         return symmetryMatches;
+    }
+    public SymmetryDefinition getSymmetryDefinition() {
+    	return symmetryDefinition;
     }
     
     public DetermineSymmetryFromSingleDefinition() {
@@ -48,6 +51,12 @@ public class DetermineSymmetryFromSingleDefinition {
         //StructureAsCML cml = new StructureAsCML(struct);
         //System.out.println(cml.toString());
         symmetryMatches = determineSymmetryAssignments.findIfMatchInStructures(struct);
+        if(symmdebug) {
+        	System.out.println("---------------------------");
+        	System.out.println("SymmetryDefinition: \n" + symmetryDefinition.toString());
+        	System.out.println("SymmetryMatches:\n" + symmetryMatches.toString());
+        	System.out.println("---------------------------");
+        }
     }
 
 }
