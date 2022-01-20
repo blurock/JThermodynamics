@@ -117,7 +117,9 @@ public class CalculateVibrationalCorrectionForRadical {
                 double symmetry = count.getSymmetry();
                 double matches = (double) count.countMatches;
                 if(Math.abs(matches) > 0.0) {
+                	BensonThermodynamicBase benson = CalculateVibrationalCorrectionUtilities.contribution(count.getElementName(), matches, frequency, symmetry);
                 	//double factor = matches/symmetry;
+                	/*
                 	double factor = matches;
                 	String reference = referenceRoot + "Frequency:" + frequency;
                 	if(debug) {
@@ -140,12 +142,15 @@ public class CalculateVibrationalCorrectionForRadical {
                 	BensonThermodynamicBase benson = new BensonThermodynamicBase(typeS, pairs, 0.0, entropyC);
                 	benson.setID(correctionS);
                 	benson.setReference("Vibration Correction");
+                	*/
                 	corrections.add(benson);
                 }
             }
 
         return corrections;
     }
+        
+/*        
     private ArrayList<HeatCapacityTemperaturePair> heatCapacityPairs(String referenceS) throws IOException {
     	ArrayList<HeatCapacityTemperaturePair> pairs = new ArrayList<HeatCapacityTemperaturePair>();
         String temperature = SProperties.getProperty("thermo.data.bensonstandard.temperatures");
@@ -160,6 +165,6 @@ public class CalculateVibrationalCorrectionForRadical {
         }
         return pairs;
     }
-
+*/
 
 }

@@ -25,7 +25,7 @@ import thermo.properties.SProperties;
  */
 public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
 	
-	boolean debug = true;
+	boolean debug = false;
 	
     private int highestSymmetry = 12;
     String dontCheck = "X";
@@ -87,7 +87,9 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
     	setOfCorrections = new SetOfBensonThermodynamicBase();
         initializeSymmetry();
         if(debug) {
-        System.out.println("DetermineExternalSymmetry.determineSymmetry");
+			System.out.println("DetermineExternalSymmetry.determineSymmetry");
+        if(corrections != null)
+        	System.out.println("corrections: \n" + corrections.toString());
         System.out.println(MoleculeUtilities.toString(structure));
         }
         //double topsymmetry = 1.0;
@@ -128,12 +130,17 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
             symname = symname + " (" + symmD + ")";
             benson.setID(symname);
             benson.setReference("Symmetry");
-            corrections.add(benson);
+            if(corrections != null) {
+            	corrections.add(benson);
+            }
+            setOfCorrections.add(benson);
             symmetryValue = (int) symmD;
         }
         if(debug) {
         	System.out.println("setOfCorrections: \n" + setOfCorrections.toString());
-        	System.out.println("corrections: \n" + corrections.toString());
+        	if(corrections != null) {
+        		System.out.println("corrections: \n" + corrections.toString());
+        	}
         }
         
         return getSymmetryValue();
@@ -261,6 +268,7 @@ public class DetermineExternalSymmetry extends DetermineTotalSymmetry {
         determineSecondary.setSetOfCorrections(null);
         if(debug) {
         	System.out.println("findSymmetryOfConnection: determineSecondary.determineSymmetry");
+        	System.out.println(determineSecondary.getSetOfSymmetryDefinitions().toString());
         }
         double symm = determineSecondary.determineSymmetry(cpymol,setOfCorrections);
         if(debug) {

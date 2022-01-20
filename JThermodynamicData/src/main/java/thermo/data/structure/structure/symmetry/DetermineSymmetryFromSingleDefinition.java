@@ -15,7 +15,7 @@ import thermo.data.structure.structure.symmetry.utilities.DetermineSymmetryAssig
  * @author blurock
  */
 public class DetermineSymmetryFromSingleDefinition {
-	boolean symmdebug = true;
+	boolean symmdebug = false;
     SymmetryDefinition symmetryDefinition;
     DetermineSetOfSymmetryAssignments determineSymmetryAssignments;
     IAtomContainer structure;

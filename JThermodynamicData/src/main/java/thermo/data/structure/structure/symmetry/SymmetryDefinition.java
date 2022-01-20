@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.List;
 import org.openscience.cdk.exception.CDKException;
 import thermo.data.structure.structure.MetaAtomDefinition;
-import thermo.data.structure.structure.MetaAtomInfo;
 import thermo.data.structure.structure.StructureAsCML;
 
 /**
@@ -17,7 +16,8 @@ import thermo.data.structure.structure.StructureAsCML;
  * @author blurock
  */
 public class SymmetryDefinition extends MetaAtomDefinition {
-    protected SetOfSymmetryAssignments table;
+	private static final long serialVersionUID = -3414310284927640460L;
+	protected SetOfSymmetryAssignments table;
     Double internalSymmetryFactor;
     public SymmetryDefinition(String symname, 
             StructureAsCML structure, 

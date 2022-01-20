@@ -38,7 +38,11 @@ import thermo.data.structure.utilities.MoleculeUtilities;
  */
 public class SubstituteBackMetaAtomsIntoMolecule extends ArrayList<MetaAtomDefinition> {
 
-    public SubstituteBackMetaAtomsIntoMolecule() {
+	private static final long serialVersionUID = 804359282374664279L;
+	public SubstituteBackMetaAtomsIntoMolecule() {
+    }
+    public SubstituteBackMetaAtomsIntoMolecule(ArrayList<MetaAtomDefinition> metaatoms) {
+    	super(metaatoms);
     }
     public void addDefinition(String name, StructureAsCML cmlmol) throws CDKException, ClassNotFoundException, IOException {
         MetaAtomDefinition def = new MetaAtomDefinition(name, cmlmol);

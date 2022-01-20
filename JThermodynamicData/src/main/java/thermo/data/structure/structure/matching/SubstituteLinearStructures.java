@@ -36,6 +36,10 @@ public class SubstituteLinearStructures  {
             substitutions = sqlSubstitution.createSubstitutionSets(linearS);
     }
 
+    public SubstituteLinearStructures(SetOfMetaAtomsForSubstitution substitutions) {
+            this.substitutions = substitutions;
+    }
+
     public IAtomContainer substitute(IAtomContainer mol) throws CDKException, IOException {
         StructureAsCML cmlstruct = new StructureAsCML(mol);
         return substitute(cmlstruct);

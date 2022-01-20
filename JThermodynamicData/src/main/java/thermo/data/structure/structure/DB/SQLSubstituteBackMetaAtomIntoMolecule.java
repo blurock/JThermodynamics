@@ -21,7 +21,9 @@ import thermo.data.benson.DB.ThermoSQLConnection;
 
 public class SQLSubstituteBackMetaAtomIntoMolecule extends SubstituteBackMetaAtomsIntoMolecule {
 
-    /** Constructor
+	private static final long serialVersionUID = 8025940085973563058L;
+
+	/** Constructor
      *
      * This constructor sets up the meta atoms from the SQL database
      *
@@ -36,5 +38,6 @@ public class SQLSubstituteBackMetaAtomIntoMolecule extends SubstituteBackMetaAto
         SQLMetaAtomDefinitionFromMetaAtomInfo sqlsource = new SQLMetaAtomDefinitionFromMetaAtomInfo(connect);
         sqlsource.createSubstitutionBackSets(metaAtomType,this);
     }
+    
 
 }

@@ -14,13 +14,13 @@ import thermo.exception.ThermodynamicException;
  *
  * @author edwardblurock
  */
-public class CalculateSymmetryCorrectionInterface {
+public abstract class CalculateSymmetryCorrectionInterface {
         ThermoSQLConnection connect;
 
         public CalculateSymmetryCorrectionInterface(ThermoSQLConnection c) throws ThermodynamicException {
             connect = c;
     }
-        public CalculateSymmetryCorrectionInterface() throws ThermodynamicException {
+        public CalculateSymmetryCorrectionInterface()  {
             connect = null;
     }
 
@@ -33,4 +33,9 @@ public class CalculateSymmetryCorrectionInterface {
     public boolean calculate(IAtomContainer mol, SetOfBensonThermodynamicBase corrections) throws ThermodynamicException {
     	return false;
     }
+    
+    public abstract SymmetryDefinition getSymmetryDefinition();
+
+
+
 }

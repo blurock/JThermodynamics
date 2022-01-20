@@ -21,6 +21,9 @@ public class DetectLinearStructure extends SubstituteLinearStructures {
     public DetectLinearStructure(ThermoSQLConnection c) throws SQLException, CDKException, ClassNotFoundException, IOException {
         super(c);
     }
+    public DetectLinearStructure(SetOfMetaAtomsForSubstitution substitutions)  {
+        super(substitutions);
+    }
     public boolean isLinear(IAtomContainer mol) throws CDKException, IOException {
         IAtomContainer sub = substitute(mol);
         boolean ans = false;

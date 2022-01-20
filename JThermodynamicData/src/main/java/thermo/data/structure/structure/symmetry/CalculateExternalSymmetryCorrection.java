@@ -39,21 +39,31 @@ public class CalculateExternalSymmetryCorrection extends CalculateSymmetryCorrec
 			throw new ThermodynamicException(ex.toString());
 		}
 	}
-	public CalculateExternalSymmetryCorrection(SetOfSymmetryDefinitions setOfDefinitions,
-	SetOfSymmetryDefinitions secondaryDefinitions) throws ThermodynamicException {
+	public CalculateExternalSymmetryCorrection(SetOfSymmetryDefinitions setOfExternalDefinitions,
+	SetOfSymmetryDefinitions secondaryDefinitions) {
 		super();
-			this.setOfDefinitions = setOfDefinitions;
+			this.setOfDefinitions = setOfExternalDefinitions;
 			this.secondaryDefinitions = secondaryDefinitions;
 			initialize();
 	}
+	public CalculateExternalSymmetryCorrection() {
+		
+	}
 
-	private void initialize() {
+	public void initialize() {
 		String gasconstantS = SProperties.getProperty("thermo.data.gasconstant.clasmolsk");
 		gasConstant = Double.valueOf(gasconstantS).doubleValue();
 		fromSingleDefinition = new DetermineExternalSymmetryFromSingleDefinition();
 		determineTotal = new DetermineExternalSymmetry(fromSingleDefinition, setOfDefinitions,
 				secondaryDefinitions);		
 	}
+	
+	public void  setSetOfDefinitions(SetOfSymmetryDefinitions set) {
+		setOfDefinitions = set;
+	};
+	public void  setSecondaryDefinitions(SetOfSymmetryDefinitions set) {
+		secondaryDefinitions = set;
+	};
 	
 	public SymmetryDefinition getMatchedSymmetry() {
 		return determineTotal.getMatchedSymmetry();
@@ -70,6 +80,10 @@ public class CalculateExternalSymmetryCorrection extends CalculateSymmetryCorrec
 	public double getExternalSymmetryValue() {
 		return Double.valueOf(determineTotal.getSymmetryValue());
 	}
+	
+    public SymmetryDefinition getSymmetryDefinition() {
+    	return fromSingleDefinition.getSymmetryDefinition();
+    }
 	
 
 	public boolean calculate(IAtomContainer mol, SetOfBensonThermodynamicBase corrections)

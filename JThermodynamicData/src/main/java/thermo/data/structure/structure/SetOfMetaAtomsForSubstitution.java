@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.exception.CDKException;
-import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import thermo.data.structure.structure.matching.SubstituteMetaAtom;
 import thermo.data.structure.utilities.MoleculeUtilities;
 
@@ -24,7 +23,7 @@ import thermo.data.structure.utilities.MoleculeUtilities;
  * @author blurock
  */
 public class SetOfMetaAtomsForSubstitution extends ArrayList<SubstituteMetaAtom> {
-
+	private static final long serialVersionUID = 1L;
 	boolean debug = false;
     int topPriority = 5;
 

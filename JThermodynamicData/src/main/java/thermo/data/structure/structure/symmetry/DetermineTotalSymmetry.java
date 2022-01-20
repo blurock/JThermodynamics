@@ -34,7 +34,9 @@ public class DetermineTotalSymmetry {
         Iterator<SymmetryDefinition> idef = symmetryDefinitions.iterator();
         while(idef.hasNext()) {
             SymmetryDefinition defintion = idef.next();
+            System.out.println("SymmetryDefinition: " + defintion.toString());
             int symmetry = determineSymmetry.determineSymmetry(defintion, structure);
+            System.out.println("Symmetry: " + symmetry);
             double sym = determineSymmetry.computeSymmetryContribution(symmetry);
             int symI = (int) Math.floor(sym);
             combineInSymmetryNumber(symI);
@@ -46,5 +48,9 @@ public class DetermineTotalSymmetry {
     }
     public int getSymmetryValue() {
         return symmetryValue;
+    }
+    
+    public SetOfSymmetryDefinitions getSetOfSymmetryDefinitions() {
+    	return symmetryDefinitions;
     }
 }
