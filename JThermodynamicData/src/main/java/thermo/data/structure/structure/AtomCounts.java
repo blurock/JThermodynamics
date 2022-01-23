@@ -14,8 +14,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IElectronContainer;
 import org.openscience.cdk.interfaces.IAtom;
 
 /**
@@ -36,12 +39,14 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
     private String carbonS = new String("C");
     //! The molecule ID
     public String moleculeID;
+    public double bondingHashCode;
 
     /**
      * Empty Constructor
      */
     public AtomCounts() {
         atomNames = new HashSet<String>();
+        bondingHashCode = 0.0;
     }
 
     /**
@@ -58,6 +63,7 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
         getAtoms(atoms);
         setUpHasTable();
         countAtoms(atoms);
+        generateHashCode(atoms);
     }
 
     public String getMoleculeID() {
@@ -122,6 +128,42 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
             this.put(name, count);
         }
     }
+    
+    public double generateHashCode(IAtomContainer atoms) {
+        Iterator<IAtom> iter = atoms.atoms().iterator();
+        bondingHashCode = 0.0;
+        while (iter.hasNext()) {
+            IAtom atm = iter.next();
+        	int radicals = atoms.getConnectedSingleElectronsCount(atm);
+        	boolean isradical = radicals > 0;
+            if(!atm.getSymbol().equalsIgnoreCase("H")) {
+            try {
+            	int nbonds = 0;
+               	List<IBond> bonds = atoms.getConnectedBondsList(atm);
+               	Iterator<IBond> bnditer = bonds.iterator();
+               	while (bnditer.hasNext()) {
+               		IBond bnd = bnditer.next();
+               		IAtom atm1 = bnd.getAtom(0);
+               		IAtom atm2 = bnd.getAtom(1);
+               		boolean nHatm1 = !atm1.getSymbol().equalsIgnoreCase("H");
+               		boolean nHatm2 = !atm2.getSymbol().equalsIgnoreCase("H");
+               		if(nHatm1 && nHatm2) {
+               			nbonds++;
+               		}
+               	}
+             	double nbondsD = (double) 2.0 *nbonds;
+             	if(isradical) {
+             		nbondsD += 1.0;
+             	}
+            	double code = Math.pow(10.0, nbondsD);
+            	bondingHashCode += code;
+            	}catch(UnsupportedOperationException ex) {
+            	}
+            }
+        }
+        return bondingHashCode;
+    }
+
 
     /**
      * Determine the list of atom names (symbol names)
@@ -197,6 +239,7 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
         }
         return atomcounts;
     }
+    
 
     /**
      * Determine the isomer name from the atom counts
@@ -342,6 +385,13 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
                 }
             }
         }
+        if(ans == 0) {
+        	if(this.bondingHashCode < counts.bondingHashCode) {
+        		ans = 1;
+        	} else if(this.bondingHashCode > counts.bondingHashCode) {
+        		ans = -1;
+        	}
+        }
 
         return ans;
     }
@@ -367,7 +417,7 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
             if (oatm == null) {
                 ans = -1;
             } else {
-                if (oatm > atm) {
+              if(oatm > atm) {
                     ans = 1;
                 } else {
                     ans = -1;
