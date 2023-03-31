@@ -49,7 +49,6 @@ public class SQLDatabaseMolecule extends SQLStructureThermoAbstractInterface {
             String sqlquery = "SELECT Molecule, CMLStructure, Source FROM DatabaseMolecule WHERE Molecule=\"" + molecule.getMolecule() + "\"";
             ResultSet elements = statement.executeQuery(sqlquery);
             boolean next = elements.first();
-            HashSet vec = null;
             if (next) {
                 molecule.setCMLStructure("CMLStructure");
                 molecule.setSource("Source");
@@ -65,16 +64,16 @@ public class SQLDatabaseMolecule extends SQLStructureThermoAbstractInterface {
         String sqlquery = "SELECT Molecule, CMLStructure, Source FROM DatabaseMolecule WHERE Molecule=\"" + name + "\"";
         ResultSet elements = statement.executeQuery(sqlquery);
         boolean next = elements.first();
-        HashSet vec = null;
+        HashSet<DatabaseMolecule> vec = null;
         if (next) {
-            vec = new HashSet(1);
+            vec = new HashSet<DatabaseMolecule>(1);
             DatabaseMolecule molecule =
                     new DatabaseMolecule(elements.getString("Molecule"),
                     elements.getString("CMLStructure"),
                     elements.getString("Source"));
             vec.add(molecule);
         } else {
-            vec = new HashSet();
+            vec = new HashSet<DatabaseMolecule>();
         }
         return vec;
     }

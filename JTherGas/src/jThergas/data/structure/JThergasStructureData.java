@@ -109,8 +109,9 @@ public class JThergasStructureData {
         String groupNumberS = line1.substring(3, 7).trim();
         String lineS = line1.substring(7, 9);
         if(group) {
-            setNancyLinearForm(line1.substring(10, 58));
-            nameOfStructure = "";
+            setNancyLinearForm(line1a.substring(4).trim());
+            nameOfStructure = line1.substring(10,58).trim();
+            
         } else {
             setNancyLinearForm(line1.substring(10, 28));
             nameOfStructure = line1.substring(28, 58);

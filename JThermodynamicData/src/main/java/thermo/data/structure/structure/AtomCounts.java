@@ -32,12 +32,12 @@ import org.openscience.cdk.interfaces.IAtom;
  */
 public class AtomCounts extends Hashtable<String, Integer> implements Comparable<AtomCounts> {
 
-    //! The set of atom names
+    // ! The set of atom names
     private java.util.HashSet<String> atomNames = null;
-    //! The names of the hydrogen and carbon (for use in making the isomer name.
+    // ! The names of the hydrogen and carbon (for use in making the isomer name.
     private String hydrogenS = new String("H");
     private String carbonS = new String("C");
-    //! The molecule ID
+    // ! The molecule ID
     public String moleculeID;
     public double bondingHashCode;
 
@@ -54,8 +54,8 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
      *
      * @param atoms The molecule to analyze
      *
-     * From the molecule, the derived Hashtable is filled in with the atoms
-     * (IAtom.getSymbol()) and the corresponding counts
+     *              From the molecule, the derived Hashtable is filled in with the
+     *              atoms (IAtom.getSymbol()) and the corresponding counts
      */
     public AtomCounts(IAtomContainer atoms) {
         super();
@@ -99,8 +99,7 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
     }
 
     /**
-     * From the list of unique atom names, the Hashtable<String,Integer> is set
-     * up
+     * From the list of unique atom names, the Hashtable<String,Integer> is set up
      *
      * The table is initialized with zero counts for each atom
      */
@@ -128,42 +127,41 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
             this.put(name, count);
         }
     }
-    
+
     public double generateHashCode(IAtomContainer atoms) {
         Iterator<IAtom> iter = atoms.atoms().iterator();
         bondingHashCode = 0.0;
         while (iter.hasNext()) {
             IAtom atm = iter.next();
-        	int radicals = atoms.getConnectedSingleElectronsCount(atm);
-        	boolean isradical = radicals > 0;
-            if(!atm.getSymbol().equalsIgnoreCase("H")) {
-            try {
-            	int nbonds = 0;
-               	List<IBond> bonds = atoms.getConnectedBondsList(atm);
-               	Iterator<IBond> bnditer = bonds.iterator();
-               	while (bnditer.hasNext()) {
-               		IBond bnd = bnditer.next();
-               		IAtom atm1 = bnd.getAtom(0);
-               		IAtom atm2 = bnd.getAtom(1);
-               		boolean nHatm1 = !atm1.getSymbol().equalsIgnoreCase("H");
-               		boolean nHatm2 = !atm2.getSymbol().equalsIgnoreCase("H");
-               		if(nHatm1 && nHatm2) {
-               			nbonds++;
-               		}
-               	}
-             	double nbondsD = (double) 2.0 *nbonds;
-             	if(isradical) {
-             		nbondsD += 1.0;
-             	}
-            	double code = Math.pow(10.0, nbondsD);
-            	bondingHashCode += code;
-            	}catch(UnsupportedOperationException ex) {
-            	}
+            int radicals = atoms.getConnectedSingleElectronsCount(atm);
+            boolean isradical = radicals > 0;
+            if (!atm.getSymbol().equalsIgnoreCase("H")) {
+                try {
+                    int nbonds = 0;
+                    List<IBond> bonds = atoms.getConnectedBondsList(atm);
+                    Iterator<IBond> bnditer = bonds.iterator();
+                    while (bnditer.hasNext()) {
+                        IBond bnd = bnditer.next();
+                        IAtom atm1 = bnd.getAtom(0);
+                        IAtom atm2 = bnd.getAtom(1);
+                        boolean nHatm1 = !atm1.getSymbol().equalsIgnoreCase("H");
+                        boolean nHatm2 = !atm2.getSymbol().equalsIgnoreCase("H");
+                        if (nHatm1 && nHatm2) {
+                            nbonds++;
+                        }
+                    }
+                    double nbondsD = (double) 2.0 * nbonds;
+                    if (isradical) {
+                        nbondsD += 1.0;
+                    }
+                    double code = Math.pow(10.0, nbondsD);
+                    bondingHashCode += code;
+                } catch (UnsupportedOperationException ex) {
+                }
             }
         }
         return bondingHashCode;
     }
-
 
     /**
      * Determine the list of atom names (symbol names)
@@ -182,9 +180,10 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
      * @param sze The desired size of the array
      * @return The array of atom names
      *
-     * If sze is less than that actual size of the number of atoms types, then
-     * the size of the array will be increased correspondingly. If sze is
-     * greater than the actual size, the names are filled in with empty strings.
+     *         If sze is less than that actual size of the number of atoms types,
+     *         then the size of the array will be increased correspondingly. If sze
+     *         is greater than the actual size, the names are filled in with empty
+     *         strings.
      */
     public String[] getAtomStringArray(int sze) {
         if (sze < atomNames.size()) {
@@ -215,10 +214,10 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
      * Determine the corresponding (to atom names) counts of each atom
      *
      * @param sze
-     * @return Array of corresponding (to atom name array) counts of each atom
-     * If sze is less than that actual size of the number of atoms types, then
-     * the size of the array will be increased correspondingly. If sze is
-     * greater than the actual size, the names are filled in with zeroes
+     * @return Array of corresponding (to atom name array) counts of each atom If
+     *         sze is less than that actual size of the number of atoms types, then
+     *         the size of the array will be increased correspondingly. If sze is
+     *         greater than the actual size, the names are filled in with zeroes
      */
     public int[] correspondingAtomCount(int sze) {
         if (sze < atomNames.size()) {
@@ -239,15 +238,14 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
         }
         return atomcounts;
     }
-    
 
     /**
      * Determine the isomer name from the atom counts
      *
      * @return The isomer name
      *
-     * This, by default, lists the carbon first (if any) and then the hydrogens
-     * (if any).
+     *         This, by default, lists the carbon first (if any) and then the
+     *         hydrogens (if any).
      */
     public String isomerName() {
         Integer carbons = this.get(carbonS);
@@ -269,7 +267,7 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
         ArrayList<String> lst = new ArrayList<String>(atomNames);
         Object[] sorted = lst.toArray();
         Arrays.sort(sorted);
-        for(int i=0; i < sorted.length; i++) {
+        for (int i = 0; i < sorted.length; i++) {
             String atomname = (String) sorted[i];
             if (!atomname.equals(carbonS) && !atomname.equals(hydrogenS)) {
                 Integer count = this.get(atomname);
@@ -289,8 +287,8 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
      * @param atomname The original atom name
      * @return Converts to a proper name.
      *
-     * The rule is that the first character is capital and the rest are lower
-     * case
+     *         The rule is that the first character is capital and the rest are
+     *         lower case
      */
     private String adjustedAtomName(String atomname) {
         StringBuffer buf = new StringBuffer();
@@ -377,20 +375,19 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
                     Iterator<String> iter = counts.keySet().iterator();
                     while (iter.hasNext() && ans == 0) {
                         String name = iter.next();
-                        if (!name.equalsIgnoreCase(carbonS)
-                                || !name.equalsIgnoreCase(hydrogenS)) {
+                        if (!name.equalsIgnoreCase(carbonS) || !name.equalsIgnoreCase(hydrogenS)) {
                             ans = compareAtom(counts, name);
                         }
                     }
                 }
             }
         }
-        if(ans == 0) {
-        	if(this.bondingHashCode < counts.bondingHashCode) {
-        		ans = 1;
-        	} else if(this.bondingHashCode > counts.bondingHashCode) {
-        		ans = -1;
-        	}
+        if (ans == 0) {
+            if (this.bondingHashCode < counts.bondingHashCode) {
+                ans = 1;
+            } else if (this.bondingHashCode > counts.bondingHashCode) {
+                ans = -1;
+            }
         }
 
         return ans;
@@ -399,7 +396,7 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
     /**
      * Used for ordering molecules to make a comparator
      *
-     * @param o The atom counts
+     * @param o     The atom counts
      * @param atomS
      * @return
      */
@@ -407,22 +404,10 @@ public class AtomCounts extends Hashtable<String, Integer> implements Comparable
         int ans = 0;
         Integer oatm = o.findCountOfAtom(atomS);
         Integer atm = this.findCountOfAtom(atomS);
-        if (oatm == null) {
-            if (atm == null) {
-                ans = 0;
-            } else {
-                ans = -1;
-            }
-        } else {
-            if (oatm == null) {
-                ans = -1;
-            } else {
-              if(oatm > atm) {
-                    ans = 1;
-                } else {
-                    ans = -1;
-                }
-            }
+        if (oatm > atm) {
+            ans = 1;
+        } else if (oatm < atm) {
+            ans = -1;
         }
         return ans;
     }

@@ -3,6 +3,6 @@
 
   <threadsafe>true</threadsafe>
   <sessions-enabled>false</sessions-enabled>
-  <runtime>java8</runtime>
+  <runtime>java11</runtime>
 
 </appengine-web-app>
